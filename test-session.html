@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلسة الاختبار - زامل SOCPA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Brand Colors */
+            --primary-navy: #3f4f6b;
+            --primary-blue: #6ba3f7;
+            --primary-dark: #2a3441;
+            --accent-gold: #f7c845;
+            --accent-yellow: #ffd76b;
+            
+            /* Interface Colors */
+            --white: #ffffff;
+            --light-gray: #fafbfc;
+            --medium-gray: #8b9bb5;
+            --dark-gray: #4a5568;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            
+            /* Test Interface */
+            --test-bg: #f8f9fa;
+            --test-header: #2c3e50;
+            --test-sidebar: #34495e;
+            --question-bg: #ffffff;
+            --answer-bg: #f8f9fa;
+            --answer-hover: #e3f2fd;
+            --answer-selected: #bbdefb;
+            
+            /* Status Colors */
+            --answered: #4caf50;
+            --flagged: #ff9800;
+            --current: #2196f3;
+            --unanswered: #e0e0e0;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.10);
+            --transition: all .3s cubic-bezier(.25,.8,.25,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--test-bg);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Test Header */
+        .test-header {
+            background: var(--test-header);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .test-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .test-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .test-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .test-tab {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .test-tab.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .timer-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'El Messiri', serif;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .end-test-btn {
+            background: #e74c3c;
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .end-test-btn:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content Layout */
+        .test-container {
+            display: flex;
+            height: calc(100vh - 70px);
+            margin-top: 70px;
+        }
+
+        /* Question Navigation Sidebar */
+        .question-nav {
+            width: 300px;
+            background: var(--white);
+            border-right: 1px solid var(--gray-300);
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .nav-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .question-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gray-300);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .question-number:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-1px);
+        }
+
+        .question-number.current {
+            background: var(--current);
+            color: var(--white);
+            border-color: var(--current);
+        }
+
+        .question-number.answered {
+            background: var(--answered);
+            color: var(--white);
+            border-color: var(--answered);
+        }
+
+        .question-number.flagged {
+            background: var(--flagged);
+            color: var(--white);
+            border-color: var(--flagged);
+        }
+
+        .question-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Main Question Area */
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+        }
+
+
+
+        /* Question Content */
+        .question-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-300);
+        }
+
+        .question-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .question-id {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        .question-type {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .question-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .question-tag {
+            background: var(--gray-200);
+            color: var(--dark-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .question-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .question-table th,
+        .question-table td {
+            padding: 0.75rem 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .question-table th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .question-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Answer Options */
+        .answer-options {
+            margin-top: 2rem;
+        }
+
+        .answer-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--answer-bg);
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .answer-option:hover {
+            background: var(--answer-hover);
+            border-color: var(--primary-blue);
+        }
+
+        .answer-option.selected {
+            background: var(--answer-selected);
+            border-color: var(--primary-blue);
+        }
+
+        .answer-letter {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 2px solid var(--gray-400);
+            border-radius: 50%;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .answer-option.selected .answer-letter {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .answer-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Navigation Controls */
+        .question-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--gray-100);
+            border-top: 1px solid var(--gray-300);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary-dark);
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:disabled:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+            border-color: var(--gray-300);
+        }
+
+        .flag-btn {
+            background: var(--white);
+            border: 2px solid var(--flagged);
+            color: var(--flagged);
+        }
+
+        .flag-btn:hover {
+            background: var(--flagged);
+            color: var(--white);
+        }
+
+        .flag-btn.flagged {
+            background: var(--flagged);
+            color: var(--white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .question-nav {
+                width: 250px;
+            }
+            
+            .question-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .test-header {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+            
+            .test-container {
+                flex-direction: column;
+                margin-top: 120px;
+            }
+            
+            .question-nav {
+                width: 100%;
+                max-height: 200px;
+            }
+            
+
+        }
+
+        /* End Test Popup Modal */
+        .end-test-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .end-test-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .end-test-modal {
+            background: var(--white);
+            border-radius: 16px;
+            max-width: 480px;
+            width: 90%;
+            margin: 0 1rem;
+            max-height: 85vh;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .end-test-overlay.active .end-test-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .end-test-modal-content {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .end-test-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary-blue);
+            border-radius: 16px 16px 0 0;
+            z-index: 1;
+        }
+
+        .end-test-modal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(107, 163, 247, 0.03);
+            border-radius: 16px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .end-popup-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .end-popup-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 8px 24px rgba(107, 163, 247, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .end-popup-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-family: 'El Messiri', serif;
+        }
+
+        .end-popup-subtitle {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .warning-message {
+            background: rgba(107, 163, 247, 0.08);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(107, 163, 247, 0.15);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .warning-text {
+            color: var(--primary-navy);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .warning-details {
+            color: var(--primary-dark);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .progress-summary {
+            background: rgba(247, 200, 69, 0.12);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-label {
+            color: var(--medium-gray);
+        }
+
+        .progress-value {
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .end-popup-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .end-popup-btn {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            min-width: 140px;
+        }
+
+        .end-popup-btn-cancel {
+            background: var(--white);
+            color: var(--primary-dark);
+            border: 2px solid var(--gray-300);
+        }
+
+        .end-popup-btn-cancel:hover {
+            background: rgba(107, 163, 247, 0.08);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .end-popup-btn-confirm {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            box-shadow: 0 4px 16px rgba(247, 200, 69, 0.25);
+        }
+
+        .end-popup-btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 200, 69, 0.4);
+            background: var(--accent-yellow);
+        }
+
+        .close-end-popup {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--gray-200);
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .close-end-popup:hover {
+            background: var(--gray-100);
+            color: var(--primary-dark);
+        }
+
+        /* Custom Scrollbar for End Modal Content */
+        .end-test-modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .end-test-modal-content::-webkit-scrollbar-track {
+            background: rgba(247, 200, 69, 0.1);
+            border-radius: 3px;
+        }
+
+        .end-test-modal-content::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .end-test-modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-yellow);
+        }
+
+        .end-test-modal-content::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .end-test-modal {
+                max-width: 95%;
+                max-height: 90vh;
+                margin: 0 0.5rem;
+            }
+            
+            .end-test-modal-content {
+                padding: 1.5rem;
+            }
+            
+            .end-popup-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .end-popup-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.25rem;
+            }
+            
+            .end-popup-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Essay Questions Styles */
+        .essay-content {
+            display: none;
+        }
+
+        .essay-content.active {
+            display: block;
+        }
+
+        .essay-answer-area {
+            margin-top: 2rem;
+        }
+
+        .essay-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1.5rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--white);
+            color: var(--primary-dark);
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .essay-textarea:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .essay-textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(107, 163, 247, 0.1);
+        }
+
+        .essay-textarea::placeholder {
+            color: var(--medium-gray);
+            font-style: italic;
+        }
+
+        .essay-word-count {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+        }
+
+        .word-count-info {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .save-draft-btn {
+            background: var(--gray-200);
+            color: var(--primary-dark);
+            border: 1px solid var(--gray-300);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .save-draft-btn:hover {
+            background: var(--gray-300);
+        }
+
+        .mcq-content.active {
+            display: block;
+        }
+
+        .mcq-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Header -->
+    <header class="test-header">
+        <div class="test-info">
+            <div class="test-title">اختبار تجريبي | SOCPA</div>
+            <div class="test-tabs">
+                <div class="test-tab">المحاسبة المالية</div>
+                <div class="test-tab active" onclick="switchToMCQ()">المجموعة الأولى</div>
+                <div class="test-tab" onclick="switchToEssay()">المجموعة الثانية</div>
+            </div>
+        </div>
+        
+        <div class="timer-section">
+            <div class="timer">
+                <i class="fas fa-clock"></i>
+                <span id="questionTimer">00:00</span>
+                <div class="timer-label">
+                    الوقت المنقضي<br>
+                    للسؤال
+                </div>
+            </div>
+            <button class="end-test-btn" onclick="endTest()">
+                إنهاء الاختبار
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Test Container -->
+    <div class="test-container">
+        <!-- Question Navigation Sidebar -->
+        <aside class="question-nav">
+            <div class="nav-header">
+                <h3 class="nav-title">تصفح الأسئلة</h3>
+                
+                <!-- Question Grid -->
+                <div class="question-grid" id="questionGrid">
+                    <!-- Questions 1-71 will be generated by JavaScript -->
+                </div>
+                
+                <!-- Legend -->
+                <div class="question-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--current);"></div>
+                        <span>السؤال الحالي</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--answered);"></div>
+                        <span>تم الإجابة</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--flagged);"></div>
+                        <span>مؤشر عليه</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--unanswered);"></div>
+                        <span>لم تتم الإجابة</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Question Area -->
+        <main class="question-area">
+
+
+            <!-- Question Content -->
+            <div class="question-content">
+                <!-- MCQ Content -->
+                <div class="mcq-content active" id="mcqContent">
+                    <div class="question-header">
+                        <div class="question-info">
+                            <span class="question-id" id="questionId">اختياري-00854</span>
+                            <span class="question-type">اختيار متعدد</span>
+                        </div>
+                        <div class="question-tags">
+                            <span class="question-tag">تطبيق</span>
+                            <span class="question-tag">هيئة المحاسبين السعوديين</span>
+                        </div>
+                    </div>
+
+                    <div class="question-text" id="questionText">
+                        <p>شركة الأمل السعودية للتجارة بدأت أعمالها في 1 يناير 1444هـ. تعترف الشركة بالإيرادات من جميع المبيعات باستخدام أساس الاستحقاق لأغراض التقارير المالية، وتستخدم بشكل مناسب طريقة التقسيط لأغراض ضريبة الدخل. كان إجمالي هامش الربح للشركة على مبيعات التقسيط تحت كل طريقة كما يلي:</p>
+                        
+                        <table class="question-table">
+                            <thead>
+                                <tr>
+                                    <th>السنة</th>
+                                    <th>طريقة الاستحقاق</th>
+                                    <th>طريقة التقسيط</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1444هـ</td>
+                                    <td>800,000 ريال</td>
+                                    <td>300,000 ريال</td>
+                                </tr>
+                                <tr>
+                                    <td>1445هـ</td>
+                                    <td>1,300,000 ريال</td>
+                                    <td>700,000 ريال</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p>معدلات ضريبة الدخل المطبقة هي 25% للسنة 1445هـ و 20% لما بعدها. لا توجد فروق مؤقتة أخرى. في الميزانية العمومية للشركة بتاريخ 31 ديسمبر 1445هـ، يجب أن يكون التزام ضريبة الدخل المؤجل:</p>
+                    </div>
+
+                    <div class="answer-options" id="answerOptions">
+                        <div class="answer-option" onclick="selectAnswer('A')">
+                            <div class="answer-letter">أ</div>
+                            <div class="answer-text">275,000 ريال</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('B')">
+                            <div class="answer-letter">ب</div>
+                            <div class="answer-text">220,000 ريال</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('C')">
+                            <div class="answer-letter">ج</div>
+                            <div class="answer-text">150,000 ريال</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('D')">
+                            <div class="answer-letter">د</div>
+                            <div class="answer-text">120,000 ريال</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Essay Content -->
+                <div class="essay-content" id="essayContent">
+                    <div class="question-header">
+                        <div class="question-info">
+                            <span class="question-id" id="essayQuestionId">مقالي-00001</span>
+                            <span class="question-type">سؤال مقالي</span>
+                        </div>
+                        <div class="question-tags">
+                            <span class="question-tag">تحليل</span>
+                            <span class="question-tag">هيئة المحاسبين السعوديين</span>
+                        </div>
+                    </div>
+
+                    <div class="question-text" id="essayQuestionText">
+                        <p>شركة الرياض التجارية لديها الاستثمارات التالية في الأوراق المالية كما في 31 ديسمبر 1445هـ:</p>
+                        
+                        <table class="question-table">
+                            <thead>
+                                <tr>
+                                    <th>نوع الاستثمار</th>
+                                    <th>القيمة الدفترية</th>
+                                    <th>القيمة السوقية</th>
+                                    <th>التصنيف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>أسهم شركة الشرق</td>
+                                    <td>500,000 ريال</td>
+                                    <td>450,000 ريال</td>
+                                    <td>متاحة للبيع</td>
+                                </tr>
+                                <tr>
+                                    <td>سندات الحكومة</td>
+                                    <td>800,000 ريال</td>
+                                    <td>820,000 ريال</td>
+                                    <td>محتفظ بها حتى الاستحقاق</td>
+                                </tr>
+                                <tr>
+                                    <td>أسهم شركة الغرب</td>
+                                    <td>300,000 ريال</td>
+                                    <td>350,000 ريال</td>
+                                    <td>للتداول</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p><strong>المطلوب:</strong></p>
+                        <p>اشرح بالتفصيل كيفية معالجة كل نوع من هذه الاستثمارات في البيانات المالية وفقاً لمعايير المحاسبة السعودية، مع بيان الفروق في المعالجة بين الأنواع المختلفة وأثر التغيرات في القيم السوقية على قائمة الدخل وقائمة المركز المالي.</p>
+                    </div>
+
+                    <div class="essay-answer-area">
+                        <textarea 
+                            class="essay-textarea" 
+                            id="essayAnswer"
+                            placeholder="اكتب إجابتك هنا... يُنصح بتنظيم الإجابة في فقرات واضحة مع استخدام أمثلة عملية."
+                            oninput="updateWordCount()"
+                        ></textarea>
+                        
+                        <div class="essay-word-count">
+                            <div class="word-count-info">
+                                <span>عدد الكلمات: <span id="wordCount">0</span></span>
+                                <span>عدد الأحرف: <span id="charCount">0</span></span>
+                            </div>
+                            <button class="save-draft-btn" onclick="saveDraft()">
+                                <i class="fas fa-save"></i>
+                                حفظ مسودة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="question-navigation" id="questionNavigation">
+                <div>
+                    <button class="nav-btn" onclick="nextQuestion()" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                        التالي
+                    </button>
+                </div>
+                
+                <div>
+                    <button class="flag-btn" onclick="toggleFlag()" id="flagBtn">
+                        <i class="fas fa-flag"></i>
+                        تأشير
+                    </button>
+                </div>
+                
+                <div>
+                    <button class="nav-btn" onclick="previousQuestion()" id="prevBtn">
+                        السابق
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Test State
+        let currentQuestion = 2;
+        let totalQuestions = 71;
+        let questionStates = new Array(totalQuestions).fill('unanswered');
+        let answers = new Array(totalQuestions).fill(null);
+        let flaggedQuestions = new Set();
+        let startTime = Date.now();
+        let questionStartTime = Date.now();
+        let testConfig = null;
+        let currentTestType = 'mcq'; // 'mcq' or 'essay'
+        let essayAnswers = {}; // Store essay answers
+        let essayDrafts = {}; // Store essay drafts
+
+        // Load test configuration
+        function loadTestConfig() {
+            const stored = sessionStorage.getItem('testConfig');
+            if (stored) {
+                testConfig = JSON.parse(stored);
+                // Update total questions based on configuration
+                if (testConfig.mcqCount && testConfig.tbsCount) {
+                    totalQuestions = parseInt(testConfig.mcqCount) + parseInt(testConfig.tbsCount);
+                }
+            }
+        }
+
+        // Initialize the test interface
+        function initializeTest() {
+            loadTestConfig();
+            generateQuestionGrid();
+            updateQuestionDisplay();
+            startTimer();
+            
+            // Set current question as answered (example)
+            questionStates[1] = 'current';
+            questionStates[0] = 'answered';
+            answers[0] = 'A';
+            
+            updateQuestionGrid();
+        }
+
+        // Generate question navigation grid
+        function generateQuestionGrid() {
+            const grid = document.getElementById('questionGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                const button = document.createElement('button');
+                button.className = 'question-number';
+                button.textContent = i;
+                button.onclick = () => goToQuestion(i);
+                grid.appendChild(button);
+            }
+        }
+
+        // Update question grid colors
+        function updateQuestionGrid() {
+            const buttons = document.querySelectorAll('.question-number');
+            buttons.forEach((button, index) => {
+                const state = questionStates[index];
+                button.className = `question-number ${state}`;
+                
+                if (flaggedQuestions.has(index + 1)) {
+                    button.classList.add('flagged');
+                }
+            });
+        }
+
+        // Navigate to specific question
+        function goToQuestion(questionNum) {
+            // Save current essay content before switching
+            if (currentTestType === 'essay') {
+                const textarea = document.getElementById('essayAnswer');
+                if (textarea && textarea.value.trim() !== '') {
+                    essayAnswers[currentQuestion] = textarea.value;
+                }
+            }
+            
+            // Clear current question state
+            if (currentTestType === 'mcq') {
+                questionStates[currentQuestion - 1] = answers[currentQuestion - 1] ? 'answered' : 'unanswered';
+            } else if (currentTestType === 'essay') {
+                questionStates[currentQuestion - 1] = essayAnswers[currentQuestion] ? 'answered' : 'unanswered';
+            }
+            
+            currentQuestion = questionNum;
+            questionStates[currentQuestion - 1] = 'current';
+            questionStartTime = Date.now();
+            
+            updateQuestionDisplay();
+            updateQuestionGrid();
+        }
+
+        // Update question display
+        function updateQuestionDisplay() {
+            if (currentTestType === 'mcq') {
+                document.getElementById('questionId').textContent = `اختياري-${String(currentQuestion).padStart(5, '0')}`;
+                
+                // Clear selected answer
+                document.querySelectorAll('.answer-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Show previously selected answer
+                if (answers[currentQuestion - 1]) {
+                    const selectedOption = document.querySelector(`[onclick="selectAnswer('${answers[currentQuestion - 1]}')"]`);
+                    if (selectedOption) {
+                        selectedOption.classList.add('selected');
+                    }
+                }
+            } else if (currentTestType === 'essay') {
+                document.getElementById('essayQuestionId').textContent = `مقالي-${String(currentQuestion).padStart(5, '0')}`;
+                
+                // Load saved essay content
+                const textarea = document.getElementById('essayAnswer');
+                if (essayAnswers[currentQuestion]) {
+                    textarea.value = essayAnswers[currentQuestion];
+                } else {
+                    textarea.value = '';
+                }
+                updateWordCount();
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentQuestion === 1;
+            document.getElementById('nextBtn').disabled = currentQuestion === totalQuestions;
+            
+            // Update flag button
+            const flagBtn = document.getElementById('flagBtn');
+            if (flaggedQuestions.has(currentQuestion)) {
+                flagBtn.classList.add('flagged');
+            } else {
+                flagBtn.classList.remove('flagged');
+            }
+        }
+
+        // Select answer
+        function selectAnswer(letter) {
+            // Clear previous selection
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Select new answer
+            event.target.closest('.answer-option').classList.add('selected');
+            answers[currentQuestion - 1] = letter;
+            questionStates[currentQuestion - 1] = 'answered';
+            
+            updateQuestionGrid();
+        }
+
+        // Navigation functions
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                goToQuestion(currentQuestion - 1);
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                goToQuestion(currentQuestion + 1);
+            }
+        }
+
+        // Toggle flag
+        function toggleFlag() {
+            if (flaggedQuestions.has(currentQuestion)) {
+                flaggedQuestions.delete(currentQuestion);
+            } else {
+                flaggedQuestions.add(currentQuestion);
+            }
+            
+            updateQuestionDisplay();
+            updateQuestionGrid();
+        }
+
+        // Timer functionality
+        function startTimer() {
+            setInterval(() => {
+                const elapsed = Math.floor((Date.now() - questionStartTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                
+                document.getElementById('questionTimer').textContent = 
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+
+
+        function endTest() {
+            showEndTestPopup();
+        }
+
+        function showEndTestPopup() {
+            // Update progress information
+            updateEndTestProgress();
+            
+            // Show popup
+            const overlay = document.getElementById('endTestOverlay');
+            overlay.classList.add('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEndTestPopup() {
+            const overlay = document.getElementById('endTestOverlay');
+            overlay.classList.remove('active');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        function confirmEndTest() {
+            // Close popup
+            closeEndTestPopup();
+            
+            // Add loading state
+            const confirmBtn = document.querySelector('.end-popup-btn-confirm');
+            const originalText = confirmBtn.innerHTML;
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+            confirmBtn.disabled = true;
+            
+            // Simulate saving and redirect
+            setTimeout(() => {
+                // Save test completion status
+                sessionStorage.setItem('testCompleted', 'true');
+                sessionStorage.setItem('testResults', JSON.stringify({
+                    endTime: new Date().toISOString(),
+                    totalQuestions: totalQuestions,
+                    answeredCount: answers.filter(answer => answer !== null).length
+                }));
+                
+                // Redirect to results page
+                window.location.href = 'test-results.html';
+            }, 1500);
+        }
+
+        function updateEndTestProgress() {
+            // Count answered questions
+            const answeredCount = answers.filter(answer => answer !== null).length;
+            document.getElementById('answeredCount').textContent = `${answeredCount} من ${totalQuestions}`;
+            
+            // Update elapsed time
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            document.getElementById('elapsedTime').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            // Update flagged count
+            document.getElementById('flaggedCount').textContent = flaggedQuestions.size.toString();
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('endTestOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeEndTestPopup();
+                }
+            });
+
+            // Close popup with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeEndTestPopup();
+                }
+            });
+        });
+
+        // Tab switching functions
+        function switchToMCQ() {
+            currentTestType = 'mcq';
+            
+            // Update tab styling
+            document.querySelectorAll('.test-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.test-tab[onclick="switchToMCQ()"]').classList.add('active');
+            
+            // Switch content
+            document.getElementById('mcqContent').classList.add('active');
+            document.getElementById('tbsContent').classList.remove('active');
+            
+            // Show question navigation for MCQ
+            document.querySelector('.question-nav').style.display = 'block';
+            
+            // Show regular navigation controls for MCQ
+            document.getElementById('questionNavigation').style.display = 'flex';
+        }
+
+        function switchToEssay() {
+            currentTestType = 'essay';
+            
+            // Update tab styling
+            document.querySelectorAll('.test-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.test-tab[onclick="switchToEssay()"]').classList.add('active');
+            
+            // Switch content
+            document.getElementById('mcqContent').classList.remove('active');
+            document.getElementById('essayContent').classList.add('active');
+            
+            // Show question navigation for essay (same as MCQ)
+            document.querySelector('.question-nav').style.display = 'block';
+            
+            // Show regular navigation controls for essay
+            document.getElementById('questionNavigation').style.display = 'flex';
+        }
+
+        // Essay Functions
+        function updateWordCount() {
+            const textarea = document.getElementById('essayAnswer');
+            const text = textarea.value;
+            
+            // Count words (split by whitespace and filter empty strings)
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const wordCount = text.trim() === '' ? 0 : words.length;
+            
+            // Count characters
+            const charCount = text.length;
+            
+            // Update display
+            document.getElementById('wordCount').textContent = wordCount;
+            document.getElementById('charCount').textContent = charCount;
+            
+            // Save answer in memory
+            essayAnswers[currentQuestion] = text;
+        }
+
+        function saveDraft() {
+            const textarea = document.getElementById('essayAnswer');
+            const text = textarea.value;
+            
+            if (text.trim() === '') {
+                alert('لا يوجد نص لحفظه كمسودة.');
+                return;
+            }
+            
+            // Save draft
+            essayDrafts[currentQuestion] = {
+                text: text,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show confirmation
+            const btn = document.querySelector('.save-draft-btn');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> تم الحفظ';
+            btn.style.background = 'var(--success-green)';
+            btn.style.color = 'white';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.style.background = 'var(--gray-200)';
+                btn.style.color = 'var(--primary-dark)';
+            }, 2000);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeTest);
+    </script>
+
+    <!-- End Test Popup Modal -->
+    <div class="end-test-overlay" id="endTestOverlay">
+        <div class="end-test-modal">
+            <button class="close-end-popup" onclick="closeEndTestPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="end-test-modal-content">
+                <div class="end-popup-header">
+                    <div class="end-popup-icon">
+                        <i class="fas fa-stop-circle"></i>
+                    </div>
+                    <h2 class="end-popup-title">إنهاء الاختبار</h2>
+                    <p class="end-popup-subtitle">هل أنت متأكد من رغبتك في إنهاء الاختبار؟</p>
+                </div>
+
+                <div class="warning-message">
+                    <div class="warning-text">
+                        <i class="fas fa-info-circle"></i>
+                        معلومات مهمة
+                    </div>
+                    <div class="warning-details">
+                        سيتم حفظ إجاباتك الحالية وإنهاء جلسة الاختبار نهائياً. لن تتمكن من العودة للاختبار مرة أخرى بعد الإنهاء.
+                    </div>
+                    
+                    <div class="progress-summary">
+                        <div class="progress-item">
+                            <span class="progress-label">الأسئلة المجابة:</span>
+                            <span class="progress-value" id="answeredCount">1 من 71</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">الوقت المنقضي:</span>
+                            <span class="progress-value" id="elapsedTime">00:00</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">الأسئلة المؤشرة:</span>
+                            <span class="progress-value" id="flaggedCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="end-popup-actions">
+                    <button class="end-popup-btn end-popup-btn-cancel" onclick="closeEndTestPopup()">
+                        إلغاء
+                    </button>
+                    <button class="end-popup-btn end-popup-btn-confirm" onclick="confirmEndTest()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        إنهاء الاختبار
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,3890 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء اختبار جديد - زامل | SOCPA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Brand - Lighter and softer */
+            --primary-navy: #3f4f6b;   /* Softer navy */
+            --primary-blue: #6ba3f7;   /* Lighter blue */
+            --primary-dark: #2a3441;   /* Lighter dark */
+            --secondary-navy: var(--primary-dark);
+
+            /* Accents - Warmer and softer */
+            --accent-gold: #f7c845;    /* Softer gold */
+            --accent-yellow: #ffd76b;  /* Gentle yellow */
+
+            /* Neutrals */
+            --white: #ffffff;
+            --light-gray: #fafbfc;     /* Even lighter gray */
+            --medium-gray: #8b9bb5;    /* Softer medium gray */
+            --dark-gray: #4a5568;      /* Lighter dark gray */
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+
+            /* States - Gentle and comfortable */
+            --success-green: #68d391;  /* Soft green */
+            --warning-orange: #f6ad55; /* Gentle orange */
+            --danger-red: #fc8181;     /* Soft red */
+            --info-blue: #63b3ed;      /* Gentle blue */
+            --light-blue: #bee3f8;     /* Very light blue */
+
+            /* Gradients - Softer transitions */
+            --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            --gradient-button: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-yellow) 100%);
+            --gradient-card: linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 100%);
+
+            /* Shadows / Motion - Softer shadows */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.10);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,.12);
+            --transition: all .3s cubic-bezier(.25,.8,.25,1);
+            --transition-fast: all .15s ease;
+
+            /* Layout */
+            --sidebar-collapsed: 72px;
+            --sidebar-expanded: 220px;
+            --sidebar-gap: 16px;
+            --header-height: 72px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: var(--white);
+            overflow-x: hidden;
+            transition: var(--transition);
+            line-height: 1.6;
+            margin-left: 0;
+        }
+
+        /* ===== Header Styles ===== */
+        .header {
+            background: var(--gradient-primary);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1002;
+            width: 100vw;
+            left: 0;
+            right: 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .header-welcome {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.3px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .logo-accent {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            right: -8px;
+        }
+
+        /* Header Center Layout */
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Navbar Title */
+        .navbar-title {
+            color: var(--white);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Study Selector */
+        .study-selector {
+            position: relative;
+        }
+
+        .study-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .study-info:hover, .study-selector.open .study-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .study-dropdown-arrow {
+            transition: var(--transition);
+        }
+
+        .study-selector.open .study-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .study-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1003;
+            min-width: 400px;
+        }
+
+        .study-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .study-dropdown-header {
+            padding: 1rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+
+        .study-dropdown-menu {
+            padding: 0.5rem 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .study-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .study-dropdown-item:hover {
+            background: var(--light-gray);
+        }
+
+        .study-dropdown-item.active {
+            background: var(--light-blue);
+            border-left-color: var(--info-blue);
+            color: var(--primary-dark);
+        }
+
+        .dropdown-section-header {
+            padding: 0.75rem 1.5rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .dropdown-section-header.coming-soon {
+            color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .dropdown-section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 0.5rem 0;
+        }
+
+        .study-dropdown-item.coming-soon-item {
+            opacity: 0.7;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .study-dropdown-item.coming-soon-item:hover {
+            background: transparent;
+        }
+
+        .coming-soon-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .course-icon.accounting { background: #4a9960; }
+        .course-icon.tax { background: #2d7a3d; }
+        .course-icon.management { background: #2d5aa0; }
+        .course-icon.auditing { background: #3b5998; }
+        .course-icon.business { background: #2f4d7a; }
+        .course-icon.systems { background: #4a6fa5; }
+        .course-icon.economics { background: #2f4d7a; }
+        .course-icon.law { background: #4a6fa5; }
+        .course-icon.ethics { background: #2d5aa0; }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .course-code {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+        }
+
+        /* User Info */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar-number {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-button);
+            color: var(--primary-dark);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-avatar-number:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert-notification {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .alert-notification:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .alert-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--danger-red);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-navy);
+        }
+
+        .user-profile {
+            position: relative;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            left: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1003;
+            min-width: 280px;
+        }
+
+        .user-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 1.25rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            text-align: center;
+        }
+
+        .dropdown-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-email {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .dropdown-menu {
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            background: var(--light-gray);
+            color: var(--primary-dark);
+        }
+
+        .dropdown-item.danger {
+            color: var(--danger-red);
+        }
+
+        .dropdown-item.danger:hover {
+            background: rgba(252, 129, 129, 0.1);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 0.5rem 0;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-collapsed);
+            height: 100vh;
+            background: var(--gradient-primary);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            overflow: hidden;
+            transition: width 0.25s ease;
+            padding-top: var(--header-height);
+        }
+
+        /* expand via hover or .expanded toggle */
+        .sidebar:hover, .sidebar.expanded {
+            width: var(--sidebar-expanded);
+        }
+
+        /* nav items */
+        .sidebar-nav {
+            padding: 1rem 0.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            transition: var(--transition);
+            min-height: 44px;
+            transition: var(--transition);
+        }
+
+        /* collapsed look */
+        .sidebar:not(:hover):not(.expanded) {
+            width: var(--sidebar-collapsed);
+        }
+        .sidebar:not(:hover):not(.expanded) .nav-item {
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            height: 56px;
+        }
+        .sidebar:not(:hover):not(.expanded) .nav-item-icon {
+            width: 36px;
+            height: 36px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar:not(:hover):not(.expanded) .nav-item-icon i {
+            font-size: 20px;
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+        .sidebar:not(:hover):not(.expanded) .nav-item-text {
+            display: none !important;
+            opacity: 0 !important;
+            transform: none !important;
+        }
+        .sidebar:not(:hover):not(.expanded) .nav-item.active::before {
+            display: none;
+        }
+
+        /* active + hover */
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-item-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover .nav-item-icon,
+        .nav-item.active .nav-item-icon {
+            opacity: 1;
+        }
+
+        .nav-item-text {
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.2s ease;
+        }
+        .sidebar:hover .nav-item-text, .sidebar.expanded .nav-item-text {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Tooltip for sidebar items */
+        .nav-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gray-800);
+            color: var(--white);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            pointer-events: none;
+        }
+        .sidebar:not(:hover) .nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            margin-left: calc(var(--sidebar-collapsed) + var(--sidebar-gap));
+            transition: margin-left 0.25s ease;
+            position: relative;
+        }
+
+        .sidebar:hover ~ .main-content, .sidebar.expanded ~ .main-content {
+            margin-left: calc(var(--sidebar-expanded) + var(--sidebar-gap));
+        }
+
+        /* ===== Test Creation Form ===== */
+        .test-form-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            color: var(--dark-gray);
+        }
+
+        /* Form Wrapper - New separate container */
+        .form-wrapper {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(107, 163, 247, 0.12);
+            border: 2px solid rgba(107, 163, 247, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .form-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(107, 163, 247, 0.1), rgba(247, 200, 69, 0.1));
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        /* Summary Container - Separate box for summary and start button */
+        .summary-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border: 2px solid rgba(107, 163, 247, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .summary-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+
+
+        /* Page Header */
+        .page-header {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .page-title {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-gold);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--medium-gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Radio Groups */
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .radio-option:hover {
+            border-color: #0ea5e9;
+            background: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .radio-option.selected {
+            background: #ffffff;
+            border-color: #0ea5e9;
+        }
+
+        .radio-option input[type="radio"] {
+            margin: 0;
+            margin-top: 0.25rem;
+        }
+
+        .radio-content {
+            flex: 1;
+        }
+
+        .radio-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .radio-description {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            line-height: 1.4;
+        }
+
+        /* Categories Section */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            border-color: #0ea5e9;
+            background: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-item.selected {
+            background: #ffffff;
+            border-color: #0ea5e9;
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-checkbox {
+            width: 20px;
+            height: 20px;
+        }
+
+        .category-label {
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .category-counts {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .count-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--medium-gray);
+        }
+        
+        .count-item span:not(.count-number) {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .count-number {
+            background: #BAE6FD;
+            color: #1E3A8A;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Units & Modules */
+        .units-container {
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .unit-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: #ffffff;
+            border-bottom: 1px solid #0ea5e9;
+        }
+
+        .unit-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .unit-checkbox {
+            width: 20px;
+            height: 20px;
+        }
+
+        .unit-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .unit-counts {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+        }
+        
+        .unit-counts span:not(.count-number) {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Question Type */
+        .question-type-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-type-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .question-type-item:hover {
+            border-color: #0ea5e9;
+            background: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-type-item.selected {
+            background: #ffffff;
+            border-color: #0ea5e9;
+        }
+
+        .question-type-checkbox {
+            margin-bottom: 0.75rem;
+        }
+
+        .question-type-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-type-count {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .question-type-count.mcqs {
+            background: #BAE6FD;
+            color: #1E3A8A;
+        }
+
+        .question-type-count.tbs {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .question-type-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .input-range {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+            margin-top: 0.25rem;
+        }
+
+        /* Summary Section */
+        .test-summary {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-label {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .summary-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .summary-value.mcqs {
+            background: #BAE6FD;
+            color: #1E3A8A;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .summary-value.tbs {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* Start Test Button */
+        .start-test-btn {
+            width: auto;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+            background: var(--gradient-button);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(247, 200, 69, 0.3);
+        }
+
+        .start-test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(247, 200, 69, 0.4);
+        }
+
+        .start-test-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Custom Alert Modal */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .alert-modal {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            margin: 0 1rem;
+            box-shadow: 0 20px 40px rgba(107, 163, 247, 0.15), 0 0 0 1px rgba(107, 163, 247, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--primary-blue);
+            position: relative;
+        }
+
+        .alert-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--info-blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            color: white;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 24px rgba(107, 163, 247, 0.25);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        .alert-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1.25rem;
+            font-family: 'El Messiri', serif;
+        }
+
+        .alert-message {
+            font-size: 1.125rem;
+            color: var(--primary-navy);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            background: rgba(107, 163, 247, 0.08);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(107, 163, 247, 0.15);
+            font-weight: 500;
+        }
+
+        .alert-button {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-yellow) 100%);
+            color: var(--primary-navy);
+            border: none;
+            padding: 0.875rem 2.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 140px;
+            box-shadow: 0 4px 16px rgba(247, 200, 69, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .alert-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 200, 69, 0.4), 0 2px 10px rgba(255, 215, 107, 0.3);
+            background: linear-gradient(135deg, #f7c845 0%, #ffd76b 50%, #ffdf7a 100%);
+        }
+
+        /* Start Test Popup Modal */
+        .start-test-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .start-test-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .start-test-modal {
+            background: var(--white);
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            margin: 0 1rem;
+            max-height: 85vh;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .start-test-overlay.active .start-test-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .start-test-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-primary);
+            border-radius: 16px 16px 0 0;
+            z-index: 1;
+        }
+
+        .start-test-modal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(107, 163, 247, 0.03), rgba(247, 200, 69, 0.03));
+            border-radius: 16px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Ensure all modal content is contained */
+        .start-test-modal * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .modal-content * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar for Modal Content */
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(247, 200, 69, 0.1);
+            border-radius: 3px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-yellow));
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #f7c845, #ffd76b);
+        }
+
+        .modal-content::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        .popup-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--info-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 8px 24px rgba(107, 163, 247, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .popup-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-family: 'El Messiri', serif;
+        }
+
+        .popup-subtitle {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .test-config-summary {
+            background: rgba(107, 163, 247, 0.08);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(107, 163, 247, 0.15);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .config-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid rgba(107, 163, 247, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+            word-wrap: break-word;
+        }
+
+        .config-label {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .config-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .socpa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--info-blue));
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+            box-sizing: border-box;
+            word-wrap: break-word;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .popup-btn {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            min-width: 140px;
+        }
+
+        .popup-btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-yellow));
+            color: var(--primary-navy);
+            box-shadow: 0 4px 16px rgba(247, 200, 69, 0.25);
+        }
+
+        .popup-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 200, 69, 0.4), 0 2px 8px rgba(255, 215, 107, 0.3);
+            background: linear-gradient(135deg, #f7c845, #ffd76b);
+        }
+
+        .popup-btn-secondary {
+            background: var(--white);
+            color: var(--primary-dark);
+            border: 2px solid var(--gray-300);
+        }
+
+        .popup-btn-secondary:hover {
+            background: var(--gray-100);
+            border-color: var(--primary-blue);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--gray-200);
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .close-popup:hover {
+            background: var(--gray-100);
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .start-test-modal {
+                max-width: 95%;
+                max-height: 90vh;
+                margin: 0 0.5rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            .config-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .popup-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .popup-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.25rem;
+            }
+            
+            .popup-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .start-test-modal {
+                max-height: 95vh;
+            }
+            
+            .modal-content {
+                padding: 1rem;
+            }
+            
+            .popup-header {
+                margin-bottom: 1rem;
+            }
+            
+            .popup-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.125rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .test-config-summary {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .socpa-badge {
+                margin-bottom: 1rem;
+                padding: 0.375rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+                gap: 1rem;
+            }
+
+            .header-center {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .navbar-title {
+                font-size: 1.5rem;
+            }
+
+            .study-info {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .study-dropdown { 
+                left: auto; 
+                right: 0; 
+                min-width: 260px; 
+                width: auto;
+            }
+            .course-icon { 
+                width: 32px; 
+                height: 32px; 
+                font-size: .7rem; 
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                left: calc(-1 * var(--sidebar-collapsed));
+                transition: left 0.3s ease;
+            }
+
+            .sidebar:hover {
+                left: 0;
+                width: var(--sidebar-expanded);
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .categories-grid,
+            .question-type-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="dashboard.html" class="logo">
+                زامل
+                <div class="logo-accent"></div>
+            </a>
+
+            <div class="header-center">
+                <h1 class="navbar-title">إنشاء اختبار جديد</h1>
+                <div class="study-selector" id="studySelector">
+                    <div class="study-info" id="studyInfo">
+                        <i class="fas fa-book"></i>
+                        <span>تدرس للحصول على: SOCPA</span>
+                        <i class="fas fa-chevron-down study-dropdown-arrow"></i>
+                    </div>
+                    <div class="study-dropdown" id="studyDropdown">
+                        <div class="study-dropdown-header">
+                            اختر المادة التي تدرسها
+                        </div>
+                        <div class="study-dropdown-menu">
+                            <!-- Currently Available Courses -->
+                            <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
+                            <div class="study-dropdown-item active" data-course="accounting">
+                                <div class="course-icon accounting">محا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة المالية</div>
+                                    <div class="course-code">Financial Accounting</div>
+                                </div>
+                            </div>
+                            <div class="study-dropdown-item" data-course="tax">
+                                <div class="course-icon tax">زك</div>
+                                <div class="course-info">
+                                    <div class="course-name">الزكاة والضريبة</div>
+                                    <div class="course-code">Zakat & Tax</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coming Soon Section -->
+                            <div class="dropdown-section-divider"></div>
+                            <div class="dropdown-section-header coming-soon">قريباً</div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="management">
+                                <div class="course-icon management">إدا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة الإدارية والحكومية</div>
+                                    <div class="course-code">Management & Government Accounting</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="auditing">
+                                <div class="course-icon auditing">مرا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المراجعة</div>
+                                    <div class="course-code">Auditing</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="business">
+                                <div class="course-icon business">بيئ</div>
+                                <div class="course-info">
+                                    <div class="course-name">بيئة الأعمال</div>
+                                    <div class="course-code">Business Environment</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="systems">
+                                <div class="course-icon systems">نظم</div>
+                                <div class="course-info">
+                                    <div class="course-name">الأنظمة</div>
+                                    <div class="course-code">Systems</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-info">
+                <!-- Alert notification -->
+                <button class="alert-notification" id="alertNotification">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge" id="alertBadge" style="display: none;">0</span>
+                </button>
+
+                <!-- User Avatar with Number and Dropdown -->
+                <div class="user-profile">
+                    <div class="user-avatar-number" id="userAvatarNumber">
+                        <span>م</span>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-name">مشعل الشقحا</div>
+                            <div class="dropdown-email">mushal@gmail.com</div>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item" id="profileBtn">
+                                <i class="fas fa-user"></i>
+                                <span>الملف الشخصي</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>تسجيل خروج</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item" data-tooltip="الرئيسية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-home"></i>
+                </div>
+                <span class="nav-item-text">الرئيسية</span>
+            </a>
+            <a href="practice-tests.html" class="nav-item active" data-tooltip="الاختبارات التجريبية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+                <span class="nav-item-text">الاختبارات التجريبية</span>
+            </a>
+            <a href="flashcards.html" class="nav-item" data-tooltip="البطاقات التعليمية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span class="nav-item-text">البطاقات التعليمية</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">إنشاء اختبار تجريبي</h1>
+            <p class="page-description">اختر المحتوى والإعدادات المناسبة لبدء الاختبار التجريبي الخاص بك</p>
+        </div>
+
+        <!-- Form Wrapper - Contains all form elements -->
+        <div class="form-wrapper">
+            
+            <!-- Scoring Mode Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    وضع التقييم
+                </h2>
+                <div class="radio-group">
+                    <label class="radio-option" for="exam-mode">
+                        <input type="radio" id="exam-mode" name="scoring-mode" value="exam">
+                        <div class="radio-content">
+                            <div class="radio-title">الامتحان</div>
+                            <div class="radio-description">يتم عرض النتيجة والشروحات بعد الاختبار.</div>
+                        </div>
+                    </label>
+                    <label class="radio-option selected" for="practice-mode">
+                        <input type="radio" id="practice-mode" name="scoring-mode" value="practice" checked>
+                        <div class="radio-content">
+                            <div class="radio-title">التدريب</div>
+                            <div class="radio-description">يتم عرض النتيجة والشروحات بعد كل استجابة لسؤال.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Test Mode Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-cog"></i>
+                    وضع الاختبار
+                </h2>
+                <div class="radio-group">
+                    <label class="radio-option selected" for="random-mode">
+                        <input type="radio" id="random-mode" name="test-mode" value="random" checked>
+                        <div class="radio-content">
+                            <div class="radio-title">عشوائي</div>
+                            <div class="radio-description">مجموعة عشوائية من الأسئلة من كل فئة مختارة.</div>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-list"></i>
+                    الفئات
+                </h2>
+                <p class="section-subtitle">
+                    تسمح الفئات بتصفية الأسئلة التي سيتم تضمينها في الاختبار بناءً على التقدير: صحيح، غير صحيح، أو غير مجاب عليه.
+                    يمكنك أيضًا اختيار تضمين أسئلتك المميزة، بغض النظر عن تقديرها.
+                </p>
+                <div class="categories-grid">
+                    <div class="category-item selected">
+                        <div class="category-info">
+                            <input type="checkbox" class="category-checkbox" checked>
+                            <span class="category-label">الكل</span>
+                        </div>
+                        <div class="category-counts">
+                            <div class="count-item">
+                                <span class="count-number">1614</span>
+                                <span>101</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-item selected">
+                        <div class="category-info">
+                            <input type="checkbox" class="category-checkbox" checked>
+                            <span class="category-label">غير مجاب عليه</span>
+                        </div>
+                        <div class="category-counts">
+                            <div class="count-item">
+                                <span class="count-number">290</span>
+                                <span>21</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-item selected">
+                        <div class="category-info">
+                            <input type="checkbox" class="category-checkbox" checked>
+                            <span class="category-label">غير صحيح</span>
+                        </div>
+                        <div class="category-counts">
+                            <div class="count-item">
+                                <span class="count-number">15</span>
+                                <span>13</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-item selected">
+                        <div class="category-info">
+                            <input type="checkbox" class="category-checkbox" checked>
+                            <span class="category-label">صحيح</span>
+                        </div>
+                        <div class="category-counts">
+                            <div class="count-item">
+                                <span class="count-number">1309</span>
+                                <span>67</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-info">
+                            <input type="checkbox" class="category-checkbox">
+                            <span class="category-label">مميز</span>
+                        </div>
+                        <div class="category-counts">
+                            <div class="count-item">
+                                <span class="count-number">25</span>
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Units & Modules Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i>
+                    الوحدات والفصول
+                </h2>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">الكل</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">1614</span>
+                            <span>101</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F1 - التقارير المالية</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">227</span>
+                            <span>11</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F2 - التقارير المالية والإفصاحات</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">290</span>
+                            <span>19</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F3 - الأصول والموضوعات ذات الصلة</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">277</span>
+                            <span>26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F4 - الخصوم</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">278</span>
+                            <span>14</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F5 - الاستثمارات وبيان التدفقات النقدية وضرائب الدخل</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">321</span>
+                            <span>21</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="units-container">
+                    <div class="unit-header">
+                        <div class="unit-info">
+                            <input type="checkbox" class="unit-checkbox" checked>
+                            <span class="unit-name">F6 - المحاسبة غير الربحية والمحاسبة الحكومية</span>
+                        </div>
+                        <div class="unit-counts">
+                            <span class="count-number">221</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Type Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-question-circle"></i>
+                    نوع السؤال
+                </h2>
+                <div class="question-type-grid">
+                    <div class="question-type-item selected">
+                        <input type="checkbox" class="question-type-checkbox" checked>
+                        <div class="question-type-label">أسئلة متعددة الخيارات</div>
+                        <div class="question-type-count mcqs">1614</div>
+                        <input type="number" class="question-type-input" value="100" min="1" max="100">
+                        <div class="input-range">أدنى: 1 | أقصى: 100</div>
+                    </div>
+                    <div class="question-type-item selected">
+                        <input type="checkbox" class="question-type-checkbox" checked>
+                        <div class="question-type-label">أسئلة مقالية</div>
+                        <div class="question-type-count tbs">101</div>
+                        <input type="number" class="question-type-input" value="10" min="1" max="10">
+                        <div class="input-range">أدنى: 1 | أقصى: 10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Container - Separate box for summary and start button -->
+        <div class="summary-container">
+            <!-- Test Summary -->
+            <div class="test-summary">
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-label">وضع التقييم</div>
+                        <div class="summary-value">التدريب</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">وضع الاختبار</div>
+                        <div class="summary-value">عشوائي</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">الوحدات</div>
+                        <div class="summary-value">الكل</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">نوع السؤال</div>
+                        <div class="summary-value mcqs">100</div>
+                        <span style="font-size: 0.75rem; color: var(--medium-gray); display: block; margin-top: 0.25rem;">أسئلة متعددة الخيارات</span>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">نوع السؤال</div>
+                        <div class="summary-value tbs">10</div>
+                        <span style="font-size: 0.75rem; color: var(--medium-gray); display: block; margin-top: 0.25rem;">أسئلة مقالية</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start Test Button -->
+            <button class="start-test-btn" id="startTestBtn">
+                بدء الاختبار
+            </button>
+        </div>
+    </main>
+
+    <!-- Start Test Popup Modal -->
+    <div class="start-test-overlay" id="startTestOverlay">
+        <div class="start-test-modal">
+            <button class="close-popup" onclick="closeStartTestPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-content">
+                <div class="popup-header">
+                    <div class="popup-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h2 class="popup-title">بدء اختبار SOCPA التجريبي</h2>
+                    <p class="popup-subtitle">تأكد من إعداداتك قبل بدء الاختبار</p>
+                </div>
+
+                <div class="socpa-badge">
+                    <i class="fas fa-certificate"></i>
+                     هيئة المحاسبين القانونيين السعوديين
+                </div>
+
+                <div class="test-config-summary">
+                    <div class="config-grid" id="configGrid">
+                        <!-- Config items will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="text-align: center; color: var(--medium-gray); font-size: 0.875rem; margin-top: 1rem;">
+                        <i class="fas fa-info-circle"></i>
+                        سيتم حفظ تقدمك تلقائياً أثناء الاختبار
+                    </div>
+                </div>
+
+                <div class="popup-actions">
+                    <button class="popup-btn popup-btn-secondary" onclick="closeStartTestPopup()">
+                        إلغاء
+                    </button>
+                    <button class="popup-btn popup-btn-primary" onclick="confirmStartTest()">
+                        <i class="fas fa-rocket"></i>
+                        بدء الاختبار الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Study selector functionality
+        const studySelector = document.getElementById('studySelector');
+        const studyInfo = document.getElementById('studyInfo');
+        const studyDropdown = document.getElementById('studyDropdown');
+
+        studyInfo.addEventListener('click', function() {
+            studySelector.classList.toggle('open');
+            studyDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!studySelector.contains(e.target)) {
+                studySelector.classList.remove('open');
+                studyDropdown.classList.remove('show');
+            }
+        });
+
+        // Study dropdown items
+        document.querySelectorAll('.study-dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Check if it's a coming soon item
+                if (this.classList.contains('coming-soon-item')) {
+                    showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                    return;
+                }
+                
+                // Remove active class from all available items (not coming soon)
+                document.querySelectorAll('.study-dropdown-item').forEach(i => {
+                    if (!i.classList.contains('coming-soon-item')) {
+                        i.classList.remove('active');
+                    }
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Update the study info text
+                const courseName = this.querySelector('.course-name').textContent;
+                studyInfo.querySelector('span').textContent = `تدرس للحصول على: ${courseName}`;
+                
+                // Close dropdown
+                studySelector.classList.remove('open');
+                studyDropdown.classList.remove('show');
+            });
+        });
+
+        // User dropdown functionality
+        const userAvatarNumber = document.getElementById('userAvatarNumber');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userAvatarNumber.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+            studyDropdown.classList.remove('show');
+            studySelector.classList.remove('open');
+        });
+
+        // Close user dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+
+        // Profile button functionality
+        const profileBtn = document.getElementById('profileBtn');
+
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        profileBtn.addEventListener('click', function() {
+            userDropdown.classList.remove('show');
+            showProfileModal();
+        });
+
+
+
+        logoutBtn.addEventListener('click', function() {
+            userDropdown.classList.remove('show');
+            showLogoutModal();
+        });
+
+        // Test form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Radio button selections
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove selected class from all options in the same group
+                    const groupName = this.name;
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(r => {
+                        r.closest('.radio-option').classList.remove('selected');
+                    });
+                    
+                    // Add selected class to the selected option
+                    this.closest('.radio-option').classList.add('selected');
+                    
+                    updateSummary();
+                });
+            });
+
+            // Category checkboxes
+            document.querySelectorAll('.category-item').forEach(item => {
+                const checkbox = item.querySelector('.category-checkbox');
+                
+                item.addEventListener('click', function(e) {
+                    if (e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    
+                    if (checkbox.checked) {
+                        item.classList.add('selected');
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                });
+            });
+
+            // Unit checkboxes
+            document.querySelectorAll('.unit-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const container = this.closest('.units-container');
+                    if (this.checked) {
+                        container.classList.add('selected');
+                    } else {
+                        container.classList.remove('selected');
+                    }
+                });
+            });
+
+            // Question type checkboxes
+            document.querySelectorAll('.question-type-item').forEach(item => {
+                const checkbox = item.querySelector('.question-type-checkbox');
+                
+                item.addEventListener('click', function(e) {
+                    if (e.target !== checkbox && e.target.type !== 'number') {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                    
+                    if (checkbox.checked) {
+                        item.classList.add('selected');
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                    
+                    updateSummary();
+                });
+            });
+
+            // Question type number inputs with validation
+            document.querySelectorAll('.question-type-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    validateQuestionInput(this);
+                    updateSummary();
+                });
+                
+                input.addEventListener('blur', function() {
+                    validateQuestionInput(this);
+                    updateSummary();
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    // Allow: backspace, delete, tab, escape, enter
+                    if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
+                        // Allow: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                        (e.keyCode === 65 && e.ctrlKey === true) ||
+                        (e.keyCode === 67 && e.ctrlKey === true) ||
+                        (e.keyCode === 86 && e.ctrlKey === true) ||
+                        (e.keyCode === 88 && e.ctrlKey === true) ||
+                        // Allow: home, end, left, right
+                        (e.keyCode >= 35 && e.keyCode <= 39)) {
+                        return;
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Start test button
+            document.getElementById('startTestBtn').addEventListener('click', function() {
+                showStartTestPopup();
+            });
+
+            // Initialize summary
+            updateSummary();
+        });
+
+        // Start Test Popup Functions
+        function showStartTestPopup() {
+            // Get test configuration
+            const testConfig = {
+                scoringMode: document.querySelector('input[name="scoring-mode"]:checked')?.value || 'practice',
+                testMode: document.querySelector('input[name="test-mode"]:checked')?.value || 'random',
+                mcqCount: document.querySelector('.question-type-item:first-child .question-type-input')?.value || 100,
+                tbsCount: document.querySelector('.question-type-item:last-child .question-type-input')?.value || 10
+            };
+            
+            // Store configuration
+            window.currentTestConfig = testConfig;
+            
+            // Populate config grid
+            const configGrid = document.getElementById('configGrid');
+            configGrid.innerHTML = `
+                <div class="config-item">
+                    <div class="config-label">وضع التقييم</div>
+                    <div class="config-value">${testConfig.scoringMode === 'practice' ? 'التدريب' : 'الامتحان'}</div>
+                </div>
+                <div class="config-item">
+                    <div class="config-label">وضع الاختبار</div>
+                    <div class="config-value">عشوائي</div>
+                </div>
+                <div class="config-item">
+                    <div class="config-label">أسئلة متعددة الخيارات</div>
+                    <div class="config-value">${testConfig.mcqCount}</div>
+                </div>
+                <div class="config-item">
+                    <div class="config-label">أسئلة مقالية</div>
+                    <div class="config-value">${testConfig.tbsCount}</div>
+                </div>
+            `;
+            
+            // Show popup
+            const overlay = document.getElementById('startTestOverlay');
+            overlay.classList.add('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStartTestPopup() {
+            const overlay = document.getElementById('startTestOverlay');
+            overlay.classList.remove('active');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        function confirmStartTest() {
+            if (window.currentTestConfig) {
+                // Store configuration in session storage
+                sessionStorage.setItem('testConfig', JSON.stringify(window.currentTestConfig));
+                
+                // Close popup
+                closeStartTestPopup();
+                
+                // Add loading state
+                const confirmBtn = document.querySelector('.popup-btn-primary');
+                const originalText = confirmBtn.innerHTML;
+                confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحضير...';
+                confirmBtn.disabled = true;
+                
+                // Redirect after short delay for better UX
+                setTimeout(() => {
+                    window.location.href = 'test-session.html';
+                }, 1000);
+            }
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('startTestOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeStartTestPopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStartTestPopup();
+            }
+        });
+
+        function showCustomAlert(message) {
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'alert-overlay';
+            
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'alert-modal';
+            
+            modal.innerHTML = `
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="alert-title">تنبيه</div>
+                <div class="alert-message">${message}</div>
+                <button class="alert-button" onclick="closeCustomAlert()">موافق</button>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+            
+            // Close on overlay click
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeCustomAlert();
+                }
+            });
+            
+            // Close on escape key
+            const escapeHandler = function(e) {
+                if (e.key === 'Escape') {
+                    closeCustomAlert();
+                    document.removeEventListener('keydown', escapeHandler);
+                }
+            };
+            document.addEventListener('keydown', escapeHandler);
+            
+            // Animate in
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                modal.style.transform = 'scale(1)';
+            }, 10);
+            
+            // Store reference for cleanup
+            window.currentAlert = overlay;
+        }
+
+        function closeCustomAlert() {
+            if (window.currentAlert) {
+                window.currentAlert.style.opacity = '0';
+                window.currentAlert.querySelector('.alert-modal').style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    if (window.currentAlert && window.currentAlert.parentNode) {
+                        window.currentAlert.parentNode.removeChild(window.currentAlert);
+                    }
+                    window.currentAlert = null;
+                }, 300);
+            }
+        }
+
+        function validateQuestionInput(input) {
+            const min = parseInt(input.getAttribute('min'));
+            const max = parseInt(input.getAttribute('max'));
+            const value = parseInt(input.value);
+            const questionType = input.closest('.question-type-item').querySelector('.question-type-label').textContent;
+            
+            if (isNaN(value) || value === '') {
+                return;
+            }
+            
+            if (value < min) {
+                showCustomAlert(`عذراً، الحد الأدنى لعدد ${questionType} هو ${min}`);
+                input.value = min;
+                return;
+            }
+            
+            if (value > max) {
+                showCustomAlert(`عذراً، الحد الأقصى لعدد ${questionType} هو ${max}`);
+                input.value = max;
+                return;
+            }
+        }
+
+        function updateSummary() {
+            // Update scoring mode
+            const scoringMode = document.querySelector('input[name="scoring-mode"]:checked');
+            if (scoringMode) {
+                const modeText = scoringMode.value === 'exam' ? 'الامتحان' : 'التدريب';
+                document.querySelector('.summary-grid .summary-item:nth-child(1) .summary-value').textContent = modeText;
+            }
+
+            // Update test mode
+            const testMode = document.querySelector('input[name="test-mode"]:checked');
+            if (testMode) {
+                const modeText = 'عشوائي'; // Only random mode available now
+                document.querySelector('.summary-grid .summary-item:nth-child(2) .summary-value').textContent = modeText;
+            }
+
+            // Update question counts
+            const mcqInput = document.querySelector('.question-type-item:first-child .question-type-input');
+            const tbsInput = document.querySelector('.question-type-item:last-child .question-type-input');
+            
+            if (mcqInput) {
+                document.querySelector('.summary-grid .summary-item:nth-child(4) .summary-value').textContent = mcqInput.value;
+            }
+            
+            if (tbsInput) {
+                document.querySelector('.summary-grid .summary-item:nth-child(5) .summary-value').textContent = tbsInput.value;
+            }
+        }
+
+        // Profile Modal functionality (from flashcards.html)
+        function showProfileModal() {
+            const profileOverlay = document.createElement('div');
+            profileOverlay.id = 'profileOverlay';
+            profileOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const profileModal = document.createElement('div');
+            profileModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 600px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            profileModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </h2>
+                        <button id="closeProfileBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="padding: 2rem;">
+                    <!-- User Info Section -->
+                    <div style="background: var(--gradient-primary); color: white; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 2rem; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                            أ
+                        </div>
+                        <h3 style="margin: 0 0 0.5rem 0;">مشعل الشقحا</h3>
+                        <p style="margin: 0; opacity: 0.9;">mushal@gmail.com</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-calendar"></i> انضم في يناير 2024
+                            </div>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-graduation-cap"></i> طالب SOCPA
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <div style="border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.5rem;">
+                        <h4 style="color: var(--primary-navy); margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-id-card"></i>
+                            المعلومات الشخصية
+                        </h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الاسم الأول</span>
+                                <span style="color: black; font-weight: 600;">مشعل</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">اسم العائلة</span>
+                                <span style="color: black; font-weight: 600;">الشقحا</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">البريد الإلكتروني</span>
+                                <span style="color: black; font-weight: 600;">mushal@gmail.com</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">رقم الجوال</span>
+                                <span style="color: black; font-weight: 600;">05xxxxxxxx</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الجنس</span>
+                                <span style="color: black; font-weight: 600;">ذكر</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">جهة العمل</span>
+                                <span style="color: black; font-weight: 600;">شركة زامل للتطوير</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button id="editProfileBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </button>
+                        <button id="changePasswordBtn" style="
+                            background: transparent;
+                            color: var(--primary-navy);
+                            border: 1px solid var(--primary-navy);
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            profileOverlay.appendChild(profileModal);
+            document.body.appendChild(profileOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                profileOverlay.style.opacity = '1';
+                profileModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Event listeners
+            document.getElementById('closeProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                }, 300);
+            });
+
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showEditProfileModal();
+                }, 300);
+            });
+
+            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showChangePasswordModal();
+                }, 300);
+            });
+
+            // Close on overlay click
+            profileOverlay.addEventListener('click', function(e) {
+                if (e.target === profileOverlay) {
+                    document.getElementById('closeProfileBtn').click();
+                }
+            });
+        }
+
+
+
+        // Logout Modal functionality
+        function showLogoutModal() {
+            const logoutOverlay = document.createElement('div');
+            logoutOverlay.id = 'logoutOverlay';
+            logoutOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                backdrop-filter: blur(5px);
+            `;
+
+            const logoutModal = document.createElement('div');
+            logoutModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 400px;
+                width: 90%;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+                overflow: hidden;
+                border: 1px solid var(--gray-200);
+            `;
+
+            logoutModal.innerHTML = `
+                <!-- Header with Icon -->
+                <div style="background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%); padding: 1.5rem; text-align: center; position: relative;">
+                    <div style="width: 3rem; height: 3rem; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; position: relative;">
+                        <i class="fas fa-sign-out-alt" style="color: white; font-size: 1.2rem;"></i>
+                        <div style="position: absolute; top: -3px; right: -3px; width: 0.75rem; height: 0.75rem; background: var(--accent-gold); border: 2px solid white; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                    </div>
+                    <h2 style="color: white; margin: 0; font-size: 1.2rem; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                        تسجيل الخروج
+                    </h2>
+                </div>
+
+                <!-- Content -->
+                <div style="padding: 1.5rem;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <p style="color: var(--gray-700); font-size: 1rem; line-height: 1.5; margin: 0 0 0.75rem 0; font-weight: 500;">
+                            هل أنت متأكد من تسجيل الخروج؟
+                        </p>
+                        <p style="color: var(--gray-500); font-size: 0.875rem; line-height: 1.4; margin: 0;">
+                            سيتم حفظ تقدمك وستحتاج لتسجيل الدخول مرة أخرى
+                        </p>
+                    </div>
+
+                    <!-- User Info Summary -->
+                    <div style="background: linear-gradient(135deg, var(--gray-50) 0%, #f8fafc 100%); border: 1px solid var(--gray-200); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 2.5rem; height: 2.5rem; background: var(--gradient-primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1rem; flex-shrink: 0;">
+                            م
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 0.125rem; font-size: 0.95rem;">
+                                مشعل الشقحا
+                            </div>
+                            <div style="font-size: 0.8rem; color: var(--gray-600);">
+                                mushal@gmail.com
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.7rem; color: var(--gray-500);">نشط الآن</div>
+                            <div style="width: 0.5rem; height: 0.5rem; background: var(--success-green); border-radius: 50%; margin: 0.25rem auto;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 0.75rem; justify-content: center;">
+                        <button id="confirmLogoutBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 3px 10px rgba(59, 130, 246, 0.2);
+                        " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(59, 130, 246, 0.2)'">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </button>
+                        <button id="cancelLogoutBtn" style="
+                            background: white;
+                            color: var(--gray-700);
+                            border: 1px solid var(--gray-300);
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.background='var(--gray-50)'; this.style.borderColor='var(--gray-400)'" onmouseout="this.style.background='white'; this.style.borderColor='var(--gray-300)'">
+                            <i class="fas fa-times"></i>
+                            إلغاء
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            logoutOverlay.appendChild(logoutModal);
+            document.body.appendChild(logoutOverlay);
+
+            // Close on Escape key (local to this modal)
+            function handleEscapeKey(e) {
+                if (e.key === 'Escape') {
+                    closeLogoutModal();
+                    document.removeEventListener('keydown', handleEscapeKey);
+                }
+            }
+
+            function closeLogoutModal() {
+                logoutOverlay.style.opacity = '0';
+                logoutModal.style.transform = 'scale(0.9)';
+                document.removeEventListener('keydown', handleEscapeKey);
+                setTimeout(() => {
+                    logoutOverlay.remove();
+                }, 300);
+            }
+
+            // Animate in
+            setTimeout(() => {
+                logoutOverlay.style.opacity = '1';
+                logoutModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Event listeners
+            document.getElementById('confirmLogoutBtn').addEventListener('click', function() {
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الخروج...';
+                this.disabled = true;
+                this.style.opacity = '0.7';
+                
+                // Clear data and redirect
+                setTimeout(() => {
+                localStorage.clear();
+                sessionStorage.clear();
+                    document.removeEventListener('keydown', handleEscapeKey);
+                    closeLogoutModal();
+                    showToast('✅ تم تسجيل الخروج بنجاح', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                    }, 1500);
+                }, 1000);
+            });
+
+            document.getElementById('cancelLogoutBtn').addEventListener('click', closeLogoutModal);
+
+            // Close on overlay click
+            logoutOverlay.addEventListener('click', function(e) {
+                if (e.target === logoutOverlay) {
+                    closeLogoutModal();
+                }
+            });
+
+            // Add escape key listener
+            document.addEventListener('keydown', handleEscapeKey);
+        }
+
+        // Alert notification functionality
+        const alertNotification = document.getElementById('alertNotification');
+        
+        alertNotification.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showNotificationsDropdown();
+        });
+
+        // Initialize notification badge on page load
+        updateNotificationBadge();
+
+        // Show notifications dropdown (from flashcards.html)
+        function showNotificationsDropdown() {
+            const existingDropdown = document.querySelector('.notifications-dropdown');
+            if (existingDropdown) {
+                existingDropdown.remove();
+                return;
+            }
+            
+            const dropdown = document.createElement('div');
+            dropdown.className = 'notifications-dropdown';
+            dropdown.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                border: 1px solid var(--gray-200);
+                border-radius: 1rem;
+                width: 400px;
+                height: 450px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+                z-index: 2000;
+                animation: dropdownSlideDown 0.3s ease-out;
+                overflow: hidden;
+                color: var(--primary-navy);
+                display: flex;
+                flex-direction: column;
+            `;
+            
+            dropdown.innerHTML = `
+                <div class="notifications-header" style="padding: 1.5rem; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: flex-start; align-items: center; gap: 1rem; background: linear-gradient(135deg, var(--primary-blue) 0%, rgba(107, 163, 247, 0.9) 100%); position: relative;">
+                    <div style="width: 2.5rem; height: 2.5rem; background: var(--accent-gold); border: 3px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(247, 200, 69, 0.3); position: relative; flex-shrink: 0;">
+                        <i class="fas fa-bell" style="color: var(--primary-navy); font-size: 1rem;"></i>
+                        <div style="position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; background: var(--primary-blue); border: 2px solid white; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                </div>
+                    <h4 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">الإشعارات</h4>
+                    </div>
+                <div class="notifications-content" style="padding: 3rem 2rem; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="width: 4rem; height: 4rem; background: rgba(107, 163, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative;">
+                        <i class="fas fa-bell-slash" style="font-size: 1.75rem; color: var(--primary-blue);"></i>
+                        <div style="position: absolute; top: -3px; right: -3px; width: 1rem; height: 1rem; background: var(--accent-gold); border: 2px solid white; border-radius: 50%;"></div>
+                </div>
+                    <h4 style="margin: 0 0 0.75rem 0; font-weight: 600; color: var(--primary-navy); font-size: 1.25rem;">لا توجد إشعارات جديدة</h4>
+                    <p style="margin: 0; font-size: 1rem; color: var(--gray-600); line-height: 1.5;">ستظهر إشعاراتك هنا عند وصولها</p>
+                </div>
+                <div class="notifications-footer" style="padding: 1.5rem; border-top: 1px solid var(--gray-200); text-align: center; background: var(--gray-50); position: relative;">
+                    <button class="mark-all-read-btn" id="markAllReadBtn" style="background: linear-gradient(135deg, var(--accent-gold) 0%, #ffd76b 100%); border: 2px solid var(--accent-gold); color: var(--primary-navy); padding: 0.875rem 2rem; border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; font-weight: 700; box-shadow: 0 4px 12px rgba(247, 200, 69, 0.3); position: relative; overflow: hidden;" onmouseover="this.style.background='linear-gradient(135deg, var(--primary-blue) 0%, rgba(107, 163, 247, 0.9) 100%)'; this.style.borderColor='var(--primary-blue)'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(107, 163, 247, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, var(--accent-gold) 0%, #ffd76b 100%)'; this.style.borderColor='var(--accent-gold)'; this.style.color='var(--primary-navy)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(247, 200, 69, 0.3)'">
+                        <i class="fas fa-check-double" style="margin-left: 0.75rem;"></i>
+                        تمييز الكل كمقروء
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(dropdown);
+            
+            // Add event listener for mark all read button
+            const markAllReadBtn = document.getElementById('markAllReadBtn');
+            if (markAllReadBtn) {
+                markAllReadBtn.addEventListener('click', function() {
+                    markAllAsRead();
+                    this.innerHTML = '<i class="fas fa-check" style="margin-left: 0.75rem;"></i>تم التمييز';
+                    this.style.background = 'linear-gradient(135deg, var(--success-green) 0%, #68d391 100%)';
+                    this.style.borderColor = 'var(--success-green)';
+                    this.style.color = 'white';
+                    this.style.boxShadow = '0 4px 12px rgba(104, 211, 145, 0.4)';
+                    setTimeout(() => {
+                        const dropdown = document.querySelector('.notifications-dropdown');
+                        if (dropdown) {
+                            dropdown.remove();
+                        }
+                    }, 1000);
+                });
+            }
+            
+            // Add styles for dropdown animation
+            if (!document.querySelector('#notification-styles')) {
+                const notificationStyles = document.createElement('style');
+                notificationStyles.id = 'notification-styles';
+                notificationStyles.textContent = `
+                    @keyframes dropdownSlideDown {
+                        from { 
+                            opacity: 0; 
+                            transform: translate(-50%, -50%) scale(0.95); 
+                            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                        }
+                        to { 
+                            opacity: 1; 
+                            transform: translate(-50%, -50%) scale(1); 
+                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                        }
+                    }
+                    @keyframes pulse {
+                        0% { transform: scale(1); opacity: 1; }
+                        50% { transform: scale(1.1); opacity: 0.8; }
+                        100% { transform: scale(1); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(notificationStyles);
+            }
+            
+            setTimeout(() => {
+                document.addEventListener('click', closeDropdownHandler);
+            }, 100);
+            
+            function closeDropdownHandler(e) {
+                if (!dropdown.contains(e.target) && !alertNotification.contains(e.target)) {
+                    dropdown.remove();
+                    document.removeEventListener('click', closeDropdownHandler);
+                }
+            }
+        }
+
+        // Update notification badge (from flashcards.html)
+        function updateNotificationBadge() {
+            const badge = document.getElementById('alertBadge');
+            if (badge) {
+                // Check if there are unread notifications
+                const hasUnread = localStorage.getItem('hasUnreadNotifications') !== 'false';
+                if (hasUnread) {
+                    badge.style.display = 'flex';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+
+        // Mark all notifications as read
+        function markAllAsRead() {
+            localStorage.setItem('hasUnreadNotifications', 'false');
+            updateNotificationBadge();
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            
+            const colors = {
+                success: { bg: '#10B981', icon: 'check-circle' },
+                error: { bg: '#EF4444', icon: 'times-circle' },
+                warning: { bg: '#F59E0B', icon: 'exclamation-triangle' },
+                info: { bg: '#3B82F6', icon: 'info-circle' }
+            };
+
+            const color = colors[type] || colors.info;
+
+            toast.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: ${color.bg};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                z-index: 10001;
+                font-family: 'Tajawal', sans-serif;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                min-width: 300px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+
+            toast.innerHTML = `
+                <i class="fas fa-${color.icon}"></i>
+                <span>${message}</span>
+            `;
+
+            document.body.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Edit Profile Modal functionality  
+        function showEditProfileModal() {
+            const editOverlay = document.createElement('div');
+            editOverlay.id = 'editProfileOverlay';
+            editOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const editModal = document.createElement('div');
+            editModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            editModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </h2>
+                        <button id="closeEditBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="editProfileForm" style="padding: 2rem;">
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    الاسم الأول
+                                </label>
+                                <input type="text" id="firstName" value="مشعل" placeholder="الاسم الأول" style="
+                                    width: 100%;
+                                    padding: 0.875rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    اسم العائلة
+                                </label>
+                                <input type="text" id="lastName" value="الشقحا" placeholder="اسم العائلة" style="
+                                    width: 100%;
+                                    padding: 0.875rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                البريد الإلكتروني
+                            </label>
+                            <input type="email" id="email" value="mushal@gmail.com" placeholder="البريد الإلكتروني" style="
+                                width: 100%;
+                                padding: 0.875rem;
+                                border: 1px solid var(--gray-300);
+                                border-radius: 0.5rem;
+                                font-size: 1rem;
+                                transition: var(--transition);
+                                background: var(--white);
+                                color: var(--gray-900);
+                                font-family: 'Tajawal', sans-serif;
+                            " required>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                رقم الجوال
+                            </label>
+                            <input type="tel" id="phone" value="0512345678" placeholder="05xxxxxxxx" style="
+                                width: 100%;
+                                padding: 0.875rem;
+                                border: 1px solid var(--gray-300);
+                                border-radius: 0.5rem;
+                                font-size: 1rem;
+                                transition: var(--transition);
+                                background: var(--white);
+                                color: var(--gray-900);
+                                font-family: 'Tajawal', sans-serif;
+                            " required>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    الجنس
+                                </label>
+                                <select id="gender" style="
+                                    width: 100%;
+                                    padding: 0.875rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                                    <option value="male" selected>ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    جهة العمل
+                                </label>
+                                <input type="text" id="workplace" value="شركة زامل للتطوير" placeholder="جهة العمل" style="
+                                    width: 100%;
+                                    padding: 0.875rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button type="submit" id="saveProfileBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.875rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: var(--transition);
+                        ">
+                            <i class="fas fa-save"></i>
+                            حفظ التغييرات
+                        </button>
+                        <button type="button" id="cancelEditBtn" style="
+                            background: var(--gray-100);
+                            color: var(--gray-600);
+                            border: 1px solid var(--gray-300);
+                            padding: 0.875rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            transition: var(--transition);
+                        ">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            `;
+
+            editOverlay.appendChild(editModal);
+            document.body.appendChild(editOverlay);
+
+            // Show modal with animation
+            setTimeout(() => {
+                editOverlay.style.opacity = '1';
+                editModal.style.transform = 'scale(1)';
+            }, 10);
+
+            function closeEditModal() {
+                editOverlay.style.opacity = '0';
+                editModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    editOverlay.remove();
+                }, 300);
+            }
+
+            // Event listeners
+            document.getElementById('closeEditBtn').addEventListener('click', closeEditModal);
+            document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
+
+            // Form submission
+            document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    gender: document.getElementById('gender').value,
+                    workplace: document.getElementById('workplace').value
+                };
+
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    showToast('❌ يرجى إدخال عنوان بريد إلكتروني صحيح', 'error');
+                    return;
+                }
+
+                // Validate phone
+                const phoneRegex = /^05[0-9]{8}$/;
+                if (!phoneRegex.test(formData.phone)) {
+                    showToast('❌ يرجى إدخال رقم جوال صحيح (05xxxxxxxx)', 'error');
+                    return;
+                }
+
+                // Show loading state
+                const saveBtn = document.getElementById('saveProfileBtn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+                saveBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    closeEditModal();
+                    showToast('✅ تم حفظ التغييرات بنجاح', 'success');
+                    
+                    // Update profile data in localStorage
+                    localStorage.setItem('userProfile', JSON.stringify(formData));
+                }, 1500);
+            });
+
+            // Close on overlay click
+            editOverlay.addEventListener('click', function(e) {
+                if (e.target === editOverlay) {
+                    closeEditModal();
+                }
+            });
+        }
+
+        // Change Password Modal functionality
+        function showChangePasswordModal() {
+            const passwordOverlay = document.createElement('div');
+            passwordOverlay.id = 'changePasswordOverlay';
+            passwordOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const passwordModal = document.createElement('div');
+            passwordModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 520px;
+                width: 90%;
+                max-height: 85vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+                margin: 2rem auto;
+            `;
+
+            passwordModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </h2>
+                        <button id="closePasswordBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="changePasswordForm" style="padding: 2rem 2rem 1.5rem 2rem;">
+                     <div style="display: grid; gap: 2rem;">
+                       <div>
+                           <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                               كلمة المرور الحالية
+                           </label>
+                           <div style="position: relative;">
+                               <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                               <input type="password" id="currentPassword" placeholder="أدخل كلمة المرور الحالية" style="
+                                   width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                   border: 1px solid var(--gray-300);
+                                   border-radius: 0.5rem;
+                                   font-size: 1rem;
+                                   transition: var(--transition);
+                                   background: var(--white);
+                                   color: var(--gray-900);
+                                   font-family: 'Tajawal', sans-serif;
+                               " required>
+                                <button type="button" class="password-toggle-btn" data-target="currentPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                           </div>
+                       </div>
+
+                       <div>
+                           <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                               كلمة المرور الجديدة
+                           </label>
+                           <div style="position: relative;">
+                               <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                               <input type="password" id="newPassword" placeholder="أدخل كلمة المرور الجديدة" style="
+                                   width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                   border: 1px solid var(--gray-300);
+                                   border-radius: 0.5rem;
+                                   font-size: 1rem;
+                                   transition: var(--transition);
+                                   background: var(--white);
+                                   color: var(--gray-900);
+                                   font-family: 'Tajawal', sans-serif;
+                               " required>
+                                <button type="button" class="password-toggle-btn" data-target="newPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                                                         <div id="passwordStrengthIndicator" style="margin-top: 0.75rem; display: none;">
+                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                     <span style="font-size: 0.75rem; font-weight: 500; color: var(--gray-600);">قوة كلمة المرور:</span>
+                                     <div id="passwordStrengthText" style="font-size: 0.75rem; font-weight: 600;">ضعيفة</div>
+                                 </div>
+                                 <div style="width: 100%; height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                                     <div id="passwordStrengthBar" style="height: 100%; border-radius: 3px; transition: width 0.3s ease, background-color 0.3s ease; width: 0%;"></div>
+                                 </div>
+                             </div>
+                           </div>
+                           
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                تأكيد كلمة المرور الجديدة
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="password" id="confirmNewPassword" placeholder="أعد إدخال كلمة المرور الجديدة" style="
+                                    width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                                <button type="button" class="password-toggle-btn" data-target="confirmNewPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                                                         <div id="passwordMatchIndicator" style="margin-top: 0.75rem; font-size: 0.8rem; font-weight: 500; display: none; padding: 0.5rem; border-radius: 0.5rem; background: var(--gray-50);"></div>
+                        </div>
+
+                                                 <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--gray-200); position: relative; overflow: hidden;">
+                               <div style="position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
+                               <h4 style="margin: 0 0 1rem 0; color: var(--primary-navy); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                                   <div style="width: 2rem; height: 2rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                       <i class="fas fa-shield-alt" style="color: white; font-size: 0.75rem;"></i>
+                                   </div>
+                                   متطلبات كلمة المرور الآمنة
+                               </h4>
+                               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0;">
+                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                       <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                       8 أحرف على الأقل
+                                   </div>
+                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                       <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                       حرف كبير واحد
+                                   </div>
+                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                       <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                       حرف صغير واحد
+                                   </div>
+                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                       <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                       رقم واحد على الأقل
+                                   </div>
+                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700); grid-column: 1 / -1;">
+                                       <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                       رمز خاص واحد على الأقل (!@#$%^&*)
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                                         <div style="display: flex; gap: 1rem; margin-top: 2.5rem; justify-content: center; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
+                       <button type="submit" id="savePasswordBtn" style="
+                            background: var(--gradient-primary);
+                           color: white;
+                           border: none;
+                            padding: 1rem 2.5rem;
+                            border-radius: 0.75rem;
+                           cursor: pointer;
+                           font-weight: 600;
+                           display: flex;
+                           align-items: center;
+                           gap: 0.5rem;
+                           transition: var(--transition);
+                           font-size: 0.9rem;
+                            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+                        " disabled>
+                             <i class="fas fa-key"></i>
+                           تغيير كلمة المرور
+                       </button>
+                         <button type="button" id="cancelPasswordBtn" style="
+                             background: var(--gray-100);
+                             color: var(--gray-600);
+                             border: 1px solid var(--gray-300);
+                             padding: 1rem 2.5rem;
+                             border-radius: 0.75rem;
+                             cursor: pointer;
+                             font-weight: 600;
+                             transition: var(--transition);
+                             font-size: 0.9rem;
+                         ">
+                             إلغاء
+                       </button>
+                   </div>
+                </form>
+            `;
+
+            passwordOverlay.appendChild(passwordModal);
+            document.body.appendChild(passwordOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                passwordOverlay.style.opacity = '1';
+                passwordModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Initialize password functionality
+            initPasswordChangeValidation();
+
+            function closePasswordModal() {
+                passwordOverlay.style.opacity = '0';
+                passwordModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    passwordOverlay.remove();
+                }, 300);
+            }
+
+            // Event listeners
+            document.getElementById('closePasswordBtn').addEventListener('click', closePasswordModal);
+            document.getElementById('cancelPasswordBtn').addEventListener('click', closePasswordModal);
+
+            // Close on overlay click
+            passwordOverlay.addEventListener('click', function(e) {
+                if (e.target === passwordOverlay) {
+                    closePasswordModal();
+                }
+            });
+
+            // Password change form submission
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+                // Validate current password (simulate check)
+                if (currentPassword !== 'password123') {
+                    showToast('❌ كلمة المرور الحالية غير صحيحة');
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    showToast('❌ كلمات المرور الجديدة غير متطابقة');
+                    return;
+                }
+
+                // Show loading state
+                const saveBtn = document.getElementById('savePasswordBtn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التغيير...';
+                saveBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    closePasswordModal();
+                    showToast('✅ تم تغيير كلمة المرور بنجاح');
+                }, 1500);
+            });
+        }
+
+        // Password change validation helper
+        function initPasswordChangeValidation() {
+            const toggleButtons = document.querySelectorAll('.password-toggle-btn');
+            const newPasswordInput = document.getElementById('newPassword');
+            const confirmPasswordInput = document.getElementById('confirmNewPassword');
+            const strengthIndicator = document.getElementById('passwordStrengthIndicator');
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            const matchIndicator = document.getElementById('passwordMatchIndicator');
+            const saveBtn = document.getElementById('savePasswordBtn');
+
+            // Password toggle functionality
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+                    
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.className = 'far fa-eye-slash';
+                    } else {
+                        input.type = 'password';
+                        icon.className = 'far fa-eye';
+                    }
+                });
+            });
+
+            // Password strength indicator
+            newPasswordInput.addEventListener('input', function() {
+                const password = this.value;
+                
+                if (password.length === 0) {
+                    strengthIndicator.style.display = 'none';
+                    checkPasswordForm();
+                    return;
+                }
+                
+                strengthIndicator.style.display = 'block';
+                
+                let score = 0;
+                let feedback = [];
+                
+                // Length check
+                if (password.length >= 8) score += 20;
+                else feedback.push('8 أحرف على الأقل');
+                
+                // Uppercase check
+                if (/[A-Z]/.test(password)) score += 20;
+                else feedback.push('حرف كبير');
+                
+                // Lowercase check
+                if (/[a-z]/.test(password)) score += 20;
+                else feedback.push('حرف صغير');
+                
+                // Number check
+                if (/[0-9]/.test(password)) score += 20;
+                else feedback.push('رقم');
+                
+                // Special character check
+                if (/[^A-Za-z0-9]/.test(password)) score += 20;
+                else feedback.push('رمز خاص');
+                
+                // Update strength bar
+                strengthBar.style.width = score + '%';
+                
+                if (score < 40) {
+                    strengthBar.style.background = '#ef4444';
+                    strengthText.textContent = 'ضعيفة';
+                    strengthText.style.color = '#ef4444';
+                } else if (score < 60) {
+                    strengthBar.style.background = '#f59e0b';
+                    strengthText.textContent = 'متوسطة';
+                    strengthText.style.color = '#f59e0b';
+                } else if (score < 80) {
+                    strengthBar.style.background = '#eab308';
+                    strengthText.textContent = 'جيدة';
+                    strengthText.style.color = '#eab308';
+                } else {
+                    strengthBar.style.background = '#22c55e';
+                    strengthText.textContent = 'قوية';
+                    strengthText.style.color = '#22c55e';
+                }
+                
+                checkPasswordForm();
+            });
+
+            // Confirm password validation
+            confirmPasswordInput.addEventListener('input', function() {
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword.length === 0) {
+                    matchIndicator.style.display = 'none';
+                    checkPasswordForm();
+                    return;
+                }
+                
+                matchIndicator.style.display = 'block';
+                
+                if (newPassword === confirmPassword) {
+                    matchIndicator.textContent = '✓ كلمات المرور متطابقة';
+                    matchIndicator.style.color = '#22c55e';
+                } else {
+                    matchIndicator.textContent = '✗ كلمات المرور غير متطابقة';
+                    matchIndicator.style.color = '#ef4444';
+                }
+                
+                checkPasswordForm();
+            });
+
+            function checkPasswordForm() {
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                
+                const isValid = currentPassword.length > 0 && 
+                               newPassword.length >= 8 && 
+                               /[A-Z]/.test(newPassword) &&
+                               /[a-z]/.test(newPassword) &&
+                               /[0-9]/.test(newPassword) &&
+                               /[^A-Za-z0-9]/.test(newPassword) &&
+                               newPassword === confirmPassword;
+                
+                saveBtn.disabled = !isValid;
+                saveBtn.style.opacity = isValid ? '1' : '0.6';
+            }
+
+            // Add input event listeners to all password fields
+            document.getElementById('currentPassword').addEventListener('input', checkPasswordForm);
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: white;
+                color: var(--gray-800);
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                border-left: 4px solid var(--primary-blue);
+                z-index: 10001;
+                max-width: 400px;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                font-family: 'Tajawal', sans-serif;
+                direction: rtl;
+                font-weight: 500;
+            `;
+
+            toast.innerHTML = message;
+            document.body.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 6000); // Increase display time for completion message
+        }
+
+
+
+        // Profile Modal functionality
+        function showProfileModal() {
+            const profileOverlay = document.createElement('div');
+            profileOverlay.id = 'profileOverlay';
+            profileOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const profileModal = document.createElement('div');
+            profileModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 600px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            profileModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </h2>
+                        <button id="closeProfileBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="padding: 2rem;">
+                    <!-- User Info Section -->
+                    <div style="background: var(--gradient-primary); color: white; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 2rem; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                            أ
+                        </div>
+                        <h3 style="margin: 0 0 0.5rem 0;">مشعل الشقحا</h3>
+                        <p style="margin: 0; opacity: 0.9;">mushal@gmail.com</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-calendar"></i> انضم في يناير 2024
+                            </div>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-graduation-cap"></i> طالب SOCPA
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <div style="border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.5rem;">
+                        <h4 style="color: var(--primary-navy); margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-id-card"></i>
+                            المعلومات الشخصية
+                        </h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الاسم الأول</span>
+                                <span style="color: black; font-weight: 600;">مشعل</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">اسم العائلة</span>
+                                <span style="color: black; font-weight: 600;">الشقحا</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">البريد الإلكتروني</span>
+                                <span style="color: black; font-weight: 600;">mushal@gmail.com</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">رقم الجوال</span>
+                                <span style="color: black; font-weight: 600;">05xxxxxxxx</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الجنس</span>
+                                <span style="color: black; font-weight: 600;">ذكر</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">جهة العمل</span>
+                                <span style="color: black; font-weight: 600;">شركة زامل للتطوير</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button id="editProfileBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </button>
+                        <button id="changePasswordBtn" style="
+                            background: transparent;
+                            color: var(--primary-navy);
+                            border: 1px solid var(--primary-navy);
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            profileOverlay.appendChild(profileModal);
+            document.body.appendChild(profileOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                profileOverlay.style.opacity = '1';
+                profileModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Event listeners
+            document.getElementById('closeProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                }, 300);
+            });
+
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showEditProfileModal();
+                }, 300);
+            });
+
+            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showChangePasswordModal();
+                }, 300);
+            });
+
+            // Close on overlay click
+            profileOverlay.addEventListener('click', function(e) {
+                if (e.target === profileOverlay) {
+                    document.getElementById('closeProfileBtn').click();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

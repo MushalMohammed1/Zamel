@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الشراء - زامل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== CSS Variables - Matching Index Page ===== */
+        :root {
+            /* Primary Colors */
+            --primary-navy: #1e293b;
+            --primary-blue: #3b82f6;
+            --primary-dark: #0f172a;
+            
+            /* Accent Colors */
+            --accent-gold: #f59e0b;
+            --accent-yellow: #fbbf24;
+            
+            /* Neutral Colors */
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-900: #0f172a;
+            
+            /* Gradients */
+            --gradient-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --gradient-brand: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            --gradient-button: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            /* Transitions */
+            --transition: 0.2s ease-in-out;
+        }
+
+        /* ===== Global Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--gradient-bg);
+            color: var(--gray-900);
+            direction: rtl;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== Navigation ===== */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-text {
+            font-family: 'El Messiri', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            letter-spacing: -1px;
+        }
+
+        .logo-accent {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .back-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--primary-blue);
+        }
+
+        /* ===== Main Content ===== */
+        .checkout-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ===== Checkout Form ===== */
+        .checkout-form {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'El Messiri', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .checkbox-label a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        /* ===== Order Summary ===== */
+        .order-summary {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            position: sticky;
+            top: 2rem;
+            overflow: visible;
+        }
+
+        .summary-title {
+            font-family: 'El Messiri', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .package-info {
+            padding: 1.5rem;
+            background: var(--gradient-bg);
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .package-title {
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .package-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .package-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .package-features i {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+        }
+
+        .price-breakdown {
+            border-top: 1px solid var(--gray-200);
+            padding-top: 1.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .price-row.total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            border-top: 1px solid var(--gray-200);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        .price-amount {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .total .price-amount {
+            color: var(--primary-navy);
+        }
+
+        /* ===== Payment Button ===== */
+        .payment-section {
+            margin-top: 2rem;
+        }
+
+        .payment-btn {
+            width: 100%;
+            background: var(--gradient-button);
+            color: var(--white);
+            border: none;
+            padding: 1.125rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .payment-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .payment-methods {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .payment-methods-title {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 0.75rem;
+        }
+
+        .payment-methods-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-method-option {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .payment-method-option:hover {
+            border-color: var(--primary-blue);
+            background: rgba(59, 130, 246, 0.02);
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-icon {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            color: var(--gray-700);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .payment-icon.digital {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+
+
+        .method-label {
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== Enhanced Coupon Section ===== */
+        .coupon-section {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            border: 2px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coupon-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-button);
+        }
+
+        .coupon-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .coupon-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-button);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .coupon-badge i {
+            font-size: 0.9rem;
+        }
+
+        .coupon-title {
+            font-family: 'El Messiri', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin: 0;
+        }
+
+        .coupon-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+
+
+        .coupon-input-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .coupon-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .coupon-input {
+            width: 100%;
+            padding: 1.25rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: var(--white);
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coupon-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .input-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .input-glow {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--primary-blue), var(--accent-gold));
+            border-radius: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotate 3s linear infinite;
+        }
+
+        .coupon-input:focus + .input-effects .input-glow {
+            opacity: 0.3;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .coupon-btn {
+            background: var(--gradient-button);
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-ripple {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .coupon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .coupon-btn:hover::before {
+            left: 100%;
+        }
+
+        .coupon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .coupon-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-icon {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .coupon-btn:hover .btn-icon {
+            transform: translateX(-2px);
+        }
+
+        .remove-btn:hover .btn-icon {
+            transform: rotate(90deg);
+        }
+
+        .coupon-hints {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .hints-text {
+            margin: 0;
+            color: var(--primary-blue);
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ===== Enhanced Course Selection ===== */
+        .course-selection {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+            border: 2px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: visible;
+        }
+
+        .course-selection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0.3rem;
+            right: 0.3rem;
+            height: 3px;
+            background: var(--gradient-button);
+            border-radius: 1rem 1rem 0 0;
+            z-index: 1;
+        }
+
+        .selection-title {
+            font-family: 'El Messiri', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .selection-title i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .selection-hint {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+        }
+
+        .selection-hint i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .selection-hint span {
+            font-weight: 500;
+        }
+
+        /* Course Selector Container */
+        .course-selector-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+            z-index: 100;
+        }
+
+        .course-selector-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .course-selector-trigger:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .course-selector-trigger.open {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+        }
+
+        .course-selector-trigger i:first-child {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .course-selector-trigger span {
+            flex: 1;
+            text-align: right;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            color: var(--gray-400);
+        }
+
+        .course-selector-trigger.open .dropdown-arrow {
+            transform: rotate(180deg);
+            color: var(--accent-gold);
+        }
+
+        .course-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000;
+            min-width: 100%;
+        }
+
+        .course-dropdown.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            display: block !important;
+        }
+
+        .course-dropdown-header {
+            padding: 1rem 1.5rem;
+            background: var(--gradient-button);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-dropdown-menu {
+            padding: 0.5rem 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .course-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .course-dropdown-item:hover:not(.coming-soon-item) {
+            background: var(--gray-50);
+            border-left-color: var(--primary-blue);
+        }
+
+        .course-dropdown-item.selected {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .course-icon.accounting { background: #4a9960; }
+        .course-icon.tax { background: #2d7a3d; }
+        .course-icon.management { background: #2d5aa0; }
+        .course-icon.auditing { background: #3b5998; }
+        .course-icon.business { background: #2f4d7a; }
+        .course-icon.systems { background: #4a6fa5; }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .course-code {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .dropdown-section-header {
+            padding: 0.75rem 1.5rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .dropdown-section-header.coming-soon {
+            color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .dropdown-section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 0.5rem 0;
+        }
+
+        .course-dropdown-item.coming-soon-item {
+            opacity: 0.7;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .course-dropdown-item.coming-soon-item:hover {
+            background: transparent;
+        }
+
+        .coming-soon-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Selected Courses Preview */
+        .selected-courses-preview {
+            margin-top: 1rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        .selected-course-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: rgba(245, 158, 11, 0.05);
+            border: 2px solid var(--accent-gold);
+            border-radius: 0.75rem;
+            position: relative;
+        }
+
+        .selected-course-card::before {
+            content: '';
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+        }
+
+        .selected-course-card::after {
+            content: '✓';
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .course-card-symbol {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .course-symbol {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'El Messiri', serif;
+        }
+
+        .course-card-details {
+            flex: 1;
+        }
+
+        .course-card-name {
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .course-card-desc {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .course-card-price {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .coupon-message {
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            display: none;
+        }
+
+        .coupon-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #059669;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            display: block;
+        }
+
+        .coupon-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: block;
+        }
+
+        .discount-row {
+            color: #059669;
+        }
+
+        .discount-amount {
+            color: #059669 !important;
+            font-weight: 700;
+        }
+
+        /* ===== Security Notice ===== */
+        .security-notice {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .security-notice i {
+            color: var(--primary-blue);
+            margin-left: 0.5rem;
+        }
+
+        .security-notice p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        /* ===== Loading State ===== */
+        .loading {
+            display: none;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 1rem auto;
+                padding: 0 1rem;
+            }
+
+            .checkout-form,
+            .order-summary {
+                padding: 1.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .order-summary {
+                position: static;
+                order: -1;
+            }
+
+            /* Enhanced Coupon Section Mobile */
+            .coupon-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .coupon-header {
+                margin-bottom: 0.75rem;
+            }
+
+            .coupon-title {
+                font-size: 1.1rem;
+            }
+
+            .coupon-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .coupon-input-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .coupon-input {
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+                text-align: center;
+            }
+
+            .coupon-btn {
+                width: 100%;
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .coupon-hints {
+                margin-top: 0.75rem;
+                padding: 0.5rem;
+            }
+
+            .hints-text {
+                font-size: 0.8rem;
+            }
+
+            /* Enhanced Course Selection Mobile */
+            .course-selection {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .selection-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .course-selector-trigger {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .course-selector-trigger i:first-child {
+                font-size: 1rem;
+            }
+
+            .course-dropdown-header {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.85rem;
+            }
+
+            .course-dropdown-item {
+                padding: 0.75rem 1.25rem;
+            }
+
+            .course-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 0.65rem;
+            }
+
+            .course-name {
+                font-size: 0.95rem;
+            }
+
+            .course-code {
+                font-size: 0.8rem;
+            }
+
+            .dropdown-section-header {
+                padding: 0.6rem 1.25rem 0.4rem;
+                font-size: 0.75rem;
+            }
+
+            .coming-soon-badge {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+            }
+
+            .selection-hint {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .selection-hint span {
+                font-size: 0.75rem;
+            }
+
+            .selected-course-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+
+            .course-card-symbol {
+                width: 40px;
+                height: 40px;
+            }
+
+            .course-symbol {
+                font-size: 0.8rem;
+            }
+
+            .course-card-name {
+                font-size: 1rem;
+            }
+
+            .course-card-desc {
+                font-size: 0.8rem;
+            }
+
+            .course-card-price {
+                font-size: 0.9rem;
+            }
+
+            /* Enhanced Coupon Section Mobile */
+            .coupon-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .coupon-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .coupon-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .coupon-title {
+                font-size: 1.1rem;
+            }
+
+            .coupon-input-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .coupon-input {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .coupon-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-form,
+            .order-summary {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-wrapper">
+                    <h1 class="logo-text">زامل</h1>
+                    <div class="logo-accent"></div>
+                </div>
+            </div>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-right"></i>
+                العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="checkout-container">
+        <!-- Checkout Form -->
+        <div class="checkout-form">
+            <form id="checkoutForm">
+                <!-- User Information -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        المعلومات الشخصية
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">الاسم الكامل *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-input" required>
+                        <div class="error-message">يرجى إدخال الاسم الكامل</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                        <div class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">رقم الجوال *</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="05xxxxxxxx" required>
+                        <div class="error-message">يرجى إدخال رقم جوال صحيح</div>
+                    </div>
+                </div>
+
+                <!-- Account Creation -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-key"></i>
+                        إنشاء كلمة مرور
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">كلمة المرور *</label>
+                        <input type="password" id="password" name="password" class="form-input" required>
+                        <div class="error-message">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">تأكيد كلمة المرور *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                        <div class="error-message">كلمة المرور غير متطابقة</div>
+                    </div>
+                </div>
+
+                <!-- Terms Agreement -->
+                <div class="form-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="termsAgree" name="termsAgree" class="checkbox-input" required>
+                        <label for="termsAgree" class="checkbox-label">
+                            أوافق على <a href="#" target="_blank">شروط الاستخدام</a> و <a href="#" target="_blank">سياسة الخصوصية</a>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3 class="summary-title">ملخص الطلب</h3>
+            
+            <!-- Course Selection -->
+            <div class="course-selection">
+                <h3 class="selection-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span id="selectionTitleText">اختر المادة المطلوبة</span>
+                </h3>
+                <div class="selection-hint" id="selectionHint" style="display: none;">
+                    <i class="fas fa-info-circle"></i>
+                    <span>يمكنك اختيار أكثر من مادة - انقر على المواد التي تريدها</span>
+                </div>
+
+                
+                <div class="course-selector-container">
+                    <div class="course-selector-trigger" id="courseSelectorTrigger">
+                        <i class="fas fa-book"></i>
+                        <span id="selectedCourseText">اختر المادة المطلوبة</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+                    <div class="course-dropdown" id="courseDropdown">
+                        <div class="course-dropdown-header">
+                            اختر المادة التي تريد دراستها
+                        </div>
+                        <div class="course-dropdown-menu">
+                            <!-- Currently Available Courses -->
+                            <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
+                            <div class="course-dropdown-item" data-course="accounting" data-price="3500" data-desc="أسس المحاسبة المالية والتقارير المالية" data-symbol="محا">
+                                <div class="course-icon accounting">محا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة المالية</div>
+                                    <div class="course-code">Financial Accounting - 3,500 ر.س</div>
+                                </div>
+                            </div>
+                            <div class="course-dropdown-item" data-course="tax" data-price="3500" data-desc="أنظمة الضرائب والزكاة في المملكة" data-symbol="زك">
+                                <div class="course-icon tax">زك</div>
+                                <div class="course-info">
+                                    <div class="course-name">الزكاة والضريبة</div>
+                                    <div class="course-code">Zakat & Tax - 3,500 ر.س</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coming Soon Section -->
+                            <div class="dropdown-section-divider"></div>
+                            <div class="dropdown-section-header coming-soon">قريباً</div>
+                            <div class="course-dropdown-item coming-soon-item" data-course="management" data-price="3500" data-desc="التكاليف والتخطيط واتخاذ القرارات" data-symbol="إدا">
+                                <div class="course-icon management">إدا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة الإدارية والحكومية</div>
+                                    <div class="course-code">Management & Government Accounting - 3,500 ر.س</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="course-dropdown-item coming-soon-item" data-course="auditing" data-price="3500" data-desc="مبادئ المراجعة والفحص والتأكيد" data-symbol="مرا">
+                                <div class="course-icon auditing">مرا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المراجعة</div>
+                                    <div class="course-code">Auditing - 3,500 ر.س</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="course-dropdown-item coming-soon-item" data-course="business" data-price="3500" data-desc="الاقتصاد والبيئة التجارية والمالية" data-symbol="بيئ">
+                                <div class="course-icon business">بيئ</div>
+                                <div class="course-info">
+                                    <div class="course-name">بيئة الأعمال</div>
+                                    <div class="course-code">Business Environment - 3,500 ر.س</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="course-dropdown-item coming-soon-item" data-course="systems" data-price="3500" data-desc="القوانين والأنظمة التجارية السعودية" data-symbol="نظم">
+                                <div class="course-icon systems">نظم</div>
+                                <div class="course-info">
+                                    <div class="course-name">الأنظمة</div>
+                                    <div class="course-code">Systems - 3,500 ر.س</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="selected-courses-preview" id="selectedCoursesPreview" style="display: none;">
+                    <!-- Selected courses will be shown here -->
+                </div>
+            </div>
+
+            <div class="package-info">
+                <div class="package-title" id="packageTitle">جاري التحميل...</div>
+                <div class="package-description" id="packageDescription">جاري التحميل...</div>
+                
+                <ul class="package-features" id="packageFeatures">
+                    <!-- Features will be populated by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Enhanced Coupon Section -->
+            <div class="coupon-section">
+                <div class="coupon-header">
+                    <div class="coupon-badge">
+                        <i class="fas fa-percent"></i>
+                        <span>خصم</span>
+                    </div>
+                    <h4 class="coupon-title">كود الخصم</h4>
+                </div>
+                <p class="coupon-subtitle">أدخل كود الخصم للحصول على سعر أفضل</p>
+                
+
+
+                <div class="coupon-input-group">
+                    <div class="coupon-input-wrapper">
+                        <input type="text" id="couponCode" class="coupon-input" placeholder="أدخل كود الخصم" maxlength="20">
+                        <div class="input-effects">
+                            <div class="input-glow"></div>
+                        </div>
+                    </div>
+                    <button type="button" id="applyCoupon" class="coupon-btn">
+                        <span class="btn-text">تطبيق</span>
+                        <i class="fas fa-arrow-left btn-icon"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+                <div class="coupon-message" id="couponMessage"></div>
+            </div>
+
+            <div class="price-breakdown">
+                <div class="price-row">
+                    <span>سعر الباقة</span>
+                    <span class="price-amount" id="basePrice">0 ر.س</span>
+                </div>
+                <div class="price-row discount-row" id="discountRow" style="display: none;">
+                    <span>الخصم (<span id="discountPercent">0</span>%)</span>
+                    <span class="price-amount discount-amount" id="discountAmount">-0 ر.س</span>
+                </div>
+                <div class="price-row">
+                    <span>ضريبة القيمة المضافة (15%)</span>
+                    <span class="price-amount" id="vatAmount">0 ر.س</span>
+                </div>
+                <div class="price-row total">
+                    <span>المبلغ الإجمالي</span>
+                    <span class="price-amount" id="totalPrice">0 ر.س</span>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <button type="button" class="payment-btn" id="paymentBtn">
+                    <span>إتمام الدفع</span>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-spinner loading"></i>
+                </button>
+
+                <div class="payment-methods">
+                    <div class="payment-methods-title">طرق الدفع المتاحة</div>
+                    <div class="payment-methods-grid">
+                        <div class="payment-method-option">
+                            <div class="payment-icons">
+                                <div class="payment-icon">VISA</div>
+                                <div class="payment-icon">مدى</div>
+                                <div class="payment-icon">MASTER</div>
+                            </div>
+                            <span class="method-label">البطاقات المصرفية</span>
+                        </div>
+                        <div class="payment-method-option">
+                            <div class="payment-icons">
+                                <div class="payment-icon digital">STC Pay</div>
+                                <div class="payment-icon digital">Apple Pay</div>
+                            </div>
+                            <span class="method-label">المحافظ الرقمية</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>جميع المعاملات محمية بتشفير SSL وتتم معالجتها بأمان عبر بوابة الدفع المعتمدة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== Package Data Templates =====
+        const packageFeatures = {
+            single: [
+                'الوصول لمدة 12 شهر',
+                'شروحات مبنية على أوزان الاختبارات الرسمية',
+                'اختبارات تجريبية تحاكي الواقع الفعلي',
+                'تقارير أداء ذكية لقياس الاستعداد',
+                'دعم فني أساسي'
+            ],
+            available: [
+                'الوصول لمدة 18 شهر',
+                'شروحات مبنية على أوزان الاختبارات الرسمية',
+                'اختبارات تجريبية تحاكي الواقع الفعلي',
+                'تقارير أداء ذكية لقياس الاستعداد',
+                'محاكاة اختبار نهائي مع مؤقت',
+                'دعم مستمر طوال رحلة التعلم'
+            ],
+            complete: [
+                'الوصول لمدة 24 شهر',
+                'شروحات مبنية على أوزان الاختبارات الرسمية',
+                'اختبارات تجريبية تحاكي الواقع الفعلي',
+                'تقارير أداء ذكية لقياس الاستعداد',
+                'محاكاة اختبار نهائي مع مؤقت',
+                'دعم مستمر طوال رحلة التعلم',
+                'أولوية الوصول للمواد الجديدة'
+            ]
+        };
+
+        // ===== Initialize Page =====
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPackageDetails();
+            setupFormValidation();
+            setupPaymentButton();
+            setupCouponSystem();
+            setupCourseSelection();
+        });
+
+        // ===== Coupon System =====
+        const validCoupons = {
+            'ZAMIL10': { discount: 10, description: 'خصم 10%' },
+            'ZAMIL20': { discount: 20, description: 'خصم 20%' },
+            'WELCOME15': { discount: 15, description: 'خصم ترحيبي 15%' },
+            'STUDENT25': { discount: 25, description: 'خصم الطلاب 25%' },
+            'SOCPA30': { discount: 30, description: 'خصم خاص 30%' }
+        };
+
+        let appliedCoupon = null;
+
+        // ===== Course Selection System =====
+        const courseIcons = {
+            'accounting': 'fas fa-calculator',
+            'tax': 'fas fa-file-invoice-dollar',
+            'management': 'fas fa-chart-line',
+            'auditing': 'fas fa-search-dollar',
+            'business': 'fas fa-building',
+            'systems': 'fas fa-balance-scale'
+        };
+
+        const courseNames = {
+            'accounting': 'المحاسبة المالية',
+            'tax': 'الزكاة والضريبة',
+            'management': 'المحاسبة الإدارية والحكومية',
+            'auditing': 'المراجعة',
+            'business': 'بيئة الأعمال',
+            'systems': 'الأنظمة'
+        };
+
+        let selectedCourses = [];
+        let maxCoursesAllowed = 1; // Will be updated based on package type
+
+        function setupCourseSelection() {
+            const courseSelectorTrigger = document.getElementById('courseSelectorTrigger');
+            const courseDropdown = document.getElementById('courseDropdown');
+            const selectedCourseText = document.getElementById('selectedCourseText');
+            const courseDropdownItems = document.querySelectorAll('.course-dropdown-item');
+            
+            // Toggle dropdown
+            courseSelectorTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isOpen = courseDropdown.classList.contains('show');
+                if (isOpen) {
+                    courseDropdown.classList.remove('show');
+                    courseSelectorTrigger.classList.remove('open');
+                } else {
+                    courseDropdown.classList.add('show');
+                    courseSelectorTrigger.classList.add('open');
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!courseSelectorTrigger.contains(e.target) && !courseDropdown.contains(e.target)) {
+                    courseDropdown.classList.remove('show');
+                    courseSelectorTrigger.classList.remove('open');
+                }
+            });
+
+            // Handle course selection
+            courseDropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Check if it's a coming soon item
+                    if (this.classList.contains('coming-soon-item')) {
+                        alert('هذه المادة غير متوفرة حالياً. ستكون متاحة قريباً!');
+                        return;
+                    }
+
+                    const courseCode = this.getAttribute('data-course');
+                    const isSelected = this.classList.contains('selected');
+
+                    if (isSelected) {
+                        // Deselect if already selected
+                        this.classList.remove('selected');
+                        selectedCourses = selectedCourses.filter(course => course.code !== courseCode);
+                    } else {
+                        // Check if we can select more courses
+                        if (selectedCourses.length >= maxCoursesAllowed) {
+                            if (maxCoursesAllowed === 1) {
+                                // Single selection - remove previous selection
+                                courseDropdownItems.forEach(i => i.classList.remove('selected'));
+                                selectedCourses = [];
+                            } else {
+                                alert(`يمكنك اختيار ${maxCoursesAllowed} مواد فقط`);
+                                return;
+                            }
+                        }
+
+                        // Select current item
+                        this.classList.add('selected');
+
+                        // Get course data
+                        const coursePrice = parseInt(this.getAttribute('data-price'));
+                        const courseDesc = this.getAttribute('data-desc');
+                        const courseSymbol = this.getAttribute('data-symbol');
+                        const courseName = courseNames[courseCode];
+
+                        // Store selected course
+                        const courseData = {
+                            code: courseCode,
+                            name: courseName,
+                            description: courseDesc,
+                            price: coursePrice,
+                            symbol: courseSymbol
+                        };
+                        selectedCourses.push(courseData);
+                    }
+
+                    // Update trigger text
+                    if (selectedCourses.length === 0) {
+                        selectedCourseText.textContent = 'اختر المادة المطلوبة';
+                    } else if (selectedCourses.length === 1) {
+                        selectedCourseText.textContent = `${selectedCourses[0].symbol} - ${selectedCourses[0].name}`;
+                    } else {
+                        const symbols = selectedCourses.map(course => course.symbol).join(' + ');
+                        selectedCourseText.textContent = `${symbols} (${selectedCourses.length} مواد)`;
+                    }
+
+                    // Don't close dropdown for multi-selection unless single selection mode
+                    if (maxCoursesAllowed === 1 && selectedCourses.length > 0) {
+                        courseDropdown.classList.remove('show');
+                        courseSelectorTrigger.classList.remove('open');
+                    }
+
+                    // Update UI
+                    updateSelectedCoursesPreview();
+                    updatePackageInfo();
+                    updateCoursePrice();
+                });
+            });
+        }
+
+
+
+        function updateSelectedCoursesPreview() {
+            const previewContainer = document.getElementById('selectedCoursesPreview');
+            
+            if (selectedCourses.length === 0) {
+                previewContainer.style.display = 'none';
+                return;
+            }
+            
+            const previewHTML = selectedCourses.map(course => `
+                <div class="selected-course-card">
+                    <div class="course-card-symbol">
+                        <span class="course-symbol">${course.symbol}</span>
+                    </div>
+                    <div class="course-card-details">
+                        <h4 class="course-card-name">${course.name}</h4>
+                        <p class="course-card-desc">${course.description}</p>
+                        <div class="course-card-price">${course.price.toLocaleString()} ر.س</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            previewContainer.innerHTML = previewHTML;
+            previewContainer.style.display = 'block';
+        }
+
+        function updatePackageInfo() {
+            const packageTitle = document.getElementById('packageTitle');
+            const packageDescription = document.getElementById('packageDescription');
+            const packageFeatures = document.getElementById('packageFeatures');
+            
+            if (selectedCourses.length === 0) {
+                packageTitle.textContent = 'اختر المادة المطلوبة';
+                packageDescription.textContent = 'يرجى اختيار المادة التي تريد دراستها';
+                packageFeatures.innerHTML = '<li><i class="fas fa-info-circle"></i>لم يتم اختيار أي مادة</li>';
+                return;
+            }
+            
+            if (selectedCourses.length === 1) {
+                // Single course selected
+                const course = selectedCourses[0];
+                packageTitle.textContent = course.name;
+                packageDescription.textContent = course.description;
+                
+                const features = [
+                    'الوصول لمدة 12 شهر',
+                    'شروحات مبنية على أوزان الاختبارات الرسمية',
+                    'اختبارات تجريبية تحاكي الواقع الفعلي',
+                    'تقارير أداء ذكية لقياس الاستعداد',
+                    'دعم فني أساسي'
+                ];
+                packageFeatures.innerHTML = features.map(feature => 
+                    `<li><i class="fas fa-check"></i>${feature}</li>`
+                ).join('');
+            } else {
+                // Multiple courses selected
+                const courseNames = selectedCourses.map(course => course.name).join(' + ');
+                packageTitle.textContent = `باقة المواد المتوفرة (${selectedCourses.length} مواد)`;
+                packageDescription.textContent = `تشمل: ${courseNames}`;
+                
+                const features = [
+                    'الوصول لمدة 12 شهر لجميع المواد',
+                    'شروحات مبنية على أوزان الاختبارات الرسمية',
+                    'اختبارات تجريبية شاملة لكل مادة',
+                    'تقارير أداء مفصلة لكل مادة',
+                    'دعم فني متقدم',
+                    'خصم خاص على الباقة المتكاملة'
+                ];
+                packageFeatures.innerHTML = features.map(feature => 
+                    `<li><i class="fas fa-check"></i>${feature}</li>`
+                ).join('');
+            }
+        }
+
+        function updateCoursePrice() {
+            if (selectedCourses.length === 0) {
+                window.checkoutData = {
+                    type: 'single',
+                    price: 0,
+                    title: 'لم يتم الاختيار',
+                    description: 'يرجى اختيار المادة المطلوبة',
+                    basePrice: 0,
+                    vatAmount: 0,
+                    totalPrice: 0
+                };
+            } else {
+                const totalPrice = selectedCourses.reduce((total, course) => total + course.price, 0);
+                const vatAmount = Math.round(totalPrice * 0.15);
+                
+                const packageType = selectedCourses.length === 1 ? 'single' : 'bundle';
+                const packageTitle = selectedCourses.length === 1 
+                    ? selectedCourses[0].name 
+                    : `باقة المواد المتوفرة (${selectedCourses.length} مواد)`;
+                const packageDesc = selectedCourses.length === 1 
+                    ? selectedCourses[0].description 
+                    : selectedCourses.map(course => course.name).join(' + ');
+                
+                window.checkoutData = {
+                    type: packageType,
+                    price: totalPrice,
+                    title: packageTitle,
+                    description: packageDesc,
+                    basePrice: totalPrice,
+                    vatAmount: vatAmount,
+                    totalPrice: totalPrice + vatAmount,
+                    selectedCourses: selectedCourses
+                };
+            }
+            
+            // Update pricing display
+            updatePriceCalculation();
+        }
+
+        function setupCouponSystem() {
+            const couponInput = document.getElementById('couponCode');
+            const applyCouponBtn = document.getElementById('applyCoupon');
+
+            applyCouponBtn.addEventListener('click', applyCoupon);
+            
+            // Allow Enter key to apply coupon
+            couponInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    applyCoupon();
+                }
+            });
+
+            // Add ripple effect to apply button
+            applyCouponBtn.addEventListener('click', function(e) {
+                const ripple = this.querySelector('.btn-ripple');
+                if (ripple) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        ripple.style.transform = 'scale(4)';
+                        ripple.style.opacity = '0';
+                    }, 0);
+                }
+            });
+        }
+
+        function applyCoupon() {
+            const couponInput = document.getElementById('couponCode');
+            const couponMessage = document.getElementById('couponMessage');
+            const applyCouponBtn = document.getElementById('applyCoupon');
+            
+            const couponCode = couponInput.value.trim().toUpperCase();
+            
+            if (!couponCode) {
+                showCouponMessage('يرجى إدخال كود الخصم', 'error');
+                return;
+            }
+
+            // Show loading state
+            applyCouponBtn.disabled = true;
+            const btnText = applyCouponBtn.querySelector('.btn-text');
+            const btnIcon = applyCouponBtn.querySelector('.btn-icon');
+            btnText.textContent = 'جاري التطبيق...';
+            btnIcon.className = 'fas fa-spinner fa-spin btn-icon';
+
+            // Simulate API call delay
+            setTimeout(() => {
+                if (validCoupons[couponCode]) {
+                    // Valid coupon
+                    appliedCoupon = {
+                        code: couponCode,
+                        ...validCoupons[couponCode]
+                    };
+                    
+                    showCouponMessage(`تم تطبيق ${appliedCoupon.description} بنجاح!`, 'success');
+                    updatePriceCalculation();
+                    
+                    // Disable input and button after successful application
+                    couponInput.disabled = true;
+                    btnText.textContent = 'تم التطبيق';
+                    btnIcon.className = 'fas fa-check btn-icon';
+                    applyCouponBtn.style.background = '#059669';
+                    
+                    // Add remove button
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'coupon-btn remove-btn';
+                    removeBtn.style.background = '#ef4444';
+                    removeBtn.style.marginRight = '0.5rem';
+                    removeBtn.onclick = removeCoupon;
+                    removeBtn.innerHTML = `
+                        <span class="btn-text">إزالة</span>
+                        <i class="fas fa-times btn-icon"></i>
+                    `;
+                    applyCouponBtn.parentNode.appendChild(removeBtn);
+                    
+                } else {
+                    // Invalid coupon
+                    showCouponMessage('كود الخصم غير صحيح أو منتهي الصلاحية', 'error');
+                    applyCouponBtn.disabled = false;
+                    btnText.textContent = 'تطبيق';
+                    btnIcon.className = 'fas fa-arrow-left btn-icon';
+                }
+            }, 1000);
+        }
+
+        function removeCoupon() {
+            appliedCoupon = null;
+            
+            const couponInput = document.getElementById('couponCode');
+            const couponMessage = document.getElementById('couponMessage');
+            const applyCouponBtn = document.getElementById('applyCoupon');
+            
+            // Reset input and button
+            couponInput.disabled = false;
+            couponInput.value = '';
+            applyCouponBtn.disabled = false;
+            const btnText = applyCouponBtn.querySelector('.btn-text');
+            const btnIcon = applyCouponBtn.querySelector('.btn-icon');
+            btnText.textContent = 'تطبيق';
+            btnIcon.className = 'fas fa-arrow-left btn-icon';
+            applyCouponBtn.style.background = '';
+            
+            // Remove the remove button
+            const removeBtn = applyCouponBtn.parentNode.querySelector('.remove-btn');
+            if (removeBtn) {
+                removeBtn.remove();
+            }
+            
+            // Hide message and update prices
+            couponMessage.style.display = 'none';
+            updatePriceCalculation();
+        }
+
+        function showCouponMessage(message, type) {
+            const couponMessage = document.getElementById('couponMessage');
+            couponMessage.textContent = message;
+            couponMessage.className = `coupon-message ${type}`;
+        }
+
+        function updatePriceCalculation() {
+            if (!window.checkoutData) return;
+            
+            const basePrice = window.checkoutData.price;
+            let discountAmount = 0;
+            
+            if (appliedCoupon) {
+                discountAmount = Math.round(basePrice * (appliedCoupon.discount / 100));
+            }
+            
+            const priceAfterDiscount = basePrice - discountAmount;
+            const vatAmount = Math.round(priceAfterDiscount * 0.15);
+            const totalPrice = priceAfterDiscount + vatAmount;
+            
+            // Update display
+            document.getElementById('basePrice').textContent = basePrice.toLocaleString() + ' ر.س';
+            
+            const discountRow = document.getElementById('discountRow');
+            if (appliedCoupon) {
+                document.getElementById('discountPercent').textContent = appliedCoupon.discount;
+                document.getElementById('discountAmount').textContent = '-' + discountAmount.toLocaleString() + ' ر.س';
+                discountRow.style.display = 'flex';
+            } else {
+                discountRow.style.display = 'none';
+            }
+            
+            document.getElementById('vatAmount').textContent = vatAmount.toLocaleString() + ' ر.س';
+            document.getElementById('totalPrice').textContent = totalPrice.toLocaleString() + ' ر.س';
+            
+            // Update window.checkoutData with new totals
+            window.checkoutData.discountAmount = discountAmount;
+            window.checkoutData.vatAmount = vatAmount;
+            window.checkoutData.totalPrice = totalPrice;
+            window.checkoutData.appliedCoupon = appliedCoupon;
+        }
+
+        // ===== Load Package Details =====
+        function loadPackageDetails() {
+            const packageData = localStorage.getItem('selectedPackage');
+            
+            if (!packageData) {
+                // No package pre-selected, default to single course selection
+                maxCoursesAllowed = 1;
+                document.getElementById('packageTitle').textContent = 'اختر المادة المطلوبة';
+                document.getElementById('packageDescription').textContent = 'يرجى اختيار المادة المطلوبة من الأعلى لمتابعة عملية الشراء';
+                document.getElementById('packageFeatures').innerHTML = '<li style="color: var(--gray-500);"><i class="fas fa-info-circle"></i>سيتم عرض مميزات المادة هنا بعد الاختيار</li>';
+                return;
+            }
+
+            const packageDetails = JSON.parse(packageData);
+            
+            // Check if data is not too old (1 hour expiry)
+            const oneHour = 60 * 60 * 1000;
+            if (Date.now() - packageDetails.timestamp > oneHour) {
+                localStorage.removeItem('selectedPackage');
+                maxCoursesAllowed = 1;
+                document.getElementById('packageTitle').textContent = 'اختر المادة المطلوبة';
+                document.getElementById('packageDescription').textContent = 'يرجى اختيار المادة المطلوبة من الأعلى لمتابعة عملية الشراء';
+                return;
+            }
+
+            // Handle different package types and set course limits
+            if (packageDetails.type === 'single') {
+                maxCoursesAllowed = 1;
+                document.getElementById('selectionTitleText').textContent = 'اختر المادة المطلوبة';
+                document.getElementById('selectionHint').style.display = 'none';
+                document.getElementById('packageTitle').textContent = 'اختر المادة المطلوبة';
+                document.getElementById('packageDescription').textContent = 'يرجى اختيار المادة المطلوبة من القائمة أدناه';
+            } else if (packageDetails.type === 'available') {
+                maxCoursesAllowed = 2; // Allow selecting both available courses
+                document.getElementById('selectionTitleText').textContent = 'اختر المواد المطلوبة (حتى 2 مواد)';
+                document.getElementById('selectionHint').style.display = 'flex';
+                document.getElementById('packageTitle').textContent = 'باقة المواد المتوفرة (حتى 2 مواد)';
+                document.getElementById('packageDescription').textContent = 'يمكنك اختيار المواد المتوفرة حالياً (المحاسبة المالية والزكاة والضريبة)';
+            } else if (packageDetails.type === 'complete') {
+                maxCoursesAllowed = 6; // All courses when available
+                document.getElementById('selectionTitleText').textContent = 'الحزمة الكاملة (جميع المواد)';
+                document.getElementById('selectionHint').style.display = 'flex';
+                document.getElementById('selectionHint').querySelector('span').textContent = 'تشمل جميع المواد المتوفرة والقادمة';
+                document.getElementById('packageTitle').textContent = 'الحزمة الكاملة';
+                document.getElementById('packageDescription').textContent = 'تشمل جميع مواد SOCPA (متوفرة حالياً + قريباً)';
+                
+                // For complete package, show fixed features and pricing
+                const features = [
+                    'الوصول لجميع المواد لمدة 12 شهر',
+                    'شروحات مبنية على أوزان الاختبارات الرسمية',
+                    'اختبارات تجريبية شاملة لكل مادة',
+                    'تقارير أداء مفصلة لكل مادة',
+                    'دعم فني متقدم',
+                    'خصم خاص على الباقة الكاملة',
+                    'تحديثات مجانية للمواد الجديدة'
+                ];
+                document.getElementById('packageFeatures').innerHTML = features.map(feature => 
+                    `<li><i class="fas fa-check"></i>${feature}</li>`
+                ).join('');
+
+                // Set fixed pricing for complete package
+                window.checkoutData = {
+                    ...packageDetails,
+                    basePrice: packageDetails.price,
+                    vatAmount: Math.round(packageDetails.price * 0.15),
+                    totalPrice: packageDetails.price + Math.round(packageDetails.price * 0.15)
+                };
+
+                updatePriceCalculation();
+                return;
+            }
+
+            // Initialize empty features for single and available packages
+            document.getElementById('packageFeatures').innerHTML = '<li style="color: var(--gray-500);"><i class="fas fa-info-circle"></i>سيتم عرض مميزات المادة هنا بعد الاختيار</li>';
+        }
+
+        // ===== Form Validation =====
+        function setupFormValidation() {
+            const form = document.getElementById('checkoutForm');
+            const inputs = form.querySelectorAll('.form-input');
+
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearError);
+            });
+        }
+
+        function validateField(event) {
+            const field = event.target;
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+
+            switch(field.name) {
+                case 'fullName':
+                    if (value.length < 2) {
+                        isValid = false;
+                        errorMessage = 'يرجى إدخال الاسم الكامل';
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'يرجى إدخال بريد إلكتروني صحيح';
+                    }
+                    break;
+
+                case 'phone':
+                    const phoneRegex = /^05\d{8}$/;
+                    if (!phoneRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'يرجى إدخال رقم جوال صحيح (05xxxxxxxx)';
+                    }
+                    break;
+
+                case 'password':
+                    if (value.length < 8) {
+                        isValid = false;
+                        errorMessage = 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل';
+                    }
+                    break;
+
+                case 'confirmPassword':
+                    const password = document.getElementById('password').value;
+                    if (value !== password) {
+                        isValid = false;
+                        errorMessage = 'كلمة المرور غير متطابقة';
+                    }
+                    break;
+            }
+
+            showFieldError(field, isValid, errorMessage);
+            return isValid;
+        }
+
+        function showFieldError(field, isValid, errorMessage) {
+            const errorElement = field.parentNode.querySelector('.error-message');
+            
+            if (isValid) {
+                field.classList.remove('error');
+                errorElement.style.display = 'none';
+            } else {
+                field.classList.add('error');
+                errorElement.textContent = errorMessage;
+                errorElement.style.display = 'block';
+            }
+        }
+
+        function clearError(event) {
+            const field = event.target;
+            field.classList.remove('error');
+            const errorElement = field.parentNode.querySelector('.error-message');
+            errorElement.style.display = 'none';
+        }
+
+        // ===== Payment Button Setup =====
+        function setupPaymentButton() {
+            const paymentBtn = document.getElementById('paymentBtn');
+            paymentBtn.addEventListener('click', handlePayment);
+        }
+
+        function handlePayment() {
+            // Check if course is selected
+            if (selectedCourses.length === 0 && (!window.checkoutData || window.checkoutData.price === 0)) {
+                alert('يرجى اختيار المادة المطلوبة أولاً');
+                return;
+            }
+
+            // Validate all fields
+            const form = document.getElementById('checkoutForm');
+            const inputs = form.querySelectorAll('.form-input');
+            let allValid = true;
+
+            inputs.forEach(input => {
+                const isValid = validateField({ target: input });
+                if (!isValid) allValid = false;
+            });
+
+            // Check terms agreement
+            const termsAgree = document.getElementById('termsAgree');
+            if (!termsAgree.checked) {
+                alert('يرجى الموافقة على شروط الاستخدام وسياسة الخصوصية');
+                return;
+            }
+
+            if (!allValid) {
+                alert('يرجى تصحيح الأخطاء في النموذج');
+                return;
+            }
+
+            // Show loading state
+            const paymentBtn = document.getElementById('paymentBtn');
+            paymentBtn.disabled = true;
+            paymentBtn.querySelector('span').textContent = 'جاري المعالجة...';
+            paymentBtn.querySelector('.fa-credit-card').style.display = 'none';
+            paymentBtn.querySelector('.loading').style.display = 'inline-block';
+
+            // Collect form data
+            const formData = new FormData(form);
+            const userData = Object.fromEntries(formData);
+            
+            // Prepare payment data
+            const paymentData = {
+                user: userData,
+                package: window.checkoutData,
+                timestamp: new Date().toISOString()
+            };
+
+            // Simulate payment processing (replace with actual payment gateway)
+            setTimeout(() => {
+                // Here you would integrate with Moyasar or other payment gateway
+                // For now, we'll simulate success and redirect to dashboard
+                
+                // Store user data for post-purchase account creation
+                localStorage.setItem('purchaseData', JSON.stringify(paymentData));
+                
+                // Redirect to payment gateway (replace URL with actual gateway)
+                // For demo, we'll show success message
+                alert('تم إرسال طلبك بنجاح!\nستتم إعادة توجيهك لبوابة الدفع...');
+                
+                // In production, redirect to payment gateway:
+                // window.location.href = `https://api.moyasar.com/v1/payments/checkout?amount=${window.checkoutData.totalPrice * 100}&currency=SAR&description=${encodeURIComponent(window.checkoutData.title)}`;
+                
+                // For demo, redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        }
+
+        // ===== Prevent data loss on page refresh =====
+        window.addEventListener('beforeunload', function(e) {
+            if (document.querySelector('.form-input').value) {
+                const confirmationMessage = 'ستفقد البيانات التي أدخلتها. هل تريد المتابعة؟';
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        });
+    </script>
+</body>
+</html>

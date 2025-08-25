@@ -1,0 +1,3773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلسة البطاقات التعليمية - منصة زامل للتعليم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            /* Brand - Lighter and softer */
+            --primary-navy: #3f4f6b;   /* Softer navy */
+            --primary-blue: #6ba3f7;   /* Lighter blue */
+            --primary-dark: #2a3441;   /* Lighter dark */
+            --secondary-navy: var(--primary-dark);
+            
+            /* Accents - Warmer and softer */
+            --accent-gold: #f7c845;    /* Softer gold */
+            --accent-yellow: #ffd76b;  /* Gentle yellow */
+            
+            /* Neutrals */
+            --white: #ffffff;
+            --light-gray: #fafbfc;     /* Even lighter gray */
+            --medium-gray: #8b9bb5;    /* Softer medium gray */
+            --dark-gray: #4a5568;      /* Lighter dark gray */
+            --gray-50: #f9fafb;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            
+            /* States - Gentle and comfortable */
+            --success-green: #68d391;  /* Soft green */
+            --warning-orange: #f6ad55; /* Gentle orange */
+            --danger-red: #fc8181;     /* Soft red */
+            --info-blue: #63b3ed;      /* Gentle blue */
+            --light-blue: #bee3f8;     /* Very light blue */
+            --error-red: var(--danger-red);
+            --text-dark: #1e293b;
+            
+            /* Gradients - Softer transitions */
+            --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            --gradient-button: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-yellow) 100%);
+            --gradient-card: linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 100%);
+            
+            /* Shadows / Motion - Softer shadows */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.10);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,.12);
+            --transition: all .3s cubic-bezier(.25,.8,.25,1);
+            --transition-fast: all .15s ease;
+            --border-radius: 12px;
+            
+            /* Layout */
+            --sidebar-collapsed: 72px;
+            --sidebar-expanded: 220px;
+            --sidebar-gap: 16px;
+            --header-height: 72px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            transition: var(--transition);
+            line-height: 1.6;
+            margin-left: 0;
+        }
+
+        /* ===== Header Styles ===== */
+        .header {
+            background: var(--gradient-primary);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1002;
+            width: 100vw;
+            left: 0;
+            right: 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .header-welcome {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.3px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .logo-accent {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            right: -8px;
+        }
+
+        /* Study Selector */
+        .study-selector {
+            position: relative;
+        }
+
+        .study-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .study-info:hover, .study-selector.open .study-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .study-dropdown-arrow {
+            transition: var(--transition);
+        }
+
+        .study-selector.open .study-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .study-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1003;
+            min-width: 400px;
+        }
+
+        .study-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .study-dropdown-header {
+            padding: 1rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+
+        .study-dropdown-menu {
+            padding: 0.5rem 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .study-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .study-dropdown-item:hover {
+            background: var(--light-gray);
+        }
+
+        .study-dropdown-item.active {
+            background: var(--light-blue);
+            border-left-color: var(--info-blue);
+            color: var(--primary-dark);
+        }
+
+        .dropdown-section-header {
+            padding: 0.75rem 1.5rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .dropdown-section-header.coming-soon {
+            color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .dropdown-section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 0.5rem 0;
+        }
+
+        .study-dropdown-item.coming-soon-item {
+            opacity: 0.7;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .study-dropdown-item.coming-soon-item:hover {
+            background: transparent;
+        }
+
+        .coming-soon-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .course-icon.accounting { background: #4a9960; }
+        .course-icon.tax { background: #2d7a3d; }
+        .course-icon.management { background: #2d5aa0; }
+        .course-icon.auditing { background: #3b5998; }
+        .course-icon.business { background: #2f4d7a; }
+        .course-icon.systems { background: #4a6fa5; }
+        .course-icon.economics { background: #2f4d7a; }
+        .course-icon.law { background: #4a6fa5; }
+        .course-icon.ethics { background: #2d5aa0; }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .course-code {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-btn {
+            background: white;
+            border: 1px solid #e0e5e9;
+            color: #374151;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .header-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        .header-btn.rate-btn {
+            color: #6b7280;
+        }
+
+        .header-btn.rate-btn:hover {
+            color: #374151;
+        }
+
+        .header-btn.overview-btn {
+            color: #6b7280;
+        }
+
+        .header-btn.overview-btn:hover {
+            color: #374151;
+        }
+
+        .header-btn.end-session-btn {
+            background: #1f2937;
+            color: white;
+            border-color: #1f2937;
+        }
+
+        .header-btn.end-session-btn:hover {
+            background: #111827;
+            border-color: #111827;
+        }
+
+        /* User Info */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-notification {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .alert-notification:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .alert-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--danger-red);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-profile {
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--gradient-button);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-avatar:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-xl);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .user-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+
+        .dropdown-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-email {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,.8);
+        }
+
+        .dropdown-menu {
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0,0,0,.05);
+            color: var(--primary-navy);
+            padding-right: 1.75rem;
+        }
+
+        .dropdown-item i {
+            width: 18px;
+            text-align: center;
+            color: var(--medium-gray);
+            transition: var(--transition-fast);
+        }
+
+        .dropdown-item:hover i {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .dropdown-item.danger {
+            color: var(--danger-red);
+        }
+
+        .dropdown-item.danger:hover {
+            background: var(--danger-red);
+            color: var(--white);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 0.5rem 0;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-collapsed);
+            height: 100vh;
+            background: var(--gradient-primary);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            overflow: hidden;
+            transition: width 0.25s ease;
+            padding-top: var(--header-height);
+        }
+
+        /* expand via hover or .expanded toggle */
+        .sidebar:hover, .sidebar.expanded {
+            width: var(--sidebar-expanded);
+        }
+
+        /* nav items */
+        .sidebar-nav {
+            padding: 1rem 0.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0.75rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #fff;
+            min-height: 44px;
+            transition: var(--transition);
+        }
+
+        /* collapsed look */
+        .sidebar:not(:hover):not(.expanded) {
+            width: var(--sidebar-collapsed);
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item {
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            height: 56px;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item-icon {
+            width: 36px;
+            height: 36px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item-icon i {
+            font-size: 20px;
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item-text {
+            display: none !important;
+            opacity: 0 !important;
+            transform: none !important;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item.active::before {
+            display: none;
+        }
+
+        /* active + hover */
+        .nav-item:hover {
+            background: rgba(245, 158, 11, 0.18);
+            color: var(--accent-gold);
+        }
+
+        .nav-item.active {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-gold);
+        }
+
+        .nav-item.active::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-gold);
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ICONS — always visible */
+        .nav-item-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-item-icon i {
+            font-size: 20px;
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        /* labels hidden/revealed */
+        .nav-item-text {
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.2s ease;
+        }
+
+        .sidebar:hover .nav-item-text, .sidebar.expanded .nav-item-text {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Tooltip for sidebar items */
+        .nav-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            pointer-events: none;
+        }
+
+        .sidebar:not(:hover) .nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            margin-left: var(--sidebar-collapsed);
+            transition: margin-left 0.25s ease;
+            min-height: calc(100vh - var(--header-height));
+            background: #f8f9fa;
+            padding: 0;
+            position: relative;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - var(--header-height));
+            padding: 0 2rem;
+        }
+
+        /* Progress Section - Becker Style */
+        .progress-section {
+            background: #1e3a8a;
+            border-radius: 0;
+            padding: 1.5rem 0;
+            margin: 0;
+            box-shadow: none;
+            border: none;
+            width: 100%;
+        }
+
+        .progress-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            opacity: 0.9;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .stat-dot.to-review { background: #fbbf24; }
+        .stat-dot.mastered { background: #10b981; }
+
+        /* Flashcard Header Section */
+        .flashcard-header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flashcard-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid;
+            font-family: inherit;
+        }
+
+        .control-btn.overview-btn {
+            background: white;
+            color: #6b7280;
+            border-color: #e0e5e9;
+        }
+
+        .control-btn.overview-btn:hover {
+            background: #f9fafb;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+
+        .control-btn.end-session-btn {
+            background: #1f2937;
+            color: white;
+            border-color: #1f2937;
+        }
+
+        .control-btn.end-session-btn:hover {
+            background: #111827;
+            border-color: #111827;
+        }
+
+        /* Blue Progress Stats */
+        .blue-progress-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .blue-progress-stats .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .blue-progress-stats .stat-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            opacity: 0.9;
+        }
+
+        .blue-progress-stats .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Action Buttons Below Blue Background */
+        .action-buttons-below {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+
+
+        /* ===== Main Flashcard Area ===== */
+        .flashcard-area {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ===== Navy Blue Container ===== */
+        .flashcard-outer-container {
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(63, 79, 107, 0.3);
+            flex: 1;
+        }
+
+        /* Third stacked card layer for more depth - Temporarily Disabled */
+        /*
+        .flashcard-outer-container::after {
+            content: '';
+            position: absolute;
+            left: calc(3rem + 18px);
+            right: calc(3rem + 18px);
+            top: calc(3rem + 18px);
+            height: calc(100% - 6rem - 18px);
+            background: #9ca3af;
+            border-radius: 12px;
+            z-index: -2;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        */
+
+
+
+        /* ===== Becker-Style Flashcard Container ===== */
+        .flashcard-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            border: none;
+            z-index: 3;
+        }
+
+        /* Enhanced Stacked Cards Effect - Temporarily Disabled */
+        /*
+        .flashcard-container::before,
+        .flashcard-container::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            height: 100%;
+            border-radius: 12px;
+            z-index: -1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .flashcard-container::before {
+            top: 6px;
+            background: #e5e7eb;
+            z-index: -1;
+        }
+
+        .flashcard-container::after {
+            top: 12px;
+            background: #d1d5db;
+            z-index: -2;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        */
+
+        /* Flashcard Header */
+        .flashcard-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .module-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-code {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .module-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+
+        /* Card Navigation */
+        .card-navigation {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .nav-arrow:hover:not(:disabled) {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 1.5rem;
+            min-height: 300px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            background: white;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .card-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "answer question";
+            direction: ltr;
+        }
+
+        .question-section {
+            grid-area: question; /* Right side */
+        }
+
+        .answer-section {
+            grid-area: answer; /* Left side */
+        }
+
+        .question-section,
+        .answer-section {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 15;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            text-transform: none;
+            letter-spacing: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .question-text {
+            font-size: 1.2rem !important;
+            line-height: 1.6;
+            color: #000000 !important;
+            font-weight: 700 !important;
+            font-style: normal !important;
+            background: #f3f4f6 !important;
+            padding: 1.5rem !important;
+            border-radius: 8px;
+            min-height: 80px;
+            border: 2px solid #e5e7eb !important;
+            position: relative;
+            z-index: 20 !important;
+        }
+
+        .answer-content {
+            font-size: 1.1rem !important;
+            line-height: 1.6;
+            color: #000000 !important;
+            background: #f9fafb !important;
+            padding: 1.5rem !important;
+            border-radius: 8px;
+            min-height: 80px;
+            border: 2px solid #e5e7eb !important;
+            position: relative;
+            z-index: 20 !important;
+        }
+
+        .answer-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .answer-content li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .answer-content li:before {
+            content: "•";
+            color: #1e40af;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+            font-size: 1.2rem;
+        }
+
+
+
+        /* Custom Popup Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.show .popup-modal {
+            transform: translateY(0);
+        }
+
+        .popup-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fee2e2;
+            color: #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .popup-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-message {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: inherit;
+        }
+
+        .popup-btn.cancel {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .popup-btn.cancel:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .popup-btn.confirm {
+            background: #dc2626;
+            color: white;
+        }
+
+        .popup-btn.confirm:hover {
+            background: #b91c1c;
+        }
+
+        /* Session Overview Popup */
+        .overview-modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 95%;
+            max-height: 80vh;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-overlay.show .overview-modal {
+            transform: translateY(0);
+        }
+
+        .overview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .overview-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .overview-content {
+            flex: 1;
+            overflow: hidden;
+            padding: 1rem 2rem 2rem;
+        }
+
+        .overview-table-container {
+            height: 100%;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .overview-table th {
+            background: #f9fafb;
+            padding: 1rem 0.75rem;
+            text-align: right;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+        }
+
+        .overview-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+            text-align: right;
+        }
+
+        .overview-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .overview-table tr.current-card {
+            background: #eff6ff;
+        }
+
+        .overview-table tr.current-card td {
+            font-weight: 600;
+        }
+
+        .question-preview {
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-not-answered {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .status-to-review {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-mastered {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .module-badge {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Card Position */
+        .card-position {
+            text-align: center;
+            padding: 1rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-top: 1px solid #f1f5f9;
+            background: #fafbfc;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            border-top: 1px solid #f1f5f9;
+            background: white;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .action-btn {
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 140px;
+            justify-content: center;
+            border: 1px solid;
+        }
+
+        .action-btn.mark-review {
+            background: white;
+            color: #d97706;
+            border: 1px solid #fde68a;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.1);
+        }
+
+        .action-btn.mark-review:hover {
+            background: #fef3c7;
+            color: #b45309;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+
+        .action-btn.mark-mastered {
+            background: white;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+        }
+
+        .action-btn.mark-mastered:hover {
+            background: #d1fae5;
+            color: #065f46;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Footer */
+        .session-footer {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer-text {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .end-session-btn {
+            background: var(--error-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .end-session-btn:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .main-container {
+                padding: 1rem;
+            }
+
+            .flashcard-area {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+
+
+            .card-content {
+                grid-template-columns: 1fr !important;
+                grid-template-areas: "question" "answer" !important;
+                gap: 1.5rem;
+            }
+
+            .question-section {
+                grid-area: question !important;
+            }
+
+            .answer-section {
+                grid-area: answer !important;
+            }
+
+
+
+            .flashcard-content {
+                padding: 2rem 1.5rem;
+                min-height: 350px;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .progress-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .flashcard-outer-container {
+                padding: 1.5rem;
+            }
+
+            .flashcard-header-section {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .control-buttons {
+                justify-content: center;
+            }
+
+            .control-btn {
+                flex: 1;
+                max-width: 200px;
+            }
+
+            .blue-progress-stats {
+                gap: 2rem;
+            }
+
+            .action-buttons-below {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .action-buttons-below .action-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .study-dropdown { 
+                left: auto; 
+                right: 0; 
+                min-width: 260px; 
+                width: auto;
+            }
+            .course-icon { 
+                width: 32px; 
+                height: 32px; 
+                font-size: .7rem; 
+            }
+            .study-info {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span>زامل</span>
+                    <div class="logo-accent"></div>
+                </a>
+            </div>
+            
+            <div class="header-center">
+                <h1 class="header-welcome">جلسة البطاقات التعليمية</h1>
+                <div class="study-selector" id="studySelector">
+                    <div class="study-info" id="studyInfo">
+                        <i class="fas fa-book"></i>
+                        <span>تدرس للحصول على: SOCPA</span>
+                        <i class="fas fa-chevron-down study-dropdown-arrow"></i>
+                    </div>
+                    <div class="study-dropdown" id="studyDropdown">
+                        <div class="study-dropdown-header">
+                            اختر المادة التي تدرسها
+                        </div>
+                        <div class="study-dropdown-menu">
+                            <!-- Currently Available Courses -->
+                            <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
+                            <div class="study-dropdown-item active" data-course="accounting">
+                                <div class="course-icon accounting">محا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة المالية</div>
+                                    <div class="course-code">Financial Accounting</div>
+                                </div>
+                            </div>
+                            <div class="study-dropdown-item" data-course="tax">
+                                <div class="course-icon tax">زك</div>
+                                <div class="course-info">
+                                    <div class="course-name">الزكاة والضريبة</div>
+                                    <div class="course-code">Zakat & Tax</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coming Soon Section -->
+                            <div class="dropdown-section-divider"></div>
+                            <div class="dropdown-section-header coming-soon">قريباً</div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="management">
+                                <div class="course-icon management">إدا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة الإدارية والحكومية</div>
+                                    <div class="course-code">Management & Government Accounting</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="auditing">
+                                <div class="course-icon auditing">مرا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المراجعة</div>
+                                    <div class="course-code">Auditing</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="business">
+                                <div class="course-icon business">بيئ</div>
+                                <div class="course-info">
+                                    <div class="course-name">بيئة الأعمال</div>
+                                    <div class="course-code">Business Environment</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="systems">
+                                <div class="course-icon systems">نظم</div>
+                                <div class="course-info">
+                                    <div class="course-name">الأنظمة</div>
+                                    <div class="course-code">Systems</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="user-info">
+                    <!-- Alert notification -->
+                    <button class="alert-notification" id="alertNotification">
+                        <i class="fas fa-bell"></i>
+                        <span class="alert-badge" id="alertBadge" style="display: none;">1</span>
+                    </button>
+                    
+                    <!-- User Avatar with Dropdown -->
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">
+                            <span>م</span>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-header">
+                                <div class="dropdown-name">مشعل الشقحا</div>
+                                <div class="dropdown-email">mushal@gmail.com</div>
+                            </div>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" id="profileBtn">
+                                    <i class="fas fa-user"></i>
+                                    <span>الملف الشخصي</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item danger" id="logoutBtn">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>تسجيل خروج</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item" data-tooltip="الرئيسية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-home"></i>
+                </div>
+                <span class="nav-item-text">الرئيسية</span>
+            </a>
+            <a href="practice-tests.html" class="nav-item" data-tooltip="الاختبارات التجريبية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+                <span class="nav-item-text">الاختبارات التجريبية</span>
+            </a>
+            <a href="flashcards.html" class="nav-item active" data-tooltip="البطاقات التعليمية">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span class="nav-item-text">البطاقات التعليمية</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="main-container">
+
+
+            <!-- Flashcard Header Section -->
+            <div class="flashcard-header-section">
+                <h1 class="flashcard-title">بطاقات تعليمية</h1>
+                <div class="control-buttons">
+                    <button class="control-btn overview-btn" id="overviewBtn">
+                        <i class="fas fa-chart-line"></i>
+                        نظرة عامة
+                    </button>
+                    <button class="control-btn end-session-btn" id="endSessionBtn">
+                        <i class="fas fa-times"></i>
+                        إنهاء الجلسة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Flashcard Area -->
+            <div class="flashcard-area">
+                <!-- Navy Blue Container with Flashcard -->
+                <div class="flashcard-outer-container">
+                    <!-- Progress Stats in Blue Background -->
+                    <div class="blue-progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">للمراجعة</div>
+                            <div class="stat-number">
+                            <div class="stat-dot to-review"></div>
+                                <span id="toReviewCount">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">تم إتقانها</div>
+                            <div class="stat-number">
+                            <div class="stat-dot mastered"></div>
+                                <span id="masteredCount">0</span>
+                        </div>
+                </div>
+            </div>
+
+                    <div class="flashcard-container">
+                        <!-- Flashcard Header -->
+                        <div class="flashcard-header">
+                            <div class="module-info">
+                                <div class="module-code" id="moduleTitle">F1-M1</div>
+                                <div class="module-description" id="moduleSubtitle">الميزانية العمومية، قائمة الدخل، والدخل الشامل</div>
+                            </div>
+                            
+                            <div class="card-navigation">
+                                <button class="nav-arrow prev" id="prevBtn" disabled>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <button class="nav-arrow next" id="nextBtn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="card-content">
+                            <!-- Show Answer Button Above Question -->
+
+
+                            <div class="question-section">
+                                <h3 class="section-title" style="color: #374151 !important; font-size: 0.875rem !important;">السؤال</h3>
+                                <div class="question-text" id="questionText" style="color: #111827 !important; font-size: 1.1rem !important;">
+                                    اذكر نوعين من معاملات العملة الأجنبية.
+                                </div>
+                            </div>
+                            
+                            <div class="answer-section" id="answerSection" style="display: block;">
+                                <h3 class="section-title" style="color: #374151 !important; font-size: 0.875rem !important;">الجواب</h3>
+                                <div class="answer-content" id="answerContent" style="color: #111827 !important; font-size: 1rem !important;">
+                                    <ul>
+                                        <li>المعاملات التشغيلية، مثل الاستيراد والتصدير والاقتراض والإقراض ومعاملات الاستيمار.</li>
+                                        <li>عقود الصرف الآجلة، وهي اتفاقيات لتبادل عملتين مختلفتين في تاريخ مستقبلي محدد وبسعر محدد.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Position -->
+                        <div class="card-position">
+                            <span id="currentCard">1</span>/31
+                        </div>
+
+                    </div>
+
+                    <!-- Action Buttons Below Blue Background -->
+                    <div class="action-buttons-below">
+                            <button class="action-btn mark-review" id="markReviewBtn">
+                                <i class="fas fa-bookmark"></i>
+                                تحديد للمراجعة
+                            </button>
+                            <button class="action-btn mark-mastered" id="markMasteredBtn">
+                                <i class="fas fa-check-circle"></i>
+                                تم إتقانها
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+    </main>
+
+    <!-- Session Overview Popup -->
+    <div class="popup-overlay" id="sessionOverviewPopup">
+        <div class="overview-modal">
+            <div class="overview-header">
+                <h2>Session Overview</h2>
+                <button class="close-btn" id="closeOverviewBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="overview-content">
+                <div class="overview-table-container">
+                    <table class="overview-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الوحدة</th>
+                                <th>معاينة السؤال</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="overviewTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            </div>
+
+    <!-- End Session Popup -->
+    <div class="popup-overlay" id="endSessionPopup">
+        <div class="popup-modal">
+            <div class="popup-header">
+                <div class="popup-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+            </div>
+                <h3 class="popup-title">إنهاء الجلسة</h3>
+                <p class="popup-message">هل أنت متأكد من أنك تريد إنهاء جلسة البطاقات التعليمية؟ سيتم فقدان التقدم غير المحفوظ.</p>
+        </div>
+            <div class="popup-buttons">
+                <button class="popup-btn cancel" id="cancelEndSession">إلغاء</button>
+                <button class="popup-btn confirm" id="confirmEndSession">إنهاء الجلسة</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample flashcard data
+        const flashcards = [
+            {
+                id: 1,
+                question: "اذكر نوعين من معاملات العملة الأجنبية.",
+                answer: [
+                    "المعاملات التشغيلية، مثل الاستيراد والتصدير والاقتراض والإقراض ومعاملات الاستيمار.",
+                    "عقود الصرف الآجلة، وهي اتفاقيات لتبادل عملتين مختلفتين في تاريخ مستقبلي محدد وبسعر محدد."
+                ],
+                status: 'new' // new, review, mastered
+            },
+            {
+                id: 2,
+                question: "ما هي العناصر الأساسية للميزانية العمومية؟",
+                answer: [
+                    "الأصول: وتشمل الأصول المتداولة وغير المتداولة",
+                    "الخصوم: وتشمل الخصوم المتداولة وغير المتداولة", 
+                    "حقوق الملكية: وتشمل رأس المال والأرباح المحتجزة"
+                ],
+                status: 'new'
+            },
+            {
+                id: 3,
+                question: "اشرح مبدأ الاستحقاق في المحاسبة.",
+                answer: [
+                    "يتم تسجيل الإيرادات عند كسبها وليس عند تحصيلها",
+                    "يتم تسجيل المصروفات عند تكبدها وليس عند دفعها",
+                    "يساعد في إظهار الوضع المالي الحقيقي للشركة"
+                ],
+                status: 'new'
+            },
+            {
+                id: 4,
+                question: "ما هي طرق تقييم المخزون المقبولة محاسبياً؟",
+                answer: [
+                    "طريقة FIFO (الوارد أولاً يصرف أولاً)",
+                    "طريقة المتوسط المرجح",
+                    "طريقة التكلفة المحددة للبنود المميزة"
+                ],
+                status: 'new'
+            },
+            {
+                id: 5,
+                question: "عرّف مفهوم الاستهلاك في المحاسبة.",
+                answer: [
+                    "توزيع تكلفة الأصل الثابت على الفترات المحاسبية المستفيدة منه",
+                    "يعكس الانخفاض في قيمة الأصل بسبب الاستخدام أو مرور الزمن",
+                    "يساعد في مطابقة الإيرادات مع المصروفات المرتبطة بها"
+                ],
+                status: 'new'
+            },
+            {
+                id: 6,
+                question: "ما هي أنواع التدفقات النقدية في قائمة التدفقات النقدية؟",
+                answer: [
+                    "التدفقات النقدية من الأنشطة التشغيلية",
+                    "التدفقات النقدية من الأنشطة الاستيمارية",
+                    "التدفقات النقدية من الأنشطة التمويلية"
+                ],
+                status: 'new'
+            },
+            {
+                id: 7,
+                question: "اشرح مبدأ الثبات في المحاسبة.",
+                answer: [
+                    "استخدام نفس الطرق والسياسات المحاسبية من فترة لأخرى",
+                    "يضمن إمكانية المقارنة بين الفترات المحاسبية المختلفة",
+                    "أي تغيير يجب الإفصاح عنه وتبرير أسبابه"
+                ],
+                status: 'new'
+            },
+            {
+                id: 8,
+                question: "ما هي خصائص المعلومات المحاسبية المفيدة؟",
+                answer: [
+                    "الملاءمة: أن تكون المعلومات ذات قيمة في اتخاذ القرارات",
+                    "الموثوقية: أن تكون المعلومات صادقة وقابلة للتحقق",
+                    "القابلية للمقارنة: إمكانية مقارنتها مع فترات أو منشآت أخرى"
+                ],
+                status: 'new'
+            }
+        ];
+
+        let currentCardIndex = 0;
+        let toReviewCount = 0;
+        let masteredCount = 0;
+
+
+        // Initialize the session
+        function initSession() {
+            console.log('Initializing session...');
+            console.log('Flashcards array:', flashcards);
+            console.log('Current card index:', currentCardIndex);
+            
+            // Load session data from localStorage
+            const sessionData = localStorage.getItem('flashcardSessionData');
+            if (sessionData) {
+                try {
+                const data = JSON.parse(sessionData);
+                    console.log('Session data loaded:', data);
+                
+                // Update module title and subtitle
+                    const moduleTitleEl = document.getElementById('moduleTitle');
+                    if (moduleTitleEl) {
+                        moduleTitleEl.textContent = data.module.title;
+                    }
+                const moduleSubtitle = getModuleSubtitle(data.module.id);
+                    const moduleSubtitleEl = document.getElementById('moduleSubtitle');
+                    if (moduleSubtitleEl) {
+                        moduleSubtitleEl.textContent = moduleSubtitle;
+                    }
+                
+                // Update total cards count based on selected module
+                    const totalCardsEl = document.getElementById('totalCards');
+                    if (totalCardsEl) {
+                        totalCardsEl.textContent = data.module.count;
+                    }
+                
+                // Filter flashcards based on session settings
+                filterFlashcardsBySession(data);
+                } catch (error) {
+                    console.error('Error parsing session data:', error);
+                    // Continue with default initialization
+                }
+            } else {
+                console.log('No session data found, using defaults');
+            }
+            
+            // Always ensure content is displayed
+            console.log('About to update card display...');
+            updateCardDisplay();
+            updateProgress();
+            updateCounters();
+            console.log('Session initialization complete');
+        }
+        
+        // Get module subtitle based on module ID
+        function getModuleSubtitle(moduleId) {
+            const subtitles = {
+                'f1': 'الميزانية العمومية، قائمة الدخل، والدخل الشامل',
+                'f2': 'التقارير المالية والإفصاحات المتقدمة',
+                'f3': 'المراجعة والتأكيد المهني',
+                'f4': 'ضريبة الدخل والضرائب المختلفة',
+                'f5': 'المحاسبة الإدارية وتحليل التكاليف',
+                'f6': 'محاسبة المؤسسات غير الربحية والحكومية',
+                'all': 'جميع المقررات والوحدات'
+            };
+            return subtitles[moduleId] || 'الميزانية العمومية، قائمة الدخل، والدخل الشامل';
+        }
+        
+        // Filter flashcards based on session settings
+        function filterFlashcardsBySession(sessionData) {
+            // Here you would filter the flashcards array based on the session settings
+            // For now, we'll keep all flashcards but show the correct count
+            const moduleCount = parseInt(sessionData.module.count);
+            
+            // If shuffle mode is enabled, shuffle the cards
+            if (sessionData.shuffleMode) {
+                shuffleArray(flashcards);
+            }
+        }
+        
+        // Shuffle array function
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Popup functions
+        function showEndSessionPopup() {
+            const popup = document.getElementById('endSessionPopup');
+            popup.classList.add('show');
+        }
+
+        function hideEndSessionPopup() {
+            const popup = document.getElementById('endSessionPopup');
+            popup.classList.remove('show');
+        }
+
+        function confirmEndSession() {
+            window.location.href = 'flashcards.html';
+        }
+
+        // Session Overview functionality
+        function showSessionOverview() {
+            const popup = document.getElementById('sessionOverviewPopup');
+            populateOverviewTable();
+            popup.classList.add('show');
+        }
+
+        function hideSessionOverview() {
+            const popup = document.getElementById('sessionOverviewPopup');
+            popup.classList.remove('show');
+        }
+
+        function populateOverviewTable() {
+            const tableBody = document.getElementById('overviewTableBody');
+            tableBody.innerHTML = '';
+
+            flashcards.forEach((card, index) => {
+                const row = document.createElement('tr');
+                
+                // Determine status
+                let status = 'لم يتم الإجابة';
+                let statusClass = 'status-not-answered';
+                
+                if (card.status === 'mastered') {
+                    status = 'تم إتقانها';
+                    statusClass = 'status-mastered';
+                } else if (card.status === 'review') {
+                    status = 'للمراجعة';
+                    statusClass = 'status-to-review';
+                }
+
+                // Highlight current card
+                if (index === currentCardIndex) {
+                    row.classList.add('current-card');
+                }
+
+                // Truncate question for preview
+                const questionPreview = card.question.length > 80 
+                    ? card.question.substring(0, 80) + '...' 
+                    : card.question;
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td><span class="module-badge">F1 - M${Math.floor(Math.random() * 4) + 1}</span></td>
+                    <td class="question-preview">${questionPreview}</td>
+                    <td><span class="status-badge ${statusClass}">${status}</span></td>
+                `;
+
+                // Add click handler to navigate to card
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', () => {
+                    currentCardIndex = index;
+                    updateCardDisplay();
+                    updateProgress();
+                    hideSessionOverview();
+                });
+
+                tableBody.appendChild(row);
+            });
+        }
+
+
+
+        // Update card display
+        function updateCardDisplay() {
+            console.log('Updating card display, currentCardIndex:', currentCardIndex);
+            const card = flashcards[currentCardIndex];
+            console.log('Current card:', card);
+            
+            const questionElement = document.getElementById('questionText');
+            const answerElement = document.getElementById('answerContent');
+            
+            if (questionElement && answerElement && card) {
+                questionElement.textContent = card.question;
+                
+            const answerList = card.answer.map(item => `<li>${item}</li>`).join('');
+                answerElement.innerHTML = `<ul>${answerList}</ul>`;
+                
+                console.log('Content updated successfully');
+            } else {
+                console.error('Missing elements or card data:', {
+                    questionElement: !!questionElement,
+                    answerElement: !!answerElement,
+                    card: !!card
+                });
+            }
+            
+            // Answer is always visible now
+            const answerSection = document.getElementById('answerSection');
+            const cardContent = document.querySelector('.card-content');
+            
+            if (answerSection && cardContent) {
+                answerSection.style.display = 'block';
+                cardContent.classList.add('answer-visible');
+            }
+            
+            // Update card position in multiple places
+            document.getElementById('currentCard').textContent = currentCardIndex + 1;
+            
+            // Update totalCards if element exists
+            const totalCardsEl = document.getElementById('totalCards');
+            if (totalCardsEl) {
+                totalCardsEl.textContent = flashcards.length;
+            }
+            
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevBtn) prevBtn.disabled = currentCardIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentCardIndex === flashcards.length - 1;
+            
+            // Update footer
+            const footerText = document.querySelector('.footer-text');
+            if (footerText) {
+                footerText.textContent = `${currentCardIndex + 1} من ${flashcards.length}`;
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const totalCards = flashcards.length;
+            const completedCards = toReviewCount + masteredCount;
+            const progressPercentage = (completedCards / totalCards) * 100;
+            
+            const progressFill = document.getElementById('progressFill');
+            if (progressFill) {
+                progressFill.style.width = `${progressPercentage}%`;
+            }
+        }
+
+        // Update counters
+        function updateCounters() {
+            document.getElementById('toReviewCount').textContent = toReviewCount;
+            document.getElementById('masteredCount').textContent = masteredCount;
+        }
+
+        // Navigation functions
+        function nextCard() {
+            if (currentCardIndex < flashcards.length - 1) {
+                currentCardIndex++;
+                updateCardDisplay();
+            }
+        }
+
+        function prevCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                updateCardDisplay();
+            }
+        }
+
+        // Mark card functions
+        function markForReview() {
+            const card = flashcards[currentCardIndex];
+            if (card.status === 'new') {
+                card.status = 'review';
+                toReviewCount++;
+                updateProgress();
+                updateCounters();
+                
+                // Visual feedback
+                const btn = document.getElementById('markReviewBtn');
+                const originalBg = btn.style.background;
+                const originalColor = btn.style.color;
+                btn.style.background = '#f59e0b';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.style.background = originalBg;
+                    btn.style.color = originalColor;
+                }, 1000);
+                
+                // Auto advance to next card
+                setTimeout(() => {
+                    if (currentCardIndex < flashcards.length - 1) {
+                        nextCard();
+                    }
+                }, 500);
+            }
+        }
+
+        function markAsMastered() {
+            const card = flashcards[currentCardIndex];
+            if (card.status === 'new' || card.status === 'review') {
+                if (card.status === 'review') {
+                    toReviewCount--;
+                }
+                card.status = 'mastered';
+                masteredCount++;
+                updateProgress();
+                updateCounters();
+                
+                // Visual feedback
+                const btn = document.getElementById('markMasteredBtn');
+                const originalBg = btn.style.background;
+                const originalColor = btn.style.color;
+                btn.style.background = '#10b981';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.style.background = originalBg;
+                    btn.style.color = originalColor;
+                }, 1000);
+                
+                // Auto advance to next card
+                setTimeout(() => {
+                    if (currentCardIndex < flashcards.length - 1) {
+                        nextCard();
+                    }
+                }, 500);
+            }
+        }
+
+        // Initialize flashcard event listeners
+        function initFlashcardListeners() {
+            // Navigation buttons
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const markReviewBtn = document.getElementById('markReviewBtn');
+            const markMasteredBtn = document.getElementById('markMasteredBtn');
+            
+            if (nextBtn) nextBtn.addEventListener('click', nextCard);
+            if (prevBtn) prevBtn.addEventListener('click', prevCard);
+            if (markReviewBtn) markReviewBtn.addEventListener('click', markForReview);
+            if (markMasteredBtn) markMasteredBtn.addEventListener('click', markAsMastered);
+            
+            console.log('All flashcard listeners initialized:', {
+                nextBtn: !!nextBtn,
+                prevBtn: !!prevBtn,
+                markReviewBtn: !!markReviewBtn,
+                markMasteredBtn: !!markMasteredBtn
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    nextCard();
+                    break;
+                case 'ArrowRight':
+                    prevCard();
+                    break;
+
+                case '1':
+                    markForReview();
+                    break;
+                case '2':
+                    markAsMastered();
+                    break;
+
+                case 'Escape':
+                    window.location.href = 'flashcards.html';
+                    break;
+            }
+        });
+
+        // Initialize control button listeners
+        function initControlButtonListeners() {
+            // Overview functionality
+            const overviewBtn = document.getElementById('overviewBtn');
+            if (overviewBtn) {
+                overviewBtn.addEventListener('click', showSessionOverview);
+            }
+
+            // End session functionality
+            const endSessionBtn = document.getElementById('endSessionBtn');
+            if (endSessionBtn) {
+                endSessionBtn.addEventListener('click', showEndSessionPopup);
+            }
+
+            // Popup event listeners
+            const cancelBtn = document.getElementById('cancelEndSession');
+            const confirmBtn = document.getElementById('confirmEndSession');
+            const popup = document.getElementById('endSessionPopup');
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', hideEndSessionPopup);
+            }
+
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', confirmEndSession);
+            }
+
+            // Close popup when clicking outside
+            if (popup) {
+                popup.addEventListener('click', function(e) {
+                    if (e.target === popup) {
+                        hideEndSessionPopup();
+                    }
+                });
+            }
+
+            // Overview popup event listeners
+            const closeOverviewBtn = document.getElementById('closeOverviewBtn');
+            const overviewPopup = document.getElementById('sessionOverviewPopup');
+
+            if (closeOverviewBtn) {
+                closeOverviewBtn.addEventListener('click', hideSessionOverview);
+            }
+
+            // Close overview popup when clicking outside
+            if (overviewPopup) {
+                overviewPopup.addEventListener('click', function(e) {
+                    if (e.target === overviewPopup) {
+                        hideSessionOverview();
+                    }
+                });
+            }
+        }
+
+        // Initialize session on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initSession();
+            initNavbar();
+            initUserInterface();
+            initFlashcardListeners();
+            initControlButtonListeners();
+        });
+
+        // Initialize navbar functionality
+        function initNavbar() {
+            // Initialize variables
+            const studySelector = document.getElementById('studySelector');
+            const studyInfo = document.getElementById('studyInfo');
+            const studyDropdown = document.getElementById('studyDropdown');
+            const studyDropdownItems = document.querySelectorAll('.study-dropdown-item');
+            
+            // Check if all elements exist
+            if (!studySelector || !studyInfo || !studyDropdown) {
+                console.error('Required navbar elements not found');
+                return;
+            }
+            
+            // Study dropdown functionality
+            studyInfo.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Toggle dropdown
+                const isOpen = studyDropdown.classList.contains('show');
+                if (isOpen) {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                } else {
+                    studyDropdown.classList.add('show');
+                    studySelector.classList.add('open');
+                }
+            });
+            
+            // Handle course selection
+            if (studyDropdownItems.length > 0) {
+                studyDropdownItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        
+                        // Check if it's a coming soon item
+                        if (this.classList.contains('coming-soon-item')) {
+                            showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                            return;
+                        }
+                        
+                        // Remove active from all available items (not coming soon)
+                        studyDropdownItems.forEach(i => {
+                            if (!i.classList.contains('coming-soon-item')) {
+                                i.classList.remove('active');
+                            }
+                        });
+                        // Add active to clicked item
+                        this.classList.add('active');
+                        
+                        // Get course info
+                        const courseNameEl = this.querySelector('.course-name');
+                        const courseCodeEl = this.querySelector('.course-code');
+                        
+                        if (courseNameEl && courseCodeEl) {
+                            const courseName = courseNameEl.textContent;
+                            const courseCode = courseCodeEl.textContent;
+                            
+                            // Update navbar text
+                            const studyTextEl = studyInfo.querySelector('span');
+                            if (studyTextEl) {
+                                studyTextEl.textContent = `تدرس للحصول على: SOCPA`;
+                            }
+                            
+                            // Close dropdown
+                            studyDropdown.classList.remove('show');
+                            studySelector.classList.remove('open');
+                            
+                            // Update flashcard session module title
+                            const moduleTitle = document.getElementById('moduleTitle');
+                            const moduleSubtitle = document.getElementById('moduleSubtitle');
+                            if (moduleTitle) moduleTitle.textContent = courseName;
+                            if (moduleSubtitle) moduleSubtitle.textContent = courseCode;
+                            
+                            // Show notification
+                            showToast(`تم تغيير المادة إلى ${courseName}`);
+                        }
+                    });
+                });
+            }
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!studySelector.contains(e.target)) {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                }
+            });
+            
+            // Close dropdowns when pressing Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                }
+            });
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--gradient-primary);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                opacity: 0;
+                transition: all 0.3s ease;
+                font-family: 'Tajawal', sans-serif;
+                font-weight: 500;
+                backdrop-filter: blur(10px);
+            `;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+            }, 100);
+            
+            // Hide and remove toast
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize alert notification and user dropdown functionality
+        function initUserInterface() {
+            const alertNotification = document.getElementById('alertNotification');
+            const userAvatar = document.getElementById('userAvatar');
+            const userDropdown = document.getElementById('userDropdown');
+            const profileBtn = document.getElementById('profileBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            // Alert notification functionality
+            if (alertNotification) {
+                alertNotification.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showNotificationsDropdown();
+                    updateNotificationBadge();
+                });
+            }
+
+            // User dropdown functionality
+            if (userAvatar) {
+                userAvatar.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+            }
+
+            // Close user dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (userAvatar && userDropdown && !userAvatar.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('show');
+                }
+            });
+
+            // Profile button functionality
+            if (profileBtn) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    userDropdown.classList.remove('show');
+                    showProfileModal();
+                });
+            }
+
+
+
+            // Logout button functionality
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    userDropdown.classList.remove('show');
+                    showLogoutModal();
+                });
+            }
+
+            // Initialize notification badge
+            updateNotificationBadge();
+        }
+
+        // Logout Modal functionality
+        function showLogoutModal() {
+            const logoutOverlay = document.createElement('div');
+            logoutOverlay.id = 'logoutOverlay';
+            logoutOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                backdrop-filter: blur(5px);
+            `;
+
+            const logoutModal = document.createElement('div');
+            logoutModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 400px;
+                width: 90%;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+                overflow: hidden;
+                border: 1px solid var(--gray-200);
+            `;
+
+            logoutModal.innerHTML = `
+                <!-- Header with Icon -->
+                <div style="background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%); padding: 1.5rem; text-align: center; position: relative;">
+                    <div style="width: 3rem; height: 3rem; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; position: relative;">
+                        <i class="fas fa-sign-out-alt" style="color: white; font-size: 1.2rem;"></i>
+                        <div style="position: absolute; top: -3px; right: -3px; width: 0.75rem; height: 0.75rem; background: var(--accent-gold); border: 2px solid white; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                    </div>
+                    <h2 style="color: white; margin: 0; font-size: 1.2rem; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                        تسجيل الخروج
+                    </h2>
+                </div>
+
+                <!-- Content -->
+                <div style="padding: 1.5rem;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <p style="color: var(--gray-700); font-size: 1rem; line-height: 1.5; margin: 0 0 0.75rem 0; font-weight: 500;">
+                            هل أنت متأكد من تسجيل الخروج؟
+                        </p>
+                        <p style="color: var(--gray-500); font-size: 0.875rem; line-height: 1.4; margin: 0;">
+                            سيتم حفظ تقدمك وستحتاج لتسجيل الدخول مرة أخرى
+                        </p>
+                    </div>
+
+                    <!-- User Info Summary -->
+                    <div style="background: linear-gradient(135deg, var(--gray-50) 0%, #f8fafc 100%); border: 1px solid var(--gray-200); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 2.5rem; height: 2.5rem; background: var(--gradient-primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1rem; flex-shrink: 0;">
+                            م
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; color: var(--primary-navy); margin-bottom: 0.125rem; font-size: 0.95rem;">
+                                مشعل الشقحا
+                            </div>
+                            <div style="font-size: 0.8rem; color: var(--gray-600);">
+                                mushal@gmail.com
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.7rem; color: var(--gray-500);">نشط الآن</div>
+                            <div style="width: 0.5rem; height: 0.5rem; background: var(--success-green); border-radius: 50%; margin: 0.25rem auto;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 0.75rem; justify-content: center;">
+                        <button id="confirmLogoutBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 3px 10px rgba(59, 130, 246, 0.2);
+                        " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(59, 130, 246, 0.2)'">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </button>
+                        <button id="cancelLogoutBtn" style="
+                            background: white;
+                            color: var(--gray-700);
+                            border: 1px solid var(--gray-300);
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.background='var(--gray-50)'; this.style.borderColor='var(--gray-400)'" onmouseout="this.style.background='white'; this.style.borderColor='var(--gray-300)'">
+                            <i class="fas fa-times"></i>
+                            إلغاء
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            logoutOverlay.appendChild(logoutModal);
+            document.body.appendChild(logoutOverlay);
+
+            // Close on Escape key (local to this modal)
+            function handleEscapeKey(e) {
+                if (e.key === 'Escape') {
+                    closeLogoutModal();
+                    document.removeEventListener('keydown', handleEscapeKey);
+                }
+            }
+
+            function closeLogoutModal() {
+                logoutOverlay.style.opacity = '0';
+                logoutModal.style.transform = 'scale(0.9)';
+                document.removeEventListener('keydown', handleEscapeKey);
+                setTimeout(() => {
+                    logoutOverlay.remove();
+                }, 300);
+            }
+
+            // Animate in
+            setTimeout(() => {
+                logoutOverlay.style.opacity = '1';
+                logoutModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Event listeners
+            document.getElementById('confirmLogoutBtn').addEventListener('click', function() {
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الخروج...';
+                this.disabled = true;
+                this.style.opacity = '0.7';
+                
+                // Clear data and redirect
+                setTimeout(() => {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    document.removeEventListener('keydown', handleEscapeKey);
+                    closeLogoutModal();
+                    showToast('✅ تم تسجيل الخروج بنجاح', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                }, 1000);
+            });
+
+            document.getElementById('cancelLogoutBtn').addEventListener('click', closeLogoutModal);
+
+            // Close on overlay click
+            logoutOverlay.addEventListener('click', function(e) {
+                if (e.target === logoutOverlay) {
+                    closeLogoutModal();
+                }
+            });
+
+            // Add escape key listener
+            document.addEventListener('keydown', handleEscapeKey);
+        }
+
+        // Show notifications dropdown
+        function showNotificationsDropdown() {
+            const existingDropdown = document.querySelector('.notifications-dropdown');
+            if (existingDropdown) {
+                existingDropdown.remove();
+                return;
+            }
+            
+            const dropdown = document.createElement('div');
+            dropdown.className = 'notifications-dropdown';
+            dropdown.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                border: 1px solid #edf2f7;
+                border-radius: 1rem;
+                width: 400px;
+                height: 450px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+                z-index: 2000;
+                animation: dropdownSlideDown 0.3s ease-out;
+                overflow: hidden;
+                color: var(--primary-navy);
+                display: flex;
+                flex-direction: column;
+            `;
+            
+            dropdown.innerHTML = `
+                <div class="notifications-header" style="padding: 1.5rem; border-bottom: 1px solid #edf2f7; display: flex; justify-content: flex-start; align-items: center; gap: 1rem; background: linear-gradient(135deg, var(--primary-blue) 0%, rgba(107, 163, 247, 0.9) 100%); position: relative;">
+                    <div style="width: 2.5rem; height: 2.5rem; background: var(--accent-gold); border: 3px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(247, 200, 69, 0.3); position: relative; flex-shrink: 0;">
+                        <i class="fas fa-bell" style="color: var(--primary-navy); font-size: 1rem;"></i>
+                        <div style="position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; background: var(--primary-blue); border: 2px solid white; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                    </div>
+                    <h4 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">الإشعارات</h4>
+                </div>
+                <div class="notifications-content" style="padding: 3rem 2rem; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="width: 4rem; height: 4rem; background: rgba(107, 163, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative;">
+                        <i class="fas fa-bell-slash" style="font-size: 1.75rem; color: var(--primary-blue);"></i>
+                        <div style="position: absolute; top: -3px; right: -3px; width: 1rem; height: 1rem; background: var(--accent-gold); border: 2px solid white; border-radius: 50%;"></div>
+                    </div>
+                    <h4 style="margin: 0 0 0.75rem 0; font-weight: 600; color: var(--primary-navy); font-size: 1.25rem;">لا توجد إشعارات جديدة</h4>
+                    <p style="margin: 0; font-size: 1rem; color: #718096; line-height: 1.5;">ستظهر إشعاراتك هنا عند وصولها</p>
+                </div>
+                <div class="notifications-footer" style="padding: 1.5rem; border-top: 1px solid #edf2f7; text-align: center; background: #fafafa; position: relative;">
+                    <button class="mark-all-read-btn" id="markAllReadBtn" style="background: linear-gradient(135deg, var(--accent-gold) 0%, #ffd76b 100%); border: 2px solid var(--accent-gold); color: var(--primary-navy); padding: 0.875rem 2rem; border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; font-weight: 700; box-shadow: 0 4px 12px rgba(247, 200, 69, 0.3); position: relative; overflow: hidden;" onmouseover="this.style.background='linear-gradient(135deg, var(--primary-blue) 0%, rgba(107, 163, 247, 0.9) 100%)'; this.style.borderColor='var(--primary-blue)'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(107, 163, 247, 0.4)'" onmouseout="this.style.background='linear-gradient(135deg, var(--accent-gold) 0%, #ffd76b 100%)'; this.style.borderColor='var(--accent-gold)'; this.style.color='var(--primary-navy)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(247, 200, 69, 0.3)'">
+                        <i class="fas fa-check-double" style="margin-left: 0.75rem;"></i>
+                        تمييز الكل كمقروء
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(dropdown);
+            
+            // Add event listener for mark all read button
+            const markAllReadBtn = document.getElementById('markAllReadBtn');
+            if (markAllReadBtn) {
+                markAllReadBtn.addEventListener('click', function() {
+                    markAllAsRead();
+                    this.innerHTML = '<i class="fas fa-check" style="margin-left: 0.75rem;"></i>تم التمييز';
+                    this.style.background = 'linear-gradient(135deg, #68d391 0%, #68d391 100%)';
+                    this.style.borderColor = '#68d391';
+                    this.style.color = 'white';
+                    this.style.boxShadow = '0 4px 12px rgba(104, 211, 145, 0.4)';
+                    setTimeout(() => {
+                        const dropdown = document.querySelector('.notifications-dropdown');
+                        if (dropdown) {
+                            dropdown.remove();
+                        }
+                    }, 1000);
+                });
+            }
+            
+            // Add styles for dropdown animation
+            if (!document.querySelector('#notification-styles')) {
+                const notificationStyles = document.createElement('style');
+                notificationStyles.id = 'notification-styles';
+                notificationStyles.textContent = `
+                    @keyframes dropdownSlideDown {
+                        from { 
+                            opacity: 0; 
+                            transform: translate(-50%, -50%) scale(0.95); 
+                            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                        }
+                        to { 
+                            opacity: 1; 
+                            transform: translate(-50%, -50%) scale(1); 
+                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                        }
+                    }
+                    @keyframes pulse {
+                        0% { transform: scale(1); opacity: 1; }
+                        50% { transform: scale(1.1); opacity: 0.8; }
+                        100% { transform: scale(1); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(notificationStyles);
+            }
+            
+            setTimeout(() => {
+                document.addEventListener('click', closeDropdownHandler);
+            }, 100);
+            
+            function closeDropdownHandler(e) {
+                const alertNotification = document.getElementById('alertNotification');
+                if (!dropdown.contains(e.target) && (!alertNotification || !alertNotification.contains(e.target))) {
+                    dropdown.remove();
+                    document.removeEventListener('click', closeDropdownHandler);
+                }
+            }
+        }
+
+        // Update notification badge
+        function updateNotificationBadge() {
+            const badge = document.getElementById('alertBadge');
+            if (badge) {
+                // Check if there are unread notifications
+                const hasUnread = localStorage.getItem('hasUnreadNotifications') !== 'false';
+                if (hasUnread) {
+                    badge.style.display = 'flex';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+
+        // Mark all notifications as read
+        function markAllAsRead() {
+            localStorage.setItem('hasUnreadNotifications', 'false');
+            updateNotificationBadge();
+        }
+
+        // Profile modal function
+        function showProfileModal() {
+            const profileOverlay = document.createElement('div');
+            profileOverlay.id = 'profileOverlay';
+            profileOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const profileModal = document.createElement('div');
+            profileModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            profileModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </h2>
+                        <button id="closeProfileBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="padding: 2rem;">
+                    <!-- User Info Section -->
+                    <div style="background: var(--gradient-primary); color: white; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 2rem; text-align: center;">
+                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem;">
+                            م
+                        </div>
+                        <h3 style="margin: 0 0 0.5rem 0;">مشعل الشقحا</h3>
+                        <p style="margin: 0; opacity: 0.9;">mushal@gmail.com</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-calendar"></i> انضم في يناير 2024
+                            </div>
+                            <div style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.5rem;">
+                                <i class="fas fa-graduation-cap"></i> طالب SOCPA
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <div style="border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.5rem;">
+                        <h4 style="color: var(--primary-navy); margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-id-card"></i>
+                            المعلومات الشخصية
+                        </h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الاسم الأول</span>
+                                <span style="color: black; font-weight: 600;">مشعل</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">اسم العائلة</span>
+                                <span style="color: black; font-weight: 600;">الشقحا</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">البريد الإلكتروني</span>
+                                <span style="color: black; font-weight: 600;">mushal@gmail.com</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">رقم الجوال</span>
+                                <span style="color: black; font-weight: 600;">0512345678</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">الجنس</span>
+                                <span style="color: black; font-weight: 600;">ذكر</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <span style="color: var(--medium-gray);">جهة العمل</span>
+                                <span style="color: black; font-weight: 600;">شركة زامل للتطوير</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button id="editProfileBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </button>
+                        <button id="changePasswordBtn" style="
+                            background: transparent;
+                            color: var(--primary-navy);
+                            border: 1px solid var(--primary-navy);
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            profileOverlay.appendChild(profileModal);
+            document.body.appendChild(profileOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                profileOverlay.style.opacity = '1';
+                profileModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Event listeners
+            document.getElementById('closeProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                }, 300);
+            });
+
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showEditProfileModal();
+                }, 300);
+            });
+
+            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+                profileOverlay.style.opacity = '0';
+                profileModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    profileOverlay.remove();
+                    showChangePasswordModal();
+                }, 300);
+            });
+
+            // Close on overlay click
+            profileOverlay.addEventListener('click', function(e) {
+                if (e.target === profileOverlay) {
+                    document.getElementById('closeProfileBtn').click();
+                }
+            });
+        }
+
+
+        // Edit Profile Modal functionality
+        function showEditProfileModal() {
+            const editOverlay = document.createElement('div');
+            editOverlay.id = 'editProfileOverlay';
+            editOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const editModal = document.createElement('div');
+            editModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            editModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-edit"></i>
+                            تعديل الملف الشخصي
+                        </h2>
+                        <button id="closeEditBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="editProfileForm" style="padding: 2rem;">
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    الاسم الأول
+                                </label>
+                                <div style="position: relative;">
+                                    <i class="fas fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                    <input type="text" id="editFirstName" value="مشعل" style="
+                                        width: 100%;
+                                        padding: 0.875rem 1rem 0.875rem 3rem;
+                                        border: 1px solid var(--gray-300);
+                                        border-radius: 0.5rem;
+                                        font-size: 1rem;
+                                        transition: var(--transition);
+                                        background: var(--white);
+                                        color: var(--gray-900);
+                                        font-family: 'Tajawal', sans-serif;
+                                        box-sizing: border-box;
+                                    " required>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    اسم العائلة
+                                </label>
+                                <div style="position: relative;">
+                                    <i class="fas fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                    <input type="text" id="editLastName" value="الشقحا" style="
+                                        width: 100%;
+                                        padding: 0.875rem 1rem 0.875rem 3rem;
+                                        border: 1px solid var(--gray-300);
+                                        border-radius: 0.5rem;
+                                        font-size: 1rem;
+                                        transition: var(--transition);
+                                        background: var(--white);
+                                        color: var(--gray-900);
+                                        font-family: 'Tajawal', sans-serif;
+                                        box-sizing: border-box;
+                                    " required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                البريد الإلكتروني
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="email" id="editEmail" value="mushal@gmail.com" style="
+                                    width: 100%;
+                                    padding: 0.875rem 1rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                    box-sizing: border-box;
+                                " required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    رقم الجوال
+                                </label>
+                                <div style="position: relative;">
+                                    <i class="fas fa-phone" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                    <input type="tel" id="editPhone" value="0512345678" style="
+                                        width: 100%;
+                                        padding: 0.875rem 1rem 0.875rem 3rem;
+                                        border: 1px solid var(--gray-300);
+                                        border-radius: 0.5rem;
+                                        font-size: 1rem;
+                                        transition: var(--transition);
+                                        background: var(--white);
+                                        color: var(--gray-900);
+                                        font-family: 'Tajawal', sans-serif;
+                                        box-sizing: border-box;
+                                    " required>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                    الجنس
+                                </label>
+                                <div style="position: relative;">
+                                    <i class="fas fa-venus-mars" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                    <select id="editGender" style="
+                                        width: 100%;
+                                        padding: 0.875rem 1rem 0.875rem 3rem;
+                                        border: 1px solid var(--gray-300);
+                                        border-radius: 0.5rem;
+                                        font-size: 1rem;
+                                        transition: var(--transition);
+                                        background: var(--white);
+                                        color: var(--gray-900);
+                                        font-family: 'Tajawal', sans-serif;
+                                        cursor: pointer;
+                                        box-sizing: border-box;
+                                    " required>
+                                        <option value="male" selected>ذكر</option>
+                                        <option value="female">أنثى</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                جهة العمل
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-building" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="text" id="editWorkplace" value="شركة زامل للتطوير" style="
+                                    width: 100%;
+                                    padding: 0.875rem 1rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                    box-sizing: border-box;
+                                ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                        <button type="submit" id="saveProfileBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: var(--transition);
+                        ">
+                            <i class="fas fa-save"></i>
+                            حفظ التغييرات
+                        </button>
+                        <button type="button" id="cancelEditBtn" style="
+                            background: transparent;
+                            color: var(--medium-gray);
+                            border: 1px solid var(--light-gray);
+                            padding: 0.75rem 2rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            transition: var(--transition);
+                        ">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            `;
+
+            editOverlay.appendChild(editModal);
+            document.body.appendChild(editOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                editOverlay.style.opacity = '1';
+                editModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Add focus styles
+            const inputs = editModal.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-blue)';
+                    this.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = 'var(--gray-300)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Event listeners
+            document.getElementById('closeEditBtn').addEventListener('click', function() {
+                closeEditModal();
+            });
+
+            document.getElementById('cancelEditBtn').addEventListener('click', function() {
+                closeEditModal();
+            });
+
+            document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = {
+                    firstName: document.getElementById('editFirstName').value,
+                    lastName: document.getElementById('editLastName').value,
+                    email: document.getElementById('editEmail').value,
+                    phone: document.getElementById('editPhone').value,
+                    gender: document.getElementById('editGender').value,
+                    workplace: document.getElementById('editWorkplace').value
+                };
+
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    showToast('❌ يرجى إدخال عنوان بريد إلكتروني صحيح');
+                    return;
+                }
+
+                // Validate phone
+                const phoneRegex = /^05[0-9]{8}$/;
+                if (!phoneRegex.test(formData.phone)) {
+                    showToast('❌ يرجى إدخال رقم جوال صحيح (يبدأ بـ 05 ويحتوي على 10 أرقام)');
+                    return;
+                }
+
+                // Show loading state
+                const saveBtn = document.getElementById('saveProfileBtn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+                saveBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    closeEditModal();
+                    showToast('✅ تم حفظ التغييرات بنجاح');
+                    
+                    // Update profile data in localStorage
+                    localStorage.setItem('userProfile', JSON.stringify(formData));
+                }, 1500);
+            });
+
+            function closeEditModal() {
+                editOverlay.style.opacity = '0';
+                editModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    editOverlay.remove();
+                }, 300);
+            }
+
+            // Close on overlay click
+            editOverlay.addEventListener('click', function(e) {
+                if (e.target === editOverlay) {
+                    closeEditModal();
+                }
+            });
+        }
+
+        // Change Password Modal functionality
+        function showChangePasswordModal() {
+            const passwordOverlay = document.createElement('div');
+            passwordOverlay.id = 'changePasswordOverlay';
+            passwordOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const passwordModal = document.createElement('div');
+            passwordModal.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                max-width: 520px;
+                width: 90%;
+                max-height: 85vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                direction: rtl;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+                margin: 2rem auto;
+            `;
+
+            passwordModal.innerHTML = `
+                <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </h2>
+                        <button id="closePasswordBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--medium-gray); cursor: pointer;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="changePasswordForm" style="padding: 2rem 2rem 1.5rem 2rem;">
+                    <div style="display: grid; gap: 2rem;">
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                كلمة المرور الحالية
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="password" id="currentPassword" placeholder="أدخل كلمة المرور الحالية" style="
+                                    width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                                <button type="button" class="password-toggle-btn" data-target="currentPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                كلمة المرور الجديدة
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="password" id="newPassword" placeholder="أدخل كلمة المرور الجديدة" style="
+                                    width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                                <button type="button" class="password-toggle-btn" data-target="newPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="passwordStrengthIndicator" style="margin-top: 0.75rem; display: none;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.75rem; font-weight: 500; color: var(--gray-600);">قوة كلمة المرور:</span>
+                                    <div id="passwordStrengthText" style="font-size: 0.75rem; font-weight: 600;">ضعيفة</div>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                                    <div id="passwordStrengthBar" style="height: 100%; border-radius: 3px; transition: width 0.3s ease, background-color 0.3s ease; width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-weight: 500; color: var(--gray-700); margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                تأكيد كلمة المرور الجديدة
+                            </label>
+                            <div style="position: relative;">
+                                <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                                <input type="password" id="confirmNewPassword" placeholder="أعد إدخال كلمة المرور الجديدة" style="
+                                    width: 100%;
+                                    padding: 0.875rem 3rem 0.875rem 3rem;
+                                    border: 1px solid var(--gray-300);
+                                    border-radius: 0.5rem;
+                                    font-size: 1rem;
+                                    transition: var(--transition);
+                                    background: var(--white);
+                                    color: var(--gray-900);
+                                    font-family: 'Tajawal', sans-serif;
+                                " required>
+                                <button type="button" class="password-toggle-btn" data-target="confirmNewPassword" style="
+                                    position: absolute;
+                                    right: 1rem;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: none;
+                                    border: none;
+                                    color: var(--gray-400);
+                                    cursor: pointer;
+                                    padding: 0.25rem;
+                                ">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="passwordMatchIndicator" style="margin-top: 0.75rem; font-size: 0.8rem; font-weight: 500; display: none; padding: 0.5rem; border-radius: 0.5rem; background: var(--gray-50);"></div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid var(--gray-200); position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
+                            <h4 style="margin: 0 0 1rem 0; color: var(--primary-navy); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 2rem; height: 2rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-shield-alt" style="color: white; font-size: 0.75rem;"></i>
+                                </div>
+                                متطلبات كلمة المرور الآمنة
+                            </h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                    <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                    8 أحرف على الأقل
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                    <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                    حرف كبير واحد
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                    <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                    حرف صغير واحد
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700);">
+                                    <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                    رقم واحد على الأقل
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--gray-700); grid-column: 1 / -1;">
+                                    <i class="fas fa-check-circle" style="color: var(--success-green); font-size: 0.75rem;"></i>
+                                    رمز خاص واحد على الأقل (!@#$%^&*)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2.5rem; justify-content: center; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
+                        <button type="submit" id="savePasswordBtn" style="
+                            background: var(--gradient-primary);
+                            color: white;
+                            border: none;
+                            padding: 1rem 2.5rem;
+                            border-radius: 0.75rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: var(--transition);
+                            font-size: 0.9rem;
+                            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+                        " disabled>
+                            <i class="fas fa-key"></i>
+                            تغيير كلمة المرور
+                        </button>
+                        <button type="button" id="cancelPasswordBtn" style="
+                            background: var(--gray-100);
+                            color: var(--gray-600);
+                            border: 1px solid var(--gray-300);
+                            padding: 1rem 2.5rem;
+                            border-radius: 0.75rem;
+                            cursor: pointer;
+                            font-weight: 600;
+                            transition: var(--transition);
+                            font-size: 0.9rem;
+                        ">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            `;
+
+            passwordOverlay.appendChild(passwordModal);
+            document.body.appendChild(passwordOverlay);
+
+            // Animate in
+            setTimeout(() => {
+                passwordOverlay.style.opacity = '1';
+                passwordModal.style.transform = 'scale(1)';
+            }, 10);
+
+            // Initialize password functionality
+            initPasswordChangeValidation();
+
+            function closePasswordModal() {
+                passwordOverlay.style.opacity = '0';
+                passwordModal.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    passwordOverlay.remove();
+                }, 300);
+            }
+
+            // Event listeners
+            document.getElementById('closePasswordBtn').addEventListener('click', closePasswordModal);
+            document.getElementById('cancelPasswordBtn').addEventListener('click', closePasswordModal);
+
+            // Close on overlay click
+            passwordOverlay.addEventListener('click', function(e) {
+                if (e.target === passwordOverlay) {
+                    closePasswordModal();
+                }
+            });
+
+            // Password change form submission
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+                // Validate current password (simulate check)
+                if (currentPassword !== 'password123') {
+                    showToast('❌ كلمة المرور الحالية غير صحيحة');
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    showToast('❌ كلمات المرور الجديدة غير متطابقة');
+                    return;
+                }
+
+                // Show loading state
+                const saveBtn = document.getElementById('savePasswordBtn');
+                const originalText = saveBtn.innerHTML;
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التغيير...';
+                saveBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    closePasswordModal();
+                    showToast('✅ تم تغيير كلمة المرور بنجاح');
+                }, 1500);
+            });
+        }
+
+        // Password change validation helper
+        function initPasswordChangeValidation() {
+            const toggleButtons = document.querySelectorAll('.password-toggle-btn');
+            const newPasswordInput = document.getElementById('newPassword');
+            const confirmPasswordInput = document.getElementById('confirmNewPassword');
+            const strengthIndicator = document.getElementById('passwordStrengthIndicator');
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            const matchIndicator = document.getElementById('passwordMatchIndicator');
+            const saveBtn = document.getElementById('savePasswordBtn');
+
+            // Password toggle functionality
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+                    
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.className = 'far fa-eye-slash';
+                    } else {
+                        input.type = 'password';
+                        icon.className = 'far fa-eye';
+                    }
+                });
+            });
+
+            // Password strength indicator
+            newPasswordInput.addEventListener('input', function() {
+                const password = this.value;
+                
+                if (password.length === 0) {
+                    strengthIndicator.style.display = 'none';
+                    checkPasswordForm();
+                    return;
+                }
+                
+                strengthIndicator.style.display = 'block';
+                
+                let score = 0;
+                let feedback = [];
+                
+                // Length check
+                if (password.length >= 8) score++;
+                else feedback.push('8 أحرف على الأقل');
+                
+                // Uppercase check
+                if (/[A-Z]/.test(password)) score++;
+                else feedback.push('حرف كبير واحد');
+                
+                // Lowercase check
+                if (/[a-z]/.test(password)) score++;
+                else feedback.push('حرف صغير واحد');
+                
+                // Number check
+                if (/[0-9]/.test(password)) score++;
+                else feedback.push('رقم واحد');
+                
+                // Special character check
+                if (/[^A-Za-z0-9]/.test(password)) score++;
+                else feedback.push('رمز خاص واحد');
+                
+                // Update strength bar
+                const percentage = (score / 5) * 100;
+                strengthBar.style.width = percentage + '%';
+                
+                if (score <= 2) {
+                    strengthBar.style.backgroundColor = '#ef4444';
+                    strengthText.textContent = 'ضعيفة';
+                    strengthText.style.color = '#ef4444';
+                } else if (score <= 3) {
+                    strengthBar.style.backgroundColor = '#f59e0b';
+                    strengthText.textContent = 'متوسطة';
+                    strengthText.style.color = '#f59e0b';
+                } else if (score <= 4) {
+                    strengthBar.style.backgroundColor = '#3b82f6';
+                    strengthText.textContent = 'جيدة';
+                    strengthText.style.color = '#3b82f6';
+                } else {
+                    strengthBar.style.backgroundColor = '#10b981';
+                    strengthText.textContent = 'قوية';
+                    strengthText.style.color = '#10b981';
+                }
+                
+                checkPasswordForm();
+            });
+
+            // Confirm password validation
+            confirmPasswordInput.addEventListener('input', function() {
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword.length === 0) {
+                    matchIndicator.style.display = 'none';
+                    checkPasswordForm();
+                    return;
+                }
+                
+                matchIndicator.style.display = 'block';
+                
+                if (newPassword === confirmPassword) {
+                    matchIndicator.textContent = '✓ كلمتا المرور متطابقتان';
+                    matchIndicator.style.color = '#10b981';
+                    matchIndicator.style.backgroundColor = '#ecfdf5';
+                    matchIndicator.style.borderColor = '#10b981';
+                } else {
+                    matchIndicator.textContent = '✗ كلمتا المرور غير متطابقتين';
+                    matchIndicator.style.color = '#ef4444';
+                    matchIndicator.style.backgroundColor = '#fef2f2';
+                    matchIndicator.style.borderColor = '#ef4444';
+                }
+                
+                checkPasswordForm();
+            });
+
+            function checkPasswordForm() {
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                
+                const isValid = currentPassword.length > 0 && 
+                               newPassword.length >= 8 && 
+                               /[A-Z]/.test(newPassword) &&
+                               /[a-z]/.test(newPassword) &&
+                               /[0-9]/.test(newPassword) &&
+                               /[^A-Za-z0-9]/.test(newPassword) &&
+                               newPassword === confirmPassword;
+                
+                saveBtn.disabled = !isValid;
+                saveBtn.style.opacity = isValid ? '1' : '0.6';
+            }
+
+            // Add input event listeners to all password fields
+            document.getElementById('currentPassword').addEventListener('input', checkPasswordForm);
+        }
+    </script>
+</body>
+</html>
