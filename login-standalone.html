@@ -143,30 +143,36 @@
         }
 
         .back-link {
-            position: absolute;
-            top: -2rem;
-            right: 0;
-            z-index: 100;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
         }
 
         .back-button {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--primary-navy);
             text-decoration: none;
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             transition: var(--transition);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 44px;
+            touch-action: manipulation;
         }
 
         .back-button:hover {
-            color: var(--white);
-            background: rgba(255, 255, 255, 0.2);
+            color: var(--primary-blue);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
         .logo-section {
@@ -995,18 +1001,24 @@
                 position: relative;
             }
             
-            /* Improve back button positioning */
+            /* Fix back button positioning - move outside brand content */
             .back-link {
-                position: absolute;
+                position: fixed;
                 top: 1rem;
                 right: 1rem;
-                z-index: 100;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 0.5rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.3);
             }
             
             /* Ensure back button is always visible */
             .brand-section {
                 position: relative;
                 overflow: visible;
+                padding-top: 1.5rem;
             }
             
             .back-button {
@@ -1149,17 +1161,22 @@
                 z-index: 10;
             }
             
-            /* Improve back button for mobile */
+            /* Fix back button for mobile - use fixed positioning */
             .back-link {
-                position: absolute;
+                position: fixed;
                 top: 0.75rem;
-                right: 1rem;
-                z-index: 100;
+                right: 0.75rem;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 0.5rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+                border: 1px solid rgba(255, 255, 255, 0.3);
             }
             
-            /* Prevent back button from being cut off */
+            /* Reset brand section padding */
             .brand-section {
-                padding-top: 3rem;
+                padding-top: 1.25rem;
                 position: relative;
                 overflow: visible;
             }
@@ -2508,6 +2525,11 @@
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
 
+            if (!form || !emailInput || !passwordInput) {
+                console.warn('Form validation elements not found');
+                return;
+            }
+
             // Real-time validation
             emailInput.addEventListener('blur', () => validateEmail(emailInput));
             emailInput.addEventListener('input', () => clearError(emailInput));
@@ -2589,12 +2611,22 @@
             const passwordToggle = document.getElementById('passwordToggle');
             const passwordInput = document.getElementById('password');
             
-            passwordToggle.addEventListener('click', () => {
+            if (!passwordToggle || !passwordInput) {
+                console.warn('Password toggle elements not found');
+                return;
+            }
+            
+            passwordToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 const isPassword = passwordInput.type === 'password';
                 passwordInput.type = isPassword ? 'text' : 'password';
                 
                 const icon = passwordToggle.querySelector('i');
-                icon.className = isPassword ? 'far fa-eye-slash' : 'far fa-eye';
+                if (icon) {
+                    icon.className = isPassword ? 'far fa-eye-slash' : 'far fa-eye';
+                }
                 
                 // Add animation
                 passwordToggle.style.transform = 'scale(0.9)';
@@ -2626,8 +2658,11 @@
                     submitButton.classList.remove('loading');
                     submitButton.disabled = false;
                     
-                    // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    // Show success message and redirect to dashboard
+                    showSuccessMessage();
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
                 }, 2000);
             } else {
                 // Focus on first invalid field
@@ -2638,7 +2673,7 @@
             }
         }
 
-        function showSuccessMessage() {
+        function showSuccessMessage(redirectUrl = null) {
             const message = document.createElement('div');
             message.className = 'success-message';
             message.innerHTML = `
@@ -2651,11 +2686,10 @@
             document.body.appendChild(message);
             
             setTimeout(() => {
-                message.remove();
-                // Redirect to dashboard or home page
-                console.log('Redirecting to dashboard...');
-                window.location.href = 'index.html';
-            }, 2000);
+                if (message.parentNode) {
+                    message.remove();
+                }
+            }, 3000);
         }
 
         // ===== Accessibility =====
@@ -2701,7 +2735,14 @@
         function initGoogleSignIn() {
             const googleSignInButton = document.getElementById('googleSignIn');
             
-            googleSignInButton.addEventListener('click', () => {
+            if (!googleSignInButton) {
+                console.warn('Google sign-in button not found');
+                return;
+            }
+            
+            googleSignInButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 handleGoogleSignIn();
             });
         }
