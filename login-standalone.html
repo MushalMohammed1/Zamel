@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>زامل - تسجيل الدخول | SOCPA المراجعة المهنية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +53,30 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        /* Prevent horizontal scrolling */
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        
+        /* Responsive images and media */
+        img, video, svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Prevent text overflow */
+        p, span, div, h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
                  body {
@@ -516,6 +540,43 @@
             text-decoration: underline;
         }
 
+        /* Mobile Footer Links - hidden by default */
+        .mobile-footer-links {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .mobile-links-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .mobile-links-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .mobile-footer-link {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.75rem 0.5rem;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            border-radius: 0.25rem;
+        }
+
+        .mobile-footer-link:hover {
+            color: var(--primary-blue);
+            background: var(--gray-50);
+        }
+
         /* ===== Modal Styles ===== */
         .modal-overlay {
             position: fixed;
@@ -674,6 +735,125 @@
 
         /* ===== Enhanced Responsive Design ===== */
         
+        /* Base Mobile-First Approach */
+        .login-container {
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Ensure no horizontal scrolling */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+        
+        /* Additional overflow prevention */
+        .login-container,
+        .brand-section,
+        .login-section,
+        .login-content {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Ensure form elements don't cause overflow */
+        .form-input,
+        .login-button,
+        .google-signin {
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        /* Container width safety */
+        .modal-container {
+            max-width: calc(100vw - 2rem);
+            margin: 0 1rem;
+        }
+        
+        /* Touch target improvements for all clickable elements */
+        .back-button,
+        .login-button,
+        .google-signin,
+        .checkbox,
+        .password-toggle,
+        .footer-link,
+        .social-icon,
+        .forgot-password,
+        .signup-link {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        /* Form input improvements */
+        .form-input {
+            min-height: 48px;
+            width: 100%;
+            touch-action: manipulation;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile form optimizations */
+        @media (max-width: 768px) {
+            .form-input {
+                font-size: 16px; /* Prevents zoom on iOS Safari */
+                border-radius: 0.5rem;
+                padding: 1rem 1rem 1rem 3rem;
+            }
+            
+            .input-wrapper:has(input[type="password"]) .form-input {
+                padding-right: 3rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+            
+            .form-label {
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 0.6rem;
+            }
+            
+            /* Improve touch targets for form elements */
+            .checkbox-wrapper {
+                padding: 0.5rem 0;
+                gap: 1rem;
+            }
+            
+            .checkbox {
+                min-width: 22px;
+                min-height: 22px;
+            }
+            
+            /* Better button spacing */
+            .login-button,
+            .google-signin {
+                margin-bottom: 1.25rem;
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                font-weight: 600;
+            }
+            
+            /* Form options stacking */
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        
         /* Large Screens (1440px+) */
         @media (min-width: 1440px) {
             .login-container {
@@ -797,30 +977,62 @@
         @media (max-width: 767px) and (min-width: 481px) {
             .login-container {
                 grid-template-columns: 1fr;
-                grid-template-rows: 40vh 60vh;
+                grid-template-rows: auto 1fr;
+                min-height: 100vh;
+                gap: 0;
             }
             
             .brand-section {
                 order: 1;
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
+                min-height: auto;
+                position: relative;
             }
             
             .brand-content {
                 text-align: center;
+                position: relative;
+            }
+            
+            /* Improve back button positioning */
+            .back-link {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 100;
+            }
+            
+            .back-button {
+                font-size: 0.9rem;
+                padding: 0.75rem 1rem;
+                min-height: 44px;
+                white-space: nowrap;
             }
             
             .brand-logo {
                 font-size: 3rem;
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.5rem;
+                margin-top: 1rem;
             }
             
             .brand-tagline {
                 font-size: 1rem;
+                max-width: 400px;
+                margin: 0 auto;
             }
             
             .login-section {
                 order: 2;
                 padding: 1.5rem;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                min-height: auto;
+            }
+            
+            .login-content {
+                width: 100%;
+                max-width: 400px;
             }
             
             .login-header {
@@ -837,37 +1049,66 @@
             }
             
             .form-group {
-                margin-bottom: 1.2rem;
+                margin-bottom: 1.25rem;
             }
             
             .form-input {
                 padding: 1rem 1rem 1rem 3rem;
                 font-size: 1rem;
+                border-radius: 0.5rem;
+            }
+            
+            .input-icon {
+                left: 1rem;
+                font-size: 1rem;
+            }
+            
+            .password-toggle {
+                right: 1rem;
+                min-width: 44px;
+                min-height: 44px;
             }
             
             .form-options {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.75rem;
-                margin-bottom: 1.2rem;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
             }
             
-            .login-button {
+            .checkbox-wrapper {
+                gap: 0.75rem;
+            }
+            
+            .checkbox {
+                min-width: 20px;
+                min-height: 20px;
+            }
+            
+            .checkbox-label,
+            .forgot-password {
+                font-size: 0.9rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            
+            .login-button,
+            .google-signin {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
+                min-height: 48px;
+                width: 100%;
+                margin-bottom: 1rem;
             }
             
             .footer-section {
                 display: none;
             }
             
-            .back-link {
-                top: -1.5rem;
-            }
-            
-            .back-button {
-                font-size: 0.8rem;
-                padding: 0.6rem 0.8rem;
+            /* Show mobile footer links on tablet and mobile */
+            .mobile-footer-links {
+                display: block;
             }
         }
 
@@ -875,143 +1116,238 @@
         @media (max-width: 480px) {
             body {
                 overflow-x: hidden;
+                overflow-y: auto;
+                min-height: 100vh;
             }
             
             .login-container {
                 grid-template-columns: 1fr;
-                grid-template-rows: 35vh 65vh;
+                grid-template-rows: auto 1fr;
                 min-height: 100vh;
+                gap: 0;
+                width: 100%;
             }
             
             .brand-section {
                 order: 1;
-                padding: 1.5rem 1rem;
+                padding: 1.25rem 1rem;
+                min-height: auto;
+                position: relative;
+                overflow: hidden;
             }
             
             .brand-content {
                 text-align: center;
+                position: relative;
+                z-index: 10;
+            }
+            
+            /* Improve back button for mobile */
+            .back-link {
+                position: absolute;
+                top: 0.75rem;
+                right: 1rem;
+                z-index: 100;
+            }
+            
+            .back-button {
+                font-size: 0.8rem;
+                padding: 0.6rem 0.8rem;
+                min-height: 44px;
+                min-width: 44px;
+                border-radius: 0.5rem;
+                white-space: nowrap;
             }
             
             .brand-logo {
                 font-size: 2.5rem;
-                margin-bottom: 0.6rem;
+                margin-bottom: 0.5rem;
+                margin-top: 1rem;
                 letter-spacing: -1px;
             }
             
             .brand-tagline {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+                max-width: 280px;
+                margin: 0 auto;
+                line-height: 1.4;
             }
             
             .login-section {
                 order: 2;
-                padding: 1rem;
+                padding: 1.25rem 1rem;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                min-height: auto;
+                overflow-y: auto;
             }
             
             .login-content {
-                max-width: 100%;
                 width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
             }
             
             .login-header {
                 text-align: center;
-                margin-bottom: 1.2rem;
+                margin-bottom: 1.25rem;
             }
             
             .login-title {
                 font-size: 1.8rem;
-                margin-bottom: 0.3rem;
+                margin-bottom: 0.5rem;
             }
             
             .login-subtitle {
-                font-size: 0.95rem;
-            }
-            
-            .form-group {
-                margin-bottom: 1rem;
-            }
-            
-            .form-label {
-                font-size: 0.8rem;
-                margin-bottom: 0.4rem;
-            }
-            
-            .form-input {
-                padding: 0.9rem 1rem 0.9rem 2.8rem;
-                font-size: 0.95rem;
-                border-radius: 0.4rem;
-            }
-            
-            .input-icon {
-                left: 0.8rem;
                 font-size: 0.9rem;
             }
             
+            .form-group {
+                margin-bottom: 1.1rem;
+            }
+            
+            .form-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            
+            .form-input {
+                padding: 1rem 1rem 1rem 3rem;
+                font-size: 1rem;
+                border-radius: 0.5rem;
+                min-height: 48px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .input-wrapper:has(input[type="password"]) .form-input {
+                padding-right: 3rem;
+            }
+            
+            .input-icon {
+                left: 1rem;
+                font-size: 1rem;
+            }
+            
             .password-toggle {
-                right: 0.8rem;
-                padding: 0.2rem;
+                right: 1rem;
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             .form-options {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.6rem;
-                margin-bottom: 1rem;
+                gap: 1rem;
+                margin-bottom: 1.25rem;
             }
             
-            .checkbox-label,
+            .checkbox-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                min-height: 44px;
+            }
+            
+            .checkbox {
+                min-width: 20px;
+                min-height: 20px;
+                flex-shrink: 0;
+            }
+            
+            .checkbox-label {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
             .forgot-password {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                text-decoration: underline;
             }
             
-            .login-button {
-                padding: 0.9rem 1.2rem;
-                font-size: 0.95rem;
-                border-radius: 0.4rem;
+            .login-button,
+            .google-signin {
+                padding: 1rem 1.25rem;
+                font-size: 1rem;
+                border-radius: 0.5rem;
+                min-height: 48px;
+                width: 100%;
+                margin-bottom: 1rem;
+                box-sizing: border-box;
+            }
+            
+            .google-signin {
+                margin-bottom: 1.25rem;
+            }
+            
+            .divider {
+                margin: 1.25rem 0;
+                font-size: 0.9rem;
             }
             
             .login-footer {
-                margin-top: 1rem;
+                margin-top: 1.25rem;
+                text-align: center;
             }
             
             .signup-text {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            .signup-link {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                padding: 0.25rem 0;
             }
             
             .footer-section {
                 display: none;
             }
             
-            .back-link {
-                top: -1rem;
-                right: -0.5rem;
-            }
-            
-            .back-button {
-                font-size: 0.75rem;
-                padding: 0.5rem 0.7rem;
+            /* Show mobile footer links */
+            .mobile-footer-links {
+                display: block;
             }
         }
 
         /* Extra Small Mobile (up to 320px) */
         @media (max-width: 320px) {
             .login-container {
-                grid-template-rows: 30vh 70vh;
+                grid-template-rows: auto 1fr;
+                width: 100%;
             }
             
             .brand-section {
                 padding: 1rem 0.75rem;
+                min-height: auto;
             }
             
             .brand-logo {
                 font-size: 2.2rem;
+                margin-top: 0.75rem;
             }
             
             .brand-tagline {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                max-width: 240px;
             }
             
             .login-section {
-                padding: 0.75rem;
+                padding: 1rem 0.75rem;
+            }
+            
+            .login-content {
+                max-width: 280px;
             }
             
             .login-title {
@@ -1019,27 +1355,153 @@
             }
             
             .login-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .form-input {
-                padding: 0.8rem 0.8rem 0.8rem 2.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .input-icon {
-                left: 0.7rem;
                 font-size: 0.85rem;
             }
             
-            .login-button {
-                padding: 0.8rem 1rem;
+            .form-input {
+                padding: 0.9rem 0.9rem 0.9rem 2.75rem;
+                font-size: 0.95rem;
+                min-height: 46px;
+            }
+            
+            .input-wrapper:has(input[type="password"]) .form-input {
+                padding-right: 2.75rem;
+            }
+            
+            .input-icon {
+                left: 0.9rem;
                 font-size: 0.9rem;
+            }
+            
+            .password-toggle {
+                right: 0.9rem;
+                min-width: 42px;
+                min-height: 42px;
+            }
+            
+            .login-button,
+            .google-signin {
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+                min-height: 46px;
+            }
+            
+            .checkbox {
+                min-width: 18px;
+                min-height: 18px;
+            }
+            
+            .back-button {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.7rem;
+                min-height: 42px;
+                min-width: 42px;
+            }
+            
+            /* Show mobile footer links */
+            .mobile-footer-links {
+                display: block;
+            }
+            
+            .mobile-footer-link {
+                font-size: 0.75rem;
+                padding: 0.6rem 0.4rem;
             }
         }
 
         /* Landscape Orientation Adjustments */
-        @media (max-height: 500px) and (orientation: landscape) {
+        @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+            .login-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: none;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            
+            .brand-section {
+                order: 2;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .brand-content {
+                text-align: center;
+            }
+            
+            .login-section {
+                order: 1;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow-y: auto;
+            }
+            
+            .login-content {
+                max-width: 320px;
+                width: 100%;
+            }
+            
+            .brand-logo {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .brand-tagline {
+                font-size: 0.9rem;
+            }
+            
+            .login-title {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .login-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+            
+            .form-input {
+                padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+                min-height: 42px;
+            }
+            
+            .login-button,
+            .google-signin {
+                padding: 0.75rem 1rem;
+                min-height: 42px;
+                margin-bottom: 0.75rem;
+            }
+            
+            .footer-section {
+                display: none;
+            }
+            
+            .mobile-footer-links {
+                display: none;
+            }
+            
+            .back-link {
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            
+            .back-button {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.7rem;
+                min-height: 36px;
+                min-width: 36px;
+            }
+        }
+        
+        /* Large landscape screens */
+        @media (orientation: landscape) and (min-width: 901px) {
             .login-container {
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: none;
@@ -1048,28 +1510,10 @@
             
             .brand-section {
                 order: 2;
-                padding: 1.5rem;
             }
             
             .login-section {
                 order: 1;
-                padding: 1.5rem;
-            }
-            
-            .brand-logo {
-                font-size: 2.5rem;
-            }
-            
-            .login-title {
-                font-size: 1.8rem;
-            }
-            
-            .form-group {
-                margin-bottom: 0.8rem;
-            }
-            
-            .footer-section {
-                display: none;
             }
         }
 
@@ -1835,6 +2279,9 @@
                         <div class="input-wrapper">
                             <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
                             <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="password-toggle" id="passwordToggle" aria-label="إظهار/إخفاء كلمة المرور">
+                                <i class="far fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     
@@ -1854,6 +2301,18 @@
                 
                 <div class="login-footer">
                     <p class="signup-text">ليس لديك حساب؟ <a href="signup.html" class="signup-link">إنشاء حساب جديد</a></p>
+                    
+                    <!-- Mobile Footer Links -->
+                    <div class="mobile-footer-links">
+                        <div class="mobile-links-row">
+                            <a href="#" class="mobile-footer-link" onclick="openModal(document.getElementById('termsModal'))">شروط الاستخدام</a>
+                            <a href="#" class="mobile-footer-link" onclick="openModal(document.getElementById('privacyModal'))">سياسة الخصوصية</a>
+                        </div>
+                        <div class="mobile-links-row">
+                            <a href="#" class="mobile-footer-link">تواصل معنا</a>
+                            <a href="#" class="mobile-footer-link">إعدادات ملفات الارتباط</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
