@@ -1939,6 +1939,28 @@
                 z-index: 1000;
             }
             
+            /* Study Journey improvements for tablets */
+            .progress-tracker {
+                padding: 2rem 1rem;
+            }
+            
+            .progress-path {
+                overflow-x: auto;
+                padding: 2rem 0.5rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .progress-step {
+                min-width: 90px;
+                scroll-snap-align: center;
+            }
+            
+            .hexagon-svg {
+                width: 52px;
+                height: 52px;
+            }
+            
             .performance-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.25rem;
@@ -2032,17 +2054,27 @@
             background: var(--gradient-primary);
             color: white;
             border: none;
-            border-radius: 0.5rem;
-            padding: 0.75rem;
+            border-radius: 0.75rem;
+            padding: 0.875rem;
             cursor: pointer;
             box-shadow: var(--shadow-lg);
             transition: var(--transition);
-            min-width: 44px;
-            min-height: 44px;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .mobile-menu-btn:hover {
             transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .mobile-menu-btn:active {
+            transform: scale(0.95);
         }
         
         .mobile-overlay {
@@ -2064,7 +2096,7 @@
         /* Mobile Portrait (up to 768px) */
         @media (max-width: 768px) {
             .mobile-menu-btn {
-                display: flex;
+                display: flex !important;
                 align-items: center;
                 justify-content: center;
             }
@@ -2353,72 +2385,105 @@
             .progress-tracker {
                 padding: 1.5rem 0.5rem;
                 overflow: hidden;
+                margin: 0 -0.5rem;
             }
             
             .progress-path {
                 overflow-x: auto;
                 overflow-y: hidden;
-                padding: 2rem 0.5rem;
+                padding: 2rem 1rem;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: thin;
                 scrollbar-color: var(--course-primary) transparent;
                 justify-content: flex-start;
-                gap: 1rem;
+                gap: 1.5rem;
+                display: flex;
+                align-items: center;
+                min-width: max-content;
             }
             
             .progress-path::-webkit-scrollbar {
-                height: 4px;
+                height: 6px;
             }
             
             .progress-path::-webkit-scrollbar-track {
                 background: var(--gray-200);
-                border-radius: 2px;
+                border-radius: 3px;
             }
             
             .progress-path::-webkit-scrollbar-thumb {
                 background: var(--course-primary);
-                border-radius: 2px;
+                border-radius: 3px;
             }
             
             .progress-step {
-                min-width: 80px;
-                margin: 0 0.25rem;
+                min-width: 85px;
+                margin: 0 0.5rem;
                 scroll-snap-align: center;
                 flex-shrink: 0;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+            
+            .progress-step:hover {
+                transform: scale(1.05);
             }
             
             .progress-step:first-child {
-                margin-left: 0.5rem;
+                margin-left: 1rem;
             }
             
             .progress-step:last-child {
-                margin-right: 0.5rem;
+                margin-right: 1rem;
             }
             
             /* Make hexagons smaller on mobile */
             .hexagon-svg {
-                width: 45px;
-                height: 45px;
+                width: 48px;
+                height: 48px;
             }
             
             .step-label {
-                font-size: 0.7rem;
-                margin-top: 0.5rem;
+                font-size: 0.75rem;
+                margin-top: 0.75rem;
                 text-align: center;
                 white-space: nowrap;
-                max-width: 80px;
+                max-width: 85px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                line-height: 1.2;
             }
             
             /* Progress line adjustments for mobile */
             .progress-line-background,
             .progress-line-fill {
-                top: 70px;
-                height: 3px;
-                width: calc(100% - 2rem);
-                right: 1rem;
+                top: 72px;
+                height: 4px;
+                width: calc(100% - 3rem);
+                right: 1.5rem;
+            }
+            
+            /* Add scroll hint for mobile */
+            .progress-tracker::before {
+                content: "← مرر للاستطلاع →";
+                position: absolute;
+                bottom: 0.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 0.7rem;
+                color: var(--gray-500);
+                background: rgba(255, 255, 255, 0.9);
+                padding: 0.25rem 0.75rem;
+                border-radius: 1rem;
+                white-space: nowrap;
+                z-index: 10;
+                animation: fadeInOut 3s ease-in-out;
+            }
+            
+            @keyframes fadeInOut {
+                0%, 100% { opacity: 0; }
+                50% { opacity: 1; }
             }
             
             /* Better touch targets */
@@ -5302,6 +5367,58 @@
         
         // Initialize mobile menu when DOM is ready
         document.addEventListener('DOMContentLoaded', initMobileMenu);
+        
+        // Enhanced Study Journey Scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressPath = document.querySelector('.progress-path');
+            if (!progressPath) return;
+            
+            // Add smooth scrolling on mobile
+            function smoothScrollToStep(stepElement) {
+                if (window.innerWidth <= 768) {
+                    stepElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            }
+            
+            // Add click handlers for smooth scrolling
+            const progressSteps = document.querySelectorAll('.progress-step');
+            progressSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    smoothScrollToStep(step);
+                });
+            });
+            
+            // Add keyboard navigation
+            progressPath.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const steps = Array.from(progressSteps);
+                    const currentIndex = steps.findIndex(step => step === document.activeElement);
+                    
+                    let nextIndex;
+                    if (e.key === 'ArrowLeft') {
+                        nextIndex = Math.max(0, currentIndex - 1);
+                    } else {
+                        nextIndex = Math.min(steps.length - 1, currentIndex + 1);
+                    }
+                    
+                    steps[nextIndex].focus();
+                    smoothScrollToStep(steps[nextIndex]);
+                }
+            });
+            
+            // Auto-scroll to current course on page load
+            const currentStep = document.querySelector('.progress-step[data-status="current"]');
+            if (currentStep && window.innerWidth <= 768) {
+                setTimeout(() => {
+                    smoothScrollToStep(currentStep);
+                }, 500);
+            }
+        });
     </script>
     
     <script>
