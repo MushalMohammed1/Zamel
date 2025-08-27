@@ -793,8 +793,9 @@
         /* Progress Path */
         .progress-path {
   display: flex; align-items: center; gap: 0; position: relative;
-  overflow-x: visible; padding: 3rem 0; justify-content: space-between;
+  overflow-x: auto; padding: 3rem 0; justify-content: space-between;
   flex-wrap: nowrap; scrollbar-width: thin; scrollbar-color: #58a79a transparent;
+  -webkit-overflow-scrolling: touch;
         }
 
         /* Curved Progress Line System */
@@ -2021,8 +2022,53 @@
             }
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1003;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            min-width: 44px;
+            min-height: 44px;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            backdrop-filter: blur(4px);
+        }
+        
+        .mobile-overlay.active {
+            display: block;
+        }
+        
         /* Mobile Portrait (up to 768px) */
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
             .main-content {
                 margin-left: 0;
                 padding: 1rem;
@@ -2032,14 +2078,25 @@
             }
 
             .sidebar {
-                left: calc(-1 * var(--sidebar-collapsed));
+                left: calc(-1 * var(--sidebar-expanded));
                 transition: left 0.3s ease;
+                width: var(--sidebar-expanded);
+                z-index: 1001;
             }
 
+            .sidebar.mobile-open {
+                left: 0;
+            }
+            
+            /* Remove hover behavior on mobile */
             .sidebar:hover {
+                left: calc(-1 * var(--sidebar-expanded));
+                width: var(--sidebar-expanded);
+            }
+            
+            .sidebar.mobile-open:hover {
                 left: 0;
                 width: var(--sidebar-expanded);
-                z-index: 1000;
             }
 
             .header {
@@ -2291,10 +2348,98 @@
             .performance-card:hover {
                 transform: none;
             }
+            
+            /* Progress Tracker Mobile Improvements */
+            .progress-tracker {
+                padding: 1.5rem 0.5rem;
+                overflow: hidden;
+            }
+            
+            .progress-path {
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 2rem 0.5rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--course-primary) transparent;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+            
+            .progress-path::-webkit-scrollbar {
+                height: 4px;
+            }
+            
+            .progress-path::-webkit-scrollbar-track {
+                background: var(--gray-200);
+                border-radius: 2px;
+            }
+            
+            .progress-path::-webkit-scrollbar-thumb {
+                background: var(--course-primary);
+                border-radius: 2px;
+            }
+            
+            .progress-step {
+                min-width: 80px;
+                margin: 0 0.25rem;
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+            
+            .progress-step:first-child {
+                margin-left: 0.5rem;
+            }
+            
+            .progress-step:last-child {
+                margin-right: 0.5rem;
+            }
+            
+            /* Make hexagons smaller on mobile */
+            .hexagon-svg {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .step-label {
+                font-size: 0.7rem;
+                margin-top: 0.5rem;
+                text-align: center;
+                white-space: nowrap;
+                max-width: 80px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            /* Progress line adjustments for mobile */
+            .progress-line-background,
+            .progress-line-fill {
+                top: 70px;
+                height: 3px;
+                width: calc(100% - 2rem);
+                right: 1rem;
+            }
+            
+            /* Better touch targets */
+            .nav-item,
+            .cta-button,
+            .study-dropdown-item {
+                min-height: 48px;
+                padding: 0.75rem 1rem;
+                touch-action: manipulation;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
     <!-- Header -->
     <header class="header">
         <div class="header-container">
@@ -5085,6 +5230,54 @@
                 if (existingIndicator) {
                     existingIndicator.remove();
                 }
+            }
+        });
+        
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const sidebar = document.querySelector('.sidebar');
+        
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            sidebar.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            
+            // Update button icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (sidebar.classList.contains('mobile-open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+        
+        // Close mobile menu
+        function closeMobileMenu() {
+            sidebar.classList.remove('mobile-open');
+            mobileOverlay.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.className = 'fas fa-bars';
+        }
+        
+        // Event listeners
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close menu when clicking sidebar links on mobile
+        const sidebarLinks = sidebar.querySelectorAll('.nav-item');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    setTimeout(closeMobileMenu, 300);
+                }
+            });
+        });
+        
+        // Close menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
             }
         });
     </script>
