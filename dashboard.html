@@ -2495,6 +2495,147 @@
                 touch-action: manipulation;
             }
         }
+        
+        /* Ultra-wide Screens */
+        @media (min-width: 1400px) {
+            .main-content {
+                max-width: 1600px;
+                padding: 2.5rem 3rem;
+            }
+            
+            .dashboard-grid {
+                gap: 2.5rem;
+            }
+            
+            .performance-grid,
+            .tools-grid {
+                gap: 2rem;
+            }
+        }
+        
+        /* Small Tablets */
+        @media (max-width: 900px) and (min-width: 769px) {
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            
+            .sidebar {
+                left: calc(-1 * var(--sidebar-expanded));
+                transition: left 0.3s ease;
+                width: var(--sidebar-expanded);
+                z-index: 1001;
+            }
+
+            .sidebar.mobile-open {
+                left: 0;
+            }
+            
+            .header-container {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+            }
+            
+            .performance-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            
+            .progress-path {
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Small Mobile */
+        @media (max-width: 400px) {
+            .mobile-menu-btn {
+                top: 0.5rem;
+                left: 0.5rem;
+                min-width: 40px;
+                min-height: 40px;
+                padding: 0.5rem;
+            }
+            
+            .main-content {
+                padding: 0.75rem;
+            }
+            
+            .header-container {
+                padding: 0 0.75rem;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .header-welcome {
+                font-size: 1.1rem;
+            }
+            
+            .dashboard-grid {
+                gap: 1rem;
+            }
+            
+            .progress-tracker {
+                padding: 1rem 0.5rem;
+                margin: 0 -0.25rem;
+            }
+            
+            .progress-path {
+                padding: 1.5rem 0.75rem;
+                gap: 1rem;
+            }
+            
+            .progress-step {
+                min-width: 75px;
+            }
+            
+            .hexagon-svg {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .step-label {
+                font-size: 0.65rem;
+                max-width: 75px;
+            }
+            
+            .performance-grid,
+            .tools-grid {
+                gap: 0.75rem;
+            }
+            
+            .tool-card,
+            .performance-card {
+                padding: 1rem 0.75rem;
+            }
+            
+            .tool-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .tool-title {
+                font-size: 0.95rem;
+            }
+            
+            .tool-description {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+            
+            .cta-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+                min-height: 40px;
+            }
+        }
     </style>
 </head>
 <body>

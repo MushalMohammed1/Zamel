@@ -145,7 +145,7 @@
         .back-link {
             position: fixed;
             top: 1rem;
-            right: 1rem;
+            left: 1rem;
             z-index: 1000;
         }
 
@@ -1005,7 +1005,7 @@
             .back-link {
                 position: fixed;
                 top: 1rem;
-                right: 1rem;
+                left: 1rem;
                 z-index: 1000;
                 background: rgba(255, 255, 255, 0.9);
                 backdrop-filter: blur(10px);
@@ -1165,7 +1165,7 @@
             .back-link {
                 position: fixed;
                 top: 0.75rem;
-                right: 0.75rem;
+                left: 0.75rem;
                 z-index: 1000;
                 background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(10px);
@@ -2250,18 +2250,20 @@
     </style>
 </head>
 <body>
+    <!-- Back Button - Independent positioning -->
+    <div class="back-link">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-right"></i>
+            العودة للموقع الرئيسي
+        </a>
+    </div>
+    
     <div class="login-container">
         <!-- Left Section - Branding -->
         <div class="brand-section">
             <div class="decorative-elements"></div>
             
             <div class="brand-content">
-                <div class="back-link">
-                    <a href="index.html" class="back-button">
-                        <i class="fas fa-arrow-left"></i>
-                        العودة للموقع الرئيسي
-                    </a>
-                </div>
                 <div class="logo-section">
                     <h1 class="brand-logo">زامل</h1>
                     <div class="brand-tagline">منصة التميز المحاسبي</div>

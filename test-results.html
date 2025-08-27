@@ -1343,12 +1343,33 @@
                 overflow-x: auto;
                 display: block;
                 white-space: nowrap;
+                border-radius: 0.5rem;
+                box-shadow: var(--shadow-sm);
             }
 
             .questions-table th,
             .questions-table td {
-                padding: 0.5rem;
-                min-width: 120px;
+                padding: 0.75rem 0.5rem;
+                min-width: 100px;
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+            
+            .questions-table th {
+                background: var(--gray-100);
+                font-weight: 600;
+                color: var(--primary-dark);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+            
+            .questions-table tbody {
+                background: var(--white);
+            }
+            
+            .questions-table tr:last-child td {
+                border-bottom: none;
             }
 
             .study-dropdown { 
@@ -1381,6 +1402,123 @@
             .chart-container {
                 height: 250px;
                 margin: 1rem 0;
+            }
+        }
+        
+        /* Tablet Responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            
+            .sidebar {
+                left: calc(-1 * var(--sidebar-expanded));
+                transition: left 0.3s ease;
+                width: var(--sidebar-expanded);
+                z-index: 1001;
+            }
+
+            .sidebar.mobile-open {
+                left: 0;
+            }
+            
+            .sidebar:hover {
+                left: calc(-1 * var(--sidebar-expanded));
+                width: var(--sidebar-expanded);
+            }
+            
+            .sidebar.mobile-open:hover {
+                left: 0;
+                width: var(--sidebar-expanded);
+            }
+            
+            .header-container {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .summary-row {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            
+            .questions-table {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .mobile-menu-btn {
+                top: 0.5rem;
+                left: 0.5rem;
+                min-width: 40px;
+                min-height: 40px;
+                padding: 0.5rem;
+            }
+            
+            .main-content {
+                padding: 0.75rem;
+            }
+            
+            .page-header {
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .page-title {
+                font-size: 1.25rem;
+            }
+            
+            .back-to-dashboard {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+                min-height: 40px;
+            }
+            
+            .test-summary {
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .test-details {
+                padding: 0.75rem;
+            }
+            
+            .summary-row {
+                gap: 0.25rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .summary-stat {
+                min-width: auto;
+                flex: 1;
+                text-align: center;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
+            
+            .stat-value {
+                font-size: 0.8rem;
+            }
+            
+            .questions-table {
+                font-size: 0.75rem;
+            }
+            
+            .questions-table th,
+            .questions-table td {
+                padding: 0.5rem 0.25rem;
+                min-width: 80px;
             }
         }
     </style>
