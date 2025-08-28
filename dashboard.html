@@ -2128,11 +2128,20 @@
         }
         
         .header-mobile-container {
+            padding: 1rem;
+        }
+        
+        .header-mobile-row-1 {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem;
-            min-height: var(--header-height);
+            margin-bottom: 0.75rem;
+        }
+        
+        .header-mobile-row-2 {
+            display: flex;
+            justify-content: center;
+            padding: 0 0.5rem;
         }
         
         .header-mobile-left {
@@ -2149,7 +2158,98 @@
         .header-mobile-right {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+        
+        /* Mobile Header Welcome */
+        .header-mobile .header-welcome {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+        }
+        
+        /* Mobile Header Alert Notification */
+        .header-mobile .alert-notification {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-mobile .alert-notification:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-mobile .alert-notification i {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        /* Mobile Study Selector */
+        .header-mobile .study-selector {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+        }
+        
+        .header-mobile .study-info {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-height: 48px;
+        }
+        
+        .header-mobile .study-info:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .header-mobile .study-info i {
+            font-size: 1rem;
+        }
+        
+        .header-mobile .study-dropdown-arrow {
+            margin-left: auto;
+            transition: transform 0.2s ease;
+        }
+        
+        .header-mobile .study-selector.active .study-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .header-mobile .study-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1004;
+            max-height: 300px;
+            overflow-y: auto;
         }
         
         .mobile-logo {
@@ -2808,36 +2908,85 @@
     <!-- Mobile Header -->
     <header class="header-mobile">
         <div class="header-mobile-container">
-            <div class="header-mobile-left">
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <a href="index.html" class="mobile-logo">زامل</a>
-            </div>
-            <div class="header-mobile-center">
-                <h1 class="header-welcome">مرحباً، مشعل!</h1>
-            </div>
-            <div class="header-mobile-right">
-                <div class="user-dropdown" id="userDropdown">
-                    <button class="user-info" id="userInfoBtn">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
+            <div class="header-mobile-row-1">
+                <div class="header-mobile-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
                     </button>
-                    <div class="dropdown-menu" id="userDropdownMenu">
-                        <a href="#" class="dropdown-item" id="profileBtn">
-                            <i class="fas fa-user"></i>
-                            الملف الشخصي
-                        </a>
-                        <a href="#" class="dropdown-item" id="settingsBtn">
-                            <i class="fas fa-cog"></i>
-                            الإعدادات
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item danger" id="logoutBtn">
-                            <i class="fas fa-sign-out-alt"></i>
-                            تسجيل الخروج
-                        </a>
+                    <a href="index.html" class="mobile-logo">زامل</a>
+                </div>
+                <div class="header-mobile-center">
+                    <h1 class="header-welcome">مرحباً، مشعل!</h1>
+                </div>
+                <div class="header-mobile-right">
+                    <div class="alert-notification">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <button class="user-info" id="userInfoBtn">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu" id="userDropdownMenu">
+                            <a href="#" class="dropdown-item" id="profileBtn">
+                                <i class="fas fa-user"></i>
+                                الملف الشخصي
+                            </a>
+                            <a href="#" class="dropdown-item" id="settingsBtn">
+                                <i class="fas fa-cog"></i>
+                                الإعدادات
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                تسجيل الخروج
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-mobile-row-2">
+                <div class="study-selector" id="studySelector">
+                    <div class="study-info" id="studyInfo">
+                        <i class="fas fa-book"></i>
+                        <span>تدرس للحصول على: SOCPA</span>
+                        <i class="fas fa-chevron-down study-dropdown-arrow"></i>
+                    </div>
+                    <div class="study-dropdown" id="studyDropdown">
+                        <div class="study-dropdown-header">
+                            اختر المادة التي تدرسها
+                        </div>
+                        <div class="study-dropdown-menu">
+                            <!-- Currently Available Courses -->
+                            <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
+                            <div class="study-dropdown-item active" data-course="accounting">
+                                <div class="course-icon accounting">محا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة المالية</div>
+                                    <div class="course-code">Financial Accounting</div>
+                                </div>
+                            </div>
+                            <div class="study-dropdown-item" data-course="tax">
+                                <div class="course-icon tax">زك</div>
+                                <div class="course-info">
+                                    <div class="course-name">الزكاة والضريبة</div>
+                                    <div class="course-code">Zakat & Tax</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coming Soon Section -->
+                            <div class="dropdown-section-divider"></div>
+                            <div class="dropdown-section-header coming-soon">قريباً</div>
+                            <div class="study-dropdown-item coming-soon-item" data-course="management">
+                                <div class="course-icon management">إدا</div>
+                                <div class="course-info">
+                                    <div class="course-name">المحاسبة الإدارية والحكومية</div>
+                                    <div class="course-code">Management & Government Accounting</div>
+                                </div>
+                                <div class="coming-soon-badge">قريباً</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
