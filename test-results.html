@@ -2364,26 +2364,7 @@
                     return;
                 }
                 
-                // Course selector handling
-                if (e.target.closest('#studyInfo') || e.target.closest('.study-info')) {
-                    e.stopPropagation();
-                    console.log('📚 Course selector clicked!');
-                    
-                    const studySelector = document.getElementById('studySelector');
-                    const studyDropdown = document.getElementById('studyDropdown');
-                    
-                    if (studySelector && studyDropdown) {
-                        studyDropdown.classList.toggle('show');
-                        studySelector.classList.toggle('open');
-                        
-                        // Close other dropdowns
-                        const mobileUserDropdown = document.getElementById('mobileUserDropdown');
-                        if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
-                        
-                        console.log('📚 Course dropdown toggled. Classes:', studyDropdown.className);
-                    }
-                    return;
-                }
+                // Course selector now handled by direct event listener in DOMContentLoaded - old event delegation removed
                 
                 // Mobile user dropdown handling
                 if (e.target.closest('#mobileUserInfoBtn')) {
