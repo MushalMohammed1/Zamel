@@ -2132,18 +2132,12 @@
             position: relative;
         }
         
-        .header-mobile-row-1 {
+        .header-mobile-single-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.75rem;
+            gap: 0.5rem;
             position: relative;
-        }
-        
-        .header-mobile-row-2 {
-            display: flex;
-            justify-content: center;
-            padding: 0 0.5rem;
         }
         
         .header-mobile-left {
@@ -2274,6 +2268,46 @@
             position: absolute;
             top: 4px;
             right: -8px;
+        }
+        
+        /* Mobile Study Selector */
+        .mobile-study-selector {
+            flex: 1;
+            margin: 0 0.5rem;
+            max-width: 200px;
+        }
+        
+        .mobile-study-selector .study-info {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 0.8rem;
+        }
+        
+        .mobile-study-selector .study-info:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .mobile-study-selector .study-info i {
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .mobile-study-selector .study-info span {
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .mobile-study-selector .study-dropdown-arrow {
+            font-size: 0.7rem !important;
+            margin-right: 0.5rem;
         }
         
         /* Mobile Header Alert Notification */
@@ -2461,6 +2495,41 @@
                 font-size: 1.25rem;
                 color: var(--primary-navy);
                 text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Optimize for smaller screens */
+            @media (max-width: 480px) {
+                .header-mobile-container {
+                    padding: 0.75rem 0.5rem;
+                }
+                
+                .header-mobile-single-row {
+                    gap: 0.25rem;
+                }
+                
+                .mobile-study-selector {
+                    max-width: 160px;
+                    margin: 0 0.25rem;
+                }
+                
+                .mobile-study-selector .study-info {
+                    padding: 0.4rem 0.6rem;
+                    font-size: 0.75rem;
+                }
+                
+                .mobile-study-selector .study-info span {
+                    font-size: 0.75rem;
+                }
+                
+                .mobile-logo span {
+                    font-size: 1rem;
+                }
+                
+                .mobile-menu-btn {
+                    min-width: 40px;
+                    min-height: 40px;
+                    padding: 0.6rem;
+                }
             }
 
             .sidebar.mobile-open {
@@ -2981,46 +3050,20 @@
     <!-- Mobile Header -->
     <header class="header-mobile">
         <div class="header-mobile-container">
-            <div class="header-mobile-row-1">
-                <div class="header-mobile-left">
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <a href="index.html" class="mobile-logo">
-                        <span>زامل</span>
-                        <div class="logo-accent"></div>
-                    </a>
-                </div>
-                <div class="header-mobile-right">
-                    <button class="alert-notification" id="alertNotification">
-                        <i class="fas fa-bell"></i>
-                    </button>
-                    <div class="user-dropdown" id="userDropdown">
-                        <button class="user-info" id="userInfoBtn">
-                            <div class="user-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        </button>
-                        <div class="dropdown-menu" id="userDropdownMenu">
-                            <a href="#" class="dropdown-item" id="profileBtn">
-                                <i class="fas fa-user"></i>
-                                الملف الشخصي
-                            </a>
-                            <a href="#" class="dropdown-item" id="settingsBtn">
-                                <i class="fas fa-cog"></i>
-                                الإعدادات
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item danger" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt"></i>
-                                تسجيل الخروج
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-mobile-row-2">
-                <div class="study-selector" id="studySelector">
+            <div class="header-mobile-single-row">
+                <!-- Hamburger Menu -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Zamel Logo with Golden Dot -->
+                <a href="index.html" class="mobile-logo">
+                    <span>زامل</span>
+                    <div class="logo-accent"></div>
+                </a>
+                
+                <!-- Course Selector -->
+                <div class="study-selector mobile-study-selector" id="studySelector">
                     <div class="study-info" id="studyInfo">
                         <i class="fas fa-book"></i>
                         <span>تدرس للحصول على: SOCPA</span>
@@ -3060,6 +3103,35 @@
                                 <div class="coming-soon-badge">قريباً</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Alert Notification -->
+                <button class="alert-notification" id="alertNotification">
+                    <i class="fas fa-bell"></i>
+                </button>
+                
+                <!-- User Profile -->
+                <div class="user-dropdown" id="userDropdown">
+                    <button class="user-info" id="userInfoBtn">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </button>
+                    <div class="dropdown-menu" id="userDropdownMenu">
+                        <a href="#" class="dropdown-item" id="profileBtn">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="#" class="dropdown-item" id="settingsBtn">
+                            <i class="fas fa-cog"></i>
+                            الإعدادات
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item danger" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
                     </div>
                 </div>
             </div>
