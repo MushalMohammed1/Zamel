@@ -2433,77 +2433,81 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initMobileNavbar();
-        });
-        
-        // Study selector functionality (copied from practice-tests.html)
-        const studySelector = document.getElementById('studySelector');
-        const studyInfo = document.getElementById('studyInfo');
-        const studyDropdown = document.getElementById('studyDropdown');
+            
+            // Study selector functionality (copied from practice-tests.html)
+            const studySelector = document.getElementById('studySelector');
+            const studyInfo = document.getElementById('studyInfo');
+            const studyDropdown = document.getElementById('studyDropdown');
 
-        studyInfo.addEventListener('click', function () {
-            studySelector.classList.toggle('open');
-            studyDropdown.classList.toggle('show');
-        });
+            if (studySelector && studyInfo && studyDropdown) {
+                studyInfo.addEventListener('click', function () {
+                    studySelector.classList.toggle('open');
+                    studyDropdown.classList.toggle('show');
+                });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!studySelector.contains(e.target)) {
-                studySelector.classList.remove('open');
-                studyDropdown.classList.remove('show');
-            }
-        });
-
-        // Study dropdown items
-        document.querySelectorAll('.study-dropdown-item').forEach(item => {
-            item.addEventListener('click', function (e) {
-                e.stopPropagation();
-                
-                // Check if it's a coming soon item
-                if (this.classList.contains('coming-soon-item')) {
-                    showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
-                    return;
-                }
-                
-                // Remove active class from all available items (not coming soon)
-                document.querySelectorAll('.study-dropdown-item').forEach(i => {
-                    if (!i.classList.contains('coming-soon-item')) {
-                        i.classList.remove('active');
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!studySelector.contains(e.target)) {
+                        studySelector.classList.remove('open');
+                        studyDropdown.classList.remove('show');
                     }
                 });
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Update the study info text
-                const courseName = this.querySelector('.course-name').textContent;
-                studyInfo.querySelector('span').textContent = `تدرس للحصول على: ${courseName}`;
-                
-                // Close dropdown
-                studySelector.classList.remove('open');
-                studyDropdown.classList.remove('show');
-                
-                showToast(`تم تغيير المادة إلى ${courseName}`);
-            });
+
+                // Study dropdown items
+                document.querySelectorAll('.study-dropdown-item').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        
+                        // Check if it's a coming soon item
+                        if (this.classList.contains('coming-soon-item')) {
+                            showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                            return;
+                        }
+                        
+                        // Remove active class from all available items (not coming soon)
+                        document.querySelectorAll('.study-dropdown-item').forEach(i => {
+                            if (!i.classList.contains('coming-soon-item')) {
+                                i.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add active class to clicked item
+                        this.classList.add('active');
+                        
+                        // Update the study info text
+                        const courseName = this.querySelector('.course-name').textContent;
+                        studyInfo.querySelector('span').textContent = `تدرس للحصول على: ${courseName}`;
+                        
+                        // Close dropdown
+                        studySelector.classList.remove('open');
+                        studyDropdown.classList.remove('show');
+                        
+                        showToast(`تم تغيير المادة إلى ${courseName}`);
+                    });
+                });
+            } else {
+                console.error('Course selector elements not found:', {studySelector, studyInfo, studyDropdown});
+            }
+
+            // User dropdown functionality (kept simple - reusing existing variables)
+            const userDropdown = document.getElementById('userDropdown');
+
+            if (userAvatarNumber && userDropdown) {
+                userAvatarNumber.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                    if (studyDropdown) studyDropdown.classList.remove('show');
+                    if (studySelector) studySelector.classList.remove('open');
+                });
+
+                // Close user dropdown when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
         });
-
-        // User dropdown functionality (kept simple - reusing existing variables)
-        const userDropdown = document.getElementById('userDropdown');
-
-        if (userAvatarNumber && userDropdown) {
-            userAvatarNumber.addEventListener('click', function (e) {
-                e.stopPropagation();
-                userDropdown.classList.toggle('show');
-                studyDropdown.classList.remove('show');
-                studySelector.classList.remove('open');
-            });
-
-            // Close user dropdown when clicking outside
-            document.addEventListener('click', function (e) {
-                if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
-                    userDropdown.classList.remove('show');
-                }
-            });
-        }
 
         // Old complex code removed - now using simple approach like practice-tests.html
 
