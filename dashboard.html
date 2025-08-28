@@ -4428,56 +4428,7 @@
             });
         }
     
-        // Study dropdown functionality
-        if (studyInfo) {
-            studyInfo.addEventListener('click', function(e) {
-                e.stopPropagation();
-                console.log('Course selector clicked!'); // Debug log
-                studyDropdown.classList.toggle('show');
-                studySelector.classList.toggle('open');
-                    
-                // Close user dropdowns
-                if (userDropdown) userDropdown.classList.remove('show');
-                if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
-                
-                console.log('StudyDropdown classes:', studyDropdown.className); // Debug log
-            });
-        }
-    
-        // Handle course selection
-        studyDropdownItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                // Check if it's a coming soon item
-                if (this.classList.contains('coming-soon-item')) {
-                    showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
-                    return;
-                }
-                
-                // Remove active from all available items (not coming soon)
-                studyDropdownItems.forEach(i => {
-                    if (!i.classList.contains('coming-soon-item')) {
-                        i.classList.remove('active');
-                    }
-                });
-                this.classList.add('active');
-                
-                const courseName = this.querySelector('.course-name').textContent;
-                const courseCode = this.querySelector('.course-code').textContent;
-                const studyText = studyInfo.querySelector('span');
-                studyText.textContent = `تدرس للحصول على: ${courseCode}`;
-                
-                // Change course colors based on selection
-                const courseKey = this.getAttribute('data-course');
-                changeCourseColors(courseKey);
-                
-                studyDropdown.classList.remove('show');
-                studySelector.classList.remove('open');
-                
-                showToast(`تم تغيير المادة إلى ${courseName}`);
-            });
-        });
+        // Course selector functionality is now handled in the event delegation above
     
         // Close dropdowns when clicking outside
         document.addEventListener('click', function(e) {

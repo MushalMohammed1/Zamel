@@ -2650,33 +2650,126 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initMobileNavbar();
-        });
-        const userDropdown = document.getElementById('userDropdown');
-        const studySelector = document.getElementById('studySelector');
-        const studyInfo = document.getElementById('studyInfo');
-        const studyDropdown = document.getElementById('studyDropdown');
-        const studyDropdownItems = document.querySelectorAll('.study-dropdown-item');
+            
+            // Initialize course selector elements
+            const userDropdown = document.getElementById('userDropdown');
+            const studySelector = document.getElementById('studySelector');
+            const studyInfo = document.getElementById('studyInfo');
+            const studyDropdown = document.getElementById('studyDropdown');
+            const studyDropdownItems = document.querySelectorAll('.study-dropdown-item');
+            const alertNotification = document.getElementById('alertNotification');
+            const userAvatarNumber = document.getElementById('userAvatarNumber');
 
-        // Alert notification functionality
-        alertNotification.addEventListener('click', function(e) {
-            e.stopPropagation();
-            showNotificationsDropdown();
-            updateNotificationBadge();
-        });
-
-        // User dropdown functionality
-        userAvatarNumber.addEventListener('click', function(e) {
-            e.stopPropagation();
-            userDropdown.classList.toggle('show');
-            studyDropdown.classList.remove('show');
-            studySelector.classList.remove('open');
-        });
-
-        // Close user dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
-                userDropdown.classList.remove('show');
+            if (!studySelector || !studyInfo || !studyDropdown) {
+                console.warn('Course selector elements not found');
+                return;
             }
+            
+            // Alert notification functionality
+            if (alertNotification) {
+                alertNotification.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showNotificationsDropdown();
+                    updateNotificationBadge();
+                });
+            }
+
+            // User dropdown functionality
+            if (userAvatarNumber && userDropdown) {
+                userAvatarNumber.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                });
+
+                // Close user dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
+
+            // Profile button functionality
+            const profileBtn = document.getElementById('profileBtn');
+            if (profileBtn) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (userDropdown) userDropdown.classList.remove('show');
+                    showProfileModal();
+                });
+            }
+
+            // Logout button functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (userDropdown) userDropdown.classList.remove('show');
+                    showLogoutModal();
+                });
+            }
+
+            // Study dropdown functionality
+            studyInfo.addEventListener('click', function(e) {
+                e.stopPropagation();
+                studyDropdown.classList.toggle('show');
+                studySelector.classList.toggle('open');
+                if (userDropdown) userDropdown.classList.remove('show');
+            });
+
+            // Handle course selection
+            studyDropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Check if it's a coming soon item
+                    if (this.classList.contains('coming-soon-item')) {
+                        showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                        return;
+                    }
+                    
+                    // Remove active from all available items (not coming soon)
+                    studyDropdownItems.forEach(i => {
+                        if (!i.classList.contains('coming-soon-item')) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    this.classList.add('active');
+                    
+                    const courseName = this.querySelector('.course-name').textContent;
+                    const courseCode = this.querySelector('.course-code').textContent;
+                    const studyText = studyInfo.querySelector('span');
+                    studyText.textContent = `تدرس للحصول على: ${courseCode}`;
+                    
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                    
+                    showToast(`تم تغيير المادة إلى ${courseName}`);
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (userAvatarNumber && userDropdown && 
+                    !userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('show');
+                }
+                if (!studySelector.contains(e.target)) {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                }
+            });
+
+            // Close dropdowns when pressing Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (userDropdown) userDropdown.classList.remove('show');
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                }
+            });
         });
 
 
@@ -2698,80 +2791,13 @@
             }
         }
 
-        // Profile button functionality
-        document.getElementById('profileBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            userDropdown.classList.remove('show');
-            showProfileModal();
-        });
+        // Profile functionality moved to DOMContentLoaded
 
 
 
-        // Logout button functionality
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            userDropdown.classList.remove('show');
-            showLogoutModal();
-        });
+        // Logout functionality moved to DOMContentLoaded
 
-        // Study dropdown functionality
-        studyInfo.addEventListener('click', function(e) {
-            e.stopPropagation();
-            studyDropdown.classList.toggle('show');
-            studySelector.classList.toggle('open');
-            userDropdown.classList.remove('show');
-        });
-
-        // Handle course selection
-        studyDropdownItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                // Check if it's a coming soon item
-                if (this.classList.contains('coming-soon-item')) {
-                    showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
-                    return;
-                }
-                
-                // Remove active from all available items (not coming soon)
-                studyDropdownItems.forEach(i => {
-                    if (!i.classList.contains('coming-soon-item')) {
-                        i.classList.remove('active');
-                    }
-                });
-                this.classList.add('active');
-                
-                const courseName = this.querySelector('.course-name').textContent;
-                const courseCode = this.querySelector('.course-code').textContent;
-                const studyText = studyInfo.querySelector('span');
-                studyText.textContent = `تدرس للحصول على: ${courseCode}`;
-                
-                studyDropdown.classList.remove('show');
-                studySelector.classList.remove('open');
-                
-                showToast(`تم تغيير المادة إلى ${courseName}`);
-            });
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
-                userDropdown.classList.remove('show');
-            }
-            if (!studySelector.contains(e.target)) {
-                studyDropdown.classList.remove('show');
-                studySelector.classList.remove('open');
-            }
-        });
-
-        // Close dropdowns when pressing Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                userDropdown.classList.remove('show');
-                studyDropdown.classList.remove('show');
-                studySelector.classList.remove('open');
-            }
-        });
+        // Course selector functionality moved to DOMContentLoaded
 
         // Category selection
         document.querySelectorAll('.category-card').forEach(card => {
