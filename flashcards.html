@@ -2085,7 +2085,7 @@
                     <div class="logo-accent"></div>
                 </a>
                 
-                <!-- Mobile course selector removed - only using desktop version like practice-tests.html -->
+
                 
                 <!-- Alert Notification -->
                 <button class="alert-notification" id="alertNotification">
@@ -2472,14 +2472,14 @@
     </main>
 
     <script>
-        console.log('Flashcards JavaScript loaded');
+
         // Initialize variables from dashboard
         const alertNotification = document.getElementById('alertNotification');
         const userAvatarNumber = document.getElementById('userAvatarNumber');
         
         // Initialize mobile navbar functionality
         function initMobileNavbar() {
-            console.log('🚀 Initializing mobile navbar functionality (Flashcards)...');
+
             
             // Debug: Check which elements are found
             const elements = {
@@ -2492,16 +2492,16 @@
                 mobileUserInfoBtn: document.getElementById('mobileUserInfoBtn')
             };
             
-            console.log('📱 Mobile navbar elements found:', elements);
+
             
             // Use event delegation for better reliability
             document.addEventListener('click', function(e) {
-                console.log('🖱️ Click detected on:', e.target);
+
                 
                 // Alert notification handling
                 if (e.target.closest('#alertNotification')) {
                     e.stopPropagation();
-                    console.log('🔔 Alert notification clicked!');
+
                     showNotificationsDropdown();
                     return;
                 }
@@ -2509,7 +2509,7 @@
                 // Course selector handling
                 if (e.target.closest('#studyInfo') || e.target.closest('.study-info')) {
                     e.stopPropagation();
-                    console.log('📚 Course selector clicked!');
+
                     
                     const studySelector = document.getElementById('studySelector');
                     const studyDropdown = document.getElementById('studyDropdown');
@@ -2522,7 +2522,7 @@
                         const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                         if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
                         
-                        console.log('📚 Course dropdown toggled. Classes:', studyDropdown.className);
+
                     }
                     return;
                 }
@@ -2530,7 +2530,7 @@
                 // Mobile user dropdown handling
                 if (e.target.closest('#mobileUserInfoBtn')) {
                     e.stopPropagation();
-                    console.log('👤 Mobile user button clicked!');
+
                     
                     const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                     const studyDropdown = document.getElementById('studyDropdown');
@@ -2543,7 +2543,7 @@
                         if (studyDropdown) studyDropdown.classList.remove('show');
                         if (studySelector) studySelector.classList.remove('open');
                         
-                        console.log('👤 User dropdown toggled. Classes:', mobileUserDropdown.className);
+
                     }
                     return;
                 }
@@ -2680,7 +2680,7 @@
                 }
             });
         }
-        // Old complex code removed - now using simple approach like practice-tests.html
+
 
 
 

@@ -1304,68 +1304,21 @@
             right: -8px;
         }
         
-        /* Mobile Study Selector */
-        .mobile-study-selector {
-            flex: 1;
-            margin: 0 0.5rem;
-            max-width: 200px;
-        }
+
         
-        .mobile-study-selector .study-info {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-size: 0.8rem;
-        }
+
         
-        .mobile-study-selector .study-info:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
+
         
-        .mobile-study-selector .study-info i {
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
-        }
+
         
-        .mobile-study-selector .study-info span {
-            font-size: 0.8rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+
         
-        .mobile-study-selector .study-dropdown-arrow {
-            font-size: 0.7rem !important;
-            margin-right: 0.5rem;
-        }
+
         
-        /* Mobile Study Dropdown Menu */
-        .mobile-study-selector .study-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1004;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: var(--primary-dark);
-        }
+
         
-        .mobile-study-selector.open .study-dropdown,
-        .mobile-study-selector .study-dropdown.show,
+
         .study-selector.open .study-dropdown,
         .study-dropdown.show {
             opacity: 1 !important;
@@ -1395,8 +1348,8 @@
         /* Ensure mobile navbar elements are clickable */
         .mobile-menu-btn,
         .mobile-logo,
-        .mobile-study-selector,
-        .mobile-study-selector .study-info,
+
+
         .header-mobile .alert-notification,
         .header-mobile .user-info,
         .header-mobile .mobile-user-dropdown {
@@ -1849,7 +1802,7 @@
                     <div class="logo-accent"></div>
                 </a>
                 
-                <!-- Mobile course selector removed - only using desktop version like practice-tests.html -->
+
                 
                 <!-- Alert Notification -->
                 <button class="alert-notification" id="alertNotification">
@@ -2333,14 +2286,14 @@
     </main>
 
     <script>
-       console.log('Test Results JavaScript loaded');
+
         // Initialize variables from dashboard
         const alertNotification = document.getElementById('alertNotification');
         const userAvatarNumber = document.getElementById('userAvatarNumber');
         
         // Initialize mobile navbar functionality
         function initMobileNavbar() {
-            console.log('🚀 Initializing mobile navbar functionality (Test Results)...');
+
             
             // Debug: Check which elements are found (removed study selector elements to avoid conflicts)
             const elements = {
@@ -2350,26 +2303,26 @@
                 mobileUserInfoBtn: document.getElementById('mobileUserInfoBtn')
             };
             
-            console.log('📱 Mobile navbar elements found:', elements);
+
             
             // Use event delegation for better reliability
             document.addEventListener('click', function(e) {
-                console.log('🖱️ Click detected on:', e.target);
+
                 
                 // Alert notification handling
                 if (e.target.closest('#alertNotification')) {
                     e.stopPropagation();
-                    console.log('🔔 Alert notification clicked!');
+
                     showNotificationsDropdown();
                     return;
                 }
                 
-                // Course selector now handled by direct event listener in DOMContentLoaded - old event delegation removed
+
                 
                 // Mobile user dropdown handling
                 if (e.target.closest('#mobileUserInfoBtn')) {
                     e.stopPropagation();
-                    console.log('👤 Mobile user button clicked!');
+
                     
                     const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                     const studyDropdown = document.getElementById('studyDropdown');
@@ -2382,7 +2335,7 @@
                         if (studyDropdown) studyDropdown.classList.remove('show');
                         if (studySelector) studySelector.classList.remove('open');
                         
-                        console.log('👤 User dropdown toggled. Classes:', mobileUserDropdown.className);
+
                     }
                     return;
                 }
@@ -2402,12 +2355,12 @@
                 }
             });
             
-            console.log('✅ Mobile navbar initialization complete (Test Results)!');
+
         }
         
         // Notification dropdown function
         function showNotificationsDropdown() {
-            console.log('🔔 Showing notifications dropdown');
+
             showToast('الإشعارات متاحة قريباً! 🔔', 'info');
         }
         

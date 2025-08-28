@@ -3174,7 +3174,7 @@
                     <div class="logo-accent"></div>
                 </a>
                 
-                <!-- Mobile course selector removed - only using desktop version like practice-tests.html -->
+
                 
                 <!-- Alert Notification -->
                 <button class="alert-notification" id="alertNotification">
@@ -4153,7 +4153,7 @@
 
         // Initialize mobile navbar functionality
         function initMobileNavbar() {
-            console.log('🚀 Initializing mobile navbar functionality...');
+
             
             // Debug: Check which elements are found
             const elements = {
@@ -4166,27 +4166,27 @@
                 mobileUserInfoBtn: document.getElementById('mobileUserInfoBtn')
             };
             
-            console.log('📱 Mobile navbar elements found:', elements);
+
             
             // Use event delegation for better reliability
             document.addEventListener('click', function(e) {
-                console.log('🖱️ Click detected on:', e.target);
+
                 
                 // Alert notification handling
                 if (e.target.closest('#alertNotification')) {
                     e.stopPropagation();
-                    console.log('🔔 Alert notification clicked!');
+
                     showNotificationsDropdown();
                     updateNotificationBadge();
                     return;
                 }
                 
-                // Course selector now handled by direct event listener above - old complex code removed
+
                 
                 // Mobile user dropdown handling
                 if (e.target.closest('#mobileUserInfoBtn')) {
                     e.stopPropagation();
-                    console.log('👤 Mobile user button clicked!');
+
                     
                     const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                     const studyDropdown = document.getElementById('studyDropdown');
@@ -4199,7 +4199,7 @@
                         if (studyDropdown) studyDropdown.classList.remove('show');
                         if (studySelector) studySelector.classList.remove('open');
                         
-                        console.log('👤 User dropdown toggled. Classes:', mobileUserDropdown.className);
+
                     }
                     return;
                 }
@@ -4208,14 +4208,14 @@
                 if (e.target.closest('#mobileMenuBtn')) {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('🍔 Mobile menu button clicked!');
+
                     
                     const sidebar = document.getElementById('sidebar');
                     const mobileOverlay = document.getElementById('mobileOverlay');
                     
                     if (sidebar) {
                         sidebar.classList.toggle('mobile-open');
-                        console.log('🍔 Sidebar toggled. Classes:', sidebar.className);
+
                     }
                     
                     if (mobileOverlay) {
@@ -4253,7 +4253,7 @@
             const mobileOverlay = document.getElementById('mobileOverlay');
             if (mobileOverlay) {
                 mobileOverlay.addEventListener('click', function() {
-                    console.log('📱 Overlay clicked - closing sidebar');
+
                     const sidebar = document.getElementById('sidebar');
                     if (sidebar) sidebar.classList.remove('mobile-open');
                     mobileOverlay.classList.remove('active');
@@ -4266,7 +4266,7 @@
                     e.stopPropagation();
                     const item = e.target.closest('.study-dropdown-item');
                     
-                    console.log('📚 Course item clicked:', item);
+
                     
                     // Check if it's a coming soon item
                     if (item.classList.contains('coming-soon-item')) {
@@ -4281,7 +4281,7 @@
                         document.querySelectorAll('.study-dropdown-item').forEach(i => i.classList.remove('active'));
                         item.classList.add('active');
                         
-                        // Course selection now handled by direct event listener above - old complex code removed
+
                         // Change colors
                         changeCourseColors(courseKey);
                         
@@ -4290,7 +4290,7 @@
                 }
             });
             
-            console.log('✅ Mobile navbar initialization complete!');
+
         }
             
             // Desktop User dropdown functionality
@@ -6107,12 +6107,12 @@
                 const percentage = parseInt(step.getAttribute('data-percentage') || '0');
                 totalProgress += percentage;
                 moduleCount++;
-                console.log(`📚 Module ${step.getAttribute('data-module')}: ${percentage}%`);
+
             });
             
             const overallProgress = moduleCount > 0 ? Math.round(totalProgress / moduleCount) : 0;
             
-            console.log(`🌊 REAL Progress Calculation: ${overallProgress}% (Average of ${moduleCount} modules, Total: ${totalProgress}%)`);
+
             
             // Initialize the green water hexagon medal
             const finalMedal = document.getElementById('finalMedal');
