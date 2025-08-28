@@ -1322,25 +1322,21 @@
         }
         
         .header-mobile-container {
-            padding: 1rem 0.5rem;
+            padding: 1rem;
             position: relative;
         }
         
         .header-mobile-row-1 {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             position: relative;
         }
         
         .header-mobile-left {
-            position: absolute;
-            left: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
         }
         
         .header-mobile-center {
@@ -1349,10 +1345,6 @@
         }
         
         .header-mobile-right {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -1364,6 +1356,44 @@
             font-weight: 700;
             color: white;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+        
+        .mobile-logo .logo-accent {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            right: -8px;
+        }
+        
+        /* Mobile Header Alert Notification */
+        .header-mobile .alert-notification {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-mobile .alert-notification:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-mobile .alert-notification i {
+            color: white;
+            font-size: 1.2rem;
         }
         
         /* Mobile Header Welcome */
@@ -1914,17 +1944,39 @@
                     <button class="mobile-menu-btn" id="mobileMenuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
+                    <a href="index.html" class="mobile-logo">
+                        <span>زامل</span>
+                        <div class="logo-accent"></div>
+                    </a>
                 </div>
                 <div class="header-mobile-center">
-                    <a href="index.html" class="mobile-logo">زامل</a>
+                    <h1 class="header-welcome">البطاقات التعليمية</h1>
                 </div>
                 <div class="header-mobile-right">
+                    <button class="alert-notification" id="alertNotification">
+                        <i class="fas fa-bell"></i>
+                    </button>
                     <div class="user-dropdown" id="userDropdown">
                         <button class="user-info" id="userInfoBtn">
                             <div class="user-avatar">
                                 <i class="fas fa-user"></i>
                             </div>
                         </button>
+                        <div class="dropdown-menu" id="userDropdownMenu">
+                            <a href="#" class="dropdown-item" id="profileBtn">
+                                <i class="fas fa-user"></i>
+                                الملف الشخصي
+                            </a>
+                            <a href="#" class="dropdown-item" id="settingsBtn">
+                                <i class="fas fa-cog"></i>
+                                الإعدادات
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                تسجيل الخروج
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
