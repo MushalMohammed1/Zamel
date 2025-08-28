@@ -834,6 +834,198 @@
         .mcq-content {
             display: none;
         }
+
+        /* ===== Course Selector Styles ===== */
+        .study-selector {
+            position: relative;
+            margin-left: 1.5rem;
+        }
+
+        .study-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            color: var(--white);
+            min-width: 200px;
+            white-space: nowrap;
+        }
+
+        .study-info:hover,
+        .study-selector.open .study-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .study-dropdown-arrow {
+            transition: var(--transition);
+            font-size: 0.75rem;
+        }
+
+        .study-selector.open .study-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .study-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            min-width: 280px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .study-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .study-dropdown-header {
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            border-bottom: 1px solid var(--gray-200);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .study-dropdown-menu {
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-section-header {
+            padding: 0.75rem 1rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-section-header.coming-soon {
+            color: var(--accent-gold);
+        }
+
+        .dropdown-section-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 0.5rem 0;
+        }
+
+        .study-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .study-dropdown-item:hover {
+            background: var(--gray-100);
+        }
+
+        .study-dropdown-item.active {
+            background: var(--gray-100);
+            border-left-color: var(--primary-blue);
+        }
+
+        .study-dropdown-item.coming-soon-item {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .study-dropdown-item.coming-soon-item:hover {
+            background: transparent;
+        }
+
+        .course-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .course-icon.accounting {
+            background: linear-gradient(135deg, #4a9960, #68b876);
+        }
+
+        .course-icon.tax {
+            background: linear-gradient(135deg, #2d7a3d, #4a9960);
+        }
+
+        .course-icon.management {
+            background: linear-gradient(135deg, #2d5aa0, #4a7ab8);
+        }
+
+        .course-icon.auditing {
+            background: linear-gradient(135deg, #3b5998, #5a7bb0);
+        }
+
+        .course-icon.business {
+            background: linear-gradient(135deg, #2f4d7a, #4a6a92);
+        }
+
+        .course-icon.systems {
+            background: linear-gradient(135deg, #4a6fa5, #6a8fbd);
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .course-code {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+        }
+
+        /* Responsive adjustments for course selector */
+        @media (max-width: 768px) {
+            .study-selector {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .study-info {
+                min-width: 180px;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .study-dropdown {
+                min-width: 260px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -845,6 +1037,69 @@
                 <div class="test-tab">المحاسبة المالية</div>
                 <div class="test-tab active" onclick="switchToMCQ()">المجموعة الأولى</div>
                 <div class="test-tab" onclick="switchToEssay()">المجموعة الثانية</div>
+            </div>
+            <!-- Course Selector -->
+            <div class="study-selector" id="studySelector">
+                <div class="study-info" id="studyInfo">
+                    <i class="fas fa-book"></i>
+                    <span>تدرس للحصول على: SOCPA</span>
+                    <i class="fas fa-chevron-down study-dropdown-arrow"></i>
+                </div>
+                <div class="study-dropdown" id="studyDropdown">
+                    <div class="study-dropdown-header">
+                        اختر المادة التي تدرسها
+                    </div>
+                    <div class="study-dropdown-menu">
+                        <!-- Currently Available Courses -->
+                        <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
+                        <div class="study-dropdown-item active" data-course="accounting">
+                            <div class="course-icon accounting">محا</div>
+                            <div class="course-info">
+                                <div class="course-name">المحاسبة المالية</div>
+                                <div class="course-code">Financial Accounting</div>
+                            </div>
+                        </div>
+                        <div class="study-dropdown-item" data-course="tax">
+                            <div class="course-icon tax">زك</div>
+                            <div class="course-info">
+                                <div class="course-name">الزكاة والضريبة</div>
+                                <div class="course-code">Zakat & Tax</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Coming Soon Section -->
+                        <div class="dropdown-section-divider"></div>
+                        <div class="dropdown-section-header coming-soon">قريباً</div>
+                        <div class="study-dropdown-item coming-soon-item" data-course="management">
+                            <div class="course-icon management">إإ</div>
+                            <div class="course-info">
+                                <div class="course-name">إدارة الأعمال</div>
+                                <div class="course-code">Business Management</div>
+                            </div>
+                        </div>
+                        <div class="study-dropdown-item coming-soon-item" data-course="auditing">
+                            <div class="course-icon auditing">مر</div>
+                            <div class="course-info">
+                                <div class="course-name">المراجعة</div>
+                                <div class="course-code">Auditing</div>
+                            </div>
+                        </div>
+                        <div class="study-dropdown-item coming-soon-item" data-course="business">
+                            <div class="course-icon business">قإ</div>
+                            <div class="course-info">
+                                <div class="course-name">قانون الأعمال</div>
+                                <div class="course-code">Business Law</div>
+                            </div>
+                        </div>
+                        <div class="study-dropdown-item coming-soon-item" data-course="systems">
+                            <div class="course-icon systems">نم</div>
+                            <div class="course-info">
+                                <div class="course-name">نظم المعلومات</div>
+                                <div class="course-code">Information Systems</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -1332,7 +1587,144 @@
                     closeEndTestPopup();
                 }
             });
+
+            // Initialize course selector
+            initTestCourseSelector();
         });
+
+        // Course selector functionality for test session
+        function initTestCourseSelector() {
+            const studySelector = document.getElementById('studySelector');
+            const studyInfo = document.getElementById('studyInfo');
+            const studyDropdown = document.getElementById('studyDropdown');
+            const studyDropdownItems = document.querySelectorAll('.study-dropdown-item');
+
+            // Check if elements exist
+            if (!studySelector || !studyInfo || !studyDropdown) {
+                console.warn('Course selector elements not found');
+                return;
+            }
+
+            // Toggle dropdown
+            studyInfo.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const isOpen = studyDropdown.classList.contains('show');
+                if (isOpen) {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                } else {
+                    studyDropdown.classList.add('show');
+                    studySelector.classList.add('open');
+                }
+            });
+
+            // Handle course selection
+            studyDropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Check if it's a coming soon item
+                    if (this.classList.contains('coming-soon-item')) {
+                        showTestToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                        return;
+                    }
+                    
+                    // Remove active from all available items
+                    studyDropdownItems.forEach(i => {
+                        if (!i.classList.contains('coming-soon-item')) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    
+                    // Add active to clicked item
+                    this.classList.add('active');
+                    
+                    // Get course information
+                    const courseName = this.querySelector('.course-name').textContent;
+                    const courseCode = this.querySelector('.course-code').textContent;
+                    
+                    // Update test tab to reflect new course
+                    const testTab = document.querySelector('.test-tab:first-child');
+                    if (testTab) {
+                        testTab.textContent = courseName;
+                    }
+                    
+                    // Close dropdown
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                    
+                    // Show notification
+                    showTestToast(`تم تغيير المادة إلى ${courseName}`);
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!studySelector.contains(e.target)) {
+                    studyDropdown.classList.remove('show');
+                    studySelector.classList.remove('open');
+                }
+            });
+        }
+
+        // Show toast notification for course changes
+        function showTestToast(message, type = 'success') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.test-toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `test-toast test-toast-${type}`;
+            
+            // Toast styles
+            const styles = {
+                position: 'fixed',
+                top: '100px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: type === 'success' ? 'linear-gradient(135deg, #4caf50, #66bb6a)' : 
+                           type === 'info' ? 'linear-gradient(135deg, #2196f3, #42a5f5)' :
+                           'linear-gradient(135deg, #ff9800, #ffb74d)',
+                color: 'white',
+                padding: '1rem 1.5rem',
+                borderRadius: '8px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                zIndex: '10001',
+                opacity: '0',
+                transition: 'all 0.3s ease',
+                fontFamily: "'Tajawal', sans-serif",
+                fontWeight: '500',
+                backdropFilter: 'blur(10px)',
+                maxWidth: '400px',
+                textAlign: 'center'
+            };
+            
+            Object.assign(toast.style, styles);
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+            }, 100);
+            
+            // Hide and remove toast
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
 
         // Tab switching functions
         function switchToMCQ() {
