@@ -1322,26 +1322,25 @@
         }
         
         .header-mobile-container {
-            padding: 1rem;
+            padding: 1rem 0.5rem;
+            position: relative;
         }
         
         .header-mobile-row-1 {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-        
-        .header-mobile-row-2 {
-            display: flex;
             justify-content: center;
-            padding: 0 0.5rem;
+            position: relative;
         }
         
         .header-mobile-left {
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
         .header-mobile-center {
@@ -1350,6 +1349,10 @@
         }
         
         .header-mobile-right {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -1452,8 +1455,14 @@
                 transition: left 0.3s ease;
                 width: var(--sidebar-expanded);
                 z-index: 1001;
-                top: var(--header-height);
-                height: calc(100vh - var(--header-height));
+                top: 0;
+                height: 100vh;
+                padding-top: var(--header-height);
+            }
+            
+            /* Fix sidebar navigation spacing on mobile */
+            .sidebar .sidebar-nav {
+                padding: 0.5rem 0.5rem 2rem;
             }
 
             .sidebar.mobile-open {
@@ -1905,10 +1914,9 @@
                     <button class="mobile-menu-btn" id="mobileMenuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <a href="index.html" class="mobile-logo">زامل</a>
                 </div>
                 <div class="header-mobile-center">
-                    <h1 class="header-welcome">البطاقات التعليمية</h1>
+                    <a href="index.html" class="mobile-logo">زامل</a>
                 </div>
                 <div class="header-mobile-right">
                     <div class="user-dropdown" id="userDropdown">
