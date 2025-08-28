@@ -1850,13 +1850,13 @@
                 </a>
                 
                 <!-- Course Selector -->
-                <div class="study-selector mobile-study-selector" id="studySelector">
-                    <div class="study-info" id="studyInfo">
+                <div class="study-selector mobile-study-selector" id="mobileStudySelector">
+                    <div class="study-info" id="mobileStudyInfo">
                         <i class="fas fa-book"></i>
                         <span>تدرس للحصول على: SOCPA</span>
                         <i class="fas fa-chevron-down study-dropdown-arrow"></i>
                     </div>
-                    <div class="study-dropdown" id="studyDropdown">
+                    <div class="study-dropdown" id="mobileStudyDropdown">
                         <div class="study-dropdown-header">
                             اختر المادة التي تدرسها
                         </div>
@@ -1937,13 +1937,13 @@
             
             <div class="header-center">
                 <h1 class="header-welcome">تقرير نتائج الاختبار</h1>
-                <div class="study-selector" id="studySelector">
-                    <div class="study-info" id="studyInfo">
+                <div class="study-selector" id="desktopStudySelector">
+                    <div class="study-info" id="desktopStudyInfo">
                         <i class="fas fa-book"></i>
                         <span>تدرس للحصول على: SOCPA</span>
                         <i class="fas fa-chevron-down study-dropdown-arrow"></i>
                     </div>
-                    <div class="study-dropdown" id="studyDropdown">
+                    <div class="study-dropdown" id="desktopStudyDropdown">
                         <div class="study-dropdown-header">
                             اختر المادة التي تدرسها
                         </div>
@@ -2479,16 +2479,19 @@
         document.addEventListener('DOMContentLoaded', function() {
             initMobileNavbar();
             
-            // Initialize course selector elements
+            // Initialize course selector elements (mobile and desktop)
             const userDropdown = document.getElementById('userDropdown');
-            const studySelector = document.getElementById('studySelector');
-            const studyInfo = document.getElementById('studyInfo');
-            const studyDropdown = document.getElementById('studyDropdown');
+            const mobileStudySelector = document.getElementById('mobileStudySelector');
+            const mobileStudyInfo = document.getElementById('mobileStudyInfo');
+            const mobileStudyDropdown = document.getElementById('mobileStudyDropdown');
+            const desktopStudySelector = document.getElementById('desktopStudySelector');
+            const desktopStudyInfo = document.getElementById('desktopStudyInfo');
+            const desktopStudyDropdown = document.getElementById('desktopStudyDropdown');
             const studyDropdownItems = document.querySelectorAll('.study-dropdown-item');
             const alertNotification = document.getElementById('alertNotification');
             const userAvatarNumber = document.getElementById('userAvatarNumber');
 
-            if (!studySelector || !studyInfo || !studyDropdown) {
+            if ((!mobileStudySelector && !desktopStudySelector) || (!mobileStudyInfo && !desktopStudyInfo)) {
                 console.warn('Course selector elements not found');
                 return;
             }
@@ -2539,13 +2542,26 @@
                 });
             }
 
-            // Study dropdown functionality
-            studyInfo.addEventListener('click', function(e) {
-                e.stopPropagation();
-                studyDropdown.classList.toggle('show');
-                studySelector.classList.toggle('open');
-                if (userDropdown) userDropdown.classList.remove('show');
-            });
+            // Study dropdown functionality (mobile and desktop)
+            if (mobileStudyInfo) {
+                mobileStudyInfo.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (mobileStudyDropdown) mobileStudyDropdown.classList.toggle('show');
+                    if (mobileStudySelector) mobileStudySelector.classList.toggle('open');
+                    if (userDropdown) userDropdown.classList.remove('show');
+                    console.log('📱 Mobile course selector clicked!');
+                });
+            }
+            
+            if (desktopStudyInfo) {
+                desktopStudyInfo.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (desktopStudyDropdown) desktopStudyDropdown.classList.toggle('show');
+                    if (desktopStudySelector) desktopStudySelector.classList.toggle('open');
+                    if (userDropdown) userDropdown.classList.remove('show');
+                    console.log('🖥️ Desktop course selector clicked!');
+                });
+            }
 
             // Handle course selection
             studyDropdownItems.forEach(item => {
@@ -2568,11 +2584,22 @@
                     
                     const courseName = this.querySelector('.course-name').textContent;
                     const courseCode = this.querySelector('.course-code').textContent;
-                    const studyText = studyInfo.querySelector('span');
-                    studyText.textContent = `تدرس للحصول على: ${courseCode}`;
                     
-                    studyDropdown.classList.remove('show');
-                    studySelector.classList.remove('open');
+                    // Update both mobile and desktop text
+                    if (mobileStudyInfo) {
+                        const span = mobileStudyInfo.querySelector('span');
+                        if (span) span.textContent = `تدرس للحصول على: ${courseCode}`;
+                    }
+                    if (desktopStudyInfo) {
+                        const span = desktopStudyInfo.querySelector('span');
+                        if (span) span.textContent = `تدرس للحصول على: ${courseCode}`;
+                    }
+                    
+                    // Close all dropdowns
+                    if (mobileStudyDropdown) mobileStudyDropdown.classList.remove('show');
+                    if (desktopStudyDropdown) desktopStudyDropdown.classList.remove('show');
+                    if (mobileStudySelector) mobileStudySelector.classList.remove('open');
+                    if (desktopStudySelector) desktopStudySelector.classList.remove('open');
                     
                     showToast(`تم تغيير المادة إلى ${courseName}`);
                 });
@@ -2584,9 +2611,16 @@
                     !userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
                     userDropdown.classList.remove('show');
                 }
-                if (!studySelector.contains(e.target)) {
-                    studyDropdown.classList.remove('show');
-                    studySelector.classList.remove('open');
+                
+                // Check if click is outside any course selector
+                const isOutsideMobile = !mobileStudySelector || !mobileStudySelector.contains(e.target);
+                const isOutsideDesktop = !desktopStudySelector || !desktopStudySelector.contains(e.target);
+                
+                if (isOutsideMobile && isOutsideDesktop) {
+                    if (mobileStudyDropdown) mobileStudyDropdown.classList.remove('show');
+                    if (desktopStudyDropdown) desktopStudyDropdown.classList.remove('show');
+                    if (mobileStudySelector) mobileStudySelector.classList.remove('open');
+                    if (desktopStudySelector) desktopStudySelector.classList.remove('open');
                 }
             });
 
@@ -2594,8 +2628,10 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     if (userDropdown) userDropdown.classList.remove('show');
-                    studyDropdown.classList.remove('show');
-                    studySelector.classList.remove('open');
+                    if (mobileStudyDropdown) mobileStudyDropdown.classList.remove('show');
+                    if (desktopStudyDropdown) desktopStudyDropdown.classList.remove('show');
+                    if (mobileStudySelector) mobileStudySelector.classList.remove('open');
+                    if (desktopStudySelector) desktopStudySelector.classList.remove('open');
                 }
             });
         });
