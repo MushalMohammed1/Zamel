@@ -3174,49 +3174,7 @@
                     <div class="logo-accent"></div>
                 </a>
                 
-                <!-- Course Selector -->
-                <div class="study-selector mobile-study-selector" id="mobileStudySelector">
-                    <div class="study-info" id="mobileStudyInfo">
-                        <i class="fas fa-book"></i>
-                        <span>تدرس للحصول على: SOCPA</span>
-                        <i class="fas fa-chevron-down study-dropdown-arrow"></i>
-                    </div>
-                    <div class="study-dropdown" id="mobileStudyDropdown">
-                        <div class="study-dropdown-header">
-                            اختر المادة التي تدرسها
-                        </div>
-                        <div class="study-dropdown-menu">
-                            <!-- Currently Available Courses -->
-                            <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
-                            <div class="study-dropdown-item active" data-course="accounting">
-                                <div class="course-icon accounting">محا</div>
-                                <div class="course-info">
-                                    <div class="course-name">المحاسبة المالية</div>
-                                    <div class="course-code">Financial Accounting</div>
-                                </div>
-                            </div>
-                            <div class="study-dropdown-item" data-course="tax">
-                                <div class="course-icon tax">زك</div>
-                                <div class="course-info">
-                                    <div class="course-name">الزكاة والضريبة</div>
-                                    <div class="course-code">Zakat & Tax</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Coming Soon Section -->
-                            <div class="dropdown-section-divider"></div>
-                            <div class="dropdown-section-header coming-soon">قريباً</div>
-                            <div class="study-dropdown-item coming-soon-item" data-course="management">
-                                <div class="course-icon management">إدا</div>
-                                <div class="course-info">
-                                    <div class="course-name">المحاسبة الإدارية والحكومية</div>
-                                    <div class="course-code">Management & Government Accounting</div>
-                                </div>
-                                <div class="coming-soon-badge">قريباً</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Mobile course selector removed - only using desktop version like practice-tests.html -->
                 
                 <!-- Alert Notification -->
                 <button class="alert-notification" id="alertNotification">
@@ -3262,13 +3220,13 @@
             
             <div class="header-center">
                 <h1 class="header-welcome">مرحباً، مشعل!</h1>
-                <div class="study-selector" id="desktopStudySelector">
-                    <div class="study-info" id="desktopStudyInfo">
+                <div class="study-selector" id="studySelector">
+                    <div class="study-info" id="studyInfo">
                         <i class="fas fa-book"></i>
                         <span>تدرس للحصول على: SOCPA</span>
                         <i class="fas fa-chevron-down study-dropdown-arrow"></i>
                     </div>
-                    <div class="study-dropdown" id="desktopStudyDropdown">
+                    <div class="study-dropdown" id="studyDropdown">
                         <div class="study-dropdown-header">
                             اختر المادة التي تدرسها
                         </div>
@@ -4176,15 +4134,13 @@
                     return;
                 }
                 
-                // Course selector handling (mobile and desktop)
-                if (e.target.closest('#mobileStudyInfo') || e.target.closest('#desktopStudyInfo') || e.target.closest('.study-info')) {
+                // Course selector handling (copied from practice-tests.html)
+                if (e.target.closest('#studyInfo') || e.target.closest('.study-info')) {
                     e.stopPropagation();
                     console.log('📚 Course selector clicked!');
                     
-                    // Determine if it's mobile or desktop
-                    const isMobile = e.target.closest('#mobileStudyInfo') || e.target.closest('#mobileStudySelector');
-                    const studySelector = document.getElementById(isMobile ? 'mobileStudySelector' : 'desktopStudySelector');
-                    const studyDropdown = document.getElementById(isMobile ? 'mobileStudyDropdown' : 'desktopStudyDropdown');
+                    const studySelector = document.getElementById('studySelector');
+                    const studyDropdown = document.getElementById('studyDropdown');
                     
                     if (studySelector && studyDropdown) {
                         studyDropdown.classList.toggle('show');
@@ -4194,7 +4150,7 @@
                         const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                         if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
                         
-                        console.log('📚 Course dropdown toggled. Type:', isMobile ? 'mobile' : 'desktop', 'Classes:', studyDropdown.className);
+                        console.log('📚 Course dropdown toggled. Classes:', studyDropdown.className);
                     }
                     return;
                 }
@@ -4297,34 +4253,22 @@
                         document.querySelectorAll('.study-dropdown-item').forEach(i => i.classList.remove('active'));
                         item.classList.add('active');
                         
-                        // Update course info for both mobile and desktop
-                        const mobileStudyInfo = document.getElementById('mobileStudyInfo');
-                        const desktopStudyInfo = document.getElementById('desktopStudyInfo');
+                        // Update course info (copied from practice-tests.html)
+                        const studyInfo = document.getElementById('studyInfo');
                         const courseName = item.querySelector('.course-name').textContent;
-                        
-                        // Update both mobile and desktop text
-                        if (mobileStudyInfo) {
-                            const span = mobileStudyInfo.querySelector('span');
-                            if (span) span.textContent = `تدرس للحصول على: ${courseName}`;
-                        }
-                        if (desktopStudyInfo) {
-                            const span = desktopStudyInfo.querySelector('span');
+                        if (studyInfo) {
+                            const span = studyInfo.querySelector('span');
                             if (span) span.textContent = `تدرس للحصول على: ${courseName}`;
                         }
                         
                         // Change colors
                         changeCourseColors(courseKey);
                         
-                        // Close all dropdowns
-                        const mobileStudyDropdown = document.getElementById('mobileStudyDropdown');
-                        const desktopStudyDropdown = document.getElementById('desktopStudyDropdown');
-                        const mobileStudySelector = document.getElementById('mobileStudySelector');
-                        const desktopStudySelector = document.getElementById('desktopStudySelector');
-                        
-                        if (mobileStudyDropdown) mobileStudyDropdown.classList.remove('show');
-                        if (desktopStudyDropdown) desktopStudyDropdown.classList.remove('show');
-                        if (mobileStudySelector) mobileStudySelector.classList.remove('open');
-                        if (desktopStudySelector) desktopStudySelector.classList.remove('open');
+                        // Close dropdown
+                        const studyDropdown = document.getElementById('studyDropdown');
+                        const studySelector = document.getElementById('studySelector');
+                        if (studyDropdown) studyDropdown.classList.remove('show');
+                        if (studySelector) studySelector.classList.remove('open');
                         
                         showToast(`تم تغيير المادة إلى ${courseName} ✅`, 'success');
                     }
