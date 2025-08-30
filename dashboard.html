@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم - زامل | SOCPA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- <link rel="stylesheet" href="dashboard-modals.css"> -->
     
     <style>
-
         :root {
             /* Brand - Lighter and softer */
-            --primary-navy: #3f4f6b;   /* Softer navy */
-            --primary-blue: #6ba3f7;   /* Lighter blue */
-            --primary-dark: #2a3441;   /* Lighter dark */
+            --primary-navy: #3f4f6b;
+            /* Softer navy */
+            --primary-blue: #6ba3f7;
+            /* Lighter blue */
+            --primary-dark: #2a3441;
+            /* Lighter dark */
             --secondary-navy: var(--primary-dark);
 
             /* Accents - Warmer and softer */
-            --accent-gold: #f7c845;    /* Softer gold */
-            --accent-yellow: #ffd76b;  /* Gentle yellow */
+            --accent-gold: #f7c845;
+            /* Softer gold */
+            --accent-yellow: #ffd76b;
+            /* Gentle yellow */
 
             /* Enhanced White Palette */
             --white: #ffffff;
-            --white-soft: #fdfdfd;      /* Softer white */
-            --white-warm: #fefefe;      /* Warm white */
-            --white-cool: #fbfcfd;      /* Cool white */
-            --light-gray: #fafbfc;     /* Even lighter gray */
-            --medium-gray: #8b9bb5;    /* Softer medium gray */
-            --dark-gray: #4a5568;      /* Lighter dark gray */
-            --gray-25: #fcfcfd;        /* Ultra light */
-            --gray-50: #f9fafb;        /* Very light */
-            --gray-75: #f4f6f8;        /* Super light */
-            --gray-100: #f1f4f7;       /* Light */
-            --gray-150: #e8ecf0;       /* Light plus */
-            --gray-200: #e2e6ea;       /* Light medium */
-            --gray-300: #d1d9e0;       /* Medium light */
+            --white-soft: #fdfdfd;
+            /* Softer white */
+            --white-warm: #fefefe;
+            /* Warm white */
+            --white-cool: #fbfcfd;
+            /* Cool white */
+            --light-gray: #fafbfc;
+            /* Even lighter gray */
+            --medium-gray: #8b9bb5;
+            /* Softer medium gray */
+            --dark-gray: #4a5568;
+            /* Lighter dark gray */
+            --gray-25: #fcfcfd;
+            /* Ultra light */
+            --gray-50: #f9fafb;
+            /* Very light */
+            --gray-75: #f4f6f8;
+            /* Super light */
+            --gray-100: #f1f4f7;
+            /* Light */
+            --gray-150: #e8ecf0;
+            /* Light plus */
+            --gray-200: #e2e6ea;
+            /* Light medium */
+            --gray-300: #d1d9e0;
+            /* Medium light */
             --gray-400: #cbd5e0;
             --gray-500: #a0aec0;
             --gray-600: #718096;
@@ -45,25 +65,30 @@
             --gray-900: #1a202c;
 
             /* States - Gentle and comfortable */
-            --success-green: #68d391;  /* Soft green */
-            --warning-orange: #f6ad55; /* Gentle orange */
-            --danger-red: #fc8181;     /* Soft red */
-            --info-blue: #63b3ed;      /* Gentle blue */
-            --light-blue: #bee3f8;     /* Very light blue */
+            --success-green: #68d391;
+            /* Soft green */
+            --warning-orange: #f6ad55;
+            /* Gentle orange */
+            --danger-red: #fc8181;
+            /* Soft red */
+            --info-blue: #63b3ed;
+            /* Gentle blue */
+            --light-blue: #bee3f8;
+            /* Very light blue */
 
             /* Gradients - Softer transitions */
             --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
             --gradient-button: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-yellow) 100%);
-            --gradient-card: linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 100%);
+            --gradient-card: linear-gradient(135deg, rgba(255, 255, 255, .15) 0%, rgba(255, 255, 255, .08) 100%);
 
             /* Enhanced Shadows & Effects */
-            --shadow-xs: 0 1px 2px rgba(0,0,0,.03), 0 1px 3px rgba(0,0,0,.02);
-            --shadow-sm: 0 2px 4px rgba(0,0,0,.04), 0 4px 8px rgba(0,0,0,.02);
-            --shadow-md: 0 4px 8px rgba(0,0,0,.06), 0 8px 16px rgba(0,0,0,.03);
-            --shadow-lg: 0 8px 16px rgba(0,0,0,.08), 0 16px 32px rgba(0,0,0,.04);
-            --shadow-xl: 0 16px 32px rgba(0,0,0,.10), 0 32px 64px rgba(0,0,0,.05);
-            --shadow-2xl: 0 24px 48px rgba(0,0,0,.12), 0 48px 96px rgba(0,0,0,.06);
-            --shadow-inner: inset 0 2px 4px rgba(0,0,0,.04);
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, .03), 0 1px 3px rgba(0, 0, 0, .02);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, .04), 0 4px 8px rgba(0, 0, 0, .02);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, .06), 0 8px 16px rgba(0, 0, 0, .03);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, .08), 0 16px 32px rgba(0, 0, 0, .04);
+            --shadow-xl: 0 16px 32px rgba(0, 0, 0, .10), 0 32px 64px rgba(0, 0, 0, .05);
+            --shadow-2xl: 0 24px 48px rgba(0, 0, 0, .12), 0 48px 96px rgba(0, 0, 0, .06);
+            --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, .04);
             --shadow-glow: 0 0 20px rgba(var(--course-primary-rgb), .1);
             
             /* Enhanced Gradients */
@@ -72,9 +97,9 @@
             --gradient-card: linear-gradient(135deg, var(--white) 0%, var(--white-soft) 50%, var(--gray-25) 100%);
             --gradient-hover: linear-gradient(135deg, var(--gray-25) 0%, var(--gray-75) 100%);
             
-            --transition: all .3s cubic-bezier(.25,.8,.25,1);
+            --transition: all .3s cubic-bezier(.25, .8, .25, 1);
             --transition-fast: all .15s ease;
-            --transition-smooth: all .4s cubic-bezier(.16,1,.3,1);
+            --transition-smooth: all .4s cubic-bezier(.16, 1, .3, 1);
 
             /* Layout */
             --sidebar-collapsed: 72px;
@@ -90,7 +115,11 @@
             --course-primary-rgb: 74, 153, 96;
         }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Tajawal', sans-serif;
@@ -153,7 +182,11 @@
             justify-content: center;
         }
 
-.header-left { display: flex; align-items: center; gap: 1rem; }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
         .alert-notification {
             position: relative;
@@ -198,6 +231,7 @@
                 opacity: 0; 
                 transform: translate(-50%, -50%) scale(0.95); 
             }
+
             to { 
                 opacity: 1; 
                 transform: translate(-50%, -50%) scale(1); 
@@ -209,6 +243,7 @@
                 opacity: 0; 
                 transform: translateY(-30px) scale(0.95); 
             }
+
             to { 
                 opacity: 1; 
                 transform: translateY(0) scale(1); 
@@ -236,6 +271,7 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -244,14 +280,20 @@
 
         .logo {
             font-family: 'El Messiri', serif;
-  font-size: 1.8rem; font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--white);
             text-decoration: none;
-  display: flex; align-items: center; gap: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             letter-spacing: -1px;
             transition: var(--transition);
         }
-.logo:hover { transform: translateY(-2px); }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
         
         .logo-accent {
             width: 8px;
@@ -261,13 +303,29 @@
         }
         
         @keyframes pulse {
-            0%,100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
         }
 
 
-.user-info { display: flex; align-items: center; gap: 1rem; }
-.user-profile { position: relative; }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-profile {
+            position: relative;
+        }
 
         
  .user-info {
@@ -333,7 +391,7 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+            transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
             z-index: 1000;
             overflow: hidden;
         }
@@ -349,7 +407,7 @@
             background: var(--gradient-primary);
             color: var(--white);
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,.1);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
         }
 
         .dropdown-name {
@@ -360,7 +418,7 @@
 
         .dropdown-email {
             font-size: 0.85rem;
-            color: rgba(255,255,255,.9);
+            color: rgba(255, 255, 255, .9);
         }
 
         .dropdown-menu {
@@ -379,7 +437,7 @@
         }
 
         .dropdown-item:hover {
-            background: rgba(0,0,0,.05);
+            background: rgba(0, 0, 0, .05);
             color: var(--primary-navy);
             padding-right: 1.75rem;
         }
@@ -478,9 +536,17 @@
 
         
 /* ===== Header Welcome ===== */
-.header-welcome { font-size: 1.1rem; font-weight: 500; color: var(--white); margin: 0; }
+        .header-welcome {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--white);
+            margin: 0;
+        }
 
-.study-selector { position: relative; }
+        .study-selector {
+            position: relative;
+        }
+
         .study-info {
             display: flex;
             align-items: center;
@@ -495,7 +561,8 @@
             font-weight: 500;
         }
 
-        .study-info:hover, .study-selector.open .study-info {
+        .study-info:hover,
+        .study-selector.open .study-info {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
         }
@@ -537,7 +604,7 @@
             color: var(--white);
             font-weight: 600;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255,255,255,.1);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
         }
 
         .study-dropdown-menu {
@@ -579,15 +646,41 @@
             font-size: 0.7rem;
         }
 
-        .course-icon.accounting { background: #4a9960; }
-        .course-icon.tax { background: #2d7a3d; }
-        .course-icon.management { background: #2d5aa0; }
-        .course-icon.auditing { background: #3b5998; }
-        .course-icon.business { background: #2f4d7a; }
-        .course-icon.systems { background: #4a6fa5; }
-        .course-icon.economics { background: #2f4d7a; }
-        .course-icon.law { background: #4a6fa5; }
-        .course-icon.ethics { background: #2d5aa0; }
+        .course-icon.accounting {
+            background: #4a9960;
+        }
+
+        .course-icon.tax {
+            background: #2d7a3d;
+        }
+
+        .course-icon.management {
+            background: #2d5aa0;
+        }
+
+        .course-icon.auditing {
+            background: #3b5998;
+        }
+
+        .course-icon.business {
+            background: #2f4d7a;
+        }
+
+        .course-icon.systems {
+            background: #4a6fa5;
+        }
+
+        .course-icon.economics {
+            background: #2f4d7a;
+        }
+
+        .course-icon.law {
+            background: #4a6fa5;
+        }
+
+        .course-icon.ethics {
+            background: #2d5aa0;
+        }
 
         .dropdown-section-header {
             padding: 0.75rem 1.5rem 0.5rem;
@@ -647,80 +740,168 @@
 
        /* ===== Sidebar ===== */
 .sidebar {
-  position: fixed; top: 0; left: 0;
-  width: var(--sidebar-collapsed); height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-collapsed);
+            height: 100vh;
   background: var(--gradient-primary);
     backdrop-filter: blur(20px);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow-lg);
-  z-index: 1001; overflow: hidden;
+            z-index: 1001;
+            overflow: hidden;
     transition: width 0.25s ease;
   padding-top: var(--header-height);
 }
 
 /* expand via hover or .expanded toggle */
-.sidebar:hover, .sidebar.expanded { width: var(--sidebar-expanded); }
+        .sidebar:hover,
+        .sidebar.expanded {
+            width: var(--sidebar-expanded);
+        }
 
 /* nav items */
 .sidebar-nav { 
   padding: 1rem .5rem 2rem;
-  display: flex; flex-direction: column; gap: .5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
 }
 
 .nav-item {
   position: relative;
-  display: flex; align-items: center; gap: .75rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
   padding: .75rem .75rem;
-  border-radius: .5rem; text-decoration: none;
-  color: #fff; min-height: 44px; transition: var(--transition);
+            border-radius: .5rem;
+            text-decoration: none;
+            color: #fff;
+            min-height: 44px;
+            transition: var(--transition);
 }
 
 /* collapsed look */
-.sidebar:not(:hover):not(.expanded) { width: var(--sidebar-collapsed); }
-.sidebar:not(:hover):not(.expanded) .nav-item { justify-content: center; background: transparent; padding: 0; height: 56px; }
+        .sidebar:not(:hover):not(.expanded) {
+            width: var(--sidebar-collapsed);
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item {
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            height: 56px;
+        }
+
 .sidebar:not(:hover):not(.expanded) .nav-item-icon {
-  width: 36px; height: 36px; margin-inline: auto; display: flex; align-items: center; justify-content: center;
-}
-.sidebar:not(:hover):not(.expanded) .nav-item-icon i { font-size: 20px; color: #fff !important; opacity: 1 !important; }
-.sidebar:not(:hover):not(.expanded) .nav-item-text { display: none !important; opacity: 0 !important; transform: none !important; }
-.sidebar:not(:hover):not(.expanded) .nav-item.active::before { display: none; }
+            width: 36px;
+            height: 36px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item-icon i {
+            font-size: 20px;
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item-text {
+            display: none !important;
+            opacity: 0 !important;
+            transform: none !important;
+        }
+
+        .sidebar:not(:hover):not(.expanded) .nav-item.active::before {
+            display: none;
+        }
 
 /* active + hover */
 .nav-item:hover {
   background: rgba(245, 158, 11, 0.18);
     color: var(--accent-gold);
 }
+
 .nav-item.active {
   background: rgba(245, 158, 11, 0.15);
     color: var(--accent-gold);
 }
+
 .nav-item.active::before {
-  content: ""; position: absolute; left: 0; top: 0; width: 3px; height: 100%;
-  background: var(--accent-gold); border-radius: 0 2px 2px 0;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-gold);
+            border-radius: 0 2px 2px 0;
 }
 
 /* ICONS — always visible */
-.nav-item-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.nav-item-icon i { font-size: 20px; color: #fff !important; opacity: 1 !important; }
+        .nav-item-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-item-icon i {
+            font-size: 20px;
+            color: #fff !important;
+            opacity: 1 !important;
+        }
 
 /* labels hidden/revealed */
-.nav-item-text { white-space: nowrap; opacity: 0; transform: translateX(-8px); transition: all .2s ease; }
-.sidebar:hover .nav-item-text, .sidebar.expanded .nav-item-text { opacity: 1; transform: none; }
+        .nav-item-text {
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all .2s ease;
+        }
+
+        .sidebar:hover .nav-item-text,
+        .sidebar.expanded .nav-item-text {
+            opacity: 1;
+            transform: none;
+        }
 
 /* Tooltip for sidebar items */
 .nav-item::after {
     content: attr(data-tooltip);
-  position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8); color: white;
-  padding: .5rem .75rem; border-radius: 6px; font-size: .8rem; white-space: nowrap;
-  opacity: 0; visibility: hidden; transition: all .3s ease; z-index: 1002; pointer-events: none;
-}
-.sidebar:not(:hover) .nav-item:hover::after { opacity: 1; visibility: visible; }
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: .5rem .75rem;
+            border-radius: 6px;
+            font-size: .8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s ease;
+            z-index: 1002;
+            pointer-events: none;
+        }
+
+        .sidebar:not(:hover) .nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
 
 /* ===== Main Content ===== */
 .main-content {
-  max-width: 1400px; margin: 0 auto; padding: 2.5rem;
-    margin-left: calc(var(--sidebar-collapsed) + var(--sidebar-gap));
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem;
+  margin-left: calc(var(--sidebar-collapsed) + var(--sidebar-gap));
   transition: margin-left .25s ease, box-shadow .3s ease;
   position: relative;
   background: var(--gradient-card);
@@ -743,7 +924,9 @@
   border-radius: 2rem;
   opacity: 0.6;
 }
-.sidebar:hover ~ .main-content, .sidebar.expanded ~ .main-content {
+
+        .sidebar:hover~.main-content,
+        .sidebar.expanded~.main-content {
     margin-left: calc(var(--sidebar-expanded) + var(--sidebar-gap));
 }
 
@@ -753,12 +936,15 @@
         .study-journey {
   background: var(--gradient-white);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem;
-  box-shadow: var(--shadow-md); margin-bottom: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2.5rem;
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
 }
+
 .study-journey::before {
   content: '';
   position: absolute;
@@ -769,6 +955,7 @@
   background: var(--course-gradient);
   opacity: 0.8;
 }
+
 .study-journey:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
@@ -777,7 +964,8 @@
 
         /* ===== Enhanced Progress Tracker ===== */
         .progress-tracker {
-  margin-top: 2rem; padding: 2.5rem;
+            margin-top: 2rem;
+            padding: 2.5rem;
   background: var(--gradient-light); 
   border-radius: 1.5rem;
   box-shadow: var(--shadow-md);
@@ -785,6 +973,7 @@
   border: 1px solid var(--gray-100);
   transition: var(--transition-smooth);
 }
+
 .progress-tracker:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
@@ -792,54 +981,137 @@
 
         /* Progress Path */
         .progress-path {
-  display: flex; align-items: center; gap: 0; position: relative;
-  overflow-x: auto; padding: 3rem 0; justify-content: space-between;
-  flex-wrap: nowrap; scrollbar-width: thin; scrollbar-color: #58a79a transparent;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            position: relative;
+            overflow-x: auto;
+            padding: 3rem 0;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: #58a79a transparent;
   -webkit-overflow-scrolling: touch;
         }
 
         /* Curved Progress Line System */
-.progress-line-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-.progress-line-svg { width: 100%; height: 100px; position: absolute; top: -17px; left: 0; z-index: 1; }
+        .progress-line-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .progress-line-svg {
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            top: -17px;
+            left: 0;
+            z-index: 1;
+        }
 
         .progress-line-background {
-  position: absolute; top: 90px; right: 0; width: 88%; height: 6px; /* 85% to stop before medal */
-            background: #f0f4f7; /* توحيد مع gray-200 */
-  border-radius: 50px; z-index: 1;
-}
+            position: absolute;
+            top: 90px;
+            right: 0;
+            width: 88%;
+            height: 6px;
+            /* 85% to stop before medal */
+            background: #f0f4f7;
+            /* توحيد مع gray-200 */
+            border-radius: 50px;
+            z-index: 1;
+        }
+
         .progress-line-fill {
-  position: absolute; top: 90px; right: 0; width: 100%; height: 6px;
+            position: absolute;
+            top: 90px;
+            right: 0;
+            width: 100%;
+            height: 6px;
               background: var(--course-gradient);
-  border-radius: 50px; z-index: 2; box-shadow: 0 2px 8px rgba(var(--course-primary-rgb),.3);
+            border-radius: 50px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(var(--course-primary-rgb), .3);
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: right;
 }
 
 /* No end indicator circle - clean line ending */
 
-.progress-path::-webkit-scrollbar { height: 6px; }
-.progress-path::-webkit-scrollbar-track { background: transparent; }
-.progress-path::-webkit-scrollbar-thumb { background-color: #58a79a; border-radius: 6px; }
+        .progress-path::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .progress-path::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .progress-path::-webkit-scrollbar-thumb {
+            background-color: #58a79a;
+            border-radius: 6px;
+        }
 
         /* Progress Steps */
         .progress-step {
-  position: relative; display: flex; flex-direction: column; align-items: center;
-  flex-shrink: 0; cursor: pointer; transition: all .3s ease; margin: 0 0.25rem; z-index: 2;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all .3s ease;
+            margin: 0 0.25rem;
+            z-index: 2;
   min-width: 50px;
 }
-.progress-step:first-child { margin-left: 0; }
-.progress-step:last-child { margin-right: 0; }
-.progress-step:hover { transform: translateY(-5px); }
+
+        .progress-step:first-child {
+            margin-left: 0;
+        }
+
+        .progress-step:last-child {
+            margin-right: 0;
+        }
+
+        .progress-step:hover {
+            transform: translateY(-5px);
+        }
 
 /* Hexagon Wrapper */
-.hexagon-wrapper { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 3; }
+        .hexagon-wrapper {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
 
 /* SVG Hexagon */
-.hexagon-svg { transition: all .3s ease; cursor: pointer; z-index: 2; }
-.hexagon-svg:hover { transform: scale(1.1); }
-.hexagon-svg.completed:hover { filter: brightness(1.1) drop-shadow(0 4px 12px rgba(40,167,69,.5)); }
-.hexagon-svg.in-progress:hover { filter: brightness(1.1) drop-shadow(0 4px 12px rgba(255,193,7,.5)); }
-.hexagon-svg.not-started:hover { filter: brightness(1.1) drop-shadow(0 4px 12px rgba(108,117,125,.5)); }
+        .hexagon-svg {
+            transition: all .3s ease;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .hexagon-svg:hover {
+            transform: scale(1.1);
+        }
+
+        .hexagon-svg.completed:hover {
+            filter: brightness(1.1) drop-shadow(0 4px 12px rgba(40, 167, 69, .5));
+        }
+
+        .hexagon-svg.in-progress:hover {
+            filter: brightness(1.1) drop-shadow(0 4px 12px rgba(255, 193, 7, .5));
+        }
+
+        .hexagon-svg.not-started:hover {
+            filter: brightness(1.1) drop-shadow(0 4px 12px rgba(108, 117, 125, .5));
+        }
 
         /* Final Medal positioning - Aligned with progress steps */
 .final-medal { 
@@ -853,6 +1125,7 @@
     z-index: 3;
     transition: all 0.3s ease;
 }
+
 .final-medal .hexagon-wrapper { 
     position: relative; 
     top: 0; 
@@ -870,30 +1143,94 @@
 }
 
 /* Green Water Level Control Classes */
-.green-water-hexagon-medal.green-water-level-0 .green-water-fill { y: 120px; }
-.green-water-hexagon-medal.green-water-level-10 .green-water-fill { y: 108px; }
-.green-water-hexagon-medal.green-water-level-20 .green-water-fill { y: 96px; }
-.green-water-hexagon-medal.green-water-level-30 .green-water-fill { y: 84px; }
-.green-water-hexagon-medal.green-water-level-40 .green-water-fill { y: 72px; }
-.green-water-hexagon-medal.green-water-level-50 .green-water-fill { y: 60px; }
-.green-water-hexagon-medal.green-water-level-60 .green-water-fill { y: 48px; }
-.green-water-hexagon-medal.green-water-level-70 .green-water-fill { y: 36px; }
-.green-water-hexagon-medal.green-water-level-80 .green-water-fill { y: 24px; }
-.green-water-hexagon-medal.green-water-level-90 .green-water-fill { y: 12px; }
-.green-water-hexagon-medal.green-water-level-100 .green-water-fill { y: 0px; }
+        .green-water-hexagon-medal.green-water-level-0 .green-water-fill {
+            y: 120px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-10 .green-water-fill {
+            y: 108px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-20 .green-water-fill {
+            y: 96px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-30 .green-water-fill {
+            y: 84px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-40 .green-water-fill {
+            y: 72px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-50 .green-water-fill {
+            y: 60px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-60 .green-water-fill {
+            y: 48px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-70 .green-water-fill {
+            y: 36px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-80 .green-water-fill {
+            y: 24px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-90 .green-water-fill {
+            y: 12px;
+        }
+
+        .green-water-hexagon-medal.green-water-level-100 .green-water-fill {
+            y: 0px;
+        }
 
 /* Green Wave positioning based on water level */
-.green-water-hexagon-medal.green-water-level-0 .green-water-wave { transform: translateY(120px); }
-.green-water-hexagon-medal.green-water-level-10 .green-water-wave { transform: translateY(108px); }
-.green-water-hexagon-medal.green-water-level-20 .green-water-wave { transform: translateY(96px); }
-.green-water-hexagon-medal.green-water-level-30 .green-water-wave { transform: translateY(84px); }
-.green-water-hexagon-medal.green-water-level-40 .green-water-wave { transform: translateY(72px); }
-.green-water-hexagon-medal.green-water-level-50 .green-water-wave { transform: translateY(60px); }
-.green-water-hexagon-medal.green-water-level-60 .green-water-wave { transform: translateY(48px); }
-.green-water-hexagon-medal.green-water-level-70 .green-water-wave { transform: translateY(36px); }
-.green-water-hexagon-medal.green-water-level-80 .green-water-wave { transform: translateY(24px); }
-.green-water-hexagon-medal.green-water-level-90 .green-water-wave { transform: translateY(12px); }
-.green-water-hexagon-medal.green-water-level-100 .green-water-wave { transform: translateY(0px); }
+        .green-water-hexagon-medal.green-water-level-0 .green-water-wave {
+            transform: translateY(120px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-10 .green-water-wave {
+            transform: translateY(108px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-20 .green-water-wave {
+            transform: translateY(96px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-30 .green-water-wave {
+            transform: translateY(84px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-40 .green-water-wave {
+            transform: translateY(72px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-50 .green-water-wave {
+            transform: translateY(60px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-60 .green-water-wave {
+            transform: translateY(48px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-70 .green-water-wave {
+            transform: translateY(36px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-80 .green-water-wave {
+            transform: translateY(24px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-90 .green-water-wave {
+            transform: translateY(12px);
+        }
+
+        .green-water-hexagon-medal.green-water-level-100 .green-water-wave {
+            transform: translateY(0px);
+        }
 
 /* Green Water animations */
 .green-water-fill {
@@ -910,8 +1247,15 @@
 }
 
 @keyframes greenMedalCelebrate {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-3px) scale(1.05); }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-3px) scale(1.05);
+            }
 }
 
 /* Green bubble animations */
@@ -933,9 +1277,25 @@
 }
 
         /* Medal SVG */
-.medal-hexagon-svg { transition: all .3s ease; cursor: pointer; border: none; background: transparent; }
-.medal-hexagon-svg:hover { transform: scale(1.05) rotate(5deg); filter: brightness(1.1) drop-shadow(0 6px 20px rgba(255,215,0,.6)); }
-.medal-hexagon-svg object, .medal-hexagon-svg img { width: 100%; height: 100%; border: none; background: transparent; }
+        .medal-hexagon-svg {
+            transition: all .3s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .medal-hexagon-svg:hover {
+            transform: scale(1.05) rotate(5deg);
+            filter: brightness(1.1) drop-shadow(0 6px 20px rgba(255, 215, 0, .6));
+        }
+
+        .medal-hexagon-svg object,
+        .medal-hexagon-svg img {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
 
         /* Water Hexagon Container */
         .water-hexagon-container {
@@ -984,34 +1344,54 @@
             animation: sparkleGlow 2s ease-in-out infinite;
         }
 
-        .sparkle1 { animation-delay: 0s; }
-        .sparkle2 { animation-delay: 0.5s; }
-        .sparkle3 { animation-delay: 1s; }
-        .sparkle4 { animation-delay: 1.5s; }
+        .sparkle1 {
+            animation-delay: 0s;
+        }
+
+        .sparkle2 {
+            animation-delay: 0.5s;
+        }
+
+        .sparkle3 {
+            animation-delay: 1s;
+        }
+
+        .sparkle4 {
+            animation-delay: 1.5s;
+        }
 
         /* Keyframes for Water Waves */
         @keyframes wave1 {
-            0%, 100% { 
+
+            0%,
+            100% {
                 d: path('M0,140 Q35,130 70,140 T140,140 L140,150 L0,150 Z'); 
             }
+
             50% { 
                 d: path('M0,140 Q35,135 70,140 T140,140 L140,150 L0,150 Z'); 
             }
         }
 
         @keyframes wave2 {
-            0%, 100% { 
+
+            0%,
+            100% {
                 d: path('M0,140 Q35,150 70,140 T140,140 L140,150 L0,150 Z'); 
             }
+
             50% { 
                 d: path('M0,140 Q35,145 70,140 T140,140 L140,150 L0,150 Z'); 
             }
         }
 
         @keyframes wave3 {
-            0%, 100% { 
+
+            0%,
+            100% {
                 d: path('M0,140 Q35,135 70,140 T140,140 L140,150 L0,150 Z'); 
             }
+
             50% { 
                 d: path('M0,140 Q35,140 70,140 T140,140 L140,150 L0,150 Z'); 
             }
@@ -1019,41 +1399,121 @@
 
         /* Medal Float Animation */
         @keyframes medalFloat {
-            0%, 100% { transform: translate(70px, 70px) translateY(0px); }
-            50% { transform: translate(70px, 70px) translateY(-3px); }
+
+            0%,
+            100% {
+                transform: translate(70px, 70px) translateY(0px);
+            }
+
+            50% {
+                transform: translate(70px, 70px) translateY(-3px);
+            }
         }
 
         /* Sparkle Glow Animation */
         @keyframes sparkleGlow {
-            0%, 100% { opacity: 0; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
         }
 
         /* Water Level Classes */
-        .water-level-0 .water-fill { y: 140px; }
-        .water-level-10 .water-fill { y: 126px; }
-        .water-level-20 .water-fill { y: 112px; }
-        .water-level-30 .water-fill { y: 98px; }
-        .water-level-40 .water-fill { y: 84px; }
-        .water-level-50 .water-fill { y: 70px; }
-        .water-level-60 .water-fill { y: 56px; }
-        .water-level-70 .water-fill { y: 42px; }
-        .water-level-80 .water-fill { y: 28px; }
-        .water-level-90 .water-fill { y: 14px; }
-        .water-level-100 .water-fill { y: 0px; }
+        .water-level-0 .water-fill {
+            y: 140px;
+        }
+
+        .water-level-10 .water-fill {
+            y: 126px;
+        }
+
+        .water-level-20 .water-fill {
+            y: 112px;
+        }
+
+        .water-level-30 .water-fill {
+            y: 98px;
+        }
+
+        .water-level-40 .water-fill {
+            y: 84px;
+        }
+
+        .water-level-50 .water-fill {
+            y: 70px;
+        }
+
+        .water-level-60 .water-fill {
+            y: 56px;
+        }
+
+        .water-level-70 .water-fill {
+            y: 42px;
+        }
+
+        .water-level-80 .water-fill {
+            y: 28px;
+        }
+
+        .water-level-90 .water-fill {
+            y: 14px;
+        }
+
+        .water-level-100 .water-fill {
+            y: 0px;
+        }
 
         /* Waves positioning based on water level */
-        .water-level-0 .water-wave { transform: translateY(140px); }
-        .water-level-10 .water-wave { transform: translateY(126px); }
-        .water-level-20 .water-wave { transform: translateY(112px); }
-        .water-level-30 .water-wave { transform: translateY(98px); }
-        .water-level-40 .water-wave { transform: translateY(84px); }
-        .water-level-50 .water-wave { transform: translateY(70px); }
-        .water-level-60 .water-wave { transform: translateY(56px); }
-        .water-level-70 .water-wave { transform: translateY(42px); }
-        .water-level-80 .water-wave { transform: translateY(28px); }
-        .water-level-90 .water-wave { transform: translateY(14px); }
-        .water-level-100 .water-wave { transform: translateY(0px); }
+        .water-level-0 .water-wave {
+            transform: translateY(140px);
+        }
+
+        .water-level-10 .water-wave {
+            transform: translateY(126px);
+        }
+
+        .water-level-20 .water-wave {
+            transform: translateY(112px);
+        }
+
+        .water-level-30 .water-wave {
+            transform: translateY(98px);
+        }
+
+        .water-level-40 .water-wave {
+            transform: translateY(84px);
+        }
+
+        .water-level-50 .water-wave {
+            transform: translateY(70px);
+        }
+
+        .water-level-60 .water-wave {
+            transform: translateY(56px);
+        }
+
+        .water-level-70 .water-wave {
+            transform: translateY(42px);
+        }
+
+        .water-level-80 .water-wave {
+            transform: translateY(28px);
+        }
+
+        .water-level-90 .water-wave {
+            transform: translateY(14px);
+        }
+
+        .water-level-100 .water-wave {
+            transform: translateY(0px);
+        }
 
         /* Full medal celebration effect */
         .water-level-100 .medal-icon {
@@ -1065,135 +1525,381 @@
         }
 
         @keyframes medalCelebrate {
-            0% { transform: translate(70px, 70px) scale(1) rotate(0deg); }
-            25% { transform: translate(70px, 70px) scale(1.1) rotate(5deg); }
-            50% { transform: translate(70px, 70px) scale(1.2) rotate(-5deg); }
-            75% { transform: translate(70px, 70px) scale(1.1) rotate(3deg); }
-            100% { transform: translate(70px, 70px) scale(1) rotate(0deg); }
+            0% {
+                transform: translate(70px, 70px) scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(70px, 70px) scale(1.1) rotate(5deg);
+            }
+
+            50% {
+                transform: translate(70px, 70px) scale(1.2) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(70px, 70px) scale(1.1) rotate(3deg);
+            }
+
+            100% {
+                transform: translate(70px, 70px) scale(1) rotate(0deg);
+            }
         }
 
         @keyframes sparkleExplosion {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(2); }
-            100% { opacity: 0; transform: scale(0); }
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
         }
 
         @keyframes medalCelebrationBounce {
-            0% { transform: scale(1) translateY(0px); }
-            20% { transform: scale(1.2) translateY(-10px); }
-            40% { transform: scale(1.1) translateY(-5px); }
-            60% { transform: scale(1.15) translateY(-8px); }
-            80% { transform: scale(1.05) translateY(-2px); }
-            100% { transform: scale(1) translateY(0px); }
+            0% {
+                transform: scale(1) translateY(0px);
+            }
+
+            20% {
+                transform: scale(1.2) translateY(-10px);
+            }
+
+            40% {
+                transform: scale(1.1) translateY(-5px);
+            }
+
+            60% {
+                transform: scale(1.15) translateY(-8px);
+            }
+
+            80% {
+                transform: scale(1.05) translateY(-2px);
+            }
+
+            100% {
+                transform: scale(1) translateY(0px);
+            }
         }
 
 /* Step Blocks */
         .step-block {
-  width: 60px; height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border-radius: 0 0 12px 12px; font-weight: 600; transition: all .3s ease; position: relative;
-  margin-top: 50px; box-shadow: 0 2px 8px rgba(0,0,0,.1);
-}
-.step-block.completed { background: #ffffff; color: #333; border: 2px solid #4CAF50; }
-.step-block.in-progress { background: var(--course-primary); color: #fff; border: 2px solid var(--course-primary); }
-.step-block.not-started { background: #ffffff; color: #666; border: 2px solid #e0e0e0; }
+            width: 60px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 0 12px 12px;
+            font-weight: 600;
+            transition: all .3s ease;
+            position: relative;
+            margin-top: 50px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+        }
 
-.module-code { font-size: .65rem; font-weight: 700; margin-bottom: .15rem; letter-spacing: .3px; line-height: 1.1; }
-.module-percentage { font-size: .65rem; font-weight: 600; opacity: .9; }
+        .step-block.completed {
+            background: #ffffff;
+            color: #333;
+            border: 2px solid #4CAF50;
+        }
+
+        .step-block.in-progress {
+            background: var(--course-primary);
+            color: #fff;
+            border: 2px solid var(--course-primary);
+        }
+
+        .step-block.not-started {
+            background: #ffffff;
+            color: #666;
+            border: 2px solid #e0e0e0;
+        }
+
+        .module-code {
+            font-size: .65rem;
+            font-weight: 700;
+            margin-bottom: .15rem;
+            letter-spacing: .3px;
+            line-height: 1.1;
+        }
+
+        .module-percentage {
+            font-size: .65rem;
+            font-weight: 600;
+            opacity: .9;
+        }
 
 /* Final Medal — Enhanced Hexagon (already defined above) */
         .medal-hexagon {
-  width: 80px; height: 46.2px; position: relative; margin: 39.6px 0;
+            width: 80px;
+            height: 46.2px;
+            position: relative;
+            margin: 39.6px 0;
             background: linear-gradient(135deg, #FFD700, #FFA500);
-  border-left: 3px solid #FF8C00; border-right: 3px solid #FF8C00;
-  box-shadow: 0 8px 25px rgba(255,165,0,.4); transition: all .3s ease;
-  display: flex; align-items: center; justify-content: center;
-}
-.medal-hexagon:before, .medal-hexagon:after {
-  content: ""; position: absolute; z-index: 1; width: 56.56px; height: 56.56px;
+            border-left: 3px solid #FF8C00;
+            border-right: 3px solid #FF8C00;
+            box-shadow: 0 8px 25px rgba(255, 165, 0, .4);
+            transition: all .3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .medal-hexagon:before,
+        .medal-hexagon:after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            width: 56.56px;
+            height: 56.56px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
-  left: 9.22px; border-left: 3px solid #FF8C00; border-right: 3px solid #FF8C00;
-}
-.medal-hexagon:before { transform: rotate(60deg); }
-.medal-hexagon:after { transform: rotate(-60deg); }
-.medal-hexagon:hover { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255,165,0,.6); }
+            left: 9.22px;
+            border-left: 3px solid #FF8C00;
+            border-right: 3px solid #FF8C00;
+        }
+
+        .medal-hexagon:before {
+            transform: rotate(60deg);
+        }
+
+        .medal-hexagon:after {
+            transform: rotate(-60deg);
+        }
+
+        .medal-hexagon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 165, 0, .6);
+        }
 
         .medal-inner {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 50px; height: 50px; border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background: linear-gradient(135deg, #FFD700, #FFA500);
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
-  border: 2px solid #fff; box-shadow: inset 0 2px 8px rgba(0,0,0,.2); z-index: 2;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #fff;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, .2);
+            z-index: 2;
+        }
+
         .medal-water {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(180deg, rgba(30,144,255,.8), rgba(0,191,255,.9));
-  transition: height 2s ease-in-out; border-radius: 0 0 50px 50px; height: 0%;
-}
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(30, 144, 255, .8), rgba(0, 191, 255, .9));
+            transition: height 2s ease-in-out;
+            border-radius: 0 0 50px 50px;
+            height: 0%;
+        }
+
         .medal-content {
-  position: relative; z-index: 2; color: #fff; font-weight: 700; font-size: .9rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,.3);
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            font-weight: 700;
+            font-size: .9rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, .3);
         }
 
         /* Tooltip */
         .progress-step[data-tooltip]:hover:after {
             content: attr(data-tooltip);
-  position: absolute; bottom: 90%; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,.9); color: #fff; padding: .75rem 1rem; border-radius: .5rem; font-size: .8rem;
-  white-space: nowrap; z-index: 1000; opacity: 0; animation: tooltipFadeIn .3s ease forwards;
-  box-shadow: 0 4px 12px rgba(0,0,0,.3);
-}
+            position: absolute;
+            bottom: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, .9);
+            color: #fff;
+            padding: .75rem 1rem;
+            border-radius: .5rem;
+            font-size: .8rem;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            animation: tooltipFadeIn .3s ease forwards;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+        }
+
         .progress-step:first-child[data-tooltip]:hover:after {
-  bottom: auto; top: 50%; left: 120%; transform: translateY(-50%);
-}
-@keyframes tooltipFadeIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+            bottom: auto;
+            top: 50%;
+            left: 120%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes tooltipFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
 
         /* Animations */
-@keyframes hexagonComplete { 0% { transform: scale(1);} 50% { transform: scale(1.2);} 100% { transform: scale(1);} }
-@keyframes waterFill { from { height: 0%; } to { height: var(--water-level, 0%);} }
-.hexagon.completed { animation: hexagonComplete .6s ease; }
+        @keyframes hexagonComplete {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes waterFill {
+            from {
+                height: 0%;
+            }
+
+            to {
+                height: var(--water-level, 0%);
+            }
+        }
+
+        .hexagon.completed {
+            animation: hexagonComplete .6s ease;
+        }
 
         .section-title {
-  font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--gray-800);
-  position: relative; padding-bottom: .5rem;
-}
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--gray-800);
+            position: relative;
+            padding-bottom: .5rem;
+        }
+
         .section-title::after {
-  content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 3px;
-  background: var(--course-primary); border-radius: 3px;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--course-primary);
+            border-radius: 3px;
         }
         
         /* Consistent section spacing */
-.study-journey, .next-step, .exam-tracker, .performance-summary, .study-tools, .course-resources { margin-bottom: 2rem; }
-.study-journey:last-child, .next-step:last-child, .exam-tracker:last-child, .performance-summary:last-child, .study-tools:last-child, .course-resources:last-child { margin-bottom: 0; }
+        .study-journey,
+        .next-step,
+        .exam-tracker,
+        .performance-summary,
+        .study-tools,
+        .course-resources {
+            margin-bottom: 2rem;
+        }
 
-.progress-track { display: flex; gap: 1rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 1rem; }
-.progress-item { min-width: 120px; text-align: center; position: relative; }
+        .study-journey:last-child,
+        .next-step:last-child,
+        .exam-tracker:last-child,
+        .performance-summary:last-child,
+        .study-tools:last-child,
+        .course-resources:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-track {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .progress-item {
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+        }
 
         .progress-circle {
-  width: 80px; height: 80px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  margin: 0 auto .5rem; font-weight: 600; font-size: .9rem; position: relative; overflow: hidden;
-}
-.progress-circle.completed { background: var(--success-green); color: var(--white); }
-.progress-circle.current { background: var(--course-primary); color: var(--white); animation: pulse 2s infinite; }
-.progress-circle.pending { background: var(--gray-100); color: var(--gray-600); }
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto .5rem;
+            font-weight: 600;
+            font-size: .9rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-.progress-label { font-size: .8rem; color: var(--gray-600); margin-bottom: .25rem; }
-.progress-percentage { font-size: .7rem; color: var(--gray-500); }
+        .progress-circle.completed {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .progress-circle.current {
+            background: var(--course-primary);
+            color: var(--white);
+            animation: pulse 2s infinite;
+        }
+
+        .progress-circle.pending {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .progress-label {
+            font-size: .8rem;
+            color: var(--gray-600);
+            margin-bottom: .25rem;
+        }
+
+        .progress-percentage {
+            font-size: .7rem;
+            color: var(--gray-500);
+        }
 
         /* ===== Dashboard Grid ===== */
-.dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; margin-top: 2rem; }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
 
 /* ===== Next Step ===== */
         .next-step {
   background: var(--gradient-card);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
   box-shadow: var(--shadow-md); 
   margin-bottom: 2.5rem; 
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
 }
+
 .next-step::after {
   content: '';
   position: absolute;
@@ -1204,31 +1910,62 @@
   background: linear-gradient(90deg, var(--course-primary) 0%, var(--course-light) 100%);
   opacity: 0.7;
 }
+
 .next-step:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
   border-color: var(--gray-200);
 }
 
-.step-content { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .step-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
         .step-icon {
-  width: 60px; height: 60px; border-radius: 50%;
-  background: var(--gradient-button); display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; color: var(--white); flex-shrink: 0; transition: var(--transition);
-}
-.step-text { flex: 1; }
-.step-title { font-size: 1.1rem; font-weight: 600; margin-bottom: .5rem; color: var(--gray-800); }
-.step-description { color: var(--gray-600); font-size: .9rem; line-height: 1.6; }
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-button);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--gray-800);
+        }
+
+        .step-description {
+            color: var(--gray-600);
+            font-size: .9rem;
+            line-height: 1.6;
+        }
 
         /* ===== Exam Tracker ===== */
         .exam-tracker {
   background: var(--gradient-white);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
   box-shadow: var(--shadow-md); 
   transition: var(--transition-smooth);
   position: relative;
 }
+
 .exam-tracker::before {
   content: '';
   position: absolute;
@@ -1242,61 +1979,127 @@
   transition: opacity 0.3s ease;
   z-index: -1;
 }
+
 .exam-tracker:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
 }
+
 .exam-tracker:hover::before {
   opacity: 0.1;
 }
 
-.exam-score { text-align: center; margin-bottom: 2rem; }
-        .score-number {
-  font-size: 3rem; font-weight: 700; color: var(--success-green); margin-bottom: .5rem;
-            background: linear-gradient(to right, var(--success-green), var(--light-blue));
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  animation: gradient 3s ease infinite; background-size: 200% 200%;
-}
-@keyframes gradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-.score-label { color: var(--gray-600); font-size: .9rem; }
+        .exam-score {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-.countdown { text-align: center; margin-bottom: 2rem; }
-.countdown-numbers { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: .5rem; }
-.countdown-item { text-align: center; }
+        .score-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success-green);
+            margin-bottom: .5rem;
+            background: linear-gradient(to right, var(--success-green), var(--light-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        .score-label {
+            color: var(--gray-600);
+            font-size: .9rem;
+        }
+
+        .countdown {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
         .countdown-value {
-  font-size: 2rem; font-weight: 700; color: var(--warning-orange);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--warning-orange);
             background: linear-gradient(to right, var(--warning-orange), var(--accent-gold));
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.countdown-label { font-size: .8rem; color: var(--gray-500); margin-top: .25rem; }
-.remaining-text { color: var(--gray-600); font-size: .9rem; margin-top: .5rem; }
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .countdown-label {
+            font-size: .8rem;
+            color: var(--gray-500);
+            margin-top: .25rem;
+        }
+
+        .remaining-text {
+            color: var(--gray-600);
+            font-size: .9rem;
+            margin-top: .5rem;
+        }
 
         /* ===== Performance Summary ===== */
         .performance-summary {
   background: var(--gradient-light);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
   box-shadow: var(--shadow-md); 
   margin-bottom: 2.5rem; 
   transition: var(--transition-smooth);
   position: relative;
 }
+
 .performance-summary:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
   border-color: var(--gray-200);
 }
 
-.performance-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
         .performance-card {
   background: var(--gradient-white); 
-  border-radius: 1rem; padding: 2rem; text-align: center;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
   transition: var(--transition-smooth); 
   border: 1px solid var(--gray-100);
   box-shadow: var(--shadow-xs);
   position: relative;
   overflow: hidden;
 }
+
         .performance-card::before {
   content: '';
   position: absolute;
@@ -1307,55 +2110,105 @@
   background: var(--course-gradient);
   opacity: 0.6;
 }
+
         .performance-card:hover {
   background: var(--gradient-hover); 
   transform: translateY(-4px);
   border-color: var(--gray-200); 
   box-shadow: var(--shadow-lg);
 }
+
         .performance-icon {
-  width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 1rem;
-  display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
             transition: var(--transition);
         }
-.performance-card:hover .performance-icon { transform: scale(1.1); }
-.performance-icon.lectures { background: var(--info-blue); }
-.performance-icon.tests { background: var(--warning-orange); }
-.performance-icon.mcqs { background: var(--success-green); }
-.performance-icon.exams { background: var(--danger-red); }
 
-.performance-percentage { font-size: 1.8rem; font-weight: 700; margin-bottom: .5rem; transition: var(--transition); }
-.performance-card:hover .performance-percentage { color: var(--accent-gold); }
-.performance-label { color: var(--gray-600); font-size: .9rem; margin-bottom: .25rem; }
-.performance-sublabel { color: var(--gray-500); font-size: .8rem; }
+        .performance-card:hover .performance-icon {
+            transform: scale(1.1);
+        }
+
+        .performance-icon.lectures {
+            background: var(--info-blue);
+        }
+
+        .performance-icon.tests {
+            background: var(--warning-orange);
+        }
+
+        .performance-icon.mcqs {
+            background: var(--success-green);
+        }
+
+        .performance-icon.exams {
+            background: var(--danger-red);
+        }
+
+        .performance-percentage {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            transition: var(--transition);
+        }
+
+        .performance-card:hover .performance-percentage {
+            color: var(--accent-gold);
+        }
+
+        .performance-label {
+            color: var(--gray-600);
+            font-size: .9rem;
+            margin-bottom: .25rem;
+        }
+
+        .performance-sublabel {
+            color: var(--gray-500);
+            font-size: .8rem;
+        }
 
         /* ===== Study Tools ===== */
         .study-tools {
   background: var(--gradient-card);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
   box-shadow: var(--shadow-md); 
   transition: var(--transition-smooth); 
   margin-top: 2.5rem;
   position: relative;
 }
+
 .study-tools:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
   border-color: var(--gray-200);
 }
 
-.tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
 
         .tool-card {
   background: var(--gradient-white); 
-  border-radius: 1rem; padding: 2rem; 
+            border-radius: 1rem;
+            padding: 2rem;
   transition: var(--transition-smooth);
-  cursor: pointer; border: 1px solid var(--gray-100);
+            cursor: pointer;
+            border: 1px solid var(--gray-100);
   box-shadow: var(--shadow-xs);
   position: relative;
   overflow: hidden;
 }
+
         .tool-card::before {
   content: '';
   position: absolute;
@@ -1368,61 +2221,130 @@
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
+
         .tool-card:hover {
   background: var(--gradient-hover); 
   transform: translateY(-4px);
   border-color: var(--gray-200); 
   box-shadow: var(--shadow-lg);
 }
+
         .tool-card:hover::before {
   transform: scaleX(1);
 }
 
-.tool-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+
         .tool-icon {
-  width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-button);
-  display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--white); transition: var(--transition);
-}
-.tool-card:hover .tool-icon { transform: rotate(10deg) scale(1.1); }
-.tool-title { font-weight: 600; font-size: 1rem; color: var(--gray-800); transition: var(--transition); }
-.tool-card:hover .tool-title { color: var(--accent-gold); }
-.tool-description { color: var(--gray-600); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-button);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .tool-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: var(--transition);
+        }
+
+        .tool-card:hover .tool-title {
+            color: var(--accent-gold);
+        }
+
+        .tool-description {
+            color: var(--gray-600);
+            font-size: .9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
 
         .tool-button {
-  background: var(--gradient-button); color: var(--white); border: none; padding: .75rem 1.5rem; border-radius: .5rem;
-  font-weight: 600; cursor: pointer; transition: var(--transition); width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: .5rem;
-}
-.tool-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.tool-button:active { transform: translateY(0); }
-.tool-button.secondary { background: var(--gray-200); color: var(--gray-700); }
-.tool-button.secondary:hover { background: var(--gray-300); }
+            background: var(--gradient-button);
+            color: var(--white);
+            border: none;
+            padding: .75rem 1.5rem;
+            border-radius: .5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tool-button:active {
+            transform: translateY(0);
+        }
+
+        .tool-button.secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .tool-button.secondary:hover {
+            background: var(--gray-300);
+        }
 
         /* ===== Course Resources ===== */
         .course-resources {
   background: var(--gradient-light);
   border: 1px solid var(--gray-150);
-  border-radius: 1.25rem; padding: 2.5rem; 
+            border-radius: 1.25rem;
+            padding: 2.5rem;
   box-shadow: var(--shadow-md); 
   transition: var(--transition-smooth);
   position: relative;
 }
+
 .course-resources:hover { 
   box-shadow: var(--shadow-xl); 
   transform: translateY(-2px);
   border-color: var(--gray-200);
 }
 
-.resources-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
         .resource-card {
   background: var(--gradient-white); 
-  border-radius: 1rem; padding: 2rem; text-align: center; 
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
   transition: var(--transition-smooth);
-  cursor: pointer; border: 1px solid var(--gray-100);
+            cursor: pointer;
+            border: 1px solid var(--gray-100);
   box-shadow: var(--shadow-xs);
   position: relative;
   overflow: hidden;
 }
+
         .resource-card::after {
   content: '';
   position: absolute;
@@ -1434,81 +2356,287 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
         .resource-card:hover {
   background: var(--gradient-hover); 
   transform: translateY(-4px);
   border-color: var(--gray-200); 
   box-shadow: var(--shadow-lg);
 }
+
         .resource-card:hover::after {
   opacity: 1;
 }
-.resource-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--accent-gold); transition: var(--transition); }
-.resource-card:hover .resource-icon { transform: scale(1.1); color: var(--accent-yellow); }
-.resource-title { font-weight: 600; margin-bottom: .5rem; color: var(--gray-800); transition: var(--transition); }
-.resource-card:hover .resource-title { color: var(--accent-gold); }
-.resource-arrow { color: var(--gray-500); font-size: .8rem; transition: var(--transition); }
-.resource-card:hover .resource-arrow { color: var(--gray-700); transform: translateX(-5px); }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover .resource-icon {
+            transform: scale(1.1);
+            color: var(--accent-yellow);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--gray-800);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover .resource-title {
+            color: var(--accent-gold);
+        }
+
+        .resource-arrow {
+            color: var(--gray-500);
+            font-size: .8rem;
+            transition: var(--transition);
+        }
+
+        .resource-card:hover .resource-arrow {
+            color: var(--gray-700);
+            transform: translateX(-5px);
+        }
 
         /* ===== Buttons ===== */
         .btn {
-  padding: .75rem 1.5rem; border: none; border-radius: .5rem; font-weight: 600; text-decoration: none;
-  display: inline-flex; align-items: center; gap: .5rem; transition: var(--transition); cursor: pointer; font-size: .9rem;
-}
-.btn-primary { background: var(--gradient-button); color: var(--white); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.btn-primary:active { transform: translateY(0); }
-.btn-outline { background: transparent; color: var(--gray-700); border: 2px solid var(--gray-300); }
-.btn-outline:hover { background: var(--gray-100); border-color: var(--gray-400); transform: translateY(-2px); }
-.btn-outline:active { transform: translateY(0); }
+            padding: .75rem 1.5rem;
+            border: none;
+            border-radius: .5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: .9rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-button);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-100);
+            border-color: var(--gray-400);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline:active {
+            transform: translateY(0);
+        }
 
         /* ===== Exam Tracker Button Container ===== */
-.exam-tracker-button-container { display: flex; justify-content: center; margin-top: 1.5rem; }
+        .exam-tracker-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
 
         /* ===== Loading Animation ===== */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
-.fade-in { animation: fadeIn .5s ease forwards; }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn .5s ease forwards;
+        }
 
 /* ===== Responsive ===== */
         @media (max-width: 1200px) {
-  .dashboard-grid { grid-template-columns: 1fr; }
-  .performance-grid { grid-template-columns: repeat(2, 1fr); }
-  .resources-grid { grid-template-columns: repeat(2, 1fr); }
-}
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 992px) {
-  .header-container { padding: 0 1.5rem; }
-  .header-center { gap: 1.5rem; }
-  .study-info { padding: .4rem .8rem; }
-}
+            .header-container {
+                padding: 0 1.5rem;
+            }
+
+            .header-center {
+                gap: 1.5rem;
+            }
+
+            .study-info {
+                padding: .4rem .8rem;
+            }
+        }
+
         @media (max-width: 768px) {
-  .main-content { margin-left: 0; padding: 1.5rem; }
-  .sidebar { left: calc(-1 * var(--sidebar-collapsed)); transition: left .3s ease; }
-  .sidebar:hover { left: 0; width: var(--sidebar-expanded); }
-  .header { width: 100vw; margin-left: 0; }
-  .header-center { flex-direction: column; gap: 1rem; }
-  .header-welcome { font-size: 1rem; }
-  .header-container { padding: 0 1rem; gap: 1rem; }
-  .progress-tracker { padding: 1rem 0; }
-  .progress-path { gap: 0; flex-wrap: wrap; justify-content: center; }
-  .progress-step { margin: 0.5rem 0.25rem; }
-  .progress-block { width: 55px; height: 55px; }
-  .module-percentage { font-size: .85rem; }
-  .module-code { font-size: .65rem; }
-  .progress-connector { width: 20px; height: 2px; }
-  .final-goal { width: 65px; height: 65px; font-size: 1rem; margin-left: 15px; }
-  .header-center { gap: 1rem; }
-  .user-dropdown { left: auto; right: 0; min-width: 260px; }
-  .study-dropdown { left: auto; right: 0; min-width: 260px; width: auto; }
-  .study-info { font-size: .8rem; gap: 0.5rem; padding: 0.5rem 1rem; }
-  .course-icon { width: 32px; height: 32px; font-size: .7rem; }
-  .progress-track { gap: .5rem; }
-  .progress-item { min-width: 80px; }
-  .progress-circle { width: 60px; height: 60px; }
-  .performance-grid { grid-template-columns: 1fr; }
-  .tools-grid { grid-template-columns: 1fr; }
-  .resources-grid { grid-template-columns: repeat(2, 1fr); }
-  .step-content { flex-direction: column; text-align: center; }
-  .step-icon { margin-bottom: 1rem; }
+  .main-content { 
+    margin-left: 0; 
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                left: calc(-1 * var(--sidebar-collapsed));
+                transition: left .3s ease;
+            }
+
+            .sidebar:hover {
+                left: 0;
+                width: var(--sidebar-expanded);
+            }
+
+            .header {
+                width: 100vw;
+                margin-left: 0;
+            }
+
+            .header-center {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-welcome {
+                font-size: 1rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+                gap: 1rem;
+            }
+
+            .progress-tracker {
+                padding: 1rem 0;
+            }
+
+            .progress-path {
+                gap: 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .progress-step {
+                margin: 0.5rem 0.25rem;
+            }
+
+            .progress-block {
+                width: 55px;
+                height: 55px;
+            }
+
+            .module-percentage {
+                font-size: .85rem;
+            }
+
+            .module-code {
+                font-size: .65rem;
+            }
+
+            .progress-connector {
+                width: 20px;
+                height: 2px;
+            }
+
+            .final-goal {
+                width: 65px;
+                height: 65px;
+                font-size: 1rem;
+                margin-left: 15px;
+            }
+
+            .header-center {
+                gap: 1rem;
+            }
+
+            .user-dropdown {
+                left: auto;
+                right: 0;
+                min-width: 260px;
+            }
+
+            .study-dropdown {
+                left: auto;
+                right: 0;
+                min-width: 260px;
+                width: auto;
+            }
+
+            .study-info {
+                font-size: .8rem;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .course-icon {
+                width: 32px;
+                height: 32px;
+                font-size: .7rem;
+            }
+
+            .progress-track {
+                gap: .5rem;
+            }
+
+            .progress-item {
+                min-width: 80px;
+            }
+
+            .progress-circle {
+                width: 60px;
+                height: 60px;
+            }
+
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-icon {
+                margin-bottom: 1rem;
+            }
+
             /* Mobile Footer - Properly aligned */
             .footer {
                 margin: 0;
@@ -1560,24 +2688,44 @@
                 justify-content: center;
             }
 }
+
         @media (max-width: 576px) {
-  .countdown-numbers { gap: .5rem; }
-  .countdown-value { font-size: 1.5rem; }
-  .resources-grid { grid-template-columns: 1fr; }
-  .section-title { font-size: 1.3rem; }
-  .study-journey, .next-step, .exam-tracker, .performance-summary, .study-tools, .course-resources { padding: 1.5rem; }
+            .countdown-numbers {
+                gap: .5rem;
+            }
+
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .study-journey,
+            .next-step,
+            .exam-tracker,
+            .performance-summary,
+            .study-tools,
+            .course-resources {
+                padding: 1.5rem;
+            }
 }
 
 /* ===== Footer Section ===== */
 .footer {
   background: linear-gradient(135deg, var(--primary-navy) 0%, #1e3a5f 100%);
   color: var(--white);
-  padding: 3rem 2rem 2rem;
-  position: relative;
+            padding: 3rem 2rem 2rem;
+            position: relative;
   overflow: hidden;
             margin-top: 3rem;
-  margin-bottom: -5rem;
-  margin-right: -2rem;
+            margin-bottom: -5rem;
+            margin-right: -2rem;
             width: calc(100% + 6rem);
 }
 
@@ -2521,7 +3669,8 @@
         
         /* Mobile Welcome Message - Outside Navbar */
         .mobile-welcome-container {
-            display: none; /* Hidden by default on desktop */
+            display: none;
+            /* Hidden by default on desktop */
         }
         
         .mobile-welcome-message {
@@ -2550,6 +3699,7 @@
 
         /* Mobile Portrait (up to 768px) */
         @media (max-width: 768px) {
+
             /* Hide desktop header, show mobile header */
             .header {
                 display: none;
@@ -2811,7 +3961,8 @@
         }
 
         /* High DPI/Retina Displays */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
             .header {
                 backdrop-filter: blur(25px);
             }
@@ -2999,8 +4150,15 @@
             }
             
             @keyframes fadeInOut {
-                0%, 100% { opacity: 0; }
-                50% { opacity: 1; }
+
+                0%,
+                100% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
             }
             
             /* Better touch targets */
@@ -3155,6 +4313,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -3372,24 +4531,17 @@
                             <svg class="hexagon-svg completed" viewBox="0 0 40 40" width="40" height="40">
                                 <defs>
                                     <linearGradient id="completedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#68d391"/>
-                                        <stop offset="100%" style="stop-color:#81e6d9"/>
+                                        <stop offset="0%" style="stop-color:#68d391" />
+                                        <stop offset="100%" style="stop-color:#81e6d9" />
                                     </linearGradient>
                                     <filter id="hexShadow">
-                                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.3)"/>
+                                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.3)" />
                                     </filter>
                                 </defs>
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#completedGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
-                                <path d="M12,17 L17,22 L28,11" 
-                                      stroke="white" 
-                                      stroke-width="2.5" 
-                                      stroke-linecap="round" 
-                                      stroke-linejoin="round" 
-                                      fill="none"/>
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#completedGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                <path d="M12,17 L17,22 L28,11" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" fill="none" />
                             </svg>
                         </div>
                         <div class="step-block completed">
@@ -3402,17 +4554,10 @@
                     <div class="progress-step" data-module="A2" data-percentage="100" data-status="completed">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg completed" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#completedGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
-                                <path d="M12,17 L17,22 L28,11" 
-                                      stroke="white" 
-                                      stroke-width="2.5" 
-                                      stroke-linecap="round" 
-                                      stroke-linejoin="round" 
-                                      fill="none"/>
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#completedGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                <path d="M12,17 L17,22 L28,11" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" fill="none" />
                             </svg>
                         </div>
                         <div class="step-block completed">
@@ -3427,24 +4572,24 @@
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
                                 <defs>
                                     <linearGradient id="inProgressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#f6ad55"/>
-                                        <stop offset="100%" style="stop-color:#f7c845"/>
+                                        <stop offset="0%" style="stop-color:#f6ad55" />
+                                        <stop offset="100%" style="stop-color:#f7c845" />
                                     </linearGradient>
                                 </defs>
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3459,20 +4604,20 @@
                     <div class="progress-step" data-module="A3" data-percentage="71" data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3487,20 +4632,20 @@
                     <div class="progress-step" data-module="A4" data-percentage="27" data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3515,20 +4660,20 @@
                     <div class="progress-step" data-module="ME2" data-percentage="47" data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3543,20 +4688,20 @@
                     <div class="progress-step" data-module="A5" data-percentage="72" data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3571,20 +4716,20 @@
                     <div class="progress-step" data-module="A6" data-percentage="48" data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg in-progress" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#inProgressGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#inProgressGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
                                 <g transform="translate(20,17)">
                                     <circle cx="-4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="0" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     <circle cx="4" cy="0" r="1.5" fill="white">
-                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                             </svg>
@@ -3601,16 +4746,13 @@
                             <svg class="hexagon-svg not-started" viewBox="0 0 40 40" width="40" height="40">
                                 <defs>
                                     <linearGradient id="notStartedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#a0aec0"/>
-                                        <stop offset="100%" style="stop-color:#8b9bb5"/>
+                                        <stop offset="0%" style="stop-color:#a0aec0" />
+                                        <stop offset="100%" style="stop-color:#8b9bb5" />
                                     </linearGradient>
                                 </defs>
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#notStartedGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
-                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)"/>
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#notStartedGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)" />
                             </svg>
                         </div>
                         <div class="step-block not-started">
@@ -3623,12 +4765,9 @@
                     <div class="progress-step" data-module="SE1" data-percentage="0" data-status="not-started">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg not-started" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#notStartedGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
-                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)"/>
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#notStartedGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)" />
                             </svg>
                         </div>
                         <div class="step-block not-started">
@@ -3641,12 +4780,9 @@
                     <div class="progress-step" data-module="SE2" data-percentage="0" data-status="not-started">
                         <div class="hexagon-wrapper">
                             <svg class="hexagon-svg not-started" viewBox="0 0 40 40" width="40" height="40">
-                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" 
-                                      fill="url(#notStartedGrad)" 
-                                      stroke="rgba(255,255,255,0.3)" 
-                                      stroke-width="1" 
-                                      />
-                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)"/>
+                                <path d="M20,3 L32,10 L32,24 L20,31 L8,24 L8,10 Z" fill="url(#notStartedGrad)"
+                                    stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                <circle cx="20" cy="17" r="3" fill="rgba(255,255,255,0.7)" />
                             </svg>
                         </div>
                         <div class="step-block not-started">
@@ -3656,40 +4792,41 @@
                     </div>
                     
                     <!-- Final Medal - Enhanced AUD Certification with Advanced Water Effect -->
-                    <div class="final-medal progress-step" data-module="FINAL" data-percentage="18" data-status="in-progress">
+                    <div class="final-medal progress-step" data-module="FINAL" data-percentage="18"
+                        data-status="in-progress">
                         <div class="hexagon-wrapper">
                             <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" 
                                  class="green-water-hexagon-medal" id="finalMedal" data-progress="18">
                                     <defs>
                                     <!-- Hexagon Clip Path for Water -->
                                     <clipPath id="hexagonClipGreen">
-                                        <polygon points="60,8 102,33 102,82 60,107 18,82 18,33"/>
+                                        <polygon points="60,8 102,33 102,82 60,107 18,82 18,33" />
                                         </clipPath>
                                         
                                     <!-- Soft Green Water Gradient -->
                                     <linearGradient id="greenWaterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#A8E6CF;stop-opacity:0.8"/>
-                                        <stop offset="30%" style="stop-color:#7FDBAF;stop-opacity:0.9"/>
-                                        <stop offset="70%" style="stop-color:#56C596;stop-opacity:0.95"/>
-                                        <stop offset="100%" style="stop-color:#2E8B57;stop-opacity:1"/>
+                                        <stop offset="0%" style="stop-color:#A8E6CF;stop-opacity:0.8" />
+                                        <stop offset="30%" style="stop-color:#7FDBAF;stop-opacity:0.9" />
+                                        <stop offset="70%" style="stop-color:#56C596;stop-opacity:0.95" />
+                                        <stop offset="100%" style="stop-color:#2E8B57;stop-opacity:1" />
                                         </linearGradient>
                                         
                                         <!-- Medal Gradient -->
                                     <linearGradient id="medalGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#FFD700"/>
-                                            <stop offset="50%" style="stop-color:#FFA500"/>
-                                            <stop offset="100%" style="stop-color:#FF8C00"/>
+                                        <stop offset="0%" style="stop-color:#FFD700" />
+                                        <stop offset="50%" style="stop-color:#FFA500" />
+                                        <stop offset="100%" style="stop-color:#FF8C00" />
                                         </linearGradient>
                                         
                                     <!-- Subtle Shadow -->
                                     <filter id="medalShadow">
-                                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.2)"/>
+                                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.2)" />
                                     </filter>
                                     
                                     <!-- Water Shimmer Effect -->
                                     <filter id="greenWaterShimmer">
-                                        <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-                                        <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+                                        <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" />
+                                        <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
                                         </filter>
                                     </defs>
                                     
@@ -3698,105 +4835,90 @@
                                     <!-- Base Water Fill -->
                                     <rect class="green-water-fill" x="0" y="100" width="120" height="120" 
                                           fill="url(#greenWaterGradient)" filter="url(#greenWaterShimmer)">
-                                        <animateTransform
-                                            attributeName="transform"
-                                            type="translate"
-                                            values="0,0; 1,0.5; 0,0"
-                                            dur="4s"
-                                            repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="translate"
+                                            values="0,0; 1,0.5; 0,0" dur="4s" repeatCount="indefinite" />
                                     </rect>
                                     
                                     <!-- Animated Green Water Waves -->
                                     <path class="green-water-wave wave1" 
                                           d="M0,100 Q30,95 60,100 T120,100 L120,105 L0,105 Z" 
                                           fill="rgba(168,230,207,0.6)">
-                                        <animateTransform
-                                            attributeName="transform"
-                                            type="translate"
-                                            values="0,0; -10,0; 0,0"
-                                            dur="3s"
-                                            repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="translate"
+                                            values="0,0; -10,0; 0,0" dur="3s" repeatCount="indefinite" />
                                     </path>
                                     
                                     <path class="green-water-wave wave2" 
                                           d="M0,100 Q30,105 60,100 T120,100 L120,105 L0,105 Z" 
                                           fill="rgba(127,219,175,0.4)">
-                                        <animateTransform
-                                            attributeName="transform"
-                                            type="translate"
-                                            values="0,0; 8,0; 0,0"
-                                            dur="4s"
-                                            repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="translate"
+                                            values="0,0; 8,0; 0,0" dur="4s" repeatCount="indefinite" />
                                     </path>
                                     
                                     <path class="green-water-wave wave3" 
-                                          d="M0,100 Q30,98 60,100 T120,100 L120,105 L0,105 Z" 
-                                          fill="rgba(86,197,150,0.3)">
-                                        <animateTransform
-                                            attributeName="transform"
-                                            type="translate"
-                                            values="0,0; -5,0; 0,0"
-                                            dur="5s"
-                                            repeatCount="indefinite"/>
+                                        d="M0,100 Q30,98 60,100 T120,100 L120,105 L0,105 Z" fill="rgba(86,197,150,0.3)">
+                                        <animateTransform attributeName="transform" type="translate"
+                                            values="0,0; -5,0; 0,0" dur="5s" repeatCount="indefinite" />
                                     </path>
                                     
                                     <!-- Soft Green Bubbles -->
-                                    <circle class="green-bubble bubble1" cx="35" cy="110" r="1.5" fill="rgba(255,255,255,0.7)">
-                                        <animate attributeName="cy" values="110;50;110" dur="6s" repeatCount="indefinite"/>
-                                        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="6s" repeatCount="indefinite"/>
-                                        <animate attributeName="r" values="1.5;2;1.5" dur="6s" repeatCount="indefinite"/>
+                                    <circle class="green-bubble bubble1" cx="35" cy="110" r="1.5"
+                                        fill="rgba(255,255,255,0.7)">
+                                        <animate attributeName="cy" values="110;50;110" dur="6s"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="0.7;0.3;0.7" dur="6s"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="r" values="1.5;2;1.5" dur="6s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     
-                                    <circle class="green-bubble bubble2" cx="85" cy="105" r="1" fill="rgba(255,255,255,0.6)">
-                                        <animate attributeName="cy" values="105;45;105" dur="8s" repeatCount="indefinite"/>
-                                        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="8s" repeatCount="indefinite"/>
+                                    <circle class="green-bubble bubble2" cx="85" cy="105" r="1"
+                                        fill="rgba(255,255,255,0.6)">
+                                        <animate attributeName="cy" values="105;45;105" dur="8s"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="8s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                     
-                                    <circle class="green-bubble bubble3" cx="60" cy="108" r="0.8" fill="rgba(255,255,255,0.8)">
-                                        <animate attributeName="cy" values="108;48;108" dur="7s" repeatCount="indefinite"/>
-                                        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="7s" repeatCount="indefinite"/>
+                                    <circle class="green-bubble bubble3" cx="60" cy="108" r="0.8"
+                                        fill="rgba(255,255,255,0.8)">
+                                        <animate attributeName="cy" values="108;48;108" dur="7s"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="7s"
+                                            repeatCount="indefinite" />
                                     </circle>
                                 </g>
                                 
                                 <!-- Hexagon Border (above water) -->
-                                <polygon points="60,8 102,33 102,82 60,107 18,82 18,33" 
-                                         fill="none" 
-                                         stroke="#BDC3C7" 
-                                         stroke-width="3"
-                                         filter="url(#medalShadow)"/>
+                                <polygon points="60,8 102,33 102,82 60,107 18,82 18,33" fill="none" stroke="#BDC3C7"
+                                    stroke-width="3" filter="url(#medalShadow)" />
                                 
                                 <!-- Ribbon Stripes (above water) -->
                                 <!-- Left Ribbons -->
-                                <polygon points="38,22 45,22 60,50 55,53" fill="#E74C3C"/>
-                                <polygon points="45,22 52,22 62,50 60,53" fill="#FFFFFF"/>
-                                <polygon points="52,22 59,22 64,50 62,53" fill="#3498DB"/>
+                                <polygon points="38,22 45,22 60,50 55,53" fill="#E74C3C" />
+                                <polygon points="45,22 52,22 62,50 60,53" fill="#FFFFFF" />
+                                <polygon points="52,22 59,22 64,50 62,53" fill="#3498DB" />
                                 
                                 <!-- Right Ribbons -->
-                                <polygon points="82,22 75,22 60,50 65,53" fill="#E74C3C"/>
-                                <polygon points="75,22 68,22 58,50 60,53" fill="#FFFFFF"/>
-                                <polygon points="68,22 61,22 56,50 58,53" fill="#3498DB"/>
+                                <polygon points="82,22 75,22 60,50 65,53" fill="#E74C3C" />
+                                <polygon points="75,22 68,22 58,50 60,53" fill="#FFFFFF" />
+                                <polygon points="68,22 61,22 56,50 58,53" fill="#3498DB" />
                                 
                                 <!-- Medal Hanger (above water) -->
-                                <rect x="53" y="52" width="14" height="6" rx="1" fill="#34495E"/>
+                                <rect x="53" y="52" width="14" height="6" rx="1" fill="#34495E" />
                                 
                                 <!-- Medal Circle (floating above water) -->
                                 <g class="medal-group">
-                                    <animateTransform
-                                        attributeName="transform"
-                                        type="translate"
-                                        values="0,0; 0,-2; 0,0"
-                                        dur="3s"
-                                        repeatCount="indefinite"/>
-                                    
-                                    <circle cx="60" cy="75" r="20" fill="url(#medalGold)" stroke="#E67E22" stroke-width="2"/>
-                                    <circle cx="60" cy="75" r="16" fill="none" stroke="#F39C12" stroke-width="1" opacity="0.7"/>
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0"
+                                        dur="3s" repeatCount="indefinite" />
+
+                                    <circle cx="60" cy="75" r="20" fill="url(#medalGold)" stroke="#E67E22"
+                                        stroke-width="2" />
+                                    <circle cx="60" cy="75" r="16" fill="none" stroke="#F39C12" stroke-width="1"
+                                        opacity="0.7" />
                                     
                                     <!-- Medal Number -->
-                                    <text x="60" y="81" text-anchor="middle" 
-                                          font-family="Arial, sans-serif" 
-                                          font-size="18" 
-                                          font-weight="bold" 
-                                          fill="#8B4513">1</text>
+                                    <text x="60" y="81" text-anchor="middle" font-family="Arial, sans-serif"
+                                        font-size="18" font-weight="bold" fill="#8B4513">1</text>
                                     </g>
                                 </svg>
                             </div>
@@ -3819,7 +4941,8 @@
                         </div>
                         <div class="step-text">
                             <div class="step-title">مراجعة المحاضرات</div>
-                            <div class="step-description">استكمل مراجعة محاضرات المحاسبة المالية 3 قبل البدء في الاختبار التجريبي</div>
+                            <div class="step-description">استكمل مراجعة محاضرات المحاسبة المالية 3 قبل البدء في الاختبار
+                                التجريبي</div>
                         </div>
                     </div>
                     <a href="#" class="btn btn-primary">
@@ -3978,50 +5101,55 @@
         
         
         <!-- Footer -->
-        <footer class="footer">
-        <div class="footer-section">
-            <div class="footer-top">
-                <div class="footer-links">
-                    <a href="#" class="footer-link">تواصل معنا</a>
-                    <a href="#" class="footer-link">سياسة الخصوصية</a>
-                    <a href="#" class="footer-link">شروط الاستخدام</a>
-                </div>
+        <footer class="footer" style="background:linear-gradient(135deg,#1e293b 0%,#1e3a5f 100%);
+                     color:#fff; padding:2rem 0; text-align:center;">
+
+            <div class="footer-section" style="max-width:1200px; margin:0 auto; padding:0 1rem;">
+
+                <!-- الروابط -->
+                <div class="footer-links" style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                <a href="#" class="footer-link">تواصل معنا</a>
+                <a href="#" class="footer-link">سياسة الخصوصية</a>
+                <a href="#" class="footer-link">شروط الاستخدام</a>
             </div>
-            
-            <div class="supported-section">
-                <div class="supported-text">مدعوم من:</div>
-                
-                <div class="supported-logos">
-                    <div class="logo-item">
-                        <img src="Socpa.svg" alt="SOCPA" class="support-logo">
-                        
-                        <div class="logo-label">الهيئة السعودية للمحاسبين القانونيين</div>
+
+                <!-- شركاؤنا الإستراتيجيون -->
+                <div class="supported-section" style="margin-bottom:0.2rem;">
+                    <div class="supported-text" style="font-weight:600; margin-bottom:0.1rem;">شركاؤنا الإستراتيجيون
+            </div>
+                    <div class="supported-logos"
+                        style="display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap;">
+                        <div class="logo-item">
+                            <img src="Socpa.png" alt="SOCPA" class="support-logo">
+                        </div>
+                        <div class="logo-item">
+                            <img src="هدف.png" alt="هدف" class="support-logo">
+                        </div>
                     </div>
-                    
-                    <div class="logo-item">
-                        <img src="هدف.svg" alt="هدف" class="support-logo">
-                        
-                        <div class="logo-label">صندوق تنمية الموارد البشرية</div>
-                    </div>
                 </div>
+
+                <!-- أسفل الفوتر -->
+                <div class="footer-bottom"
+                    style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-top:1px solid rgba(255,255,255,0.15); padding-top:0.7rem; font-size:0.85rem; margin:0 2rem;">
+                    <div>© ٢٠٢٥ زامل - جميع الحقوق محفوظة.</div>
+                    <div style="display:flex; gap:0.75rem;">
+                        <a href="#"
+                            style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                </a>
+                        <a href="#"
+                            style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
             </div>
-            
-            <div class="footer-bottom">
-                <div class="copyright">
-                    © ٢٠٢٥ زامل - جميع الحقوق محفوظة.
                 </div>
-                
-                <div class="social-icons">
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
+
         </div>
     </footer>
+
     </main>
     <script>
         // Initialize variables from dashboard
@@ -4167,7 +5295,7 @@
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initializeCourseColors();
             initMobileNavbar();
         });
@@ -4190,7 +5318,7 @@
 
             
             // Use event delegation for better reliability
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
 
                 
                 // Alert notification handling
@@ -4273,7 +5401,7 @@
             // Handle overlay clicks
             const mobileOverlay = document.getElementById('mobileOverlay');
             if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', function() {
+                mobileOverlay.addEventListener('click', function () {
 
                     const sidebar = document.getElementById('sidebar');
                     if (sidebar) sidebar.classList.remove('mobile-open');
@@ -4282,7 +5410,7 @@
             }
             
             // Handle course selection
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target.closest('.study-dropdown-item')) {
                     e.stopPropagation();
                     const item = e.target.closest('.study-dropdown-item');
@@ -4316,7 +5444,7 @@
             
             // Desktop User dropdown functionality
             if (userAvatarNumber) {
-            userAvatarNumber.addEventListener('click', function(e) {
+            userAvatarNumber.addEventListener('click', function (e) {
                 e.stopPropagation();
                 userDropdown.classList.toggle('show');
                 studyDropdown.classList.remove('show');
@@ -4326,7 +5454,7 @@
 
             // Mobile User dropdown functionality
             if (mobileUserInfoBtn) {
-                mobileUserInfoBtn.addEventListener('click', function(e) {
+            mobileUserInfoBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     mobileUserDropdown.classList.toggle('show');
                     if (studyDropdown) {
@@ -4337,7 +5465,7 @@
             }
 
             // Close user dropdowns when clicking outside
-            document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
                 // Close desktop dropdown
                 if (userAvatarNumber && userDropdown && 
                     !userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
@@ -4354,7 +5482,7 @@
         // Desktop Profile button functionality
         const profileBtn = document.getElementById('profileBtn');
         if (profileBtn) {
-            profileBtn.addEventListener('click', function(e) {
+            profileBtn.addEventListener('click', function (e) {
                         e.preventDefault();
                         userDropdown.classList.remove('show');
                             showProfileModal();
@@ -4364,7 +5492,7 @@
         // Mobile Profile button functionality
         const mobileProfileBtn = document.getElementById('mobileProfileBtn');
         if (mobileProfileBtn) {
-            mobileProfileBtn.addEventListener('click', function(e) {
+            mobileProfileBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 mobileUserDropdown.classList.remove('show');
                 showProfileModal();
@@ -4374,7 +5502,7 @@
         // Desktop Logout button functionality
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
+            logoutBtn.addEventListener('click', function (e) {
                         e.preventDefault();
             userDropdown.classList.remove('show');
             showLogoutModal();
@@ -4384,7 +5512,7 @@
         // Mobile Logout button functionality
         const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
         if (mobileLogoutBtn) {
-            mobileLogoutBtn.addEventListener('click', function(e) {
+            mobileLogoutBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 mobileUserDropdown.classList.remove('show');
                 showLogoutModal();
@@ -4393,7 +5521,7 @@
 
         // Mobile Menu functionality
         if (mobileMenuBtn && sidebar) {
-            mobileMenuBtn.addEventListener('click', function(e) {
+            mobileMenuBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
@@ -4416,7 +5544,7 @@
 
         // Close mobile menu when clicking overlay
         if (mobileOverlay) {
-            mobileOverlay.addEventListener('click', function() {
+            mobileOverlay.addEventListener('click', function () {
                 sidebar.classList.remove('mobile-open');
                 mobileOverlay.classList.remove('active');
             });
@@ -4425,7 +5553,7 @@
         // Course selector functionality is now handled in the event delegation above
     
         // Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!userAvatarNumber.contains(e.target) && !userDropdown.contains(e.target)) {
                 userDropdown.classList.remove('show');
             }
@@ -4436,7 +5564,7 @@
         });
     
         // Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             // Close study dropdown if clicking outside
             if (studySelector && studyDropdown && 
                 !studySelector.contains(e.target)) {
@@ -4446,7 +5574,7 @@
         });
 
         // Close dropdowns when pressing Escape
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 if (userDropdown) userDropdown.classList.remove('show');
                 if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
@@ -4458,17 +5586,17 @@
         });
     
         // Sidebar functionality
-        sidebar.addEventListener('mouseenter', function() {
+        sidebar.addEventListener('mouseenter', function () {
             this.classList.add('expanded');
         });
     
-        sidebar.addEventListener('mouseleave', function() {
+        sidebar.addEventListener('mouseleave', function () {
             this.classList.remove('expanded');
         });
     
         // Edit Exam Tracker button
         if (editExamTrackerBtn) {
-            editExamTrackerBtn.addEventListener('click', function(e) {
+            editExamTrackerBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 showEditExamTrackerModal();
             });
@@ -4476,7 +5604,7 @@
     
         // Progress steps click functionality - Navigate to course page
         document.querySelectorAll('.progress-step:not(.final-medal)').forEach(step => {
-            step.addEventListener('click', function() {
+            step.addEventListener('click', function () {
                 const module = this.getAttribute('data-module');
                 const percentage = this.getAttribute('data-percentage');
                 const status = this.getAttribute('data-status');
@@ -4487,13 +5615,13 @@
         });
     
         // Final medal click functionality
-        document.querySelector('.final-medal').addEventListener('click', function() {
+        document.querySelector('.final-medal').addEventListener('click', function () {
             showCertificationDetails();
         });
     
         // Resource cards functionality
         document.querySelectorAll('.resource-card').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 const resourceType = this.querySelector('.resource-title').textContent;
                 showResourceDetails(resourceType);
             });
@@ -4501,7 +5629,7 @@
     
         // Tool cards functionality
         document.querySelectorAll('.tool-card').forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 const toolType = this.querySelector('.tool-title').textContent;
                 showToolDetails(toolType);
             });
@@ -4565,7 +5693,7 @@
                 // Add event listener for mark all read button
             const markAllReadBtn = document.getElementById('markAllReadBtn');
             if (markAllReadBtn) {
-                markAllReadBtn.addEventListener('click', function() {
+                markAllReadBtn.addEventListener('click', function () {
                     markAllAsRead();
                     this.innerHTML = '<i class="fas fa-check" style="margin-left: 0.75rem;"></i>تم التمييز';
                     this.style.background = 'linear-gradient(135deg, var(--success-green) 0%, #68d391 100%)';
@@ -4783,7 +5911,7 @@
             }, 10);
 
             // Event listeners
-            document.getElementById('closeProfileBtn').addEventListener('click', function() {
+            document.getElementById('closeProfileBtn').addEventListener('click', function () {
                 profileOverlay.style.opacity = '0';
                 profileModal.style.transform = 'scale(0.9)';
                 setTimeout(() => {
@@ -4791,7 +5919,7 @@
                 }, 300);
             });
 
-            document.getElementById('editProfileBtn').addEventListener('click', function() {
+            document.getElementById('editProfileBtn').addEventListener('click', function () {
                 profileOverlay.style.opacity = '0';
                 profileModal.style.transform = 'scale(0.9)';
                 setTimeout(() => {
@@ -4800,7 +5928,7 @@
                 }, 300);
             });
 
-            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+            document.getElementById('changePasswordBtn').addEventListener('click', function () {
                 profileOverlay.style.opacity = '0';
                 profileModal.style.transform = 'scale(0.9)';
                 setTimeout(() => {
@@ -4810,7 +5938,7 @@
             });
 
             // Close on overlay click
-            profileOverlay.addEventListener('click', function(e) {
+            profileOverlay.addEventListener('click', function (e) {
                 if (e.target === profileOverlay) {
                     document.getElementById('closeProfileBtn').click();
                 }
@@ -4850,7 +5978,7 @@
                 transition: transform 0.3s ease;
             `;
 
-            editModal.innerHTML =  `
+            editModal.innerHTML = `
                 <div style="padding: 2rem; border-bottom: 1px solid #f0f0f0;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h2 style="color: var(--primary-navy); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
@@ -5043,26 +6171,26 @@
             // Add focus styles
             const inputs = editModal.querySelectorAll('input, select');
             inputs.forEach(input => {
-                input.addEventListener('focus', function() {
+                input.addEventListener('focus', function () {
                     this.style.borderColor = 'var(--primary-blue)';
                     this.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
                 });
-                input.addEventListener('blur', function() {
+                input.addEventListener('blur', function () {
                     this.style.borderColor = 'var(--gray-300)';
                     this.style.boxShadow = 'none';
                 });
             });
 
             // Event listeners
-            document.getElementById('closeEditBtn').addEventListener('click', function() {
+            document.getElementById('closeEditBtn').addEventListener('click', function () {
                 closeEditModal();
             });
 
-            document.getElementById('cancelEditBtn').addEventListener('click', function() {
+            document.getElementById('cancelEditBtn').addEventListener('click', function () {
                 closeEditModal();
             });
 
-            document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+            document.getElementById('editProfileForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 
                 // Get form data
@@ -5114,7 +6242,7 @@
             }
 
             // Close on overlay click
-            editOverlay.addEventListener('click', function(e) {
+            editOverlay.addEventListener('click', function (e) {
                 if (e.target === editOverlay) {
                     closeEditModal();
                 }
@@ -5373,14 +6501,14 @@
             document.getElementById('cancelPasswordBtn').addEventListener('click', closePasswordModal);
 
             // Close on overlay click
-            passwordOverlay.addEventListener('click', function(e) {
+            passwordOverlay.addEventListener('click', function (e) {
                 if (e.target === passwordOverlay) {
                     closePasswordModal();
                 }
             });
 
             // Password change form submission
-            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+            document.getElementById('changePasswordForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 
                 const currentPassword = document.getElementById('currentPassword').value;
@@ -5425,7 +6553,7 @@
 
             // Password toggle functionality
             toggleButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const targetId = this.dataset.target;
                     const input = document.getElementById(targetId);
                     const icon = this.querySelector('i');
@@ -5441,7 +6569,7 @@
             });
 
             // Password strength indicator
-            newPasswordInput.addEventListener('input', function() {
+            newPasswordInput.addEventListener('input', function () {
                 const password = this.value;
                 
                 if (password.length === 0) {
@@ -5500,7 +6628,7 @@
             });
 
             // Confirm password validation
-            confirmPasswordInput.addEventListener('input', function() {
+            confirmPasswordInput.addEventListener('input', function () {
                 const newPassword = newPasswordInput.value;
                 const confirmPassword = this.value;
                 
@@ -5739,7 +6867,7 @@
             }, 10);
 
             // Event listeners
-            document.getElementById('confirmLogoutBtn').addEventListener('click', function() {
+            document.getElementById('confirmLogoutBtn').addEventListener('click', function () {
                 // Show loading state
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الخروج...';
                 this.disabled = true;
@@ -5761,7 +6889,7 @@
             document.getElementById('cancelLogoutBtn').addEventListener('click', closeLogoutModal);
 
             // Close on overlay click
-            logoutOverlay.addEventListener('click', function(e) {
+            logoutOverlay.addEventListener('click', function (e) {
                 if (e.target === logoutOverlay) {
                     closeLogoutModal();
                 }
@@ -5996,18 +7124,18 @@
             // Add input focus styles
             const inputs = examModal.querySelectorAll('input');
             inputs.forEach(input => {
-                input.addEventListener('focus', function() {
+                input.addEventListener('focus', function () {
                     this.style.borderColor = 'var(--primary-blue)';
                     this.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
                 });
-                input.addEventListener('blur', function() {
+                input.addEventListener('blur', function () {
                     this.style.borderColor = 'var(--gray-300)';
                     this.style.boxShadow = 'none';
                 });
             });
 
             // Event listeners
-            document.getElementById('saveExamTrackerBtn').addEventListener('click', function(e) {
+            document.getElementById('saveExamTrackerBtn').addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const score = document.getElementById('examScore').value;
@@ -6052,7 +7180,7 @@
             document.getElementById('cancelExamTrackerBtn').addEventListener('click', closeExamModal);
 
             // Close on overlay click
-            examOverlay.addEventListener('click', function(e) {
+            examOverlay.addEventListener('click', function (e) {
                 if (e.target === examOverlay) {
                     closeExamModal();
                 }
@@ -6237,7 +7365,7 @@
         }
     
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initEnhancedWaterAnimation();
             
             // Animate progress line to reach the CURRENT course being studied
@@ -6339,7 +7467,7 @@
         document.addEventListener('DOMContentLoaded', initMobileMenu);
         
         // Enhanced Study Journey Scrolling
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const progressPath = document.querySelector('.progress-path');
             if (!progressPath) return;
             
@@ -6393,7 +7521,7 @@
     
     <script>
         // Initialize the clean hexagon medal
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize the final medal with enhanced features
             // Simple clean medal functionality
             try {
@@ -6415,7 +7543,7 @@
                 const overallProgress = calculateRealProgress();
                 
                 // Function to update medal progress with green water based on REAL course progress
-                window.updateFinalMedalProgress = function() {
+                window.updateFinalMedalProgress = function () {
                     // Calculate REAL average progress from all course percentages
                     const progressSteps = document.querySelectorAll('.progress-step:not(.final-medal)');
                     let totalProgress = 0;
@@ -6515,7 +7643,7 @@
                 window.updateFinalMedalProgress();
                 
                 // Make medal clickable for demo purposes
-                document.getElementById('finalMedal').addEventListener('click', function() {
+                document.getElementById('finalMedal').addEventListener('click', function () {
                     console.log('🌊 Green water medal clicked - Demo mode');
                     const currentProgress = parseInt(this.getAttribute('data-progress') || '0');
                     const nextProgress = currentProgress >= 100 ? 0 : currentProgress + 25;
@@ -6582,12 +7710,14 @@
             <div class="modal-body">
                 <div class="modal-section">
                     <h3>المقدمة</h3>
-                    <p>مرحباً بكم في منصة زامل للتطوير المهني المحاسبي. هذه الشروط والأحكام تحكم استخدامكم لخدماتنا التعليمية والتدريبية.</p>
+                    <p>مرحباً بكم في منصة زامل للتطوير المهني المحاسبي. هذه الشروط والأحكام تحكم استخدامكم لخدماتنا
+                        التعليمية والتدريبية.</p>
                 </div>
                 
                 <div class="modal-section">
                     <h3>قبول الشروط</h3>
-                    <p>باستخدام منصة زامل، فإنكم توافقون على الالتزام بهذه الشروط والأحكام. إذا لم توافقوا على أي من هذه الشروط، يُرجى عدم استخدام المنصة.</p>
+                    <p>باستخدام منصة زامل، فإنكم توافقون على الالتزام بهذه الشروط والأحكام. إذا لم توافقوا على أي من هذه
+                        الشروط، يُرجى عدم استخدام المنصة.</p>
                 </div>
                 
                 <div class="modal-section">
@@ -6612,17 +7742,20 @@
                 
                 <div class="modal-section">
                     <h3>الدفع والاشتراكات</h3>
-                    <p>جميع الرسوم مستحقة الدفع مقدماً ولا يمكن استردادها إلا في حالات استثنائية وفقاً لسياسة الاسترداد المعلنة.</p>
+                    <p>جميع الرسوم مستحقة الدفع مقدماً ولا يمكن استردادها إلا في حالات استثنائية وفقاً لسياسة الاسترداد
+                        المعلنة.</p>
                 </div>
                 
                 <div class="modal-section">
                     <h3>إخلاء المسؤولية</h3>
-                    <p>منصة زامل تسعى لتقديم أفضل جودة تعليمية، لكنها لا تضمن النجاح في الامتحانات المهنية أو الحصول على شهادات مهنية.</p>
+                    <p>منصة زامل تسعى لتقديم أفضل جودة تعليمية، لكنها لا تضمن النجاح في الامتحانات المهنية أو الحصول على
+                        شهادات مهنية.</p>
                 </div>
                 
                 <div class="modal-section">
                     <h3>تعديل الشروط</h3>
-                    <p>تحتفظ منصة زامل بالحق في تعديل هذه الشروط في أي وقت، وسيتم إشعار المستخدمين بأي تغييرات جوهرية.</p>
+                    <p>تحتفظ منصة زامل بالحق في تعديل هذه الشروط في أي وقت، وسيتم إشعار المستخدمين بأي تغييرات جوهرية.
+                    </p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -6682,7 +7815,8 @@
                 
                 <div class="modal-section">
                     <h3>أمان المعلومات</h3>
-                    <p>نستخدم تقنيات التشفير المتقدمة وأحدث بروتوكولات الأمان لحماية معلوماتكم من الوصول غير المصرح به.</p>
+                    <p>نستخدم تقنيات التشفير المتقدمة وأحدث بروتوكولات الأمان لحماية معلوماتكم من الوصول غير المصرح به.
+                    </p>
                 </div>
                 
                 <div class="modal-section">
@@ -6697,7 +7831,8 @@
                 
                 <div class="modal-section">
                     <h3>التواصل معنا</h3>
-                    <p>لأي استفسارات حول سياسة الخصوصية، يمكنكم التواصل معنا عبر البريد الإلكتروني: privacy@zamil-socpa.com</p>
+                    <p>لأي استفسارات حول سياسة الخصوصية، يمكنكم التواصل معنا عبر البريد الإلكتروني:
+                        privacy@zamil-socpa.com</p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -6783,10 +7918,11 @@
         }
 
         // Initialize modals when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initModals();
         });
     </script>
 
 </body>
+
 </html>

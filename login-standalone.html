@@ -215,7 +215,7 @@
         }
 
         .footer-link:hover {
-            color: var(--accent-yellow);
+            color: var(--accent-gold);
         }
 
         .copyright {
@@ -383,24 +383,36 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .checkbox-wrapper {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .checkbox-wrapper:hover {
+            background-color: rgba(59, 130, 246, 0.05);
         }
 
         .checkbox {
-            width: 1rem;
-            height: 1rem;
+            width: 12px;
+            height: 12px;
             border: 1px solid var(--gray-300);
-            border-radius: 0.25rem;
+            border-radius: 0.2rem;
             cursor: pointer;
             position: relative;
             transition: var(--transition);
             appearance: none;
             background: var(--white);
+            flex-shrink: 0;
+            margin: 0;
         }
 
         .checkbox:checked {
@@ -415,14 +427,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: var(--white);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 8px;
+            font-weight: 700;
+            line-height: 1;
         }
 
         .checkbox-label {
             font-size: 0.875rem;
             color: var(--gray-600);
             cursor: pointer;
+            user-select: none;
+            margin: 0;
         }
 
         .forgot-password {
@@ -430,10 +445,13 @@
             color: var(--primary-blue);
             text-decoration: none;
             transition: var(--transition);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
         }
 
         .forgot-password:hover {
             text-decoration: underline;
+            background-color: rgba(59, 130, 246, 0.05);
         }
 
         /* Login button */
@@ -498,6 +516,27 @@
             width: 20px;
             height: 20px;
             flex-shrink: 0;
+        }
+
+        /* Google Sign-In Loading State */
+        .google-signin.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .google-loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #4285F4;
+            border-radius: 50%;
+            animation: googleSpin 1s linear infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes googleSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Divider */
@@ -839,8 +878,10 @@
             }
             
             .checkbox {
-                min-width: 22px;
-                min-height: 22px;
+                width: 12px;
+                height: 12px;
+                min-width: 12px;
+                min-height: 12px;
             }
             
             /* Better button spacing */
@@ -854,10 +895,24 @@
             
             /* Form options stacking */
             .form-options {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                margin-bottom: 1.5rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .checkbox-wrapper {
+                margin: 0;
+                order: 1;
+            }
+            
+            .forgot-password {
+                order: 2;
+                text-align: left;
+                margin: 0;
+                min-height: auto;
+                padding: 0.5rem;
             }
         }
         
@@ -1100,8 +1155,10 @@
             }
             
             .checkbox {
-                min-width: 20px;
-                min-height: 20px;
+                width: 12px;
+                height: 12px;
+                min-width: 12px;
+                min-height: 12px;
             }
             
             .checkbox-label,
@@ -1286,8 +1343,10 @@
             }
             
             .checkbox {
-                min-width: 20px;
-                min-height: 20px;
+                width: 12px;
+                height: 12px;
+                min-width: 12px;
+                min-height: 12px;
                 flex-shrink: 0;
             }
             
@@ -1418,8 +1477,10 @@
             }
             
             .checkbox {
-                min-width: 18px;
-                min-height: 18px;
+                width: 12px;
+                height: 12px;
+                min-width: 12px;
+                min-height: 12px;
             }
             
             .back-button {
@@ -1574,8 +1635,10 @@
             }
             
             .checkbox {
-                min-width: 20px;
-                min-height: 20px;
+                width: 12px;
+                height: 12px;
+                min-width: 12px;
+                min-height: 12px;
                 touch-action: manipulation;
             }
             
@@ -2196,6 +2259,17 @@
                 margin-bottom: 1rem;
             }
             
+            .checkbox-wrapper, 
+            .forgot-password {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .forgot-password {
+                text-align: right;
+                padding: 0.5rem 0;
+            }
+            
             .checkbox-label,
             .forgot-password {
                 font-size: 0.85rem;
@@ -2271,45 +2345,22 @@
             </div>
             
             <div class="footer-section">
-                <div class="footer-top">
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">تواصل معنا</a>
-                        <a href="#" class="footer-link">سياسة الخصوصية</a>
-                        <a href="#" class="footer-link">شروط الاستخدام</a>
-                    </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">تواصل معنا</a>
+                    <a href="#" class="footer-link">سياسة الخصوصية</a>
+                    <a href="#" class="footer-link">شروط الاستخدام</a>
                 </div>
-                
-                <div class="supported-section">
-                    <div class="supported-text">مدعوم من:</div>
-                    
-                    <div class="supported-logos">
-                        <div class="logo-item">
-                            <img src="Socpa.svg" alt="SOCPA" class="support-logo">
-                            <div class="logo-tooltip">الهيئة السعودية للمحاسبين القانونيين</div>
-                            <div class="logo-label">الهيئة السعودية للمحاسبين القانونيين</div>
-                        </div>
-                        
-                        <div class="logo-item">
-                            <img src="هدف.svg" alt="هدف" class="support-logo">
-                            <div class="logo-tooltip">صندوق تنمية الموارد البشرية</div>
-                            <div class="logo-label">صندوق تنمية الموارد البشرية</div>
-                        </div>
-                    </div>
+               
+                <div class="copyright">
+                    © ٢٠٢٥ زامل - جميع الحقوق محفوظة.
                 </div>
-                
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        © ٢٠٢٥ زامل - جميع الحقوق محفوظة.
-                    </div>
-                    
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
@@ -2775,8 +2826,9 @@
             
             // Show loading state
             googleButton.disabled = true;
+            googleButton.classList.add('loading');
             googleButton.innerHTML = `
-                <div style="width: 20px; height: 20px; border: 2px solid #f3f3f3; border-top: 2px solid #4285F4; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <div class="google-loading-spinner"></div>
                 جاري تسجيل الدخول...
             `;
             

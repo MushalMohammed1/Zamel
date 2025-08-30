@@ -2446,48 +2446,50 @@
         </div>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-section">
-                <div class="footer-top">
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">تواصل معنا</a>
-                        <a href="#" class="footer-link">سياسة الخصوصية</a>
-                        <a href="#" class="footer-link">شروط الاستخدام</a>
+        <footer class="footer" style="background:linear-gradient(135deg,#1e293b 0%,#1e3a5f 100%);
+                     color:#fff; padding:2rem 0; text-align:center;">
+
+            <div class="footer-section" style="max-width:1200px; margin:0 auto; padding:0 1rem;">
+
+                <!-- الروابط -->
+                <div class="footer-links" style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                     <a href="#" class="footer-link">تواصل معنا</a> 
+                     <a href="#" class="footer-link">سياسة الخصوصية</a>
+                      <a href="#" class="footer-link">شروط الاستخدام</a>
+                 </div>
+
+                <!-- شركاؤنا الإستراتيجيون -->
+                <div class="supported-section" style="margin-bottom:0.2rem;">
+                    <div class="supported-text" style="font-weight:600; margin-bottom:0.1rem;">شركاؤنا الإستراتيجيون
+                    </div>
+                    <div class="supported-logos"
+                        style="display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap;">
+                        <div class="logo-item">
+                            <img src="Socpa.png" alt="SOCPA" class="support-logo">
+                        </div>
+                        <div class="logo-item">
+                            <img src="هدف.png" alt="هدف" class="support-logo">
+                        </div>
                     </div>
                 </div>
-                
-                <div class="supported-section">
-                    <div class="supported-text">مدعوم من:</div>
-                    
-                    <div class="supported-logos">
-                        <div class="logo-item">
-                            <img src="Socpa.svg" alt="SOCPA" class="support-logo">
-                            <div class="logo-tooltip">الهيئة السعودية للمحاسبين القانونيين</div>
-                            <div class="logo-label">الهيئة السعودية للمحاسبين القانونيين</div>
-                        </div>
-                        
-                        <div class="logo-item">
-                            <img src="هدف.svg" alt="هدف" class="support-logo">
-                            <div class="logo-tooltip">صندوق تنمية الموارد البشرية</div>
-                            <div class="logo-label">صندوق تنمية الموارد البشرية</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        © ٢٠٢٥ زامل - جميع الحقوق محفوظة.
-                    </div>
-                    
+
+                <!-- أسفل الفوتر -->
+                <div class="footer-bottom"
+                    style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-top:1px solid rgba(255,255,255,0.15); padding-top:0.7rem; font-size:0.85rem; margin:0 2rem;">
+                    <div>© ٢٠٢٥ زامل - جميع الحقوق محفوظة.</div>
                     <div class="social-icons">
                         <a href="#" class="social-icon">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
                         </a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
+
             </div>
         </footer>
     </main>
@@ -2530,12 +2532,13 @@
                 // Course selector handling
                 if (e.target.closest('#studyInfo') || e.target.closest('.study-info')) {
                     e.stopPropagation();
-
+                    console.log('Mobile study selector clicked');
                     
                     const studySelector = document.getElementById('studySelector');
                     const studyDropdown = document.getElementById('studyDropdown');
                     
                     if (studySelector && studyDropdown) {
+                        const isOpen = studyDropdown.classList.contains('show');
                         studyDropdown.classList.toggle('show');
                         studySelector.classList.toggle('open');
                         
@@ -2543,7 +2546,7 @@
                         const mobileUserDropdown = document.getElementById('mobileUserDropdown');
                         if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
                         
-
+                        console.log('Mobile study dropdown toggled:', !isOpen);
                     }
                     return;
                 }
@@ -2565,6 +2568,55 @@
                         if (studySelector) studySelector.classList.remove('open');
                         
 
+                    }
+                    return;
+                }
+                
+                // Handle dropdown item clicks
+                if (e.target.closest('.study-dropdown-item')) {
+                    e.stopPropagation();
+                    const item = e.target.closest('.study-dropdown-item');
+                    console.log('Mobile dropdown item clicked:', item);
+                    
+                    // Check if it's a coming soon item
+                    if (item.classList.contains('coming-soon-item')) {
+                        showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                        return;
+                    }
+                    
+                    // Remove active class from all available items
+                    document.querySelectorAll('.study-dropdown-item').forEach(i => {
+                        if (!i.classList.contains('coming-soon-item')) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    
+                    // Add active class to clicked item
+                    item.classList.add('active');
+                    
+                    // Update the study info text
+                    const courseName = item.querySelector('.course-name');
+                    if (courseName) {
+                        const courseText = courseName.textContent;
+                        const studyInfo = document.getElementById('studyInfo');
+                        const studyInfoSpan = studyInfo ? studyInfo.querySelector('span') : null;
+                        if (studyInfoSpan) {
+                            studyInfoSpan.textContent = `تدرس للحصول على: ${courseText}`;
+                        }
+                        
+                        // Close dropdown
+                        const studySelector = document.getElementById('studySelector');
+                        const studyDropdown = document.getElementById('studyDropdown');
+                        if (studySelector && studyDropdown) {
+                            studySelector.classList.remove('open');
+                            studyDropdown.classList.remove('show');
+                        }
+                        
+                        showToast(`تم تغيير المادة إلى ${courseText}`);
+                        console.log('Mobile course changed to:', courseText);
+                        
+                        // Update module counts and data based on selected course
+                        updateModuleDataForCourse(item.dataset.course);
                     }
                     return;
                 }
@@ -2629,61 +2681,192 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initMobileNavbar();
-        });
-        
-        // Study selector functionality (copied from practice-tests.html)
-        const studySelector = document.getElementById('studySelector');
-        const studyInfo = document.getElementById('studyInfo');
-        const studyDropdown = document.getElementById('studyDropdown');
-
-        studyInfo.addEventListener('click', function () {
-            studySelector.classList.toggle('open');
-            studyDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!studySelector.contains(e.target)) {
-                studySelector.classList.remove('open');
-                studyDropdown.classList.remove('show');
+            initStudySelector();
+            
+            // Initialize with default course (accounting)
+            setTimeout(() => {
+                updateModuleDataForCourse('accounting');
+            }, 100);
+            
+            // Initialize logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+            
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showLogoutModal();
+                });
+            }
+            
+            if (mobileLogoutBtn) {
+                mobileLogoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showLogoutModal();
+                });
+            }
+            
+            // Initialize profile functionality
+            const profileBtn = document.getElementById('profileBtn');
+            const mobileProfileBtn = document.getElementById('mobileProfileBtn');
+            
+            if (profileBtn) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showProfileModal();
+                });
+            }
+            
+            if (mobileProfileBtn) {
+                mobileProfileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showProfileModal();
+                });
             }
         });
+        
+        // Study selector functionality
+        function initStudySelector() {
+            const studySelector = document.getElementById('studySelector');
+            const studyInfo = document.getElementById('studyInfo');
+            const studyDropdown = document.getElementById('studyDropdown');
 
-        // Study dropdown items
-        document.querySelectorAll('.study-dropdown-item').forEach(item => {
-            item.addEventListener('click', function (e) {
+            if (!studySelector || !studyInfo || !studyDropdown) {
+                console.warn('Study selector elements not found');
+                return;
+            }
+
+            // Toggle dropdown on click
+            studyInfo.addEventListener('click', function (e) {
                 e.stopPropagation();
-                
-                // Check if it's a coming soon item
-                if (this.classList.contains('coming-soon-item')) {
-                    showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
-                    return;
+                studySelector.classList.toggle('open');
+                studyDropdown.classList.toggle('show');
+                console.log('Study dropdown toggled:', studyDropdown.classList.contains('show'));
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!studySelector.contains(e.target)) {
+                    studySelector.classList.remove('open');
+                    studyDropdown.classList.remove('show');
                 }
-                
-                // Remove active class from all available items (not coming soon)
-                document.querySelectorAll('.study-dropdown-item').forEach(i => {
-                    if (!i.classList.contains('coming-soon-item')) {
-                        i.classList.remove('active');
+            });
+
+            // Study dropdown items
+            const dropdownItems = document.querySelectorAll('.study-dropdown-item');
+            console.log('Found dropdown items:', dropdownItems.length);
+            
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    console.log('Dropdown item clicked:', this);
+                    
+                    // Check if it's a coming soon item
+                    if (this.classList.contains('coming-soon-item')) {
+                        showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
+                        return;
+                    }
+                    
+                    // Remove active class from all available items (not coming soon)
+                    dropdownItems.forEach(i => {
+                        if (!i.classList.contains('coming-soon-item')) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Update the study info text
+                    const courseName = this.querySelector('.course-name');
+                    if (courseName) {
+                        const courseText = courseName.textContent;
+                        const studyInfoSpan = studyInfo.querySelector('span');
+                        if (studyInfoSpan) {
+                            studyInfoSpan.textContent = `تدرس للحصول على: ${courseText}`;
+                        }
+                        
+                        // Close dropdown
+                        studySelector.classList.remove('open');
+                        studyDropdown.classList.remove('show');
+                        
+                        showToast(`تم تغيير المادة إلى ${courseText}`);
+                        console.log('Course changed to:', courseText);
+                        
+                        // Update module counts and data based on selected course
+                        updateModuleDataForCourse(this.dataset.course);
                     }
                 });
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Update the study info text
-                const courseName = this.querySelector('.course-name').textContent;
-                studyInfo.querySelector('span').textContent = `تدرس للحصول على: ${courseName}`;
-                
-                // Close dropdown
-                studySelector.classList.remove('open');
-                studyDropdown.classList.remove('show');
-                
-                showToast(`تم تغيير المادة إلى ${courseName}`);
             });
-        });
+        }
+        
+        // Update module data based on selected course
+        function updateModuleDataForCourse(courseId) {
+            console.log('Updating module data for course:', courseId);
+            
+            // Course-specific module data
+            const courseModules = {
+                'accounting': {
+                    modules: [
+                        { id: 'f1', name: 'محا١ - التقارير المالية', count: 31 },
+                        { id: 'f2', name: 'محا٢ - التقارير المالية والإفصاحات', count: 49 },
+                        { id: 'f3', name: 'محا٣ - الأصول والمواضيع ذات الصلة', count: 34 },
+                        { id: 'f4', name: 'محا٤ - الخصوم', count: 44 },
+                        { id: 'f5', name: 'إدا١ - الاستثمارات وبيان التدفقات النقدية وضرائب الدخل', count: 44 },
+                        { id: 'f6', name: 'إدا٢ - محاسبة المؤسسات غير الربحية والحكومية', count: 45 }
+                    ],
+                    totalCount: 247
+                },
+                'tax': {
+                    modules: [
+                        { id: 'z1', name: 'زك١ - أساسيات الزكاة', count: 28 },
+                        { id: 'z2', name: 'زك٢ - زكاة الشركات', count: 35 },
+                        { id: 'z3', name: 'ضر١ - ضريبة القيمة المضافة', count: 42 },
+                        { id: 'z4', name: 'ضر٢ - ضريبة الدخل', count: 38 }
+                    ],
+                    totalCount: 143
+                }
+            };
+            
+            const selectedCourse = courseModules[courseId] || courseModules['accounting'];
+            
+            // Update total count in category cards
+            const allCategoryCard = document.querySelector('.category-card[data-category="all"] .category-count');
+            if (allCategoryCard) {
+                allCategoryCard.textContent = selectedCourse.totalCount;
+            }
+            
+            // Update module items
+            const moduleItems = document.querySelectorAll('.module-item');
+            moduleItems.forEach((item, index) => {
+                if (item.dataset.module === 'all') {
+                    const countSpan = item.querySelector('.module-count span');
+                    if (countSpan) {
+                        countSpan.textContent = selectedCourse.totalCount;
+                    }
+                } else if (selectedCourse.modules[index - 1]) {
+                    const module = selectedCourse.modules[index - 1];
+                    const moduleInfo = item.querySelector('.module-info');
+                    const countSpan = item.querySelector('.module-count span');
+                    
+                    if (moduleInfo) {
+                        moduleInfo.textContent = module.name;
+                    }
+                    if (countSpan) {
+                        countSpan.textContent = module.count;
+                    }
+                    
+                    item.dataset.module = module.id;
+                }
+            });
+            
+            // Update summary section
+            updateSummary();
+            
+            console.log('Module data updated for:', courseId);
+        }
 
         // User dropdown functionality (kept simple)
-        const userAvatarNumber = document.getElementById('userAvatarNumber');
         const userDropdown = document.getElementById('userDropdown');
 
         if (userAvatarNumber && userDropdown) {
