@@ -2593,6 +2593,48 @@
             initAccessibility();
             initGoogleSignIn();
             initModals();
+            initFooterLinks();
+        }
+        
+        // ===== Initialize Footer Links =====
+        function initFooterLinks() {
+            // Footer links in the brand section
+            const footerLinks = document.querySelectorAll('.footer-link');
+            const socialIcons = document.querySelectorAll('.social-icon');
+            
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const linkText = this.textContent.trim();
+                    
+                    if (linkText.includes('تواصل معنا')) {
+                        showToast('📧 يمكنك التواصل معنا عبر: support@zamil-socpa.com');
+                    } else if (linkText.includes('سياسة الخصوصية')) {
+                        const privacyModal = document.getElementById('privacyModal');
+                        if (privacyModal) {
+                            openModal(privacyModal);
+                        }
+                    } else if (linkText.includes('شروط الاستخدام')) {
+                        const termsModal = document.getElementById('termsModal');
+                        if (termsModal) {
+                            openModal(termsModal);
+                        }
+                    }
+                });
+            });
+            
+            socialIcons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const iconClass = this.querySelector('i').className;
+                    
+                    if (iconClass.includes('linkedin')) {
+                        showToast('🔗 سيتم توجيهك إلى صفحة LinkedIn قريباً');
+                    } else {
+                        showToast('🐦 سيتم توجيهك إلى صفحة X (Twitter) قريباً');
+                    }
+                });
+            });
         }
 
         // ===== Form Validation =====
@@ -2926,6 +2968,57 @@
         document.addEventListener('DOMContentLoaded', function() {
             initModals();
         });
+        
+        // ===== Toast Notification Function =====
+        function showToast(message, type = 'info') {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: white;
+                color: var(--gray-800);
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                border-left: 4px solid var(--primary-blue);
+                z-index: 10001;
+                max-width: 400px;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                font-family: 'Tajawal', sans-serif;
+                direction: rtl;
+                font-weight: 500;
+            `;
+
+            toast.innerHTML = message;
+            document.body.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }, 4000);
+        }
 
         // ===== Console Welcome Message =====
         console.log(`
