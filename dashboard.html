@@ -16,59 +16,14 @@
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
     
-    <!-- Mobile Header -->
-    <header class="header-mobile">
-        <div class="header-mobile-container">
-            <div class="header-mobile-single-row">
-                <!-- Hamburger Menu -->
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <!-- Zamel Logo with Golden Dot -->
-                <a href="index.html" class="mobile-logo">
-                    <span>زامل</span>
-                    <div class="logo-accent"></div>
-                </a>
-                
-
-                
-                <!-- Alert Notification -->
-                <button class="alert-notification" id="mobileAlertNotification">
-                    <i class="fas fa-bell"></i>
-                    <span class="alert-badge" id="mobileAlertBadge">1</span>
-                </button>
-                
-                <!-- User Profile -->
-                <div class="user-dropdown mobile-user-dropdown" id="mobileUserDropdown">
-                    <button class="user-info" id="mobileUserInfoBtn">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </button>
-                    <div class="dropdown-menu" id="mobileUserDropdownMenu">
-                        <a href="#" class="dropdown-item" id="mobileProfileBtn">
-                            <i class="fas fa-user"></i>
-                            الملف الشخصي
-                        </a>
-                        <a href="#" class="dropdown-item" id="mobileSettingsBtn">
-                            <i class="fas fa-cog"></i>
-                            الإعدادات
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item danger" id="mobileLogoutBtn">
-                            <i class="fas fa-sign-out-alt"></i>
-                            تسجيل الخروج
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Desktop Header -->
+    <!-- Header -->
     <header class="header">
         <div class="header-container">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <div class="header-left">
                 <a href="index.html" class="logo">
                     <span>زامل</span>
@@ -168,7 +123,10 @@
                                 <i class="fas fa-user"></i>
                                 <span>الملف الشخصي</span>
                             </a>
-
+                            <a href="#" class="dropdown-item" id="settingsBtn">
+                                <i class="fas fa-cog"></i>
+                                <span>الإعدادات</span>
+                            </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item danger" id="logoutBtn">
                                 <i class="fas fa-sign-out-alt"></i>
