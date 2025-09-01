@@ -216,28 +216,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Close user dropdowns when clicking outside
     document.addEventListener('click', function(e) {
-        if (userDropdown && !userDropdown.contains(e.target) && !userAvatarNumber.contains(e.target)) {
-                    userDropdown.classList.remove('show');
-                }
+        if (userDropdown && userAvatarNumber && !userDropdown.contains(e.target) && !userAvatarNumber.contains(e.target)) {
+            userDropdown.classList.remove('show');
+        }
         if (mobileUserDropdown && !mobileUserDropdown.contains(e.target)) {
-                    mobileUserDropdown.classList.remove('show');
-                }
-            });
+            mobileUserDropdown.classList.remove('show');
+        }
+    });
+
+    // Close dropdowns on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (userDropdown) userDropdown.classList.remove('show');
+            if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
+            if (studyDropdown) {
+                studyDropdown.classList.remove('show');
+                studySelector.classList.remove('open');
+            }
+            // Close mobile sidebar on escape
+            if (sidebar && sidebar.classList.contains('mobile-open')) {
+                sidebar.classList.remove('mobile-open');
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
+        }
+    });
 
     // Mobile menu functionality
     if (mobileMenuBtn && sidebar && mobileOverlay) {
         mobileMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                        sidebar.classList.toggle('mobile-open');
-                    mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = sidebar.classList.contains('mobile-open') ? 'hidden' : '';
+            e.stopPropagation();
+            const isOpen = sidebar.classList.contains('mobile-open');
+            
+            if (!isOpen) {
+                // Opening sidebar
+                sidebar.classList.add('mobile-open');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            } else {
+                // Closing sidebar
+                sidebar.classList.remove('mobile-open');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
         });
 
         // Close mobile menu when clicking overlay
         mobileOverlay.addEventListener('click', function() {
-                sidebar.classList.remove('mobile-open');
-                mobileOverlay.classList.remove('active');
+            sidebar.classList.remove('mobile-open');
+            mobileOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
         });
     }
 
@@ -448,11 +484,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close mobile menu on resize to desktop
         if (window.innerWidth > 768 && sidebar && sidebar.classList.contains('mobile-open')) {
-                sidebar.classList.remove('mobile-open');
+            sidebar.classList.remove('mobile-open');
             if (mobileOverlay) {
                 mobileOverlay.classList.remove('active');
             }
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+        }
+        
+        // Close dropdowns on resize
+        if (userDropdown) userDropdown.classList.remove('show');
+        if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
+        if (studyDropdown) {
+            studyDropdown.classList.remove('show');
+            if (studySelector) studySelector.classList.remove('open');
         }
     });
 
