@@ -2516,7 +2516,8 @@ body::before {
 
 @media (max-width: 768px) {
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 1.5rem;
     }
 
@@ -3163,7 +3164,8 @@ body::before {
 /* Tablet Landscape (768px-1023px) */
 @media (max-width: 1023px) and (min-width: 768px) {
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 1.5rem;
     }
 
@@ -3235,7 +3237,8 @@ body::before {
 /* Tablet Portrait & Mobile Landscape (481px-767px) */
 @media (max-width: 767px) and (min-width: 481px) {
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 1.25rem;
     }
 
@@ -3764,6 +3767,15 @@ body::before {
 
     .welcome-banner {
         padding: 1rem 0;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .header {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
     }
 
     .welcome-message {
@@ -3799,10 +3811,23 @@ body::before {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+    
+    html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 1rem;
         min-height: calc(100vh - var(--header-height));
         width: 100%;
@@ -3961,6 +3986,8 @@ body::before {
 /* Extra Small Mobile (up to 480px) */
 @media (max-width: 480px) {
     .main-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 0.75rem;
     }
 
@@ -4007,6 +4034,8 @@ body::before {
 /* Extra Small Mobile (up to 320px) */
 @media (max-width: 320px) {
     .main-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 0.5rem;
     }
 
@@ -4274,7 +4303,8 @@ body::before {
     }
 
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 1.5rem;
     }
 
@@ -4318,6 +4348,8 @@ body::before {
     }
 
     .main-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         padding: 0.75rem;
     }
 
