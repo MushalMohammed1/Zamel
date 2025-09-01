@@ -3750,6 +3750,14 @@ body::before {
     display: block;
 }
 
+/* Prevent scroll only when sidebar overlay is active */
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
 /* Mobile Portrait (up to 768px) */
 @media (max-width: 768px) {
 
@@ -3786,6 +3794,32 @@ body::before {
     .study-dropdown-menu {
         z-index: inherit;
         position: relative;
+    }
+    
+    /* Force show dropdowns when open */
+    .user-dropdown.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        display: block !important;
+    }
+    
+    .study-selector.open .study-dropdown,
+    .study-dropdown.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        display: block !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Ensure dropdown elements are interactive */
+    .user-dropdown .dropdown-menu,
+    .study-dropdown,
+    .dropdown-item,
+    .study-dropdown-item {
+        pointer-events: auto !important;
+        cursor: pointer;
     }
     
     /* Ensure header doesn't interfere with dropdowns */
@@ -3853,6 +3887,7 @@ body::before {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        overflow-y: auto;
         width: 100%;
         max-width: 100vw;
         box-sizing: border-box;
@@ -3862,6 +3897,7 @@ body::before {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        overflow-y: auto;
         width: 100%;
         max-width: 100vw;
         box-sizing: border-box;
