@@ -391,7 +391,7 @@ body::before {
     visibility: hidden;
     transform: translateY(-10px);
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    z-index: 10000;
+    z-index: 2147483646;
     overflow: hidden;
 }
 
@@ -587,7 +587,7 @@ body::before {
     visibility: hidden;
     transform: translateY(-10px);
     transition: var(--transition);
-    z-index: 1003;
+    z-index: 2147483647;
     min-width: 400px;
 }
 
@@ -919,12 +919,12 @@ body::before {
     margin: 0;
 }
 
-/* Welcome Banner - Mobile Only */
-.welcome-banner {
+/* Mobile Welcome Message */
+.mobile-welcome {
     display: none; /* Hidden on desktop */
 }
 
-.welcome-message {
+.mobile-welcome-message {
     margin: 0;
     color: var(--gray-800);
     font-size: 1.8rem;
@@ -3798,10 +3798,10 @@ body.mobile-menu-open {
         z-index: auto;
     }
     
-    /* Portal dropdowns to top layer */
+    /* Portal dropdowns to top layer - highest possible z-index */
     .study-dropdown {
         position: fixed !important;
-        z-index: 9999 !important;
+        z-index: 2147483647 !important; /* Maximum z-index value */
         max-height: 60vh !important;
         overflow-y: auto !important;
         min-width: 280px !important;
@@ -3814,7 +3814,7 @@ body.mobile-menu-open {
     
     .user-dropdown {
         position: fixed !important;
-        z-index: 10000 !important;
+        z-index: 2147483646 !important; /* Second highest z-index value */
         max-height: 60vh !important;
         overflow-y: auto !important;
         min-width: 280px !important;
@@ -3832,6 +3832,7 @@ body.mobile-menu-open {
         transform: translateY(0) !important;
         display: block !important;
         pointer-events: auto !important;
+        z-index: 2147483646 !important;
     }
     
     .study-selector.open .study-dropdown,
@@ -3841,6 +3842,13 @@ body.mobile-menu-open {
         transform: translateY(0) !important;
         display: block !important;
         pointer-events: auto !important;
+        z-index: 2147483647 !important;
+    }
+    
+    /* Ensure dropdown menus inherit the high z-index */
+    .user-dropdown .dropdown-menu,
+    .study-dropdown .study-dropdown-menu {
+        z-index: inherit !important;
     }
     
     /* Body scroll lock when dropdown open */
@@ -3851,15 +3859,12 @@ body.mobile-menu-open {
         height: 100vh !important;
     }
 
-    /* Show welcome banner on mobile */
-    .welcome-banner {
+    /* Show mobile welcome message on mobile */
+    .mobile-welcome {
         display: block !important;
-        background: none !important;
-        padding: 1rem;
-        margin: 0;
-        width: 100%;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
         text-align: right; /* Align to right for RTL */
-        box-shadow: none !important;
     }
     
     /* Hide header welcome on mobile */
@@ -3873,7 +3878,7 @@ body.mobile-menu-open {
         width: 100%;
     }
 
-    .welcome-message {
+    .mobile-welcome-message {
         font-size: 1.4rem;
         text-align: right;
     }
@@ -3925,7 +3930,6 @@ body.mobile-menu-open {
     
     /* Ensure no element extends beyond viewport width */
     .header,
-    .welcome-banner,
     .main-content,
     .footer,
     .sidebar {
@@ -3940,6 +3944,7 @@ body.mobile-menu-open {
         min-height: calc(100vh - var(--header-height));
         width: 100%;
         box-sizing: border-box;
+        z-index: 1 !important; /* Ensure main content stays below dropdowns */
     }
 
     .sidebar {
