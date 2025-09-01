@@ -209,10 +209,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile user dropdown functionality
     if (mobileUserInfoBtn && mobileUserDropdown) {
         mobileUserInfoBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                        mobileUserDropdown.classList.toggle('show');
-                });
+            e.stopPropagation();
+            
+            // Position the dropdown based on the button position
+            const dropdownMenu = mobileUserDropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+                const btnRect = mobileUserInfoBtn.getBoundingClientRect();
+                const dropdownHeight = 200; // Approximate dropdown height
+                const viewportHeight = window.innerHeight;
+                const viewportWidth = window.innerWidth;
+                
+                // Calculate top position - below button with some spacing
+                let topPosition = btnRect.bottom + 8;
+                
+                // If dropdown would go below viewport, position it above the button
+                if (topPosition + dropdownHeight > viewportHeight) {
+                    topPosition = btnRect.top - dropdownHeight - 8;
+                }
+                
+                // Ensure it doesn't go above the top of the viewport
+                if (topPosition < 8) {
+                    topPosition = 8;
+                }
+                
+                // Position horizontally - align with right edge of button
+                let rightPosition = viewportWidth - btnRect.right;
+                
+                // Ensure dropdown doesn't extend beyond left edge of viewport
+                const dropdownWidth = 200;
+                if (btnRect.right - dropdownWidth < 16) {
+                    rightPosition = 16;
+                }
+                
+                dropdownMenu.style.top = topPosition + 'px';
+                dropdownMenu.style.right = rightPosition + 'px';
             }
+            
+            mobileUserDropdown.classList.toggle('show');
+        });
+    }
 
             // Close user dropdowns when clicking outside
     document.addEventListener('click', function(e) {
@@ -237,9 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (sidebar && sidebar.classList.contains('mobile-open')) {
                 sidebar.classList.remove('mobile-open');
                 if (mobileOverlay) mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
+                document.body.classList.remove('mobile-menu-open');
             }
         }
     });
@@ -251,19 +284,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const isOpen = sidebar.classList.contains('mobile-open');
             
             if (!isOpen) {
-                // Opening sidebar
+                // Opening sidebar - prevent scrolling on body only
                 sidebar.classList.add('mobile-open');
                 mobileOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
+                document.body.classList.add('mobile-menu-open');
             } else {
-                // Closing sidebar
+                // Closing sidebar - restore scrolling
                 sidebar.classList.remove('mobile-open');
                 mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
+                document.body.classList.remove('mobile-menu-open');
             }
         });
 
@@ -271,9 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileOverlay.addEventListener('click', function() {
             sidebar.classList.remove('mobile-open');
             mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.body.classList.remove('mobile-menu-open');
         });
     }
 
@@ -488,9 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileOverlay) {
                 mobileOverlay.classList.remove('active');
             }
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.body.classList.remove('mobile-menu-open');
         }
         
         // Close dropdowns on resize
