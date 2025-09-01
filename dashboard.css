@@ -3759,7 +3759,43 @@ body::before {
         box-sizing: border-box;
     }
     
+    /* Fix z-index for dropdowns on mobile */
+    .user-profile {
+        position: relative;
+        z-index: auto;
+    }
+    
+    .user-dropdown,
+    .user-dropdown .dropdown-menu {
+        z-index: 10001 !important;
+        position: absolute;
+    }
+    
+    .study-selector {
+        position: relative;
+        z-index: auto;
+    }
+    
+    .study-dropdown {
+        z-index: 10002 !important;
+        position: absolute;
+    }
+    
+    /* Ensure dropdown menus appear above everything */
+    .dropdown-menu,
+    .study-dropdown-menu {
+        z-index: inherit;
+        position: relative;
+    }
+    
+    /* Ensure header doesn't interfere with dropdowns */
+    .header {
+        z-index: 1002;
+    }
+    
     .header-container {
+        position: relative;
+        z-index: auto;
         padding: 0 1rem;
         gap: 0.5rem;
     }
@@ -3768,6 +3804,7 @@ body::before {
         position: static;
         transform: none;
         flex: 1;
+        z-index: auto;
     }
 
     .welcome-banner {
