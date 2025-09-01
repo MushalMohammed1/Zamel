@@ -3742,7 +3742,7 @@ body::before {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1003;
     backdrop-filter: blur(4px);
 }
 
@@ -3767,33 +3767,56 @@ body.mobile-menu-open {
         box-sizing: border-box;
     }
     
-    /* Fix z-index for dropdowns on mobile */
-    .user-profile {
+    /* MOBILE LAYERING HIERARCHY:
+       Sidebar: 1001
+       Header: 1002  
+       Mobile Overlay: 1003
+       Study Dropdown: 9999
+       User Dropdown: 10000 */
+    
+    /* Kill stacking contexts on ancestors */
+    .header-container {
         position: relative;
+        z-index: auto;
+        padding: 0 1rem;
+        gap: 0.5rem;
+        /* Remove any transform/filter that creates stacking context */
+        transform: none;
+        filter: none;
+    }
+    
+    .header-center {
+        position: static;
+        transform: none;
+        flex: 1;
         z-index: auto;
     }
     
-    .user-dropdown,
-    .user-dropdown .dropdown-menu {
-        z-index: 10001 !important;
-        position: absolute;
-    }
-    
-    .study-selector {
-        position: relative;
-        z-index: auto;
-    }
-    
+    /* Portal dropdowns to top layer */
     .study-dropdown {
-        z-index: 10002 !important;
-        position: absolute;
+        position: fixed !important;
+        z-index: 9999 !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        min-width: 280px !important;
+        max-width: calc(100vw - 2rem) !important;
+        /* RTL positioning - align to right edge of trigger */
+        right: 1rem !important;
+        left: auto !important;
+        top: auto !important;
     }
     
-    /* Ensure dropdown menus appear above everything */
-    .dropdown-menu,
-    .study-dropdown-menu {
-        z-index: inherit;
-        position: relative;
+    .user-dropdown {
+        position: fixed !important;
+        z-index: 10000 !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        min-width: 280px !important;
+        max-width: calc(100vw - 2rem) !important;
+        /* RTL positioning - align to right edge of trigger */
+        right: 1rem !important;
+        left: auto !important;
+        top: auto !important;
     }
     
     /* Force show dropdowns when open */
@@ -3802,6 +3825,7 @@ body.mobile-menu-open {
         visibility: visible !important;
         transform: translateY(0) !important;
         display: block !important;
+        pointer-events: auto !important;
     }
     
     .study-selector.open .study-dropdown,
@@ -3813,32 +3837,12 @@ body.mobile-menu-open {
         pointer-events: auto !important;
     }
     
-    /* Ensure dropdown elements are interactive */
-    .user-dropdown .dropdown-menu,
-    .study-dropdown,
-    .dropdown-item,
-    .study-dropdown-item {
-        pointer-events: auto !important;
-        cursor: pointer;
-    }
-    
-    /* Ensure header doesn't interfere with dropdowns */
-    .header {
-        z-index: 1002;
-    }
-    
-    .header-container {
-        position: relative;
-        z-index: auto;
-        padding: 0 1rem;
-        gap: 0.5rem;
-    }
-
-    .header-center {
-        position: static;
-        transform: none;
-        flex: 1;
-        z-index: auto;
+    /* Body scroll lock when dropdown open */
+    body.dropdown-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100vh !important;
     }
 
     .welcome-banner {

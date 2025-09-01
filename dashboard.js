@@ -1,4 +1,34 @@
 // Wait for DOM to be fully loaded
+// Dropdown positioning function for mobile
+function positionDropdown(trigger, dropdown) {
+    if (window.innerWidth > 768) return; // Only for mobile
+    
+    const triggerRect = trigger.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const dropdownHeight = 300; // Approximate max height
+    
+    // Calculate top position
+    let topPosition = triggerRect.bottom + 8;
+    
+    // If dropdown would go below viewport, position it above the trigger
+    if (topPosition + dropdownHeight > viewportHeight) {
+        topPosition = Math.max(8, triggerRect.top - dropdownHeight - 8);
+    }
+    
+    // Ensure it doesn't go above the top of the viewport
+    if (topPosition < 8) {
+        topPosition = 8;
+    }
+    
+    // RTL positioning - calculate from right edge
+    const rightPosition = viewportWidth - triggerRect.right;
+    
+    // Apply positioning
+    dropdown.style.top = topPosition + 'px';
+    dropdown.style.right = Math.max(8, rightPosition) + 'px';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
         // Initialize variables from dashboard
                 const alertNotification = document.getElementById('alertNotification');
@@ -12,9 +42,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Study selector functionality
     if (studyInfo) {
-        studyInfo.addEventListener('click', function () {
+        studyInfo.addEventListener('click', function (e) {
+            e.stopPropagation();
+            
+            // Close user dropdown if open
+            if (userDropdown) userDropdown.classList.remove('show');
+            document.body.classList.remove('dropdown-open');
+            
+            const isOpen = studySelector.classList.contains('open');
             studySelector.classList.toggle('open');
             studyDropdown.classList.toggle('show');
+            
+            // Position dropdown for mobile
+            if (window.innerWidth <= 768 && studyDropdown.classList.contains('show')) {
+                positionDropdown(studyInfo, studyDropdown);
+                document.body.classList.add('dropdown-open');
+            } else {
+                document.body.classList.remove('dropdown-open');
+            }
         });
     }
 
@@ -23,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (studySelector && !studySelector.contains(e.target)) {
                 studySelector.classList.remove('open');
                 studyDropdown.classList.remove('show');
+                document.body.classList.remove('dropdown-open');
             }
         });
 
@@ -198,8 +244,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // User dropdown functionality
     if (userAvatarNumber && userDropdown) {
         userAvatarNumber.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                userDropdown.classList.toggle('show');
+            e.stopPropagation();
+            
+            // Close study dropdown if open
+            if (studySelector) studySelector.classList.remove('open');
+            if (studyDropdown) studyDropdown.classList.remove('show');
+            document.body.classList.remove('dropdown-open');
+            
+            userDropdown.classList.toggle('show');
+            
+            // Position dropdown for mobile and add body scroll lock
+            if (window.innerWidth <= 768 && userDropdown.classList.contains('show')) {
+                positionDropdown(userAvatarNumber, userDropdown);
+                document.body.classList.add('dropdown-open');
+            } else {
+                document.body.classList.remove('dropdown-open');
+            }
         });
     }
 
@@ -209,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (userDropdown && userAvatarNumber && !userDropdown.contains(e.target) && !userAvatarNumber.contains(e.target)) {
             userDropdown.classList.remove('show');
+            document.body.classList.remove('dropdown-open');
         }
     });
 
@@ -220,6 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 studyDropdown.classList.remove('show');
                 studySelector.classList.remove('open');
             }
+            document.body.classList.remove('dropdown-open');
+            
             // Close mobile sidebar on escape
             if (sidebar && sidebar.classList.contains('mobile-open')) {
                 sidebar.classList.remove('mobile-open');
@@ -461,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update progress line on resize
         updateProgressLine();
         
-        // Close mobile menu on resize to desktop
+        // Close mobile menu and dropdowns on resize to desktop
         if (window.innerWidth > 768 && sidebar && sidebar.classList.contains('mobile-open')) {
             sidebar.classList.remove('mobile-open');
             if (mobileOverlay) {
@@ -469,6 +532,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.body.classList.remove('mobile-menu-open');
         }
+        
+        // Close dropdowns on resize and reset body state
+        if (userDropdown) userDropdown.classList.remove('show');
+        if (studyDropdown) {
+            studyDropdown.classList.remove('show');
+            studySelector.classList.remove('open');
+        }
+        document.body.classList.remove('dropdown-open');
         
         // Close dropdowns on resize
         if (userDropdown) userDropdown.classList.remove('show');
