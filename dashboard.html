@@ -19,18 +19,18 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <!-- Mobile Menu Button -->
+            <!-- Far Right: Logo/Brand -->
+            <a href="index.html" class="logo">
+                <span>زامل</span>
+                <div class="logo-accent"></div>
+            </a>
+            
+            <!-- Next: Hamburger/Menu -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             
-            <div class="header-left">
-                <a href="index.html" class="logo">
-                    <span>زامل</span>
-                    <div class="logo-accent"></div>
-                </a>
-            </div>
-            
+            <!-- Center: Course Selector -->
             <div class="header-center">
                 <div class="study-selector" id="studySelector">
                     <div class="study-info" id="studyInfo">
@@ -100,14 +100,15 @@
                 </div>
             </div>
 
-            <div class="user-info">
-                <!-- Alert notification -->
+            <!-- Left Side: Bell and User Dropdown -->
+            <div class="header-right">
+                <!-- Bell/Notifications -->
                 <button class="alert-notification" id="alertNotification">
                     <i class="fas fa-bell"></i>
-                    <span class="alert-badge" id="alertBadge">1</span>
+                    <span class="alert-badge" id="alertBadge">•</span>
                 </button>
                 
-                <!-- User Avatar with Number and Dropdown -->
+                <!-- User Dropdown Trigger -->
                 <div class="user-profile">
                     <div class="user-avatar-number" id="userAvatarNumber">
                         <span>م</span>
@@ -137,6 +138,11 @@
             </div>
         </div>
     </header>
+    
+    <!-- Welcome Banner -->
+    <section class="welcome-banner">
+        <h1 class="welcome-message">مرحباً، مشعل!</h1>
+    </section>
 
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
@@ -164,10 +170,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Mobile Welcome Message (only visible on small screens) -->
-        <div class="mobile-welcome-container">
-            <h1 class="mobile-welcome-message">مرحباً، مشعل!</h1>
-        </div>
+
         
         <!-- Study Journey -->
         <section class="study-journey fade-in">
