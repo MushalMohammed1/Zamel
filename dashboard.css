@@ -899,6 +899,11 @@ body::before {
     backdrop-filter: blur(10px);
 }
 
+/* Hide mobile welcome on desktop */
+.mobile-welcome-container {
+    display: none;
+}
+
 /* Enhanced background glow for main content */
 .main-content::before {
     content: '';
@@ -3669,25 +3674,74 @@ body::before {
     }
 
     .header-welcome {
-        font-size: 1.4rem;
+        display: none; /* Hide welcome from header on mobile */
     }
 
     .study-info {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 8px;
+        gap: 0.4rem;
     }
 
     .study-dropdown { 
         left: auto; 
         right: 0; 
-        min-width: 260px; 
+        min-width: 240px; 
         width: auto;
+        border-radius: 8px;
     }
     
     .course-icon { 
-        width: 32px; 
-        height: 32px; 
-        font-size: .7rem; 
+        width: 28px; 
+        height: 28px; 
+        font-size: 0.65rem; 
+        border-radius: 6px;
+    }
+
+    /* Smaller alert notification */
+    .alert-notification {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+
+    .alert-badge {
+        font-size: 0.65rem;
+        min-width: 16px;
+        height: 16px;
+        top: -4px;
+        right: -4px;
+    }
+
+    /* Smaller user avatar */
+    .user-avatar-number {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+
+    /* Compact header layout */
+    .header-container {
+        padding: 0 0.8rem;
+        gap: 0.8rem;
+    }
+
+    .header-center {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+
+    /* Compact mobile menu button */
+    .mobile-menu-btn {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 0.5rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
     }
 
     /* Mobile layout structure */
@@ -3709,6 +3763,7 @@ body::before {
     .header {
         width: 100vw;
         margin-left: 0;
+        padding: 0.75rem 0;
     }
     
     *,
@@ -3729,9 +3784,28 @@ body::before {
 
     .main-content {
         margin-left: 0;
-        padding: 1.5rem;
+        padding: 1rem 1.5rem 1.5rem;
         width: 100%;
         box-sizing: border-box;
+    }
+
+    /* Mobile Welcome Message */
+    .mobile-welcome-container {
+        display: block;
+        text-align: center;
+        margin-bottom: 1.25rem;
+        padding: 0.8rem 1rem;
+        background: linear-gradient(135deg, var(--gradient-primary));
+        border-radius: 10px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .mobile-welcome-message {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+        margin: 0;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar {
@@ -3768,8 +3842,37 @@ body::before {
     /* Optimize for smaller screens */
     @media (max-width: 480px) {
         .header-container {
-            padding: 0.75rem 0.5rem;
-            gap: 0.5rem;
+            padding: 0.6rem 0.5rem;
+            gap: 0.4rem;
+        }
+
+        /* Even more compact elements */
+        .study-info {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+        }
+
+        .mobile-welcome-message {
+            font-size: 1.2rem;
+        }
+
+        .mobile-welcome-container {
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-notification,
+        .user-avatar-number,
+        .mobile-menu-btn {
+            width: 32px;
+            height: 32px;
+            font-size: 0.85rem;
+        }
+
+        .course-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 0.6rem;
         }
 
         .mobile-study-selector {
