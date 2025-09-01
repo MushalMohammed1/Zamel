@@ -224,9 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (sidebar && sidebar.classList.contains('mobile-open')) {
                 sidebar.classList.remove('mobile-open');
                 if (mobileOverlay) mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
+                document.body.classList.remove('mobile-menu-open');
             }
         }
     });
@@ -241,16 +239,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Opening sidebar - prevent scrolling on body only
                 sidebar.classList.add('mobile-open');
                 mobileOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
+                document.body.classList.add('mobile-menu-open');
             } else {
                 // Closing sidebar - restore scrolling
                 sidebar.classList.remove('mobile-open');
                 mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
+                document.body.classList.remove('mobile-menu-open');
             }
         });
 
@@ -258,9 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileOverlay.addEventListener('click', function() {
             sidebar.classList.remove('mobile-open');
             mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.body.classList.remove('mobile-menu-open');
         });
     }
 
@@ -475,14 +467,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mobileOverlay) {
                 mobileOverlay.classList.remove('active');
             }
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.body.classList.remove('mobile-menu-open');
         }
         
         // Close dropdowns on resize
         if (userDropdown) userDropdown.classList.remove('show');
-
+        if (mobileUserDropdown) mobileUserDropdown.classList.remove('show');
         if (studyDropdown) {
             studyDropdown.classList.remove('show');
             if (studySelector) studySelector.classList.remove('open');

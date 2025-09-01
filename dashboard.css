@@ -114,6 +114,7 @@ body {
     transition: var(--transition-smooth);
     line-height: 1.6;
     margin: 0;
+    padding: 0;
     position: relative;
 }
 
@@ -3289,7 +3290,7 @@ body::before {
 
 /* Mobile Menu Button - Integrated with Header */
 .mobile-menu-btn {
-    display: flex;
+    display: none;
     position: relative;
     z-index: 1003;
     background: transparent;
@@ -3787,10 +3788,17 @@ body::before {
         font-size: .7rem; 
     }
 
+    .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
     /* Mobile layout structure */
     body {
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
     }
 
     .main-content {
