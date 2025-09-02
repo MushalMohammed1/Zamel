@@ -19,22 +19,20 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-
-            <!-- Next: Hamburger/Menu -->
+            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Far Right: Logo/Brand -->
-            <a href="index.html" class="logo">
-                <span>زامل</span>
-                <div class="logo-accent"></div>
-            </a>
             
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span>زامل</span>
+                    <div class="logo-accent"></div>
+                </a>
+            </div>
             
-            
-            <!-- Center: Course Selector -->
             <div class="header-center">
-        
+                <h1 class="header-welcome">مرحباً، مشعل!</h1>
                 <div class="study-selector" id="studySelector">
                     <div class="study-info" id="studyInfo">
                         <i class="fas fa-book"></i>
@@ -101,14 +99,16 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="header-welcome"> !مرحباً، مشعل </h1>
             </div>
 
-            <!-- Left Side: Bell and User Dropdown -->
-            <div class="header-right">
-               
+            <div class="user-info">
+                <!-- Alert notification -->
+                <button class="alert-notification" id="alertNotification">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge" id="alertBadge">•</span>
+                </button>
                 
-                <!-- User Dropdown Trigger -->
+                <!-- User Avatar with Number and Dropdown -->
                 <div class="user-profile">
                     <div class="user-avatar-number" id="userAvatarNumber">
                         <span>م</span>
@@ -135,13 +135,6 @@
                         </div>
                     </div>
                 </div>
-
-                 <!-- Bell/Notifications -->
-                 <button class="alert-notification" id="alertNotification">
-                    <i class="fas fa-bell"></i>
-                    <span class="alert-badge" id="alertBadge">•</span>
-                </button>
-                
             </div>
         </div>
     </header>
@@ -172,9 +165,8 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
-        <!-- Mobile Welcome Message -->
-        <div class="mobile-welcome">
+        <!-- Mobile Welcome Message (only visible on small screens) -->
+        <div class="mobile-welcome-container">
             <h1 class="mobile-welcome-message">مرحباً، مشعل!</h1>
         </div>
         

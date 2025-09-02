@@ -2142,15 +2142,63 @@
                 });
             });
 
-            // Unit checkboxes
-            document.querySelectorAll('.unit-checkbox').forEach(checkbox => {
+            // Unit checkboxes with "الكل" logic
+            document.querySelectorAll('.unit-checkbox').forEach((checkbox, index) => {
                 checkbox.addEventListener('change', function() {
                     const container = this.closest('.units-container');
+                    const unitName = this.closest('.unit-header').querySelector('.unit-name').textContent;
+                    const allUnitCheckboxes = document.querySelectorAll('.unit-checkbox');
+                    const allCheckbox = allUnitCheckboxes[0]; // First checkbox should be "الكل"
+                    
+                    if (this.checked) {
+                        container.classList.add('selected');
+                        
+                        // If this is "الكل" checkbox, uncheck all others
+                        if (unitName === 'الكل') {
+                            allUnitCheckboxes.forEach((otherCheckbox, otherIndex) => {
+                                if (otherIndex !== 0) { // Don't uncheck "الكل" itself
+                                    otherCheckbox.checked = false;
+                                    otherCheckbox.closest('.units-container').classList.remove('selected');
+                                }
+                            });
+                        } else {
+                            // If any specific unit is checked, uncheck "الكل"
+                            if (allCheckbox) {
+                                allCheckbox.checked = false;
+                                allCheckbox.closest('.units-container').classList.remove('selected');
+                            }
+                        }
+                    } else {
+                        container.classList.remove('selected');
+                        
+                        // If unchecking "الكل", check all others
+                        if (unitName === 'الكل') {
+                            allUnitCheckboxes.forEach((otherCheckbox, otherIndex) => {
+                                if (otherIndex !== 0) { // Don't check "الكل" itself
+                                    otherCheckbox.checked = true;
+                                    otherCheckbox.closest('.units-container').classList.add('selected');
+                                }
+                            });
+                        }
+                    }
+                    
+                    // Update summary when units selection changes
+                    updateSummary();
+                });
+            });
+
+            // Question type checkboxes
+            document.querySelectorAll('.question-type-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const container = this.closest('.question-type-item');
                     if (this.checked) {
                         container.classList.add('selected');
                     } else {
                         container.classList.remove('selected');
                     }
+                    
+                    // Update summary when question types selection changes
+                    updateSummary();
                 });
             });
 
@@ -2215,19 +2263,65 @@
 
         // Start Test Popup Functions
         function showStartTestPopup() {
-            // Get test configuration
+            // Validate selections before proceeding
+            if (!validateUnitsSelection()) {
+                showCustomAlert('يجب اختيار وحدة واحدة على الأقل من الوحدات والفصول');
+                return;
+            }
+            
+            if (!validateQuestionTypesSelection()) {
+                showCustomAlert('يجب اختيار نوع واحد على الأقل من أنواع الأسئلة');
+                return;
+            }
+            
+            // Get selected units
+            const selectedUnits = [];
+            document.querySelectorAll('.unit-checkbox:checked').forEach(checkbox => {
+                const unitName = checkbox.closest('.unit-header').querySelector('.unit-name').textContent;
+                if (unitName !== 'الكل') {
+                    selectedUnits.push(unitName);
+                }
+            });
+
+            // Get question type selections
+            const mcqCheckbox = document.querySelector('.question-type-item:first-child .question-type-checkbox');
+            const tbsCheckbox = document.querySelector('.question-type-item:last-child .question-type-checkbox');
+            
+            // Get test configuration with enhanced data
             const testConfig = {
                 scoringMode: document.querySelector('input[name="scoring-mode"]:checked')?.value || 'practice',
                 testMode: document.querySelector('input[name="test-mode"]:checked')?.value || 'random',
-                mcqCount: document.querySelector('.question-type-item:first-child .question-type-input')?.value || 100,
-                tbsCount: document.querySelector('.question-type-item:last-child .question-type-input')?.value || 10
+                mcqCount: mcqCheckbox?.checked ? (document.querySelector('.question-type-item:first-child .question-type-input')?.value || 100) : 0,
+                tbsCount: tbsCheckbox?.checked ? (document.querySelector('.question-type-item:last-child .question-type-input')?.value || 10) : 0,
+                selectedUnits: selectedUnits,
+                mcqEnabled: mcqCheckbox?.checked || false,
+                tbsEnabled: tbsCheckbox?.checked || false
             };
             
-            // Store configuration
+            // Store configuration in window and localStorage for test-session.html sync
             window.currentTestConfig = testConfig;
+            localStorage.setItem('currentTestConfig', JSON.stringify(testConfig));
             
-            // Populate config grid
+            // Populate config grid with enhanced data
             const configGrid = document.getElementById('configGrid');
+            
+            // Determine units display text for popup
+            let unitsText = 'الكل';
+            if (testConfig.selectedUnits.length === 0) {
+                const allUnitsChecked = document.querySelector('.unit-checkbox:first-child')?.checked;
+                unitsText = allUnitsChecked ? 'جميع الوحدات الـ6' : 'لم يتم الاختيار';
+            } else if (testConfig.selectedUnits.length === 1) {
+                const unitCode = testConfig.selectedUnits[0].split(' - ')[0];
+                const unitDesc = testConfig.selectedUnits[0].split(' - ')[1] || testConfig.selectedUnits[0];
+                unitsText = `${unitCode} - ${unitDesc.length > 20 ? unitDesc.substring(0, 20) + '...' : unitDesc}`;
+            } else if (testConfig.selectedUnits.length <= 3) {
+                const unitCodes = testConfig.selectedUnits.map(unit => unit.split(' - ')[0]);
+                unitsText = `${unitCodes.join(', ')} (${testConfig.selectedUnits.length} وحدات)`;
+            } else {
+                const unitCodes = testConfig.selectedUnits.slice(0, 2).map(unit => unit.split(' - ')[0]);
+                unitsText = `${unitCodes.join(', ')} وـ${testConfig.selectedUnits.length - 2} وحدات أخرى`;
+            }
+            
             configGrid.innerHTML = `
                 <div class="config-item">
                     <div class="config-label">وضع التقييم</div>
@@ -2238,12 +2332,16 @@
                     <div class="config-value">عشوائي</div>
                 </div>
                 <div class="config-item">
+                    <div class="config-label">الوحدات</div>
+                    <div class="config-value">${unitsText}</div>
+                </div>
+                <div class="config-item">
                     <div class="config-label">أسئلة متعددة الخيارات</div>
-                    <div class="config-value">${testConfig.mcqCount}</div>
+                    <div class="config-value">${testConfig.mcqEnabled ? testConfig.mcqCount : '0'}</div>
                 </div>
                 <div class="config-item">
                     <div class="config-label">أسئلة مقالية</div>
-                    <div class="config-value">${testConfig.tbsCount}</div>
+                    <div class="config-value">${testConfig.tbsEnabled ? testConfig.tbsCount : '0'}</div>
                 </div>
             `;
             
@@ -2382,30 +2480,155 @@
         }
 
         function updateSummary() {
-            // Update scoring mode
+            // Update scoring mode (preserve existing logic)
             const scoringMode = document.querySelector('input[name="scoring-mode"]:checked');
             if (scoringMode) {
                 const modeText = scoringMode.value === 'exam' ? 'الامتحان' : 'التدريب';
                 document.querySelector('.summary-grid .summary-item:nth-child(1) .summary-value').textContent = modeText;
             }
 
-            // Update test mode
+            // Update test mode (preserve existing logic)
             const testMode = document.querySelector('input[name="test-mode"]:checked');
             if (testMode) {
                 const modeText = 'عشوائي'; // Only random mode available now
                 document.querySelector('.summary-grid .summary-item:nth-child(2) .summary-value').textContent = modeText;
             }
 
-            // Update question counts
-            const mcqInput = document.querySelector('.question-type-item:first-child .question-type-input');
-            const tbsInput = document.querySelector('.question-type-item:last-child .question-type-input');
+            // Update units/modules summary (new dynamic functionality)
+            updateUnitsModulesSummary();
+
+            // Update question types summary (enhanced)
+            updateQuestionTypesSummary();
             
-            if (mcqInput) {
-                document.querySelector('.summary-grid .summary-item:nth-child(4) .summary-value').textContent = mcqInput.value;
+            // Update start button state based on validation
+            updateStartButtonState();
+        }
+
+        // Enhanced function to dynamically update units/modules summary
+        function updateUnitsModulesSummary() {
+            const allUnitCheckboxes = document.querySelectorAll('.unit-checkbox');
+            const checkedUnits = document.querySelectorAll('.unit-checkbox:checked');
+            const summaryElement = document.querySelector('.summary-grid .summary-item:nth-child(3) .summary-value');
+            
+            if (!summaryElement) return;
+            
+            // Get the "الكل" (All) checkbox - it should be the first one
+            const allUnitsCheckbox = allUnitCheckboxes[0];
+            const allUnitsName = allUnitsCheckbox ? allUnitsCheckbox.closest('.unit-header').querySelector('.unit-name').textContent : '';
+            
+            // Check if "الكل" checkbox is selected
+            if (allUnitsCheckbox && allUnitsCheckbox.checked && allUnitsName === 'الكل') {
+                summaryElement.innerHTML = '<span style="font-weight: 600;">الكل</span><br><span style="font-size: 0.75rem; opacity: 0.8;">جميع الوحدات الـ6</span>';
+                summaryElement.style.color = 'var(--primary-navy)';
+                return;
             }
             
-            if (tbsInput) {
-                document.querySelector('.summary-grid .summary-item:nth-child(5) .summary-value').textContent = tbsInput.value;
+            // Get specific units (non-"الكل") that are checked
+            const specificUnitsChecked = Array.from(checkedUnits).filter(checkbox => {
+                const unitName = checkbox.closest('.unit-header').querySelector('.unit-name').textContent;
+                return unitName !== 'الكل';
+            });
+            
+            if (specificUnitsChecked.length === 0) {
+                summaryElement.innerHTML = '<span style="font-weight: 600; color: var(--danger-red);">لم يتم الاختيار</span><br><span style="font-size: 0.75rem; opacity: 0.8;">يجب اختيار وحدة واحدة على الأقل</span>';
+                summaryElement.style.color = 'var(--danger-red)';
+            } else if (specificUnitsChecked.length === allUnitCheckboxes.length - 1) { // -1 for "الكل" option
+                summaryElement.innerHTML = '<span style="font-weight: 600;">الكل</span><br><span style="font-size: 0.75rem; opacity: 0.8;">جميع الوحدات المحددة</span>';
+                summaryElement.style.color = 'var(--primary-navy)';
+            } else if (specificUnitsChecked.length === 1) {
+                // Show the specific unit name and description
+                const unitName = specificUnitsChecked[0].closest('.unit-header').querySelector('.unit-name').textContent;
+                const shortName = unitName.split(' - ')[0]; // Get just the code part (F1, F2, etc.)
+                const fullName = unitName.split(' - ')[1] || unitName; // Get description part
+                summaryElement.innerHTML = `<span style="font-weight: 600;">${shortName}</span><br><span style="font-size: 0.75rem; opacity: 0.8;">${fullName.length > 25 ? fullName.substring(0, 25) + '...' : fullName}</span>`;
+                summaryElement.style.color = 'var(--primary-navy)';
+            } else if (specificUnitsChecked.length <= 3) {
+                // Show specific unit codes if 2-3 are selected
+                const unitCodes = specificUnitsChecked.map(checkbox => {
+                    const unitName = checkbox.closest('.unit-header').querySelector('.unit-name').textContent;
+                    return unitName.split(' - ')[0];
+                });
+                summaryElement.innerHTML = `<span style="font-weight: 600;">${unitCodes.join(' + ')}</span><br><span style="font-size: 0.75rem; opacity: 0.8;">${specificUnitsChecked.length} وحدات محددة</span>`;
+                summaryElement.style.color = 'var(--primary-navy)';
+            } else {
+                // Show count with more details if many are selected
+                const unitCodes = specificUnitsChecked.slice(0, 2).map(checkbox => {
+                    const unitName = checkbox.closest('.unit-header').querySelector('.unit-name').textContent;
+                    return unitName.split(' - ')[0];
+                });
+                summaryElement.innerHTML = `<span style="font-weight: 600;">${unitCodes.join(' + ')} +${specificUnitsChecked.length - 2}</span><br><span style="font-size: 0.75rem; opacity: 0.8;">${specificUnitsChecked.length} وحدات محددة</span>`;
+                summaryElement.style.color = 'var(--primary-navy)';
+            }
+        }
+
+        // Enhanced function to update question types summary
+        function updateQuestionTypesSummary() {
+            const mcqInput = document.querySelector('.question-type-item:first-child .question-type-input');
+            const tbsInput = document.querySelector('.question-type-item:last-child .question-type-input');
+            const mcqCheckbox = document.querySelector('.question-type-item:first-child .question-type-checkbox');
+            const tbsCheckbox = document.querySelector('.question-type-item:last-child .question-type-checkbox');
+            
+            // Update MCQ summary
+            const mcqSummaryElement = document.querySelector('.summary-grid .summary-item:nth-child(4) .summary-value');
+            if (mcqSummaryElement && mcqInput && mcqCheckbox) {
+                if (mcqCheckbox.checked) {
+                    mcqSummaryElement.textContent = mcqInput.value;
+                    mcqSummaryElement.parentElement.style.opacity = '1';
+                    mcqSummaryElement.style.color = 'var(--primary-navy)';
+                } else {
+                    mcqSummaryElement.textContent = '0';
+                    mcqSummaryElement.parentElement.style.opacity = '0.5';
+                    mcqSummaryElement.style.color = 'var(--medium-gray)';
+                }
+            }
+            
+            // Update TBS (Essay Questions) summary
+            const tbsSummaryElement = document.querySelector('.summary-grid .summary-item:nth-child(5) .summary-value');
+            if (tbsSummaryElement && tbsInput && tbsCheckbox) {
+                if (tbsCheckbox.checked) {
+                    tbsSummaryElement.textContent = tbsInput.value;
+                    tbsSummaryElement.parentElement.style.opacity = '1';
+                    tbsSummaryElement.style.color = 'var(--primary-navy)';
+                } else {
+                    tbsSummaryElement.textContent = '0';
+                    tbsSummaryElement.parentElement.style.opacity = '0.5';
+                    tbsSummaryElement.style.color = 'var(--medium-gray)';
+                }
+            }
+            
+            // Check if at least one question type is selected and update start button
+            updateStartButtonState();
+        }
+        
+        // Validation functions
+        function validateUnitsSelection() {
+            const checkedUnits = document.querySelectorAll('.unit-checkbox:checked');
+            return checkedUnits.length > 0;
+        }
+        
+        function validateQuestionTypesSelection() {
+            const mcqCheckbox = document.querySelector('.question-type-item:first-child .question-type-checkbox');
+            const tbsCheckbox = document.querySelector('.question-type-item:last-child .question-type-checkbox');
+            return (mcqCheckbox && mcqCheckbox.checked) || (tbsCheckbox && tbsCheckbox.checked);
+        }
+        
+        function updateStartButtonState() {
+            const startButton = document.getElementById('startTestBtn');
+            if (!startButton) return;
+            
+            const unitsValid = validateUnitsSelection();
+            const questionTypesValid = validateQuestionTypesSelection();
+            
+            if (unitsValid && questionTypesValid) {
+                startButton.disabled = false;
+                startButton.style.opacity = '1';
+                startButton.style.cursor = 'pointer';
+                startButton.style.background = 'var(--gradient-button)';
+            } else {
+                startButton.disabled = true;
+                startButton.style.opacity = '0.6';
+                startButton.style.cursor = 'not-allowed';
+                startButton.style.background = 'var(--medium-gray)';
             }
         }
 
