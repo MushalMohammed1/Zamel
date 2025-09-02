@@ -398,6 +398,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Progress step navigation functionality for رحلة الدراسة
+    const progressSteps = document.querySelectorAll('.progress-step');
+    progressSteps.forEach(step => {
+        // Add cursor pointer style
+        step.style.cursor = 'pointer';
+        
+        step.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get module information
+            const moduleCode = this.getAttribute('data-module');
+            const percentage = this.getAttribute('data-percentage');
+            const status = this.getAttribute('data-status');
+            
+            // Show loading feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Show toast notification based on status
+            if (status === 'completed') {
+                showToast(`تم الانتهاء من ${moduleCode} بنسبة ${percentage}% - الانتقال لصفحة المراجعة...`, 'success');
+            } else if (status === 'in-progress') {
+                showToast(`${moduleCode} قيد التقدم (${percentage}%) - الانتقال لمتابعة الدراسة...`, 'info');
+            } else if (status === 'not-started') {
+                showToast(`بدء دراسة ${moduleCode} - الانتقال لصفحة المحتوى...`, 'info');
+            } else if (moduleCode === 'FINAL') {
+                showToast(`الاختبار النهائي - التقدم العام ${percentage}% - الانتقال لصفحة التقييم...`, 'info');
+            }
+            
+            // Redirect to course-view.html after a short delay
+            setTimeout(() => {
+                window.location.href = 'course-view.html';
+            }, 1500);
+        });
+        
+        // Add hover effects
+        step.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.filter = 'brightness(1.1)';
+        });
+        
+        step.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.filter = '';
+        });
+    });
+
     // Logout functionality
     const logoutButtons = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
     logoutButtons.forEach(btn => {
