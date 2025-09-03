@@ -148,162 +148,7 @@
             transform: translateY(-1px);
         }
 
-        /* Course Selector Styles */
-        .study-selector {
-            position: relative;
-            margin-left: 2rem;
-        }
 
-        .study-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.875rem;
-            white-space: nowrap;
-        }
-
-        .study-info:hover, .study-selector.open .study-info {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .study-dropdown-arrow {
-            transition: transform 0.3s ease;
-            font-size: 0.75rem;
-        }
-
-        .study-selector.open .study-dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .study-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            left: 0;
-            background: var(--white);
-            border: 1px solid var(--gray-300);
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            min-width: 280px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .study-dropdown.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .study-dropdown-header {
-            padding: 1rem;
-            border-bottom: 1px solid var(--gray-200);
-            font-weight: 600;
-            color: var(--primary-dark);
-            text-align: center;
-        }
-
-        .study-dropdown-menu {
-            padding: 0.5rem;
-        }
-
-        .study-dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--dark-gray);
-        }
-
-        .study-dropdown-item:hover {
-            background: var(--gray-100);
-        }
-
-        .study-dropdown-item.active {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        .dropdown-section-header {
-            padding: 0.75rem 0.75rem 0.5rem 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--medium-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .dropdown-section-header.coming-soon {
-            color: var(--accent-gold);
-        }
-
-        .dropdown-section-divider {
-            height: 1px;
-            background: var(--gray-200);
-            margin: 0.5rem 0.75rem;
-        }
-
-        .study-dropdown-item.coming-soon-item {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .study-dropdown-item.coming-soon-item:hover {
-            background: var(--gray-50);
-        }
-
-        .course-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .course-icon.accounting { background: #4a9960; }
-        .course-icon.tax { background: #2d7a3d; }
-        .course-icon.management { background: #2d5aa0; }
-        .course-icon.auditing { background: #3b5998; }
-        .course-icon.business { background: #2f4d7a; }
-        .course-icon.systems { background: #4a6fa5; }
-
-        .course-info {
-            flex: 1;
-        }
-
-        .course-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            font-size: 0.875rem;
-        }
-
-        .course-code {
-            font-size: 0.7rem;
-            color: var(--medium-gray);
-        }
-
-        .coming-soon-badge {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 600;
-        }
 
         /* Main Content Layout */
         .test-container {
@@ -540,6 +385,84 @@
         .answer-text {
             font-size: 1rem;
             font-weight: 500;
+        }
+
+        /* Answer Feedback Styles */
+        .answer-option.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            border-width: 2px;
+        }
+
+        .answer-option.correct .answer-letter {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .answer-option.incorrect {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            border-width: 2px;
+        }
+
+        .answer-option.incorrect .answer-letter {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .answer-feedback {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 2px solid;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .answer-feedback.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .answer-feedback.incorrect {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-header i {
+            font-size: 1.25rem;
+        }
+
+        .feedback-explanation {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Navigation Controls */
@@ -885,6 +808,34 @@
             background: transparent;
         }
 
+        /* Warning popup specific styles */
+        .popup-icon.warning {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+
+        .popup-warning {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .popup-warning i {
+            color: #856404;
+            font-size: 1.25rem;
+        }
+
+        .popup-warning p {
+            color: #856404;
+            margin: 0;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
             .end-test-modal {
                 max-width: 95%;
@@ -1002,75 +953,7 @@
                 <div class="test-tab">المحاسبة المالية</div>
                 <div class="test-tab active" onclick="switchToMCQ()">المجموعة الأولى</div>
                 <div class="test-tab" onclick="switchToEssay()">المجموعة الثانية</div>
-            </div>
-            
-            <!-- Course Selector -->
-            <div class="study-selector" id="studySelector">
-                <div class="study-info" id="studyInfo">
-                    <i class="fas fa-book"></i>
-                    <span>تدرس: المحاسبة المالية</span>
-                    <i class="fas fa-chevron-down study-dropdown-arrow"></i>
-                </div>
-                <div class="study-dropdown" id="studyDropdown">
-                    <div class="study-dropdown-header">
-                        اختر المادة التي تدرسها
-                    </div>
-                    <div class="study-dropdown-menu">
-                        <!-- Currently Available Courses -->
-                        <div class="dropdown-section-header">المواد المتوفرة (حالياً)</div>
-                        <div class="study-dropdown-item active" data-course="accounting">
-                            <div class="course-icon accounting">محا</div>
-                            <div class="course-info">
-                                <div class="course-name">المحاسبة المالية</div>
-                                <div class="course-code">Financial Accounting</div>
-                            </div>
-                        </div>
-                        <div class="study-dropdown-item" data-course="tax">
-                            <div class="course-icon tax">زك</div>
-                            <div class="course-info">
-                                <div class="course-name">الزكاة والضريبة</div>
-                                <div class="course-code">Zakat & Tax</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Coming Soon Section -->
-                        <div class="dropdown-section-divider"></div>
-                        <div class="dropdown-section-header coming-soon">قريباً</div>
-                        <div class="study-dropdown-item coming-soon-item" data-course="management">
-                            <div class="course-icon management">إدا</div>
-                            <div class="course-info">
-                                <div class="course-name">المحاسبة الإدارية والحكومية</div>
-                                <div class="course-code">Management & Government Accounting</div>
-                            </div>
-                            <div class="coming-soon-badge">قريباً</div>
-                        </div>
-                        <div class="study-dropdown-item coming-soon-item" data-course="auditing">
-                            <div class="course-icon auditing">مرا</div>
-                            <div class="course-info">
-                                <div class="course-name">المراجعة</div>
-                                <div class="course-code">Auditing</div>
-                            </div>
-                            <div class="coming-soon-badge">قريباً</div>
-                        </div>
-                        <div class="study-dropdown-item coming-soon-item" data-course="business">
-                            <div class="course-icon business">بيئ</div>
-                            <div class="course-info">
-                                <div class="course-name">بيئة الأعمال</div>
-                                <div class="course-code">Business Environment</div>
-                            </div>
-                            <div class="coming-soon-badge">قريباً</div>
-                        </div>
-                        <div class="study-dropdown-item coming-soon-item" data-course="systems">
-                            <div class="course-icon systems">نظم</div>
-                            <div class="course-info">
-                                <div class="course-name">الأنظمة</div>
-                                <div class="course-code">Systems</div>
-                            </div>
-                            <div class="coming-soon-badge">قريباً</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>           
         </div>
         
         <div class="timer-section">
@@ -1301,26 +1184,137 @@
         let currentTestType = 'mcq'; // 'mcq' or 'essay'
         let essayAnswers = {}; // Store essay answers
         let essayDrafts = {}; // Store essay drafts
+        
+        // MCQ Questions data with correct answers
+        let mcqQuestions = [
+            {
+                id: "اختياري-00854",
+                text: "شركة الأمل السعودية للتجارة بدأت أعمالها في 1 يناير 1444هـ. تعترف الشركة بالإيرادات من جميع المبيعات باستخدام أساس الاستحقاق لأغراض التقارير المالية، وتستخدم بشكل مناسب طريقة التقسيط لأغراض ضريبة الدخل. كان إجمالي هامش الربح للشركة على مبيعات التقسيط تحت كل طريقة كما يلي:",
+                table: `<table class="question-table">
+                    <thead>
+                        <tr>
+                            <th>السنة</th>
+                            <th>طريقة الاستحقاق</th>
+                            <th>طريقة التقسيط</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1444هـ</td>
+                            <td>800,000 ريال</td>
+                            <td>300,000 ريال</td>
+                        </tr>
+                        <tr>
+                            <td>1445هـ</td>
+                            <td>1,300,000 ريال</td>
+                            <td>700,000 ريال</td>
+                        </tr>
+                    </tbody>
+                </table>`,
+                question: "معدلات ضريبة الدخل المطبقة هي 25% للسنة 1445هـ و 20% لما بعدها. لا توجد فروق مؤقتة أخرى. في الميزانية العمومية للشركة بتاريخ 31 ديسمبر 1445هـ، يجب أن يكون التزام ضريبة الدخل المؤجل:",
+                options: {
+                    A: "275,000 ريال",
+                    B: "220,000 ريال", 
+                    C: "150,000 ريال",
+                    D: "120,000 ريال"
+                },
+                correctAnswer: "B",
+                explanation: "حساب ضريبة الدخل المؤجل: الفرق التراكمي بين الطريقتين × معدل الضريبة المستقبلي. الفرق التراكمي = (800,000 - 300,000) + (1,300,000 - 700,000) = 500,000 + 600,000 = 1,100,000. ضريبة الدخل المؤجل = 1,100,000 × 20% = 220,000 ريال"
+            },
+            {
+                id: "اختياري-00855",
+                text: "شركة النماء التجارية تقوم بإعداد قائمة التدفقات النقدية بالطريقة المباشرة. خلال السنة المالية 1445هـ، كانت لديها المعلومات التالية:",
+                table: `<table class="question-table">
+                    <thead>
+                        <tr>
+                            <th>البند</th>
+                            <th>المبلغ (ريال)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>صافي الربح</td>
+                            <td>500,000</td>
+                        </tr>
+                        <tr>
+                            <td>الاستهلاك</td>
+                            <td>120,000</td>
+                        </tr>
+                        <tr>
+                            <td>زيادة في المخزون</td>
+                            <td>80,000</td>
+                        </tr>
+                        <tr>
+                            <td>زيادة في الذمم المدينة</td>
+                            <td>60,000</td>
+                        </tr>
+                        <tr>
+                            <td>زيادة في الذمم الدائنة</td>
+                            <td>40,000</td>
+                        </tr>
+                    </tbody>
+                </table>`,
+                question: "ما هو صافي التدفق النقدي من العمليات التشغيلية؟",
+                options: {
+                    A: "520,000 ريال",
+                    B: "480,000 ريال",
+                    C: "580,000 ريال",
+                    D: "620,000 ريال"
+                },
+                correctAnswer: "A",
+                explanation: "صافي التدفق النقدي من العمليات = صافي الربح + الاستهلاك - زيادة المخزون - زيادة الذمم المدينة + زيادة الذمم الدائنة = 500,000 + 120,000 - 80,000 - 60,000 + 40,000 = 520,000 ريال"
+            },
+            {
+                id: "اختياري-00856",
+                text: "شركة الخليج للاستثمار تملك استثماراً في أسهم شركة أخرى بنسبة 30%. تم تصنيف هذا الاستثمار كاستثمار في شركة زميلة.",
+                table: "",
+                question: "إذا حققت الشركة المستثمر فيها ربحاً قدره 200,000 ريال ووزعت أرباحاً قدرها 80,000 ريال، فما هو التأثير على استثمار شركة الخليج؟",
+                options: {
+                    A: "زيادة بمقدار 60,000 ريال",
+                    B: "زيادة بمقدار 36,000 ريال",
+                    C: "زيادة بمقدار 24,000 ريال",
+                    D: "زيادة بمقدار 200,000 ريال"
+                },
+                correctAnswer: "B",
+                explanation: "حسب طريقة حقوق الملكية: نصيب شركة الخليج من الأرباح = 200,000 × 30% = 60,000 ريال. نصيبها من الأرباح الموزعة = 80,000 × 30% = 24,000 ريال. صافي الزيادة في الاستثمار = 60,000 - 24,000 = 36,000 ريال"
+            }
+        ];
 
         // Load test configuration
         function loadTestConfig() {
-            const stored = sessionStorage.getItem('testConfig');
+            const stored = localStorage.getItem('currentTestConfig');
             if (stored) {
                 testConfig = JSON.parse(stored);
+                console.log('Loaded test config:', testConfig);
                 // Update total questions based on configuration
                 if (testConfig.mcqCount && testConfig.tbsCount) {
                     totalQuestions = parseInt(testConfig.mcqCount) + parseInt(testConfig.tbsCount);
                 }
+            } else {
+                // Default configuration if none found
+                testConfig = {
+                    scoringMode: 'practice',
+                    testMode: 'random',
+                    mcqCount: 100,
+                    tbsCount: 0,
+                    selectedUnits: [],
+                    mcqEnabled: true,
+                    tbsEnabled: false
+                };
             }
         }
 
         // Initialize the test interface
         function initializeTest() {
+            // Clear any previous test completion flags
+            sessionStorage.removeItem('testCompleted');
+            sessionStorage.removeItem('testAbandoned');
+            
             loadTestConfig();
             generateQuestionGrid();
             updateQuestionDisplay();
             startTimer();
-            initializeCourseSelector();
+
             
             // Set current question as answered (example)
             questionStates[1] = 'current';
@@ -1328,136 +1322,332 @@
             answers[0] = 'A';
             
             updateQuestionGrid();
+            
+            // Add page refresh protection
+            setupPageRefreshProtection();
         }
-
-        // Course Selector Functionality
-        function initializeCourseSelector() {
-            const studySelector = document.getElementById('studySelector');
-            const studyInfo = document.getElementById('studyInfo');
-            const studyDropdown = document.getElementById('studyDropdown');
-
-            if (!studySelector || !studyInfo || !studyDropdown) {
-                console.warn('Course selector elements not found');
-                return;
-            }
-
-            // Toggle dropdown on click
-            studyInfo.addEventListener('click', function(e) {
-                e.stopPropagation();
-                studySelector.classList.toggle('open');
-                studyDropdown.classList.toggle('show');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!studySelector.contains(e.target)) {
-                    studySelector.classList.remove('open');
-                    studyDropdown.classList.remove('show');
+        
+        // Setup comprehensive page refresh protection
+        function setupPageRefreshProtection() {
+            let isShowingCustomPopup = false;
+            let confirmedRefresh = false;
+            
+            // Store references for cleanup
+            const protectionHandlers = {};
+            
+            // Override location.reload to intercept programmatic refreshes
+            const originalReload = window.location.reload.bind(window.location);
+            window.location.reload = function(forceReload) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh && !isShowingCustomPopup) {
+                    isShowingCustomPopup = true;
+                    showRefreshWarningPopup();
+                    return false;
+                } else {
+                    originalReload(forceReload);
                 }
-            });
-
-            // Handle course selection
-            document.querySelectorAll('.study-dropdown-item').forEach(item => {
-                item.addEventListener('click', function(e) {
+            };
+            
+            // Comprehensive keyboard shortcut detection
+            protectionHandlers.keydown = function(e) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh && !isShowingCustomPopup) {
+                    let shouldPrevent = false;
+                    
+                    // Standard refresh shortcuts
+                    if (e.key === 'F5') {
+                        shouldPrevent = true;
+                    }
+                    // Ctrl+R (Windows/Linux) or Cmd+R (Mac)
+                    else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'r') {
+                        shouldPrevent = true;
+                    }
+                    // Ctrl+F5 or Cmd+F5 (hard refresh)
+                    else if ((e.ctrlKey || e.metaKey) && e.key === 'F5') {
+                        shouldPrevent = true;
+                    }
+                    // Shift+F5 (hard refresh)
+                    else if (e.shiftKey && e.key === 'F5') {
+                        shouldPrevent = true;
+                    }
+                    // Ctrl+Shift+R or Cmd+Shift+R (hard refresh)
+                    else if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'r') {
+                        shouldPrevent = true;
+                    }
+                    
+                    if (shouldPrevent) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        isShowingCustomPopup = true;
+                        showRefreshWarningPopup();
+                    }
+                }
+            };
+            
+            // Browser refresh button and navigation protection
+            protectionHandlers.beforeunload = function(e) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh) {
+                    // This will trigger browser's native dialog, but we also show our custom popup
+                    const confirmationMessage = 'هل أنت متأكد من أنك تريد مغادرة الاختبار؟ سيتم فقدان التقدم المحرز.';
+                    e.preventDefault();
+                    e.returnValue = confirmationMessage;
+                    
+                    // Show our custom popup alongside (for better UX)
+                    if (!isShowingCustomPopup) {
+                        setTimeout(() => {
+                            if (!isShowingCustomPopup && sessionStorage.getItem('testCompleted') !== 'true') {
+                                isShowingCustomPopup = true;
+                                showRefreshWarningPopup();
+                            }
+                        }, 10);
+                    }
+                    
+                    return confirmationMessage;
+                }
+            };
+            
+            // Browser back/forward button protection
+            protectionHandlers.popstate = function(e) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh && !isShowingCustomPopup) {
+                    e.preventDefault();
                     e.stopPropagation();
-                    
-                    // Check if it's a coming soon item
-                    if (this.classList.contains('coming-soon-item')) {
-                        showToast('هذه المادة ستكون متاحة قريباً! 🚀', 'info');
-                        return;
-                    }
-                    
-                    // Remove active class from all available items (not coming soon)
-                    document.querySelectorAll('.study-dropdown-item').forEach(i => {
-                        if (!i.classList.contains('coming-soon-item')) {
-                            i.classList.remove('active');
-                        }
-                    });
-                    
-                    // Add active class to clicked item
-                    this.classList.add('active');
-                    
-                    // Update the study info text
-                    const courseName = this.querySelector('.course-name').textContent;
-                    studyInfo.querySelector('span').textContent = `تدرس: ${courseName}`;
-                    
-                    // Close dropdown
-                    studySelector.classList.remove('open');
-                    studyDropdown.classList.remove('show');
-                    
-                    // Show feedback
-                    showToast(`تم تغيير المادة إلى: ${courseName}`, 'success');
-                });
-            });
-        }
-
-        // Simple Toast Notification Function
-        function showToast(message, type = 'info') {
-            // Remove existing toast if any
-            const existingToast = document.querySelector('.toast-notification');
-            if (existingToast) {
-                existingToast.remove();
-            }
-
-            // Create toast element
-            const toast = document.createElement('div');
-            toast.className = `toast-notification toast-${type}`;
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 10000;
-                font-size: 0.9rem;
-                font-weight: 500;
-                max-width: 300px;
-                animation: slideInRight 0.3s ease-out;
-            `;
-            toast.textContent = message;
-
-            // Add animation styles if not already present
-            if (!document.querySelector('#toast-styles')) {
-                const style = document.createElement('style');
-                style.id = 'toast-styles';
-                style.textContent = `
-                    @keyframes slideInRight {
-                        from {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
-                    }
-                    @keyframes slideOutRight {
-                        from {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
-                        to {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-
-            document.body.appendChild(toast);
-
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.style.animation = 'slideOutRight 0.3s ease-in';
-                    setTimeout(() => toast.remove(), 300);
+                    // Push current state back to prevent navigation
+                    history.pushState(null, null, window.location.pathname);
+                    isShowingCustomPopup = true;
+                    showRefreshWarningPopup();
                 }
-            }, 3000);
+            };
+            
+            // Context menu refresh protection (right-click -> reload)
+            protectionHandlers.contextmenu = function(e) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh) {
+                    // We can't prevent the context menu, but we can detect if they choose reload
+                    // The beforeunload will catch it
+                }
+            };
+            
+            // Visibility change protection (handles tab switching that might trigger refresh)
+            protectionHandlers.visibilitychange = function(e) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh) {
+                    // Just log for debugging, don't prevent (as this would be too aggressive)
+                    console.log('Visibility changed during test session');
+                }
+            };
+            
+            // Add all event listeners with capture phase for maximum effectiveness
+            document.addEventListener('keydown', protectionHandlers.keydown, true);
+            window.addEventListener('beforeunload', protectionHandlers.beforeunload, true);
+            window.addEventListener('popstate', protectionHandlers.popstate, true);
+            document.addEventListener('contextmenu', protectionHandlers.contextmenu, true);
+            document.addEventListener('visibilitychange', protectionHandlers.visibilitychange, true);
+            
+            // Global functions for popup management
+            window.resetRefreshPopupFlag = function() {
+                isShowingCustomPopup = false;
+            };
+            
+            window.confirmRefreshAction = function() {
+                confirmedRefresh = true;
+                isShowingCustomPopup = false;
+                sessionStorage.setItem('testCompleted', 'true');
+                sessionStorage.setItem('testAbandoned', 'true');
+            };
+            
+            window.removeRefreshProtection = function() {
+                // Clean up all event listeners
+                document.removeEventListener('keydown', protectionHandlers.keydown, true);
+                window.removeEventListener('beforeunload', protectionHandlers.beforeunload, true);
+                window.removeEventListener('popstate', protectionHandlers.popstate, true);
+                document.removeEventListener('contextmenu', protectionHandlers.contextmenu, true);
+                document.removeEventListener('visibilitychange', protectionHandlers.visibilitychange, true);
+                
+                // Restore original location functions
+                window.location.reload = originalReload;
+                window.location.assign = originalAssign;
+                window.location.replace = originalReplace;
+            };
+            
+            // Set up initial history state for popstate detection
+            history.replaceState({testSession: true}, '', window.location.pathname);
+            
+            // Additional protection for programmatic navigation
+            const originalAssign = window.location.assign.bind(window.location);
+            const originalReplace = window.location.replace.bind(window.location);
+            
+            window.location.assign = function(url) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh && url !== window.location.href) {
+                    if (!isShowingCustomPopup) {
+                        isShowingCustomPopup = true;
+                        showRefreshWarningPopup();
+                    }
+                    return false;
+                } else {
+                    originalAssign(url);
+                }
+            };
+            
+            window.location.replace = function(url) {
+                const testCompleted = sessionStorage.getItem('testCompleted');
+                if (testCompleted !== 'true' && !confirmedRefresh && url !== window.location.href) {
+                    if (!isShowingCustomPopup) {
+                        isShowingCustomPopup = true;
+                        showRefreshWarningPopup();
+                    }
+                    return false;
+                } else {
+                    originalReplace(url);
+                }
+            };
         }
+        
+        // Show custom refresh warning popup
+        function showRefreshWarningPopup() {
+            // Create overlay similar to end test popup
+            const overlay = document.createElement('div');
+            overlay.className = 'end-test-overlay active';
+            overlay.id = 'refreshWarningOverlay';
+            
+            overlay.innerHTML = `
+                <div class="end-test-modal">
+                    <button class="close-end-popup" onclick="closeRefreshWarningPopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="end-test-modal-content">
+                        <div class="popup-header">
+                            <div class="popup-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h2>تحذير إعادة تحميل الصفحة</h2>
+                            <p>هل أنت متأكد من أنك تريد إعادة تحميل الصفحة؟</p>
+                        </div>
+                        
+                        <div class="test-progress-summary">
+                            <div class="progress-item">
+                                <span class="progress-label">الأسئلة المجابة:</span>
+                                <span class="progress-value" id="refreshAnsweredCount">--</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-label">إجمالي الأسئلة:</span>
+                                <span class="progress-value">${totalQuestions}</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-label">الوقت المنقضي:</span>
+                                <span class="progress-value" id="refreshTimeElapsed">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="popup-warning">
+                            <i class="fas fa-info-circle"></i>
+                            <p>سيتم فقدان جميع الإجابات والتقدم المحرز في الاختبار إذا قمت بإعادة تحميل الصفحة.</p>
+                        </div>
+                        
+                        <div class="popup-actions">
+                            <button class="end-popup-btn end-popup-btn-cancel" onclick="closeRefreshWarningPopup()">
+                                <i class="fas fa-arrow-right"></i>
+                                متابعة الاختبار
+                            </button>
+                            <button class="end-popup-btn end-popup-btn-confirm" onclick="confirmPageRefresh()">
+                                <i class="fas fa-sync-alt"></i>
+                                إعادة تحميل الصفحة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Update progress information
+            updateRefreshWarningProgress();
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Close popup when clicking outside
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeRefreshWarningPopup();
+                }
+            });
+            
+            // Close popup with Escape key (one-time listener)
+            const escapeHandler = function(e) {
+                if (e.key === 'Escape') {
+                    closeRefreshWarningPopup();
+                    document.removeEventListener('keydown', escapeHandler);
+                }
+            };
+            document.addEventListener('keydown', escapeHandler);
+        }
+        
+        // Update refresh warning progress
+        function updateRefreshWarningProgress() {
+            // Count answered questions
+            const answeredCount = answers.filter(answer => answer !== null).length;
+            document.getElementById('refreshAnsweredCount').textContent = answeredCount;
+            
+            // Calculate elapsed time
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            document.getElementById('refreshTimeElapsed').textContent = `${minutes} دقيقة و ${seconds} ثانية`;
+        }
+        
+        // Close refresh warning popup
+        function closeRefreshWarningPopup() {
+            const overlay = document.getElementById('refreshWarningOverlay');
+            if (overlay) {
+                overlay.remove();
+            }
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+            
+            // Reset popup flag
+            if (window.resetRefreshPopupFlag) {
+                window.resetRefreshPopupFlag();
+            }
+        }
+        
+        // Confirm page refresh
+        function confirmPageRefresh() {
+            // Set confirmed refresh flag to allow the refresh
+            if (window.confirmRefreshAction) {
+                window.confirmRefreshAction();
+            }
+            
+            // Show loading state
+            const confirmBtn = document.querySelector('#refreshWarningOverlay .end-popup-btn-confirm');
+            if (confirmBtn) {
+                confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إعادة التحميل...';
+                confirmBtn.disabled = true;
+            }
+            
+            // Close the popup first
+            const overlay = document.getElementById('refreshWarningOverlay');
+            if (overlay) {
+                overlay.remove();
+            }
+            
+            // Reset popup flag
+            if (window.resetRefreshPopupFlag) {
+                window.resetRefreshPopupFlag();
+            }
+            
+            // Refresh the page after a short delay
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 500);
+        }
+
+
 
         // Generate question navigation grid
         function generateQuestionGrid() {
@@ -1514,11 +1704,56 @@
         // Update question display
         function updateQuestionDisplay() {
             if (currentTestType === 'mcq') {
-                document.getElementById('questionId').textContent = `اختياري-${String(currentQuestion).padStart(5, '0')}`;
+                // Use data from mcqQuestions array if available
+                const questionIndex = Math.min(currentQuestion - 1, mcqQuestions.length - 1);
+                const questionData = mcqQuestions[questionIndex];
                 
-                // Clear selected answer
+                if (questionData) {
+                    // Update question ID
+                    document.getElementById('questionId').textContent = questionData.id;
+                    
+                    // Update question text
+                    const questionTextElement = document.getElementById('questionText');
+                    questionTextElement.innerHTML = `
+                        <p>${questionData.text}</p>
+                        ${questionData.table || ''}
+                        <p>${questionData.question}</p>
+                    `;
+                    
+                    // Update answer options
+                    const answerOptionsElement = document.getElementById('answerOptions');
+                    answerOptionsElement.innerHTML = `
+                        <div class="answer-option" onclick="selectAnswer('A')">
+                            <div class="answer-letter">أ</div>
+                            <div class="answer-text">${questionData.options.A}</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('B')">
+                            <div class="answer-letter">ب</div>
+                            <div class="answer-text">${questionData.options.B}</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('C')">
+                            <div class="answer-letter">ج</div>
+                            <div class="answer-text">${questionData.options.C}</div>
+                        </div>
+                        <div class="answer-option" onclick="selectAnswer('D')">
+                            <div class="answer-letter">د</div>
+                            <div class="answer-text">${questionData.options.D}</div>
+                        </div>
+                    `;
+                } else {
+                    // Fallback to default if no question data
+                    document.getElementById('questionId').textContent = `اختياري-${String(currentQuestion).padStart(5, '0')}`;
+                }
+                
+                // Clear any previous feedback
+                const existingFeedback = document.querySelector('.answer-feedback');
+                if (existingFeedback) {
+                    existingFeedback.remove();
+                }
+                
+                // Clear answer states and restore selected answer
                 document.querySelectorAll('.answer-option').forEach(option => {
-                    option.classList.remove('selected');
+                    option.classList.remove('selected', 'correct', 'incorrect');
                 });
                 
                 // Show previously selected answer
@@ -1556,17 +1791,97 @@
 
         // Select answer
         function selectAnswer(letter) {
-            // Clear previous selection
+            // Clear previous selection and feedback
             document.querySelectorAll('.answer-option').forEach(option => {
-                option.classList.remove('selected');
+                option.classList.remove('selected', 'correct', 'incorrect');
             });
             
             // Select new answer
-            event.target.closest('.answer-option').classList.add('selected');
+            const selectedOption = event.target.closest('.answer-option');
+            selectedOption.classList.add('selected');
             answers[currentQuestion - 1] = letter;
             questionStates[currentQuestion - 1] = 'answered';
             
+            // Check if answer is correct (for MCQ only)
+            if (currentTestType === 'mcq' && mcqQuestions.length > 0) {
+                const questionIndex = Math.min(currentQuestion - 1, mcqQuestions.length - 1);
+                const correctAnswer = mcqQuestions[questionIndex].correctAnswer;
+                const isCorrect = letter === correctAnswer;
+                
+                // Store answer result for later use
+                if (!window.answerResults) {
+                    window.answerResults = {};
+                }
+                window.answerResults[currentQuestion] = {
+                    question: mcqQuestions[questionIndex],
+                    userAnswer: letter,
+                    correctAnswer: correctAnswer,
+                    isCorrect: isCorrect
+                };
+                
+                // Show immediate feedback only in TRAINING mode
+                if (testConfig && testConfig.scoringMode === 'practice') {
+                    // Add visual feedback for training mode
+                    if (isCorrect) {
+                        selectedOption.classList.add('correct');
+                        showAnswerFeedback(true, mcqQuestions[questionIndex].explanation);
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        // Also highlight the correct answer
+                        const arabicLetter = getArabicLetter(correctAnswer);
+                        const answerOptions = document.querySelectorAll('.answer-option');
+                        answerOptions.forEach(option => {
+                            const letterElement = option.querySelector('.answer-letter');
+                            if (letterElement && letterElement.textContent.trim() === arabicLetter) {
+                                option.classList.add('correct');
+                            }
+                        });
+                        showAnswerFeedback(false, mcqQuestions[questionIndex].explanation);
+                    }
+                }
+                // In EXAM mode, just show selected state without revealing correct answer
+            }
+            
             updateQuestionGrid();
+        }
+        
+        // Helper function to get Arabic letter
+        function getArabicLetter(letter) {
+            const letterMap = { 'A': 'أ', 'B': 'ب', 'C': 'ج', 'D': 'د' };
+            return letterMap[letter] || letter;
+        }
+        
+        // Show answer feedback
+        function showAnswerFeedback(isCorrect, explanation) {
+            // Remove existing feedback
+            const existingFeedback = document.querySelector('.answer-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+            
+            // Create feedback element
+            const feedback = document.createElement('div');
+            feedback.className = `answer-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `
+                <div class="feedback-header">
+                    <i class="fas ${isCorrect ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                    <span>${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</span>
+                </div>
+                <div class="feedback-explanation">
+                    ${explanation}
+                </div>
+            `;
+            
+            // Insert feedback after answer options
+            const answerOptions = document.getElementById('answerOptions');
+            answerOptions.parentNode.insertBefore(feedback, answerOptions.nextSibling);
+            
+            // Auto-hide feedback after 10 seconds
+            setTimeout(() => {
+                if (feedback.parentNode) {
+                    feedback.remove();
+                }
+            }, 10000);
         }
 
         // Navigation functions
@@ -1644,12 +1959,48 @@
             
             // Simulate saving and redirect
             setTimeout(() => {
-                // Save test completion status
+                // Mark test as completed to prevent refresh warnings
                 sessionStorage.setItem('testCompleted', 'true');
+                
+                // Remove refresh protection since test is ending normally
+                if (window.removeRefreshProtection) {
+                    window.removeRefreshProtection();
+                }
+                
+                // Calculate results
+                let correctCount = 0;
+                let totalAnswered = 0;
+                const detailedResults = [];
+                
+                // Calculate correct answers from stored results
+                if (window.answerResults) {
+                    Object.keys(window.answerResults).forEach(questionNum => {
+                        const result = window.answerResults[questionNum];
+                        totalAnswered++;
+                        if (result.isCorrect) {
+                            correctCount++;
+                        }
+                        detailedResults.push({
+                            questionNumber: parseInt(questionNum),
+                            questionId: result.question.id,
+                            userAnswer: result.userAnswer,
+                            correctAnswer: result.correctAnswer,
+                            isCorrect: result.isCorrect,
+                            explanation: result.question.explanation
+                        });
+                    });
+                }
+                
+                // Save test results
                 sessionStorage.setItem('testResults', JSON.stringify({
                     endTime: new Date().toISOString(),
                     totalQuestions: totalQuestions,
-                    answeredCount: answers.filter(answer => answer !== null).length
+                    answeredCount: answers.filter(answer => answer !== null).length,
+                    correctCount: correctCount,
+                    totalAnswered: totalAnswered,
+                    scoringMode: testConfig?.scoringMode || 'practice',
+                    percentage: totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0,
+                    detailedResults: detailedResults
                 }));
                 
                 // Redirect to results page
@@ -1697,15 +2048,18 @@
             document.querySelectorAll('.test-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelector('.test-tab[onclick="switchToMCQ()"]').classList.add('active');
             
-            // Switch content
+            // Switch content - ensure only MCQ is shown
             document.getElementById('mcqContent').classList.add('active');
-            document.getElementById('tbsContent').classList.remove('active');
+            document.getElementById('essayContent').classList.remove('active');
             
             // Show question navigation for MCQ
             document.querySelector('.question-nav').style.display = 'block';
             
             // Show regular navigation controls for MCQ
             document.getElementById('questionNavigation').style.display = 'flex';
+            
+            // Update question display for MCQ
+            updateQuestionDisplay();
         }
 
         function switchToEssay() {
@@ -1715,7 +2069,7 @@
             document.querySelectorAll('.test-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelector('.test-tab[onclick="switchToEssay()"]').classList.add('active');
             
-            // Switch content
+            // Switch content - ensure only essay is shown
             document.getElementById('mcqContent').classList.remove('active');
             document.getElementById('essayContent').classList.add('active');
             
@@ -1724,6 +2078,9 @@
             
             // Show regular navigation controls for essay
             document.getElementById('questionNavigation').style.display = 'flex';
+            
+            // Update question display for essay
+            updateQuestionDisplay();
         }
 
         // Essay Functions

@@ -2364,9 +2364,289 @@
             showToast('الإشعارات متاحة قريباً! 🔔', 'info');
         }
         
+        // Load and display test results
+        function loadTestResults() {
+            const testResults = sessionStorage.getItem('testResults');
+            
+            if (testResults) {
+                const results = JSON.parse(testResults);
+                console.log('Loaded test results:', results);
+                
+                // Update date/time
+                const endDate = new Date(results.endTime);
+                const dateText = endDate.toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                }) + ' ' + endDate.toLocaleTimeString('ar-SA', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Calculate time spent (if available)
+                const timeSpent = '-- دقيقة'; // Could be calculated from start/end times
+                
+                // Update summary statistics
+                const totalQuestions = results.totalQuestions || 0;
+                const correctCount = results.correctCount || 0;
+                const totalAnswered = results.totalAnswered || results.answeredCount || 0;
+                const incorrectCount = totalAnswered - correctCount;
+                const unansweredCount = totalQuestions - totalAnswered;
+                const percentage = results.percentage || 0;
+                
+                // Update DOM elements with more specific selectors
+                const summaryStats = document.querySelectorAll('.summary-stat');
+                if (summaryStats.length >= 6) {
+                    // Date (2nd stat)
+                    summaryStats[1].querySelector('.stat-value').textContent = dateText;
+                    // Time spent (3rd stat)
+                    summaryStats[2].querySelector('.stat-value').textContent = timeSpent;
+                    // Total questions (5th stat)
+                    summaryStats[4].querySelector('.stat-value').textContent = totalQuestions;
+                    // Correct answers (6th stat)
+                    summaryStats[5].querySelector('.stat-value').textContent = correctCount;
+                }
+                
+                // Find and update the incorrect answers stat
+                const statValues = document.querySelectorAll('.summary-stat .stat-value');
+                statValues.forEach((element, index) => {
+                    const label = element.previousElementSibling;
+                    if (label && label.textContent.includes('خاطئة')) {
+                        element.textContent = incorrectCount;
+                    } else if (label && label.textContent.includes('غير مجابة')) {
+                        element.textContent = unansweredCount;
+                    } else if (label && label.textContent.includes('النتيجة')) {
+                        element.textContent = percentage + '%';
+                        
+                        // Add color coding for percentage
+                        if (percentage >= 80) {
+                            element.style.color = '#28a745';
+                        } else if (percentage >= 60) {
+                            element.style.color = '#ffc107';
+                        } else {
+                            element.style.color = '#dc3545';
+                        }
+                    }
+                });
+                
+                // Update scoring mode display (4th stat - النمط)
+                const scoringModeText = results.scoringMode === 'practice' ? 'التدريب' : 'الامتحان';
+                if (summaryStats.length >= 4) {
+                    const modeElement = summaryStats[3].querySelector('.stat-value');
+                    if (modeElement) {
+                        modeElement.textContent = scoringModeText;
+                        // Add color coding for mode
+                        if (results.scoringMode === 'practice') {
+                            modeElement.style.color = '#17a2b8'; // Info blue for training
+                        } else {
+                            modeElement.style.color = '#6f42c1'; // Purple for exam
+                        }
+                    }
+                }
+                
+                // Show detailed results for both training and exam modes
+                if (results.detailedResults && results.detailedResults.length > 0) {
+                    displayDetailedResults(results.detailedResults, results.scoringMode);
+                }
+                
+            } else {
+                console.log('No test results found');
+                // Show default or empty state
+            }
+        }
+        
+        // Display detailed results for both training and exam modes
+        function displayDetailedResults(detailedResults, scoringMode) {
+            console.log('Displaying detailed results:', detailedResults, 'Mode:', scoringMode);
+            
+            // Find the questions table tbody
+            const questionsTable = document.querySelector('.questions-table tbody');
+            if (!questionsTable) {
+                console.error('Questions table not found');
+                return;
+            }
+            
+            // Clear existing rows
+            questionsTable.innerHTML = '';
+            
+            if (detailedResults.length === 0) {
+                questionsTable.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--medium-gray);">لا توجد نتائج للعرض</td></tr>';
+                return;
+            }
+            
+            // Populate table with actual results
+            detailedResults.forEach((result, index) => {
+                const gradeClass = result.isCorrect ? 'correct' : 'incorrect';
+                const gradeIcon = result.isCorrect ? '✓' : '✗';
+                const gradeColor = result.isCorrect ? '#28a745' : '#dc3545';
+                
+                // Create table row
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><i class="far fa-bookmark bookmark-icon"></i></td>
+                    <td>#${result.questionNumber}</td>
+                    <td class="question-id">${result.questionId}</td>
+                    <td class="unit-code">F${Math.floor(Math.random() * 6) + 1}</td>
+                    <td class="module-text">M${Math.floor(Math.random() * 5) + 1} - ${getRandomModuleName()}</td>
+                    <td class="time-value">${Math.floor(Math.random() * 60) + 10} ثانية</td>
+                    <td><div class="grade-circle ${gradeClass}" style="background-color: ${gradeColor}; color: white; font-weight: bold;">${gradeIcon}</div></td>
+                `;
+                
+                // Add click event for training mode to show explanation
+                if (scoringMode === 'practice') {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => {
+                        showQuestionExplanation(result);
+                    });
+                    row.title = 'اضغط لعرض الشرح';
+                }
+                
+                questionsTable.appendChild(row);
+            });
+            
+            // Update testlet stats
+            updateTestletStats(detailedResults);
+        }
+        
+        // Helper function to get random module names
+        function getRandomModuleName() {
+            const modules = [
+                'المحاسبة المالية',
+                'الالتزامات والارتباطات', 
+                'البيانات المالية الموحدة',
+                'الممتلكات والمعدات',
+                'الاستثمارات',
+                'المخزون والتكلفة',
+                'الإيرادات والمصروفات'
+            ];
+            return modules[Math.floor(Math.random() * modules.length)];
+        }
+        
+        // Update testlet statistics
+        function updateTestletStats(detailedResults) {
+            const correctCount = detailedResults.filter(r => r.isCorrect).length;
+            const totalCount = detailedResults.length;
+            const percentage = Math.round((correctCount / totalCount) * 100);
+            
+            // Update testlet header
+            const testletStats = document.querySelector('.testlet-stats');
+            const testletGrade = document.querySelector('.testlet-grade');
+            
+            if (testletStats) {
+                testletStats.textContent = `${totalCount} سؤال`;
+            }
+            
+            if (testletGrade) {
+                testletGrade.textContent = `${percentage}%`;
+                // Add color coding
+                if (percentage >= 80) {
+                    testletGrade.style.color = '#28a745';
+                } else if (percentage >= 60) {
+                    testletGrade.style.color = '#ffc107';
+                } else {
+                    testletGrade.style.color = '#dc3545';
+                }
+            }
+        }
+        
+        // Show question explanation (for training mode)
+        function showQuestionExplanation(result) {
+            const arabicLetterMap = { 'A': 'أ', 'B': 'ب', 'C': 'ج', 'D': 'د' };
+            const userAnswerArabic = arabicLetterMap[result.userAnswer] || result.userAnswer;
+            const correctAnswerArabic = arabicLetterMap[result.correctAnswer] || result.correctAnswer;
+            
+            const statusText = result.isCorrect ? 'إجابة صحيحة ✓' : 'إجابة خاطئة ✗';
+            const statusColor = result.isCorrect ? '#28a745' : '#dc3545';
+            
+            // Create modal/popup for explanation
+            const modal = document.createElement('div');
+            modal.className = 'explanation-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                padding: 1rem;
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background: white;
+                    border-radius: 16px;
+                    padding: 2rem;
+                    max-width: 600px;
+                    width: 100%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                ">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: var(--primary-navy);">${result.questionId}</h3>
+                        <button onclick="this.closest('.explanation-modal').remove()" style="
+                            background: none;
+                            border: none;
+                            font-size: 1.5rem;
+                            cursor: pointer;
+                            color: var(--medium-gray);
+                            padding: 0.5rem;
+                        ">×</button>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="
+                            background: ${statusColor};
+                            color: white;
+                            padding: 0.75rem 1rem;
+                            border-radius: 8px;
+                            font-weight: bold;
+                            text-align: center;
+                            margin-bottom: 1rem;
+                        ">${statusText}</div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 0.75rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                                <strong style="color: var(--primary-navy);">إجابتك:</strong> 
+                                <span style="color: ${statusColor}; font-weight: bold;">${userAnswerArabic}</span>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 0.75rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                                <strong style="color: var(--primary-navy);">الإجابة الصحيحة:</strong> 
+                                <span style="color: #28a745; font-weight: bold;">${correctAnswerArabic}</span>
+                            </div>
+                        </div>
+                        
+                        <div style="
+                            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+                            padding: 1rem;
+                            border-radius: 8px;
+                            border-left: 4px solid var(--primary-blue);
+                        ">
+                            <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-navy);">الشرح:</h4>
+                            <p style="margin: 0; line-height: 1.6; color: var(--dark-gray);">${result.explanation}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            document.body.appendChild(modal);
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initMobileNavbar();
+            loadTestResults();
             
             // Study selector functionality (copied from practice-tests.html)
             const studySelector = document.getElementById('studySelector');
